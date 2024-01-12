@@ -163,12 +163,13 @@ form button:hover{
     flex-wrap: wrap;
 }
 .service-card-1{
-    width: 350px;
+    width: 300px;
     margin: 2% 0;
     border-radius: 5px;
     overflow: hidden;
     height: auto;
     border: 1px solid lightgrey;
+    background-color: #0060B0;
 }
 .service-card-img{
     width: 100%;
