@@ -9,7 +9,8 @@
     <meta name="description" content="">
     <meta name="robots" content="noindex">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/home.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="<?= get_url() ?>assets/css/footer.css" defer>
+    <title>Skokra - Manage your ads</title>
 </head>
 
 <body>
