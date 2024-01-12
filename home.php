@@ -19,8 +19,8 @@
             <nav class="nav">
                 <a href="#" class="logo"><img src="./assets/images/SKOKRA+LOGO+NEW+(2).webp.png" width="100%" height="100%" alt=""></a>
                 <ul>
-                    <li><a href=""><i class="ri-login-box-line"></i> Login</a></li>
-                    <li><a href=""><i class="ri-edit-circle-line"></i> Sign up</a></li>
+                    <li><a href="<?= get_url() ?>login"><i class="ri-login-box-line"></i> Login</a></li>
+                    <li><a href="<?= get_url() ?>signup"><i class="ri-edit-circle-line"></i> Sign up</a></li>
                     <li><button class="post-your-ad">POST YOUR AD <i class="ri-arrow-right-line"></i></button></li>
                 </ul>
             </nav>
