@@ -156,9 +156,9 @@ form button:hover{
 .services-cards{
     width: 100%;
     height: auto;
-    padding: 4% 5%;
+    padding: 4% 1%;
     display: flex;
-    /* justify-content: space-evenly; */
+    justify-content: space-evenly;
     gap: 5%;
     flex-wrap: wrap;
 }
