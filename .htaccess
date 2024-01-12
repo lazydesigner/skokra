@@ -1,0 +1,20 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+Options -Indexes
+#RewriteCond %{HTTPS} off
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+ReWriteRule ^$ home.php [NC,L]
+
+ReWriteRule ^signup([/]?)$ signup.php [NC,L]
+ReWriteRule ^login([/]?)$ login.php [NC,L]
+ReWriteRule ^google/em/recaptcha([/]?)$ recaptcha.php [NC,L]
+
+
+
+#ReWriteRule ^contact-us([/]?)$ contact-us.php [NC,L]
+#ReWriteRule ^call-girls/([0-9A-Za-z\-]+)/([0-9A-Za-z\-]+)/([0-9A-Za-z\-]+)([/]?)$ profile_index.php?state=$1&city=$2&id=$3 [NC,L]
+
+
+
+#RewriteRule ^call-girl-in-delhi/?$ /call-girls/delhi/ [R=301,L]

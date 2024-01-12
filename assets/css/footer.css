@@ -1,0 +1,64 @@
+/* FOOTER */
+footer{
+    padding: 3%;
+}
+footer a{color: var(--heading-color);}
+footer ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+footer ul li{
+    padding: .5% 1%;
+}
+footer ul li{
+    border-right: 1px solid var(--heading-color);
+}
+footer ul li:last-child{
+    border-right: 0;
+}
+
+.call-girls-section strong{
+    padding: 0;
+    margin: 0;
+    font-size: 2rem;
+    color: var(--header-color);
+}
+.ads-cities{margin-top: 3%;}
+.ads-cities button{
+    width: auto;
+    padding: 1% 4%;
+    height: 50px;
+    margin: 0 .5%;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    border: 1px solid var(--header-color);
+    color: var(--header-color);
+
+}
+.footer-follow{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.footer-follow ul{
+    gap: 5%;
+}
+.footer-follow ul li{border: 0;font-size: 2rem;}
+.footer-follow ul li i{color: var(--light-white);
+    padding: 1% 2%;}
+a[aria-label="youtube"]{
+    background-color: red;
+    border-radius: 5px;
+}
+a[aria-label="instagram"],a[aria-label="facebook"],a[aria-label="twitter"]{
+    background-color: var(--primary-color);
+    border-radius: 5px;
+}
+.rta{
+    width: 150px;
+}
+
+/* FOOTER */
+
