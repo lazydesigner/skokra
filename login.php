@@ -2,6 +2,7 @@
 if (isset($_SESSION['captcha'])) {
     unset($_SESSION['captcha']);
 }
+include './routes.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,8 +12,8 @@ if (isset($_SESSION['captcha'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.6.0/remixicon.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" async>
-    <link rel="stylesheet" href="./assets/css/signup.css">
-    <link rel="stylesheet" href="./assets/css/footer.css" defer>
+    <link rel="stylesheet" href="<?= get_url() ?>assets/css/signup.css">
+    <link rel="stylesheet" href="<?= get_url() ?>assets/css/footer.css" defer>
     <title>Login - skokra</title>
 </head>
 
