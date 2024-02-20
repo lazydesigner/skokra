@@ -16,7 +16,7 @@
         </ul>
 
         <div class="rta">
-            <img src="./assets/images/download.jpeg" width="100%" height="100%" alt="">
+            <img src="<?= get_url() ?>assets/images/download.jpeg" width="100%" height="100%" alt="">
         </div>
     </div>
 </footer>

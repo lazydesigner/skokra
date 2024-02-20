@@ -9,7 +9,12 @@ ReWriteRule ^$ home.php [NC,L]
 ReWriteRule ^signup([/]?)$ signup.php [NC,L]
 ReWriteRule ^login([/]?)$ login.php [NC,L]
 ReWriteRule ^google/em/recaptcha([/]?)$ recaptcha.php [NC,L]
+ReWriteRule ^verification([/]?)$ sigup-verification.php [NC,L]
+ReWriteRule ^call-girls-index([/]?)$ call-girls-index.php [NC,L]
 
+
+#USER DASHBOARD
+ReWriteRule ^user/account/dashboard([/]?)$ account/dashboard/home_.php [NC,L]
 
 
 #ReWriteRule ^contact-us([/]?)$ contact-us.php [NC,L]

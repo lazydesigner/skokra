@@ -61,6 +61,20 @@ a{text-decoration: none;padding: 0;margin: 0;}
     text-wrap: nowrap;
     font-size: 1.1rem;
 }
+.user-account i{
+    font-size: 1.7rem;
+}
+.user-account div{
+    padding: 0;
+    margin: 0;
+    width: 80px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: var(--header-color);
+    cursor: pointer;
+}
+.user-account:hover{opacity: .7;}
+.user-account:hover small{color: var(--primary-color);}
 .post-your-ad{
     width: 200px;
     /* padding: 1% 5%; */

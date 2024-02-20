@@ -20,7 +20,7 @@ include './routes.php';
 <body>
     <div class="container">
         <header>
-            <a href="" class="logo"><img src="./assets/images/SKOKRA+LOGO+NEW+(2).webp.png" alt=""></a>
+            <a href="<?= get_url() ?>" class="logo"><img src="<?= get_url() ?>assets/images/SKOKRA+LOGO+NEW+(2).webp.png" alt=""></a>
         </header>
         <div class="form-container">
             <div class="form-body">
@@ -67,7 +67,7 @@ include './routes.php';
             var captcha_code = e.target.value;
             const data = new FormData();
             data.append('captcha', captcha_code)
-            fetch('google/em/recaptcha', {
+            fetch('<?= get_url() ?>google/em/recaptcha/', {
                     method: 'post',
                     body: data
                 }).then(res => res.json())
