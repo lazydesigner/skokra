@@ -5,8 +5,8 @@ html, body{
     width: 100%;
     height: auto;
     padding: 0;
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;    
+    font-family: "Inter";
 }
 :root{
     /* Color */
@@ -16,19 +16,18 @@ html, body{
     --header-color-rgb: #dc006ae8;
     /* Font Size */
     --p: 1.2rem;
-    --h1:3rem;
+    --h1:2rem;
     --heading-color:#36454F;
 
 }
 .container{
-    width: 80%;
+    width: 75%;
     height: auto;
     margin: auto;
-    border-bottom: 1px solid var(--light-white);
 }
 header{
     width: 100%;
-    height: 100px;
+    height: auto;
     background-color: var(--light-white);
 }
 a{text-decoration: none;padding: 0;margin: 0;}
@@ -38,6 +37,7 @@ a{text-decoration: none;padding: 0;margin: 0;}
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 1% 0;
 }
 .nav a{
     color: var(--header-color);
@@ -55,12 +55,13 @@ a{text-decoration: none;padding: 0;margin: 0;}
     /* width: auto; */
     align-items: center;
     justify-content: end;
-    gap: 10%;
+    margin: 0;
+    gap: 7%;
     padding: 0;
 }
 .nav ul li{
     text-wrap: nowrap;
-    font-size: 1.1rem;
+    font-size: .9rem;
 }
 .user-account i{
     font-size: 1.7rem;
@@ -76,26 +77,25 @@ a{text-decoration: none;padding: 0;margin: 0;}
 }
 .user-account:hover{opacity: .7;}
 .user-account:hover small{color: var(--primary-color);}
-
 .post-your-ad{
-    width: 200px;
+    width: 165px;
     /* padding: 1% 5%; */
-    height: 50px;
-    border-radius: 5px;
+    height: 44px;
+    border-radius: 3px;
     border: 0;
     background-image: linear-gradient(to right, #C51669, #FD0179);
     color: var(--light-white);
-    font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1rem;
     cursor: pointer;
 }
+.post-your-ad span{font-size: .9rem;margin-right:10%;font-weight: 600;}
 .post-your-ad:hover{
     background-image: none;
     background-color: #C51669;
 }
 .search-header{
     width: 100%;
-    height: 180px;
+    height: auto;
     /* background-color: var(--header-color-rgb); */
     background-color: var(--light-white);
 }
@@ -104,16 +104,17 @@ form{
     height: 100%;
     display: grid;
     align-items: center;
+    padding: 0% 0 1% 0;
 }
 .form-group{
-    margin: 2% 0;
+    margin: .8% 0;
     width: 100%;
     display: flex;
     gap: 1%;
 }
 select,input{
     width: 50%;
-    height: 50px;
+    height: 45px;
     border: 0;
     outline: 0;
     padding: 1%;
@@ -121,14 +122,13 @@ select,input{
     border: 1px solid lightgrey;
     /* appearance: none; */
     position: relative;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 select option{
-    font-size: 1.2rem;
-    margin: 2%;
+    font-size: 1rem;
 }
 select[name='cities']{
-    width: 27%;
+    width: 27%; 
     position: relative;
 }
 select[name='area']{
@@ -137,8 +137,8 @@ select[name='area']{
 }
 
 form button{
-    width: 13%;
-    height: 50px;
+    width: 17%;
+    height: 45px;
     outline: 0;
     border: 0;
     border-radius: 3px;

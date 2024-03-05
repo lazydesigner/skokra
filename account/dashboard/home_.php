@@ -11,6 +11,7 @@ $_SESSION['customer_id'] = 'a';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.6.0/remixicon.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" async>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/common-header.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/account/home.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/footer.css">
@@ -125,8 +126,8 @@ $_SESSION['customer_id'] = 'a';
                     <div class="age-verification-form">
                         <h2><i class="ri-pass-valid-line"></i>Verify Your Age!</h2>
                         <ul>
-                            <li> How does it work?</li>
-                            <li>Any questions?</li>
+                            <li><i class="ri-information-line"></i> How does it work?</li>
+                            <li><i class="ri-information-line"></i> Any questions?</li>
                         </ul>
                         <div class="age-verify-info">
                             <div class="age-card"><i class="ri-pass-valid-line"></i></div>
@@ -142,12 +143,20 @@ $_SESSION['customer_id'] = 'a';
 
 
 
-            <div class="help-box">
-                <div class="support"><i class="ri-customer-service-2-fill"></i></div>
-                <div style="padding:1% 2% ;">
-                    <strong>Seeking support</strong><br>
-                    <small>Contact us through one of our channels from Monday to Friday from 2pm to 9pm.</small><br><br>
-                    <a href="" aria-label="whatsapp"><i class="ri-whatsapp-fill"></i> whatsapp</a> <a href="" aria-label="telegram"><i class="ri-telegram-fill"></i> telegram</a>
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="need-help">
+            <div class="need-help-icon"><i class="ri-customer-service-2-fill"></i></div>
+            <div class="need-help-content">
+                <div>
+                    <strong>Need help?</strong><br>
+                    <small>Contact us through one of our channels from Monday to Friday from 2pm to 9pm.</small>
+                </div>
+                <div class="need-help-button">
+                    <a href=""><i class="ri-whatsapp-fill"></i> Whatsapp</a>
+                    <a href=""><i class="ri-telegram-fill"></i> Telegram</a>
                 </div>
             </div>
         </div>

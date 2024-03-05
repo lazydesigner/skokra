@@ -43,3 +43,123 @@ a[aria-label="instagram"],a[aria-label="facebook"],a[aria-label="twitter"]{
 
 /* FOOTER */
 
+.next-step{
+    width: 50%;
+    height: 50px;
+    border-radius: 100px;
+    background-color: #DC006C;
+    color: white;
+    justify-self: end;
+    border: 0;
+    font-size: 1rem;
+    margin: .5% 0;
+    cursor: pointer;
+}
+.need-help-icon i{font-size: 2rem;}
+.need-help{
+    width: 100%;
+    height: auto;
+    padding: 2%;
+    margin: 3% 0;
+    border: 1px solid lightgrey;
+    border-radius: 2.5px;
+    height: 120px;
+    display: flex;
+    gap: 3%;
+}
+.need-help-content{display: grid;height: 100%;}
+.need-help-content .need-help-button{
+    margin-top: 4%;
+    display: flex;
+    align-items: center;
+    gap: 5%;
+}
+.need-help-button i{font-size: 1.25rem;}
+
+.private-area-background{
+   width: 100%;
+   height: 100%;
+   position: fixed;
+   inset: 0;
+    display: none;
+    place-items: center;
+    background-color: rgba(0, 0, 0, 0.608);
+}
+.private-area{
+    width: 40%;
+    height: 70%;
+    background-color: white;
+    border-radius: 5px;    
+    display: block;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+.private-area-heading{
+    width: 100%;
+    height: 15%;
+    padding: 0 3%;
+    background-color: aliceblue;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.private-area-heading strong{
+    font-size: 1.6rem;
+}
+.private-area-heading > div{
+    font-weight: bold;
+    cursor: pointer;
+}
+.private-area-body{
+    width: 100%;
+    height: 85%;
+    padding: 3%;
+    display: block;
+}
+.private-area-subheading{
+    width: 100%;
+    height: 10%;
+    text-align: center;
+}
+.private-area-logout{
+    width: 100%;
+    height: 20%;
+}
+.private-area-action{
+    width: 100%;
+    height: 70%;
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: repeat(3, max(150px));
+    /* grid-auto-rows: 75px; */
+    grid-template-rows: auto;
+}
+.private-area-items{
+    width: auto;
+    height: 75px;
+    border-radius: 5px;
+    /* border: 1px solid grey; */
+    margin: 3% 2%;
+    display: grid;
+    place-items: center;
+    padding: 1%;
+    box-shadow:0 0 6px 3px lightgrey;
+    text-transform: capitalize;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+.private-area-logout button{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    border: 0;
+    background-color: var(--header-color);
+    color: white;
+    font-weight: bold;
+    font-size: .9rem;
+    cursor: pointer;
+}
+
+

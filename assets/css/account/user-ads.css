@@ -1,0 +1,133 @@
+.container h1{
+    font-size: 2.3rem;
+    text-align: center;
+    padding: .8% 0;
+}
+.active-ads-tab-flex{
+    width: 100%;
+    display: flex;
+    margin-bottom: 3%;
+}
+.active-tab{
+    flex: 1;
+    text-align: center;
+    padding: 2%;
+    border-bottom: 1px solid rgb(215, 215, 215);
+    color: var(--header-color);
+}
+.current-active-tab{
+    border-bottom: 2.5px solid var(--primary-color);
+    color: var(--primary-color);
+}
+.ads-container{
+    background-color: rgb(244, 244, 244);
+    padding:1.5% 2%;
+    border-radius: 15px;
+}
+.ads-container p{margin:0 0 1% 0;}
+select{
+    width: 100%;
+    height:  40px;
+    border-radius: 5px;
+    outline: 0;
+    border: 1px solid lightgrey;
+}
+.ad-filter{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 1%;
+    border: 1px solid rgb(198, 198, 198);
+    border-radius: 5px;
+    cursor: pointer;
+}
+.form-group {
+    font-weight: 600;
+    margin: 2% 0;
+}
+.flter_list{
+    overflow: hidden;
+    width: 100%;
+    max-height: 0;
+    transition:max-height .25s;
+    padding: 0 1%;
+}
+
+.number-of-active-ad{
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 4% 0;
+}
+.promoted-ad-info{
+    margin: 1.5% 0;
+    padding: 0 2%;
+    border-left: 4px solid orangered;
+    font-size: small;
+}
+.promoted-ad-expiry{
+    color: orangered;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 1%;
+}
+.promoted-ad-expiry i{font-size: 1.2rem;}
+.preview-of-active-ad{
+    width: 100%;
+    height: 220px;
+    background-color:whitesmoke;
+    border: 1px solid lightgrey;
+    display: flex;    
+    align-items: center;
+    border-radius: 10px;
+}
+
+.preview-ad-image{
+    width: 20%;
+}
+.preview-ad-details{
+    width: 80%;
+    padding: 0 1%;
+}
+.preview-additional-info{
+    width: 100%;
+    display: flex;
+    gap: 3%;
+}
+.free-preview-ad-splash{
+    background-color: #D1ECF1;
+    color: #0C5460;
+    padding: 2%;
+    border-radius: 10px;
+    margin: 1.5% 0;
+}
+.add-col{
+    flex:1;
+    text-transform: uppercase;
+    text-align: center;
+    align-self: center;   
+}
+.add-col i{font-size: 1.7rem;}
+.add-col button{
+    width: 100%;
+    padding: 15px 0;
+    height: auto;
+    border-radius: 20px;
+    background-color: transparent;
+    border: 2px solid var(--header-color);
+    color: var(--header-color);
+    text-transform: uppercase;
+}
+.add-col:last-child button{
+    font-size: 1.3rem;
+    background-color: var(--header-color);
+    text-transform: uppercase;
+    color: white;
+    padding: 15px 10px;
+}
+.add-col :is(a, button){
+    cursor: pointer;
+    color: var(--header-color); 
+} 
+
+
+

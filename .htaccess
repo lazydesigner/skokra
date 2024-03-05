@@ -16,6 +16,19 @@ ReWriteRule ^call-girls-index([/]?)$ call-girls-index.php [NC,L]
 #USER DASHBOARD
 ReWriteRule ^user/account/dashboard([/]?)$ account/dashboard/home_.php [NC,L]
 
+#post-ad
+ReWriteRule ^xv([/]?)$ account/dashboard/post-ad/xv.php [NC,L]
+ReWriteRule ^u/post-insert([/]?)$ account/dashboard/post-ad/post-insert.php [NC,L]
+ReWriteRule ^u/post-insert-image([/]?)$ account/dashboard/post-ad/post-insert-image.php [NC,L]
+ReWriteRule ^u/post-promote([/]?)$ account/dashboard/post-ad/post-insert-visibility.php [NC,L]
+
+#EDIT ADs
+ReWriteRule ^u/post-update([/]?)$ account/dashboard/post-ad/post-update.php [NC,L]
+
+
+
+ReWriteRule ^u/account/ads/([/]?)$ account/dashboard/user-ads/user-active-ads.php [NC,L]
+
 
 #ReWriteRule ^contact-us([/]?)$ contact-us.php [NC,L]
 #ReWriteRule ^call-girls/([0-9A-Za-z\-]+)/([0-9A-Za-z\-]+)/([0-9A-Za-z\-]+)([/]?)$ profile_index.php?state=$1&city=$2&id=$3 [NC,L]
