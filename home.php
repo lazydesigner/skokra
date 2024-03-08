@@ -199,6 +199,7 @@ session_start();
 
 <?php include './footer.php' ?>
 <?php include $_SERVER['DOCUMENT_ROOT'].'/skokra.com/account/dashboard/private-area.php' ?>
+<script src="./assets/js/common.js" defer></script>
 </body>
 
 </html>

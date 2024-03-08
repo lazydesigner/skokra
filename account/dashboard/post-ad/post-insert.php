@@ -1,7 +1,10 @@
 <?php include '../../../routes.php';
 session_start();
-$dashboard = 'true';
-$_SESSION['customer_id'] = 'a';
+
+$url = $_SERVER['REQUEST_URI'];
+$path = parse_url($url, PHP_URL_PATH);
+echo $path;
+
 
 
 

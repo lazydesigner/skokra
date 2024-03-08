@@ -5,7 +5,7 @@
             <div id="cloase-the-private-area">X</div>
         </div>
         <div class="private-area-body">
-            <div class="private-area-subheading">Hi! example@gmail.com</div>
+            <div class="private-area-subheading">Hi! <?php if(isset($_SESSION['email'])){echo $_SESSION['email']; } ?></div>
             <div class="private-area-action">
                 <div class="private-area-items">
                     <a href="<?=get_url()?>u/account/dashboard"><span><i class="ri-home-5-line"></i><br>
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="private-area-logout">
-                <button><i class="ri-logout-circle-line"></i><br>LOGOUT</button>
+                <a href="<?=get_url() ?>logout/"><button><i class="ri-logout-circle-line"></i><br>LOGOUT</button></a>
             </div>
         </div>
 

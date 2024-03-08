@@ -8,6 +8,7 @@ ReWriteRule ^$ home.php [NC,L]
 
 ReWriteRule ^signup([/]?)$ ssiignup.php [NC,L]
 ReWriteRule ^login([/]?)$ lloogin.php [NC,L]
+ReWriteRule ^logout([/]?)$ lloogout.php [NC,L]
 ReWriteRule ^google/em/recaptcha([/]?)$ recaptcha.php [NC,L]
 ReWriteRule ^verification([/]?)$ sigup-verification.php [NC,L]
 ReWriteRule ^call-girls-index([/]?)$ call-girls-index.php [NC,L]

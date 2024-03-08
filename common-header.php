@@ -13,7 +13,7 @@
                         <div id="open-private-area"><i class="ri-user-star-line"></i><br><small><?=$_SESSION['email'] ?></small></div>
                     </li>
                 <?php } ?>
-                <li><a href="<?= get_url() ?>u/post-insert/"><button class="post-your-ad"><span>POST YOUR AD</span><i class="ri-arrow-right-line"></i></button></a></li>
+                <li><a id="forward-the-link" data-href="<?= get_url() ?>u/post-insert/"><button class="post-your-ad"><span>POST YOUR AD</span><i class="ri-arrow-right-line"></i></button></a></li>
             </ul>
         </nav>
     </div>

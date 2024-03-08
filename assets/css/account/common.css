@@ -28,6 +28,7 @@ body {
 a {
     text-decoration: none;
 }
+.private-area-items a{color: var(--header-color-rgb);}
 
 .container {
     width: 79%;
