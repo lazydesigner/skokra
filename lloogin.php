@@ -3,6 +3,7 @@ if (isset($_SESSION['captcha'])) {
     unset($_SESSION['captcha']);
 }
 include './routes.php';
+include './backend/cradential.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +15,22 @@ include './routes.php';
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.6.0/remixicon.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" async>
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/signup.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/footer.css" defer>
-    <title>Signup - skokra</title>
+    <title>Login - skokra</title>
+    <style>
+        .showerror {
+            width: 300px;
+            min-height: 50px;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            box-shadow: 0 0 6px 3px lightgrey;
+            padding: 2%;
+            position: fixed;
+            top: 20%;
+            right: -310px;
+            color: white;
+            transition:right 1s;
+        }
+    </style>
 </head>
 
 <body>
@@ -24,33 +40,20 @@ include './routes.php';
         </header>
         <div class="form-container">
             <div class="form-body">
-                <h1 style="font-weight: bolder;">JOIN SKOKRA</h1>
+                <h1 style="font-weight: bolder;">GET INTO SKOKRA</h1>
                 <h2>Publish and Manage your ads</h2>
-                <form id="signupnotrequired" method="post">
+                <form id="signupnotrequired" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
                     <div class="form-group">
-                        <label for="emal">Email</label><br>
+                        <label for="emal">Email</label><span id="email-error" style="color: tomato;display:none;font-size:small">email is required</span><br>
                         <input type="email" name="email" class="form-control" placeholder="Email" id="email">
                     </div>
                     <div class="form-group">
-                        <label for="password">Password</label><br>
+                        <label for="password">Password</label><span id="password-error" style="color: tomato;display:none;font-size:small">password is required</span><br>
                         <div class="password-show">
                             <input type="password" class="form-control" name="password" placeholder="Password" id="password">
                             <div id="hide-pass" class="active"><i class="ri-eye-off-fill"></i></div>
                             <div id="show-pass"><i class="ri-eye-fill"></i></div>
                         </div>
-                    </div>
-                    <div class="password-check" id="password-check">
-                        <ul>
-                            <li id="lowercharacter"><i class="ri-checkbox-circle-fill" id="right"></i> a lowercase letter</li>
-                            <li id="uppercharacter"><i class="ri-checkbox-circle-fill" id="right"></i> a uppercase letter</li>
-                            <li id="a-number"><i class="ri-checkbox-circle-fill" id="right"></i> a number</li>
-                            <li id="8-character"><i class="ri-checkbox-circle-fill" id="right"></i> Minimum 8 Characters</li>
-                        </ul>
-                    </div>
-                    <div class="form-group form-row">
-                        <input type="checkbox" name="confirm" id="confirm">
-                        <p><b>Terms, Conditions and Privacy Policy</b><br>
-                            I have read the <a href="">Terms and Conditions</a> of use and <a href="">Privacy Policy</a> and I hereby authorize the processing of my personal data for the purpose of providing this web service.</p>
                     </div>
                     <div class="form-group form-row">
                         <div class="captcha">
@@ -63,56 +66,36 @@ include './routes.php';
                         </div>
                     </div>
                     <div class="form-group">
-                        <button class="signup-btn" id="submit" disabled>SIGN UP</button>
+                        <button class="signup-btn" id="submit" name="submit" disabled>SIGN UP</button>
                     </div>
                 </form>
-                <p style="text-align: center;padding-top:5%;border-top:1px solid lightgrey">Already Have An Account? <a href="login">Login</a></p>
+                <p style="text-align: center;padding-top:5%;border-top:1px solid lightgrey">Don't Have An Account Yet? <a href="signup">Signup</a></p>
             </div>
         </div>
 
 
 
     </div>
+    <div class="showerror" id="showerror"></div>
     <?php include './footer.php' ?>
 
     <script>
-        document.getElementById('password').addEventListener('keyup', (e) => {
-            let password = e.target.value;
-            var _character = document.getElementById('8-character')
-            var lowercharacter = document.getElementById('lowercharacter')
-            var uppercharacter = document.getElementById('uppercharacter')
-            var number = document.getElementById('a-number')
-            // 8 character
-            if (password.length >= 8) {
-                _character.style.color = 'green'
+        document.getElementById('signupnotrequired').addEventListener('submit', (e) => {
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+            if (email.trim().length == 0) {
+                document.getElementById('email-error').style.display = 'inline-block';
+                e.preventDefault()
             } else {
-                _character.style.color = 'grey'
+                document.getElementById('email-error').style.display = 'none';
             }
-
-            function checkTextCharacterTypes(text) {
-                const containsLowercase = /[a-z]/.test(text);
-                const containsUppercase = /[A-Z]/.test(text);
-                const containsNumber = /\d/.test(text);
-
-                if (containsLowercase) {
-                    lowercharacter.style.color = 'green'
-                } else {
-                    lowercharacter.style.color = 'grey'
-                }
-                if (containsUppercase) {
-                    uppercharacter.style.color = 'green'
-                } else {
-                    uppercharacter.style.color = 'grey'
-                }
-                if (containsNumber) {
-                    number.style.color = 'green'
-                } else {
-                    number.style.color = 'grey'
-                }
+            if (password.trim().length == 0) {
+                document.getElementById('password-error').style.display = 'inline-block';
+                e.preventDefault()
+            } else {
+                document.getElementById('password-error').style.display = 'none';
             }
-            checkTextCharacterTypes(password);
         })
-
         document.getElementById('captcha').addEventListener('keyup', (e) => {
             var captcha_code = e.target.value;
             const data = new FormData();
@@ -126,7 +109,7 @@ include './routes.php';
                         var notAuthenticatedAction = d['notauthenticated'];
 
                         // Set the 'action' attribute for the element with ID 'signupnotrequired'
-                        document.getElementById('signupnotrequired').setAttribute('action', notAuthenticatedAction);
+                        // document.getElementById('signupnotrequired').setAttribute('action', notAuthenticatedAction);
 
                         // Set the 'readonly' attribute for the element with ID 'captcha'
                         document.getElementById('captcha').setAttribute('readonly', true);
@@ -166,7 +149,6 @@ include './routes.php';
         ?>
         document.querySelector('.hide-the-captcha').innerHTML = '<b><?= $alphanumericNumber ?></b>';
 
-
         document.getElementById('password').addEventListener('focus', function() {
             document.querySelector('.password-show').classList.add('focus');
         });
@@ -174,23 +156,63 @@ include './routes.php';
         document.getElementById('password').addEventListener('blur', function() {
             document.querySelector('.password-show').classList.remove('focus');
         });
-        document.getElementById('hide-pass').addEventListener('click',()=>{
+
+
+        document.getElementById('hide-pass').addEventListener('click', () => {
             const passwordField = document.getElementById('password');
-            if(passwordField.type === "password"){
+            if (passwordField.type === "password") {
                 passwordField.type = "text";
-                document.getElementById("hide-pass").style.display="none"
-                document.getElementById("show-pass").style.display="block"
-                }
+                document.getElementById("hide-pass").style.display = "none"
+                document.getElementById("show-pass").style.display = "block"
+            }
         })
-        document.getElementById('show-pass').addEventListener('click',()=>{
+        document.getElementById('show-pass').addEventListener('click', () => {
             const passwordField = document.getElementById('password');
-            if(passwordField.type === "text"){
+            if (passwordField.type === "text") {
                 passwordField.type = "password";
-                document.getElementById("hide-pass").style.display="block"
-                document.getElementById("show-pass").style.display="none"
-                }
+                document.getElementById("hide-pass").style.display = "block"
+                document.getElementById("show-pass").style.display = "none"
+            }
         })
     </script>
+
+<?php
+
+if (isset($_POST['submit'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $result = json_decode(User_Signup::Login($email, $password), true);
+    if ($result['msg'] == 'exist') {
+        $errorMessage = "Either Username is incorrect or username does not exist";
+        $errorColor = "tomato";
+    } elseif ($result['msg'] == 'success') { $_SESSION['email'] = $email ?> <script>window.location.href = "u/account/dashboard"; </script> <?php } else { 
+        $errorMessage = "Provided Password is Incorrect";
+    $errorColor = "tomato";
+    }
+}
+
+?>
+<?php if (isset($errorMessage)): ?>
+    <script>
+        document.getElementById('showerror').innerText = '<?php echo $errorMessage; ?>';
+        document.getElementById('showerror').style.backgroundColor = '<?php echo $errorColor; ?>';
+        document.getElementById('showerror').style.right = '0px';
+        setTimeout(() => {
+            document.getElementById('showerror').style.right = '-310px';
+        }, 5000)
+    </script>
+<?php endif; ?>
+
+
+<?php
+
+// Example usage:
+// $customerCode = generateCustomerCode($email);
+// echo "Customer code: $customerCode";
+
+
+
+?>
 </body>
 
 </html>

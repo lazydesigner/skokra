@@ -6,15 +6,15 @@ Options -Indexes
 
 ReWriteRule ^$ home.php [NC,L]
 
-ReWriteRule ^signup([/]?)$ signup.php [NC,L]
-ReWriteRule ^login([/]?)$ login.php [NC,L]
+ReWriteRule ^signup([/]?)$ ssiignup.php [NC,L]
+ReWriteRule ^login([/]?)$ lloogin.php [NC,L]
 ReWriteRule ^google/em/recaptcha([/]?)$ recaptcha.php [NC,L]
 ReWriteRule ^verification([/]?)$ sigup-verification.php [NC,L]
 ReWriteRule ^call-girls-index([/]?)$ call-girls-index.php [NC,L]
 
 
 #USER DASHBOARD
-ReWriteRule ^user/account/dashboard([/]?)$ account/dashboard/home_.php [NC,L]
+ReWriteRule ^u/account/dashboard([/]?)$ account/dashboard/home_.php [NC,L]
 
 #post-ad
 ReWriteRule ^xv([/]?)$ account/dashboard/post-ad/xv.php [NC,L]
@@ -27,7 +27,7 @@ ReWriteRule ^u/post-update([/]?)$ account/dashboard/post-ad/post-update.php [NC,
 
 
 
-ReWriteRule ^u/account/ads/([/]?)$ account/dashboard/user-ads/user-active-ads.php [NC,L]
+ReWriteRule ^u/account/ads([/]?)$ account/dashboard/user-ads/user-active-ads.php [NC,L]
 
 
 #ReWriteRule ^contact-us([/]?)$ contact-us.php [NC,L]

@@ -1,8 +1,8 @@
 <?php include '../../routes.php';
 session_start();
 $dashboard = 'true';
-$_SESSION['customer_id'] = 'a';
-
+include '../../backend/user_task.php';
+Get_User_Details::Get_Customer_Code()
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,15 +12,15 @@ $_SESSION['customer_id'] = 'a';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.6.0/remixicon.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" async>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?= get_url() ?>assets/css/common-header.css">
+    <link rel="stylesheet" href="<?= get_url() ?>assets/css/account/common.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/account/home.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/footer.css">
-    <meta name="robots" content="noindex nofollow">
+    <meta name="robots" content="noindex, nofollow">
     <title>SKOKRA - User Dashboard</title>
 </head>
 
 <body>
-    <?php include '../../common-header.php' ?>
+    <?php include 'dash-nav.php' ?>
 
     <div class="container">
         <div class="age-attention">
@@ -34,10 +34,10 @@ $_SESSION['customer_id'] = 'a';
         <div class="action-pannel">
             <div class="welcome-user">
                 <strong>WELCOME</strong>
-                <p>useraccountmail@gmail.com</p>
+                <p><?=$_SESSION['email'] ?></p>
                 <div class="customer-id">
                     <small>Customer Code:</small>
-                    <p>DEE87PA07K</p>
+                    <p><?=$_SESSION['customer_code'] ?></p>
                 </div>
             </div>
             <div class="action-row">
@@ -163,6 +163,7 @@ $_SESSION['customer_id'] = 'a';
     </div>
 
     <?php include '../../footer.php' ?>
+    <?php include 'private-area.php' ?>
 </body>
 
 </html>

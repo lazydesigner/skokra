@@ -19,7 +19,7 @@ $_SESSION['customer_id'] = 'a';
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/account/common.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/account/user-ads.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/footer.css">
-    <meta name="robots" content="noindex nofollow">
+    <meta name="robots" content="noindex, nofollow">
     <title>SKOKRA - User Dashboard</title>
 </head>
 

@@ -18,7 +18,7 @@ $_SESSION['customer_id'] = 'a';
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/account/post-insert.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/footer.css">
-    <meta name="robots" content="noindex nofollow">
+    <meta name="robots" content="noindex, nofollow">
     <title>SKOKRA - User Dashboard</title>
     <style>
         html,

@@ -4,13 +4,13 @@
             <a href="<?= get_url() ?>" class="logo"><img src="<?= get_url() ?>assets/images/SKOKRA+LOGO+NEW+(2).webp.png" width="100%" height="100%" alt=""></a>
             <ul>
 
-                <?php if (!isset($_SESSION['customer_id'])) { ?>
+                <?php if (!isset($_SESSION['customer_code'])) { ?>
 
                     <li><a href="<?= get_url() ?>login/"><i class="ri-login-box-line"></i> Login</a></li>
                     <li><a href="<?= get_url() ?>signup/"><i class="ri-edit-circle-line"></i> Sign up</a></li>
                 <?php } else { ?>
                     <li class="user-account">
-                        <div><i class="ri-user-star-line"></i><br><small>useremailaddress@gmail.com</small></div>
+                        <div id="open-private-area"><i class="ri-user-star-line"></i><br><small><?=$_SESSION['email'] ?></small></div>
                     </li>
                 <?php } ?>
                 <li><a href="<?= get_url() ?>u/post-insert/"><button class="post-your-ad"><span>POST YOUR AD</span><i class="ri-arrow-right-line"></i></button></a></li>

@@ -1,50 +1,65 @@
 <?php
-session_start();
 
-// if(!isset($_SESSION['email'])){
-//     header('Location: https://dash.ctchicks.com/auth-login/');
-// }
+class DatabaseConnection
+{
+    private $con;
 
-function generateCsrfToken() {
-    if (empty($_SESSION['csrf_token'])) {
-        $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); // Generate a random token
+    public function __construct()
+    {
+        // session_start();
+        $this->establishConnection();
     }
 
-    return $_SESSION['csrf_token'];
-}
+    public static function generateCsrfToken()
+    {
+        if (empty($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); // Generate a random token
+        }
 
-function localConnection() {
-    // Define an array of common localhost hostnames or IP addresses
-    $localhosts = array('localhost', '127.0.0.1');
+        return $_SESSION['csrf_token'];
+    }
 
-    // Get the server's hostname
-    $serverHostname = $_SERVER['SERVER_NAME'];
+    private function localConnection()
+    {
+        // Define an array of common localhost hostnames or IP addresses
+        $localhosts = array('localhost', '127.0.0.1');
 
-    // Check if the server's hostname is in the array of localhost values
-    return in_array($serverHostname, $localhosts);
-}
+        // Get the server's hostname
+        $serverHostname = $_SERVER['SERVER_NAME'];
 
-if(localConnection()){
-    // $con = mysqli_connect('localhost','root','','skokra');    
-    // if(!$con){
-    //     die('Not Connected');
-    // }
-try{
-    $con = new PDO("mysql:host=localhost;dbname=skokra",'root','');
-    $con->setAttribute(PDO::ATTR_ERRMODE, PDO:: ERRMODE_EXCEPTION);
+        // Check if the server's hostname is in the array of localhost values
+        return in_array($serverHostname, $localhosts);
+    }
 
-    echo 'CONNECTION IS MADE SECURELY';
-}catch(PDOException $e){
-    echo "Error: ". $e->getMessage();
-}
+    private function establishConnection()
+    {
+        if ($this->localConnection()) {
+            try {
+                $this->con = new PDO("mysql:host=localhost;dbname=skokra", 'root', '');
+                $this->con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $this->con->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+        } else {
+            try {
+                $this->con = new PDO("mysql:host=localhost;dbname=skokra", 'root', '');
+                $this->con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $this->con->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
+                echo 'CONNECTION IS MADE SECURELY';
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+        }
+    }
 
-
-}else{
-    $con = mysqli_connect('localhost','u231955561_ctchicks','@Ctchicks1','u231955561_ct');
-    if(!$con){
-        die('Not Connected');
+    public function getConnection()
+    {
+        return $this->con;
     }
 }
 
-?>
+
+// Example usage:
+// Now $con holds the PDO connection object for further use.

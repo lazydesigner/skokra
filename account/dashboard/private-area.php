@@ -8,12 +8,12 @@
             <div class="private-area-subheading">Hi! example@gmail.com</div>
             <div class="private-area-action">
                 <div class="private-area-items">
-                    <span><i class="ri-home-5-line"></i><br>
-                        Dashboard</span>
+                    <a href="<?=get_url()?>u/account/dashboard"><span><i class="ri-home-5-line"></i><br>
+                        Dashboard</span></a>
                 </div>
                 <div class="private-area-items">
-                    <span><i class="ri-edit-circle-fill"></i><br>
-                        Your Ad</span>
+                    <a href="<?=get_url() ?>u/account/ads"><span><i class="ri-edit-circle-fill"></i><br>
+                        Your Ad</span></a>
                 </div>
                 <div class="private-area-items">
                     <span><i class="ri-database-2-fill"></i><br>Credits</span>
