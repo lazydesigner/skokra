@@ -1,10 +1,7 @@
-<?php include '../../../routes.php';
+<?php 
 session_start();
-$dashboard = 'true';
-$_SESSION['customer_id'] = 'a';
-
-
-
+$POST_INSERT = 'yes'; //to hide  add post button in this page
+include '../../../routes.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

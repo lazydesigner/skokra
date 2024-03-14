@@ -2,8 +2,42 @@
 if (isset($_SESSION['captcha'])) {
     unset($_SESSION['captcha']);
 }
+$login_page = 'yes';
+if (isset($_GET['next'])) {
+    $_SESSION['url'] = $_GET['next'];
+}
 include './routes.php';
 include './backend/cradential.php';
+
+?>
+    <?php
+
+if (isset($_POST['submit'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $result = json_decode(User_Signup::Login($email, $password), true);
+    if ($result['msg'] == 'exist') {
+        $errorMessage = "Either Username is incorrect or username does not exist";
+        $errorColor = "tomato";
+    } elseif ($result['msg'] == 'success') {
+        $_SESSION['email'] = $email;
+        $_SESSION['last_activity'] = time();
+        if (isset($_SESSION['url'])) { ?>
+            <script>
+                window.location.href = "<?= $_SESSION['url'] ?>";
+            </script>
+        <?php } else { ?>
+            <script>
+                window.location.href = "u/account/dashboard";
+            </script>
+<?php
+        }
+    } else {
+        $errorMessage = "Provided Password is Incorrect";
+        $errorColor = "tomato";
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +62,7 @@ include './backend/cradential.php';
             top: 20%;
             right: -310px;
             color: white;
-            transition:right 1s;
+            transition: right 1s;
         }
     </style>
 </head>
@@ -42,7 +76,7 @@ include './backend/cradential.php';
             <div class="form-body">
                 <h1 style="font-weight: bolder;">GET INTO SKOKRA</h1>
                 <h2>Publish and Manage your ads</h2>
-                <form id="signupnotrequired" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
+                <form id="signupnotrequired" action="<?= get_url() ?>login" method="post">
                     <div class="form-group">
                         <label for="emal">Email</label><span id="email-error" style="color: tomato;display:none;font-size:small">email is required</span><br>
                         <input type="email" name="email" class="form-control" placeholder="Email" id="email">
@@ -57,7 +91,7 @@ include './backend/cradential.php';
                     </div>
                     <div class="form-group form-row">
                         <div class="captcha">
-                            <img src="./assets/images/stripes-pattern-11551057021pkmmog3xef.png" alt="">
+                            <img src="<?= get_url() ?>assets/images/stripes-pattern-11551057021pkmmog3xef.png" alt="">
                             <div class="hide-the-captcha"></div>
                         </div>
                         <div>
@@ -66,7 +100,7 @@ include './backend/cradential.php';
                         </div>
                     </div>
                     <div class="form-group">
-                        <button class="signup-btn" id="submit" name="submit" disabled>SIGN UP</button>
+                        <button class="signup-btn" id="submit" name="submit" disabled>SIGN IN</button>
                     </div>
                 </form>
                 <p style="text-align: center;padding-top:5%;border-top:1px solid lightgrey">Don't Have An Account Yet? <a href="signup">Signup</a></p>
@@ -176,43 +210,28 @@ include './backend/cradential.php';
         })
     </script>
 
-<?php
 
-if (isset($_POST['submit'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $result = json_decode(User_Signup::Login($email, $password), true);
-    if ($result['msg'] == 'exist') {
-        $errorMessage = "Either Username is incorrect or username does not exist";
-        $errorColor = "tomato";
-    } elseif ($result['msg'] == 'success') { $_SESSION['email'] = $email ?> <script>window.location.href = "u/account/dashboard"; </script> <?php } else { 
-        $errorMessage = "Provided Password is Incorrect";
-    $errorColor = "tomato";
-    }
-}
-
-?>
-<?php if (isset($errorMessage)): ?>
-    <script>
-        document.getElementById('showerror').innerText = '<?php echo $errorMessage; ?>';
-        document.getElementById('showerror').style.backgroundColor = '<?php echo $errorColor; ?>';
-        document.getElementById('showerror').style.right = '0px';
-        setTimeout(() => {
-            document.getElementById('showerror').style.right = '-310px';
-        }, 5000)
-    </script>
-<?php endif; ?>
+    <?php if (isset($errorMessage)) : ?>
+        <script>
+            document.getElementById('showerror').innerText = '<?php echo $errorMessage; ?>';
+            document.getElementById('showerror').style.backgroundColor = '<?php echo $errorColor; ?>';
+            document.getElementById('showerror').style.right = '0px';
+            setTimeout(() => {
+                document.getElementById('showerror').style.right = '-310px';
+            }, 5000)
+        </script>
+    <?php endif; ?>
 
 
-<?php
+    <?php
 
-// Example usage:
-// $customerCode = generateCustomerCode($email);
-// echo "Customer code: $customerCode";
+    // Example usage:
+    // $customerCode = generateCustomerCode($email);
+    // echo "Customer code: $customerCode";
 
 
 
-?>
+    ?>
 </body>
 
 </html>

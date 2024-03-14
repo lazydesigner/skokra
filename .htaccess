@@ -16,6 +16,7 @@ ReWriteRule ^call-girls-index([/]?)$ call-girls-index.php [NC,L]
 
 #USER DASHBOARD
 ReWriteRule ^u/account/dashboard([/]?)$ account/dashboard/home_.php [NC,L]
+ReWriteRule ^api/user/checkContact([/]?)$ account/dashboard/checkup.php [NC,L]
 
 #post-ad
 ReWriteRule ^xv([/]?)$ account/dashboard/post-ad/xv.php [NC,L]

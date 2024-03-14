@@ -2,6 +2,7 @@
 if (isset($_SESSION['captcha'])) {
     unset($_SESSION['captcha']);
 }
+$login_page = 'yes';
 include './routes.php';
 include './backend/cradential.php';
 ?>
@@ -245,7 +246,8 @@ include './backend/cradential.php';
         $result = json_decode(User_Signup::Signup($email, $password, $terms), true);
         if ($result['msg'] == 'exist') { 
             $errormessage = 'Username Already exist';
-        } elseif ($result['msg'] == 'success') { $_SESSION['email'] = $email ?> <script>window.location.href = "u/account/dashboard"; </script> <?php } else { 
+        } elseif ($result['msg'] == 'success') { $_SESSION['email'] = $email;          
+            $_SESSION['last_activity'] = time(); ?> <script>window.location.href = "u/account/dashboard"; </script> <?php } else { 
             $errormessage = 'Provided Password is Incorrect';
         }
     }

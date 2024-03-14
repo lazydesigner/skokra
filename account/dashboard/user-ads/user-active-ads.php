@@ -1,9 +1,27 @@
-<?php include '../../../routes.php';
+<?php 
 session_start();
-$dashboard = 'true';
-$_SESSION['customer_id'] = 'a';
+include '../../../routes.php';
 
+// // LOGOUT CODE
+// if (isset($_SESSION['url'])) {
+//     unset($_SESSION['url']);
+// }
+// $url = $_SERVER['REQUEST_URI'];
+// $path = parse_url($url, PHP_URL_PATH);
 
+// if (isLocalhost()) {
+//     $domainToRemove = "/skokra.com/";
+//     $newUrl = str_replace($domainToRemove, "", $path);
+
+//     if (!isset($_SESSION["email"])) {
+//         header("Location: ".get_url()."login?next=".$newUrl."");  // If not logged in, redirect
+//     }
+// } else {
+//     if (!isset($_SESSION["email"])) {
+//         header("Location: ".get_url()."login?next=".$path."");  // If not logged in, redirect
+//     }
+// }
+// // LOGOUT CODE
 
 ?>
 <!DOCTYPE html>

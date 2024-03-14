@@ -6,7 +6,9 @@
             </a>
             <span>
                 <div id="open-private-area"><i class="ri-user-star-line"></i><br><small><?php if(isset($_SESSION['email'])){echo $_SESSION['email']; } ?></small></div>
-                <a href="<?= get_url() ?>u/post-insert/"><button class="post-your-ad"><span>POST YOUR AD</span><i class="ri-arrow-right-line"></i></button></a>
+                <?php if(!isset($POST_INSERT)){ ?>
+                    <a href="<?= get_url() ?>u/post-insert/"><button class="post-your-ad"><span>POST YOUR AD</span><i class="ri-arrow-right-line"></i></button></a>
+                <?php } ?>
             </span>
         </nav>
     </div>

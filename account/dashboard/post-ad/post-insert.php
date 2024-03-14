@@ -1,13 +1,14 @@
-<?php include '../../../routes.php';
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/backend/user_task.php';
 session_start();
+if (isset($_SESSION['url'])) {
+    unset($_SESSION['url']);
+}
+$POST_INSERT = 'yes'; //to hide  add post button in this page
+include '../../../routes.php';
 
-$url = $_SERVER['REQUEST_URI'];
-$path = parse_url($url, PHP_URL_PATH);
-echo $path;
 
-
-
-
+$close_verification_btn = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" height="14" width="14" id="Delete-1--Streamline-Core"><desc>Delete 1 Streamline Icon: https://streamlinehq.com</desc><g id="Delete-1--Streamline-Core"><path id="Union" fill="#000" fill-rule="evenodd" d="M1.70711 0.292893c-0.39053 -0.3905241 -1.023693 -0.3905241 -1.414217 0 -0.3905241 0.390524 -0.3905241 1.023687 0 1.414217L5.58579 7 0.292893 12.2929c-0.3905241 0.3905 -0.3905241 1.0237 0 1.4142 0.390524 0.3905 1.023687 0.3905 1.414217 0L7 8.41421l5.2929 5.29289c0.3905 0.3905 1.0237 0.3905 1.4142 0 0.3905 -0.3905 0.3905 -1.0237 0 -1.4142L8.41421 7l5.29289 -5.29289c0.3905 -0.39053 0.3905 -1.023693 0 -1.414217 -0.3905 -0.3905241 -1.0237 -0.3905241 -1.4142 0L7 5.58579 1.70711 0.292893Z" clip-rule="evenodd" stroke-width="1"></path></g></svg>';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,6 +35,172 @@ echo $path;
         .step-two {
             display: none;
         }
+
+        .phone_number_verification {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 99;
+            background-color: rgba(0, 0, 0, .5);
+        }
+
+        .phone-verification-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40%;
+            height: 60%;
+            border-radius: 5px;
+            transform: translate(-50%, -50%);
+            background-color: white;
+        }
+
+        .phone-verification-heading {
+            padding: 3% 4%;
+            display: flex;
+            gap: 1%;
+            align-items: center;
+            border-bottom: 1px solid lightgrey;
+        }
+
+        .close-the-verification-tab {
+            position: absolute;
+            top: 6%;
+            right: 4%;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .phone-verification-heading strong {
+            font-size: 1.5rem;
+        }
+
+        .phone-verification-body {
+            padding: 1% 3%;
+        }
+
+        .phone-verification-body p {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .phone-verification-btn {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            align-self: last baseline;
+            padding: 3%;
+            text-align: center;
+        }
+
+        .phone-verification-btn button {
+            width: 100%;
+            height: 50px;
+            border-radius: 20px;
+            margin-bottom: 4%;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            color: grey;
+            background-color: transparent;
+            border: 2px solid #DC006C;
+            opacity: .6;
+        }
+
+        .phone-verification-btn a {
+            font-weight: 600;
+            color: #DC006C;
+            opacity: .6;
+        }
+
+        .phone-verification-btn a:hover {
+            opacity: .9;
+        }
+
+        .form-group {
+            margin: 5% 0;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 5%;
+            align-items: center;
+        }
+
+        .captcha {
+            width: 200px;
+            height: 80px;
+            border: 1px solid #36454F;
+            position: relative;
+            align-self: baseline;
+        }
+
+        .captcha img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            object-fit: cover;
+            z-index: -1;
+            top: 0;
+            left: 0;
+        }
+
+        .hide-the-captcha {
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+            font-size: 3rem;
+            font-weight: bolder;
+        }
+
+        #captcha {
+            width: 150px;
+            height: 80px;
+            font-size: 1.2rem;
+            outline: 0;
+        }
+        /* .otp-input-fields{
+            width: 100%;
+            height: 45px;
+            border: 1px solid lightgrey;
+            border-radius: 30px;
+            outline: 0;
+            padding: 1%;
+        } */
+
+        /*  */
+        .form-otp {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.inputs-otp {
+  margin-top: 10px
+}
+
+.inputs-otp input {
+  width: 32px;
+  height: 32px;
+  
+  text-align: center;
+  border: none;
+  border-bottom: 1.5px solid #DC006C;
+  margin: 0 10px;
+}
+
+.inputs-otp input:focus {
+  border-bottom: 1.5px solid dodgerblue;
+  outline: none;
+}
     </style>
 </head>
 
@@ -43,7 +210,6 @@ echo $path;
     <div class="post-insert-heading">
         <h1>Publish for free in just a few steps!</h1>
     </div>
-
     <div class="form-progress-bar container">
         <div class="form-progress ">
             <div class="progress-bar active-progress"><i class="ri-user-fill"></i></div>
@@ -62,8 +228,7 @@ echo $path;
             <strong>Finish</strong>
         </div>
     </div>
-
-    <form id="form" action="<?=get_url() ?>xv" method="POST">
+    <form id="form" action="<?= get_url() ?>xv" method="POST">
         <div class="step-one">
             <div class="container">
                 <div class="top-form-field">
@@ -143,7 +308,7 @@ echo $path;
 
                             <label for="asian" class="category" id="asian">
                                 <div>Asian</div>
-                            </label> 
+                            </label>
                             <input type="radio" name="african" id="asian" value="Asian">
 
                             <label for="arab" class="category" id="arab">
@@ -286,15 +451,15 @@ echo $path;
                             <label class="Attention" for="attention_men">
                                 <div>Men</div>
                             </label>
-                            <input type="checkbox" id="Attention_women"  name="attention_to[]" value="Women">
+                            <input type="checkbox" id="Attention_women" name="attention_to[]" value="Women">
                             <label class="Attention" for="Attention_women">
                                 <div>Women</div>
                             </label>
-                            <input type="checkbox" id="Attention_couple" name="attention_to[]"  value="Couples">
+                            <input type="checkbox" id="Attention_couple" name="attention_to[]" value="Couples">
                             <label class="Attention" for="Attention_couple">
                                 <div>Couples</div>
                             </label>
-                            <input type="checkbox" id="Attention_disabled" name="attention_to[]" value="disabled" >
+                            <input type="checkbox" id="Attention_disabled" name="attention_to[]" value="disabled">
                             <label class="Attention" for="Attention_disabled">
                                 <div>Disabled</div>
                             </label>
@@ -303,7 +468,7 @@ echo $path;
                     <div class="form-group">
                         <label for="city">Place of service</label>
                         <div class="form-flex">
-                            <input type="checkbox" id="place_of_service_home" name="place_of_service[]"  value="At Home"/>
+                            <input type="checkbox" id="place_of_service_home" name="place_of_service[]" value="At Home" />
                             <label class="place_of_service" for="place_of_service_home">
                                 <div>At Home</div>
                             </label>
@@ -369,6 +534,7 @@ echo $path;
             <div class="container">
                 <div class="top-form-field">
                     <span><strong>Your Contacts</strong></span>
+                    <small>*Required fields</small>
                 </div>
                 <div class="form-container">
                     <div class="form-group">
@@ -395,12 +561,12 @@ echo $path;
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="category">Email Address</label>
-                        <input type="text" name="user-email">
+                        <label for="category">*Email Address</label>
+                        <input type="text" value="<?= $_SESSION['email'] ?>" name="user-email">
                     </div>
                     <div class="form-group">
-                        <label for="payment-method">Phone Number</label>
-                        <input type="number" name="ad-phone-number" id="">
+                        <label for="payment-method">*Phone Number</label>
+                        <input type="number" name="ad-phone-number" id="ad-phone-number">
                     </div>
                     <div class="form-group">
                         <div class="form-flex">
@@ -442,7 +608,6 @@ echo $path;
             </div>
         </div>
     </form>
-
     <div class="container">
         <div class="need-help">
             <div class="need-help-icon"><i class="ri-customer-service-2-fill"></i></div>
@@ -458,25 +623,80 @@ echo $path;
             </div>
         </div>
     </div>
+    <div class="phone_number_verification">
+        <div class="phone-verification-box">
+            <div class="close-the-verification-tab"><?= $close_verification_btn ?></div>
+            <div class="phone-verification-heading">
+                <div style="width: 50px;"><img src="<?= get_url() ?>assets/images/password_10097992.png" width="100%" height="100%" alt="Skokra otp verification"></div>
+                <strong>Verify your phone number</strong>
+            </div>
+            <div class="phone-verification-body">
+                <p>To display a phone number in your ad, please verify it first.</p>
+                <div class="form-group form-row"  id="otp-input-fields" >
+                    <div class="captcha">
+                        <img src="<?= get_url() ?>assets/images/stripes-pattern-11551057021pkmmog3xef.png" alt="">
+                        <div class="hide-the-captcha" style="color: black;font-size:2.5rem"><?php $captcha = Get_User_Details::Recaptcha();
+                            if (isset($_SESSION['captcha'])) {
+                                unset($_SESSION['captcha']);
+                                $_SESSION['captcha'] = $captcha;
+                                echo $captcha;
+                            } else {
+                                $_SESSION['captcha'] = $captcha;
+                                echo $captcha;
+                            } ?></div>
+                    </div>
+                    <div>
+                        <input type="text" name="captcha-txt" maxlength="6" required placeholder="Enter Captcha" id="captcha">
+                        <p style="padding: 0;margin:0" id="captcha-error"></p>
+                    </div>
+                </div>
+                <div class="phone-verification-btn">
+                    <div id="phone-verification-btns"><button id="verify_phone_number" disabled>RECEIVE CODE NOW</button></div>
+                    <a href="">CONTINUE WITHOUT PHONE NUMBER</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
     <div class="container"><?php include '../../../footer.php' ?></div>
     <?php include '../private-area.php' ?>
 
     <script>
-        let count = 1
+        document.getElementById('next-step').addEventListener("click", function(e) {
+            e.preventDefault()
+            // document.querySelector('.phone_number_verification').style.display = 'block';
+            const phoneData = new FormData()
+            phoneData.append('phone', document.getElementById('ad-phone-number').value)
+            phoneData.append('items','phone')
+            fetch('<?= get_url() ?>api/user/checkContact', {
+                    method: 'POST',
+                    body: phoneData
+                })
+                .then(res => res.json())
+                .then(d => {
+                    if (d['status'] == 204) {
+                        hidethecaptcha = document.querySelector('.hide-the-captcha');
+                        if(hidethecaptcha){
+                            document.querySelector('.hide-the-captcha').innerText = d['captcha'];
+                        }
+                        document.querySelector('.phone_number_verification').style.display = 'block';
+                    }else if(d['status'] == 404){
+                        hidethecaptcha = document.querySelector('.hide-the-captcha');
+                        if(hidethecaptcha){
+                            document.querySelector('.hide-the-captcha').innerText = d['captcha'];
+                        }
+                        alert(d['msg']);
+                    }else{
+                        hidethecaptcha = document.querySelector('.hide-the-captcha');
+                        if(hidethecaptcha){
+                            document.querySelector('.hide-the-captcha').innerText = d['captcha'];
+                        }
+                    }
+                })
+        })
 
-        // document.getElementById('progress').addEventListener('click',()=>{
-        //     // CREATE A BUTTON WITH NAME PROGRESS
-        //     count++
-        //     let active = document.querySelectorAll('.progress-bar')
-        //     for(i=0;i<count;i++){
-        //         if(i != 4){
-        //             active[i].classList.add("active-progress")
-        //             if(i==3){
-        //                 document.getElementById('progress').disabled = 'true'
-        //             }
-        //         }
-        //     }
-        // })
+
+        let count = 1
 
         function handleRadioButtons(radioButtons) {
             radioButtons.forEach((radio) => {
@@ -545,25 +765,114 @@ echo $path;
             })
         })
 
-        // document.getElementById('next-step').addEventListener('click',(e)=>{
-        //     e.preventDefault()
-        //     const formdata = document.getElementById('form')
-        //     const data = new FormData(formdata)
-            
-        //     // Checking that all fields
-        //     // are filled out before moving to next step
-        //     for (let pair of data.entries()) {
-        //         if(pair[0] == 'services[]'){
-        //             const services = [];
-        //             services.push(pair[1]);
-        //         }else{
-                    
-        //         }
-        //     }
+        // document.getElementById('form').addEventListener('submit', (e) => {
+        //     const phone = document.querySelector('input[name="ad-phone-number"]')
+        //     const data = new FormData()
+        //     data.append('phone', phone)
+        //     fetch('<?= get_url() ?>api/user/checkContact', {
+        //             method: 'POST',
+        //             body: data
+        //         })
+        //         .then(res => res.json())
+        //         .then(response => {e.preventDefault()})
+        //         .catch(err => console.log(err))
         // })
 
 
+
+        document.getElementById('captcha').addEventListener('keyup', (e) => {
+            var captcha_code = e.target.value;
+            const data = new FormData();
+            data.append('captcha', captcha_code)
+            fetch('<?= get_url() ?>google/em/recaptcha/', {
+                    method: 'post',
+                    body: data
+                }).then(res => res.json())
+                .then(d => {
+                    if (d['status'] == 'ok') {
+                        var notAuthenticatedAction = d['notauthenticated'];
+                        document.getElementById('captcha').setAttribute('readonly', true);
+                        // Enable the 'submit' button by removing the 'disabled' attribute
+                        document.getElementById('verify_phone_number').removeAttribute('disabled');
+                        document.getElementById('captcha-error').style.color = 'green'
+                        document.getElementById('captcha-error').innerHTML = '<i class="ri-checkbox-circle-fill"></i> Captcha Verified'
+                    } else {
+                        document.getElementById('captcha-error').style.color = 'tomato'
+                        document.getElementById('captcha-error').innerHTML = '<i class="ri-close-circle-fill"></i> Captcha does not match';
+                        if (captcha_code.length <= 0 || captcha_code == '' || captcha_code == null) {
+                            document.getElementById('captcha-error').innerHTML = ''
+                        }
+                    }
+                })
+
+        })
+
+        document.getElementById('verify_phone_number').addEventListener('click',()=>{
+
+            const OdaTaP = new FormData()
+            OdaTaP.append('items','OverifyTP')
+            OdaTaP.append('phone', document.getElementById('ad-phone-number').value)
+            fetch('<?= get_url() ?>api/user/checkContact', {
+                    method: 'POST',
+                    body: OdaTaP
+                })
+                .then(res => res.json())
+                .then(d => {
+                   if(d['status'] == 200){
+                    document.querySelector('.hide-the-captcha').innerText = d['captcha'];
+                        document.getElementById('captcha').removeAttribute('readonly', false);
+                    document.querySelector('input[name="captcha-txt"]').value = '';
+                    document.getElementById('captcha-error').innerHTML = '';
+                    document.getElementById('otp-input-fields').innerHTML = '<form class="form-otp"><div class="inputs-otp"> <input id="input1" class="otp-input" type="text" maxlength="1"> <input id="input2" type="text" class="otp-input" maxlength="1"> <input id="input3" class="otp-input" type="text" maxlength="1"> <input id="input4" class="otp-input" type="text" maxlength="1"> </div> </form>';
+                    document.getElementById('phone-verification-btns').innerHTML = '<button id="verify_OTP" disabled>'+d['otp']+'VERIFY CODE NOW</button>';
+                    setTimeout(()=>{get_input_fields()},1000)
+                   }else{
+                    document.querySelector('.hide-the-captcha').innerText = d['captcha'];
+                        document.getElementById('captcha').removeAttribute('readonly', false);
+                    document.getElementById('captcha-error').innerHTML = '';
+                    document.querySelector('input[name="captcha-txt"]').value = '';
+                    alert('phone number is not valid '+ d['a'])
+                   }
+                })            
+        })
+        document.querySelector('.close-the-verification-tab').addEventListener('click',()=>{
+            document.querySelector('.phone_number_verification').style.display = 'none';
+        })
     </script>
+<script>
+     function get_input_fields() {
+    var otpFields = document.querySelectorAll('.otp-input');
+    
+    otpFields.forEach(function(field, index) {
+        field.addEventListener('input', function() {
+            if (this.value.length === 1 && index < otpFields.length - 1) {
+                otpFields[index + 1].focus();
+            }
+        });
+
+        field.addEventListener('keydown', function(event) {
+            // Allow only numeric keys and backspace/delete
+            var allowedKeys = [8, 9, 37, 39]; // Backspace, Tab, Left arrow, Right arrow
+            if (event.keyCode === 8) {
+                if (index == otpFields.length - 1) {
+                   if(otpFields[index].value == ''){
+                    if(otpFields[index - 1]){otpFields[index - 1].focus();}            
+                   }
+                }else{
+                    otpFields[index - 1].focus();
+                }
+            }
+            if (event.key.match(/[0-9]/) || allowedKeys.includes(event.keyCode)) {
+                return true;
+            } else {
+                event.preventDefault();
+                return false;
+            }
+        });
+    });
+};
+</script>
+
 
 
 

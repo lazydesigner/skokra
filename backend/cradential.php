@@ -6,6 +6,7 @@ class User
     private $con;
     private $Username;
     private $Password;
+    private $NormalPassword;
     private $Terms;
     private $customercode;
 
@@ -20,7 +21,11 @@ class User
     }
     public function setPassword($password)
     {
-        $this->Password = $password;
+        $this->Password = password_hash($password, PASSWORD_DEFAULT);
+    }
+    public function setnormalPassword($password)
+    {
+        $this->NormalPassword = $password;
     }
 
     public function setCustomerCode($email){
@@ -78,15 +83,19 @@ class User
     }
 
     public function Loginuser(){
-        $loginuser = $this->con->prepare("SELECT * FROM users WHERE email = :username AND password = :password");
+        $loginuser = $this->con->prepare("SELECT * FROM users WHERE email = :username");
         $loginuser->bindParam(":username", $this->Username);
-        $loginuser->bindParam(":password", $this->Password);
+        // $loginuser->bindParam(":password", $this->Password);
 
         if($loginuser->execute()){
             $row = $loginuser->fetch(PDO::FETCH_ASSOC); 
             if($row){
-                $_SESSION['user_id'] = $row['email'];
-                return true;
+                if (password_verify($this->NormalPassword, $row['password'])) {
+                    $_SESSION['user_id'] = $row['email'];
+                    return true;
+                }else{
+                    return false;
+                }               
             }else{
                 return false;
             }
@@ -144,7 +153,7 @@ class User_Signup
             $user = new User($con2);
 
             $user->setUsername($username);
-            $user->setPassword($password);
+            $user->setnormalPassword($password);
             if($user->Loginuser()){
                 return json_encode(['status'=>200, 'msg'=>'success']);
             }else{

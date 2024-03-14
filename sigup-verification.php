@@ -78,7 +78,7 @@ font-weight: bolder;
 
        <p> Welcome to our community!</p>
 
-       <p>To activate your account, simply click on the link we've sent to your email address: <br> <b>deepakbaradwaj933@gmail.com</b>.</p>
+       <p>To activate your account, simply click on the link we've sent to your email address: <br> <b><?=$_SESSION['email']?></b>.</p>
 
        <p>Once you've confirmed your email, you'll enjoy these benefits:</p>
 

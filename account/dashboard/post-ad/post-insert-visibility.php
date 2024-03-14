@@ -1,9 +1,7 @@
-<?php include '../../../routes.php';
+<?php 
 session_start();
-$dashboard = 'true';
-$_SESSION['customer_id'] = 'a';
-
-
+$POST_INSERT = 'yes'; //to hide  add post button in this page
+include '../../../routes.php';
 
 ?>
 <!DOCTYPE html>
@@ -16,6 +14,7 @@ $_SESSION['customer_id'] = 'a';
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<?= get_url() ?>assets/css/account/common.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/account/post-insert.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/footer.css">
     <meta name="robots" content="noindex, nofollow">
@@ -25,6 +24,7 @@ $_SESSION['customer_id'] = 'a';
         body {
             color: #36454F;
         }
+        .form-flex{align-items: start;}
 
     </style>
 </head>
@@ -70,7 +70,7 @@ $_SESSION['customer_id'] = 'a';
                     <div class="book-ad-time-slot">
                         <div class="time-slot time-slot-one">
                             <div class="form-flex">
-                                <div><i class="ri-checkbox-blank-circle-line"></i></div>
+                                <div><input type="radio" name="" id=""></div>
                                 <div>
                                     <strong>5X1</strong><br>
                                     <p>5 top-ups a day for 1 day</p>

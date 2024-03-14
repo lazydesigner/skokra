@@ -1,4 +1,7 @@
-<?php include './routes.php' ?>
+<?php 
+session_start();
+$login_page = 'yes';
+include './routes.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 
