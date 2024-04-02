@@ -94,6 +94,7 @@ if(!isset($login_page)){
             // LOGOUT CODE
         } else {
             $_SESSION['last_activity'] = time();
+            $stopthefurtherprocess = true; 
         }
     } else {
         $url = $_SERVER['REQUEST_URI'];
@@ -104,7 +105,8 @@ if(!isset($login_page)){
             $newUrl = str_replace($domainToRemove, "", $path);
     
             if (!isset($_SESSION["email"])) {
-                header("Location: " . get_url() . "login?next=" . $newUrl . "");  // If not logged in, redirect
+                header("Location: " . get_url() . "login?next=" . $newUrl . "");
+                $stopthefurtherprocess = false;  // If not logged in, redirect
             }
         } else {
             if (!isset($_SESSION["email"])) {

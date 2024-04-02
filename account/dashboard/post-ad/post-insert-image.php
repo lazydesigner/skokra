@@ -1,7 +1,29 @@
-<?php 
+<?php
+
+
 session_start();
+require_once $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/backend/user_task.php';
+if (isset($_SESSION['url'])) {
+    unset($_SESSION['url']);
+}
+if (!isset($_SESSION['user_identification']) || !isset($_SESSION['customer_code'])) {
+    Get_User_Details::Get_Customer_Code();
+}
 $POST_INSERT = 'yes'; //to hide  add post button in this page
+if (isset($_SESSION['temprary_post_id'])) {
+    unset($_SESSION['temprary_post_id']);
+}
+
 include '../../../routes.php';
+if(isset($_POST['next-step-two'])){
+    header('Location:'.get_url().'u/post-promote/'.$_GET['post_id']);
+}
+if (isset($stopthefurtherprocess)) {
+    if ($stopthefurtherprocess == true) {
+        $result = Get_User_Details::Get_ad_detail($_GET['post_id']);
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +39,12 @@ include '../../../routes.php';
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/account/post-insert.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/footer.css">
     <meta name="robots" content="noindex, nofollow">
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js" integrity="sha512-9KkIqdfN7ipEW6B6k+Aq20PV31bjODg4AA52W+tYtAE0jE0kMx49bjJ3FgvS56wzmyfMUHbQ4Km2b7l9+Y/+Eg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css" integrity="sha512-hvNR0F/e2J7zPPfLC9auFe3/SE0yG4aJCOd/qxew74NN7eyiSKjr7xJJMu1Jy2wf7FXITpWS1E/RY8yzuXN7VA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
     <title>SKOKRA - User Dashboard</title>
     <style>
         html,
@@ -24,12 +52,42 @@ include '../../../routes.php';
             color: #36454F;
         }
 
+        .preview-image-box-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(20%, 1fr));
+            grid-auto-rows: 250px;
+            /* grid-template-rows: auto; */
+            column-gap: 5px;
+        }
+
+        .crop-the-image-container {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: none;
+            place-items: center;
+        }
+
+        .preview-the-image {
+            width: 400px;
+            height: 400px;
+            background-color: lightgrey;
+        }
+
+        .preview-the-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
     </style>
 </head>
 
 <body>
     <?php include '../dash-nav.php' ?>
-    
+
     <div class="post-insert-heading">
         <h1>Publish for free in just a few steps!</h1>
     </div>
@@ -53,40 +111,45 @@ include '../../../routes.php';
         </div>
     </div>
 
-    <form action="">
+    <form action="" method="POST">
         <div class="step-two">
             <div class="container">
-                <small><i class="ri-edit-box-line"></i> Edit Your Ad</small>
+                <a href="<?= get_url() ?>u/post-update/<?= $_GET['post_id'] ?>"><small><i class="ri-edit-box-line"></i> Edit Your Ad</small></a>
                 <div class="form-container">
                     <div class="form-flex2">
-                        <p><strong>Title : </strong>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero, sed.</p>
+                        <p><strong>Title : </strong><?= $result['title'] ?></p>
                     </div>
                     <div class="form-flex2" style="flex-wrap: nowrap;">
-                        <p> <strong>Text : </strong>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam magni eveniet, et sapiente repudiandae laudantium voluptatibus molestiae in nam voluptates!</p>
+                        <p> <strong>Text : </strong><?= $result['description'] ?></p>
                     </div>
                     <div class="form-flex2">
-                        24 Years | Call Girld |<i class="ri-map-pin-line"></i> Lucknow
+                        <?= $result['age'] ?> Years | <?php $category = '';
+                                                        $cat = explode('-', $result['category']);
+                                                        for ($i = 0; $i < count($cat); $i++) {
+                                                            if ($i == count($cat)) {
+                                                                $category  .= ucfirst($cat[$i]);
+                                                            } else {
+                                                                $category .= ucfirst($cat[$i]) . ' ';
+                                                            }
+                                                        }
+                                                        echo $category; ?> |<i class="ri-map-pin-line"></i> <?= $result['city'] ?>
                     </div>
                 </div>
             </div>
             <div class="container">
+                <input type="file" name="drag-and-drop-profile-photo" hidden id="replace-the-selected-profile-photo">
                 <label for="">Your Photos</label>
                 <div class="form-container">
                     <div class="form-group">
                         <div class="preview-drap-or-selected-image">
 
-                            <div class="preview-image-box">
-                                <div class="preview-tag"><i class="ri-star-fill"></i> Preview</div>
-                                <div class="preview-image"><img src="" alt=""></div>
-                                <div class="edit-preview-img">
-                                    <div class="crop"><i class="ri-crop-line"></i></div>
-                                    <div class="reupload"><i class="ri-loop-left-line"></i></div>
-                                    <div class="delete"><i class="ri-delete-bin-5-line"></i></div>
-                                </div>
-                            </div>
+                            <!-- display none is added to the below class -->
+                            <div class="preview-image-box-grid" id="preview-image-box-grid">
 
-                            <div class="drag-and-drop-profile-photo resized-drop-are" id="drag-and-drop-profile-photo">
-                                <input type="file" name="drag-and-drop-profile-photo" id="draged-or-selected-profile-photo">
+                                <!-- resized-drop-area is the class to be added below to make it small and responsive -->
+                            </div>
+                            <div class="drag-and-drop-profile-photo " id="drag-and-drop-profile-photo">
+                                <input type="file" name="drag-and-drop-profile-photo" hidden id="draged-or-selected-profile-photo" multiple>
                                 <div>
                                     <p style="text-transform: uppercase;">you can upload upto 10 pictures </p>
                                     <p><i class="ri-camera-fill"></i></p>
@@ -104,7 +167,7 @@ include '../../../routes.php';
             </div>
 
             <div class="container">
-                <button class="next-step" id="next-step-two">GO ON</button>
+                <button class="next-step" id="next-step-two" name="next-step-two">GO ON</button>
             </div>
         </div>
     </form>
@@ -124,58 +187,216 @@ include '../../../routes.php';
             </div>
         </div>
     </div>
+
+    <div class="crop-the-image-container" id="crop-the-image-container">
+        <div>
+            <div class="preview-the-image" id="preview-the-image">
+                <img src="" id="preview_image_to_crop" alt="">
+            </div>
+            <button id='crop-button'>Crop</button>
+            <button id="close_the_preview">Back</button>
+        </div>
+    </div>
+
     <div class="container"><?php include '../../../footer.php' ?></div>
     <?php include '../private-area.php' ?>
-    
+
     <script>
         let count = 1
 
-        // document.getElementById('progress').addEventListener('click',()=>{
-        //     // CREATE A BUTTON WITH NAME PROGRESS
-        //     count++
-        //     let active = document.querySelectorAll('.progress-bar')
-        //     for(i=0;i<count;i++){
-        //         if(i != 4){
-        //             active[i].classList.add("active-progress")
-        //             if(i==3){
-        //                 document.getElementById('progress').disabled = 'true'
-        //             }
-        //         }
-        //     }
-        // })
 
-        let dropZone = document.getElementById('drag-and-drop-profile-photo');
+        const dropZone = document.getElementById('drag-and-drop-profile-photo');
 
         dropZone.addEventListener('click', () => {
             document.getElementById('draged-or-selected-profile-photo').click()
         })
+
+        // function OnClick() {
+        //     event.stopPropagation();
+        //     document.getElementById('draged-or-selected-profile-photo').click();
+        //     console.log('clicked for image selection');
+        // }
+
         document.getElementById('draged-or-selected-profile-photo').addEventListener('change', (e) => {
             HandelImageUploading(e.target.files)
         })
 
         dropZone.addEventListener('dragover', PREVENTDefalut, false)
-        dropZone.addEventListener('drop', PREVENTDefalut, false)
+        // dropZone.addEventListener('drop', PREVENTDefalut, false)
         dropZone.addEventListener('dragleave', PREVENTDefalut, false)
 
-        function PREVENTDefalut(e) {
-            e.preventDefault();
-            e.stopPropagation();
+        function PREVENTDefalut() {
+            event.preventDefault();
+            event.stopPropagation();
         }
+
+        // function droptheimage() {
+        //     event.preventDefault();
+        //     event.stopPropagation();
+        //     HandelImageUploading(event.dataTransfer.files)
+        //     // event.dataTransfer.clearData();
+        // }
         dropZone.addEventListener('drop', (e) => {
             e.preventDefault();
+            e.stopPropagation();
             HandelImageUploading(e.dataTransfer.files)
+            e.dataTransfer.clearData()
         }, false)
 
         function HandelImageUploading(imageupload) {
-            console.log(imageupload)
+
+            const image = new FormData()
+            image.append('image', imageupload[0])
+            image.append('e', '<?= $_SESSION['email'] ?>')
+            image.append('pi', '<?= $_GET['post_id'] ?>')
+            fetch('<?= get_url() ?>image-upload', {
+                method: 'POST',
+                body: image
+            }).then(res => res.json()).then(d => {
+                // document.getElementById('draged-or-selected-profile-photo').value = '';
+                document.getElementById('preview-image-box-grid').innerHTML = '';
+                if (d['status'] == true) {
+                    ShowPreviewImage('<?= $_SESSION['email'] ?>')
+                }
+            })
         }
 
+        // ShowPreviewImage('<?= $_SESSION['email'] ?>')
 
-       document.addEventListener('DOMContentLoaded',()=>{
-        document.getElementById('open-private-area').addEventListener('click',()=>{
-            document.getElementById('private-area-background').style.display = 'grid'
+        function ShowPreviewImage(identifications) {
+            const identification = new FormData()
+            identification.append('i', identifications)
+            identification.append('pi', '<?= $_GET['post_id'] ?>')
+            fetch('<?= get_url() ?>show-image', {
+                method: 'post',
+                body: identification
+            }).then(res => res.json()).then(data => {
+                // document.getElementById('drag-and-drop-profile-photo').classList.add('resized-drop-area')
+                // document.getElementById('preview-image-box-grid').innerHTML = '';
+                document.getElementById('preview-image-box-grid').innerHTML = data['output'];
+                // document.getElementById('preview-image-box-grid').innerHTML += '<div class="drag-and-drop-profile-photo preview-image-box" onclick="OnClick()" ondragleave="PREVENTDefalut(this)" ondragover="PREVENTDefalut(this)" ondrop="droptheimage(this)" id="drag-and-drop-profile-photo"><input type="file" name="drag-and-drop-profile-photo" id="draged-or-selected-profile-photo" hidden multiple><div><p style="text-transform: uppercase;">you can upload upto 10 pictures </p><p><i class="ri-camera-fill"></i></p><p>Drag the picture here or click to select them</p></div></div>';
+            })
+        }
+        let cropper;
+
+        function CropTheImage(id) {
+
+            let preview = document.getElementById('skokracroped' + id).src;
+
+            document.getElementById('crop-the-image-container').style.display = 'grid'
+
+            document.getElementById('preview_image_to_crop').src = '';
+
+            document.getElementById('preview_image_to_crop').src = preview;
+
+
+            CropFunction()
+
+        }
+
+        function CropFunction() {
+            prev = document.getElementById('preview_image_to_crop')
+            const cropperOptions = {
+                aspectRatio: 1 / 1, // Aspect ratio of the crop box (square)
+                viewMode: 2, // Displayed image covers the crop box
+                dragMode: 'move', // Can only move the crop box
+                autoCropArea: 1, // Always create a 100% crop box
+                movable: false, // Disable dragging
+                zoomable: false, // Disable zooming
+                rotatable: false, // Disable rotating
+                scalable: false // Disable scaling
+            };
+            cropper = new Cropper(prev, cropperOptions);
+        }
+
+        document.getElementById('crop-button').addEventListener('click', function(e) {
+            e.preventDefault()
+            const croppedCanvas = cropper.getCroppedCanvas({
+                width: 200, // Set width of the output image
+                height: 200 // Set height of the output image
+            });
+
+            // Convert the canvas to base64 data URL
+            const croppedImage = croppedCanvas.toDataURL();
+
+            // Do something with the croppedImage, for example, upload it to the server
+            // Here you can use AJAX to send the croppedImage to the server
+            const img = new FormData()
+            img.append('image', croppedImage)
+            img.append('imageName', document.getElementById('preview_image_to_crop').src)
+            fetch('<?= get_url() ?>croptheimage', {
+                    method: 'POST',
+                    body: img
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data['status'] == 200) {
+                        ShowPreviewImage('<?= $_SESSION['email'] ?>');
+                        document.getElementById('crop-the-image-container').style.display = 'none';
+                        cropper.destroy();
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+        document.getElementById('close_the_preview').addEventListener('click', () => {
+            document.getElementById('crop-the-image-container').style.display = 'none';
+            document.getElementById('preview_image_to_crop').src = '';
+            cropper.destroy();
         })
-       })
+
+        // DELETING THE IMAGE FUNCTION
+        function DeleteImage(pi, i) {
+            const image = new FormData()
+            image.append('e', '<?= $_SESSION['email'] ?>')
+            image.append('pi', '<?= $_GET['post_id'] ?>')
+            image.append('i', i)
+            fetch('<?= get_url() ?>delete-image', {
+                method: 'POST',
+                body: image
+            }).then(res => res.json()).then(d => {
+                if (d['status'] == 200) {
+                    ShowPreviewImage('<?= $_SESSION['email'] ?>')
+                } else {
+                    alert('image not deleted')
+                }
+            })
+        }
+        // DELETING THE IMAGE FUNCTION
+
+        // REUPLOADING THE IMAGE pi->post-id--i->id
+        let image_i;
+
+        function ReuploadImage(pi, i) {
+            document.getElementById('replace-the-selected-profile-photo').click()
+            image_i = i
+        }
+        document.getElementById('replace-the-selected-profile-photo').addEventListener('change', (e) => {
+            const image = new FormData()
+            image.append('image', e.target.files[0])
+            image.append('e', '<?= $_SESSION['email'] ?>')
+            image.append('pi', '<?= $_GET['post_id'] ?>')
+            image.append('i', image_i)
+            fetch('<?= get_url() ?>image-upload', {
+                method: 'POST',
+                body: image
+            }).then(res => res.json()).then(d => {
+                document.getElementById('draged-or-selected-profile-photo').value = '';
+                document.getElementById('preview-image-box-grid').innerHTML = '';
+                if (d['status'] == true) {
+                    ShowPreviewImage('<?= $_SESSION['email'] ?>')
+                }
+            })
+        })
+
+
+        // REUPLOADING THE IMAGE
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('open-private-area').addEventListener('click', () => {
+                document.getElementById('private-area-background').style.display = 'grid'
+            })
+        })
     </script>
 
 

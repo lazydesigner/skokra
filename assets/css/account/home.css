@@ -4,6 +4,8 @@ height: auto;
 padding: 3% 0;
 display: grid;
 align-items: center;
+/* text-transform: capitalize; */
+
 }
 .age-alert{
     width: 100%;

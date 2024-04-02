@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+  .paymentbtn{
+    width: 180px;
+    height: 50px;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+    background-color: teal;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+</style>
+  </head>
+<body>
+
+<button class="paymentbtn" onclick="GetPaid()">paymentlink</button>
+
+
+    <script>
+function GetPaid(){
+  const requestBody = {
+    "name": "srawan kumar",
+    "email": "srawankumar2012@gmail.com",
+    "amount": "1000", 
+    "mobile": "7011412452",
+    "message": "Test Example Message",
+    "merchantTransactionId": Math.floor(Math.random() * (9999999 - 1000000 + 1)) + 1000000, 
+    "callbackUrl": "https://live.loanwala.shop/",
+    "redirectUrl": "https://live.loanwala.shop/"
+};
+    fetch('https://api.loanwala.shop/api/paymentlink/pay.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'api-key': 'NbXk0bVYwqUT8XcCUMekp3dFRIycjwFg' // Include API token in the Authorization header
+        },
+        body: JSON.stringify(requestBody)
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Response data:', data)
+        var anchor = document.createElement('a')
+        anchor.setAttribute("href", data['url'])
+        anchor.style.display='none'
+        document.body.appendChild(anchor);
+        anchor.click()
+        anchor.remove
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+}
+    </script>
+</body>
+</html>

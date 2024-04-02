@@ -106,9 +106,6 @@ if (isset($_POST['submit'])) {
                 <p style="text-align: center;padding-top:5%;border-top:1px solid lightgrey">Don't Have An Account Yet? <a href="signup">Signup</a></p>
             </div>
         </div>
-
-
-
     </div>
     <div class="showerror" id="showerror"></div>
     <?php include './footer.php' ?>

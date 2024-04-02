@@ -5,6 +5,9 @@ Options -Indexes
 #RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 ReWriteRule ^$ home.php [NC,L]
+RewriteRule ^secure-images/(.*)$ uploads/$1 [L]
+
+ReWriteRule ^croptheimage([/]?)$ xcc.php [NC,L]
 
 ReWriteRule ^signup([/]?)$ ssiignup.php [NC,L]
 ReWriteRule ^login([/]?)$ lloogin.php [NC,L]
@@ -19,18 +22,24 @@ ReWriteRule ^u/account/dashboard([/]?)$ account/dashboard/home_.php [NC,L]
 ReWriteRule ^api/user/checkContact([/]?)$ account/dashboard/checkup.php [NC,L]
 
 #post-ad
-ReWriteRule ^xv([/]?)$ account/dashboard/post-ad/xv.php [NC,L]
+ReWriteRule ^insert-ad([/]?)$ account/dashboard/post-ad/xv.php [NC,L]
 ReWriteRule ^u/post-insert([/]?)$ account/dashboard/post-ad/post-insert.php [NC,L]
-ReWriteRule ^u/post-insert-image([/]?)$ account/dashboard/post-ad/post-insert-image.php [NC,L]
-ReWriteRule ^u/post-promote([/]?)$ account/dashboard/post-ad/post-insert-visibility.php [NC,L]
+ReWriteRule ^u/post-insert-image/([0-9a-z\-]+)([/]?)$ account/dashboard/post-ad/post-insert-image.php?post_id=$1 [NC,L]
+ReWriteRule ^u/post-promote/([0-9a-z\-]+)([/]?)$ account/dashboard/post-ad/post-insert-visibility.php?post_id=$1 [NC,L]
+ReWriteRule ^u/post-finish/([0-9a-z\-]+)([/]?)$ account/dashboard/post-ad/post-finish.php?post_id=$1 [NC,L]
+ReWriteRule ^u/post-manager/([0-9a-z\-]+)([/]?)$ account/dashboard/post-ad/post-manager.php?post_id=$1 [NC,L]
 
 #EDIT ADs
-ReWriteRule ^u/post-update([/]?)$ account/dashboard/post-ad/post-update.php [NC,L]
+ReWriteRule ^u/post-update/([0-9a-z\])([/]?)$ account/dashboard/post-ad/post-update.php?post_id=$1 [NC,L]
 
 
 
 ReWriteRule ^u/account/ads([/]?)$ account/dashboard/user-ads/user-active-ads.php [NC,L]
 
+
+RewriteRule ^image-upload([/]?)$ image_processing/image-upload.php [NC,L]
+RewriteRule ^show-image([/]?)$ image_processing/showing-image.php [NC,L]
+RewriteRule ^delete-image([/]?)$ image_processing/delete-image.php [NC,L]
 
 #ReWriteRule ^contact-us([/]?)$ contact-us.php [NC,L]
 #ReWriteRule ^call-girls/([0-9A-Za-z\-]+)/([0-9A-Za-z\-]+)/([0-9A-Za-z\-]+)([/]?)$ profile_index.php?state=$1&city=$2&id=$3 [NC,L]
