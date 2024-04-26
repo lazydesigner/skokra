@@ -7,6 +7,8 @@ include './backend/user_task.php';
 // print_r(Get_User_Details::Scheduled_Ad_Time('00:00:00', '09:00:00'));
 // print_r(Get_User_Details::Show_Super_Top_Ads())
 
+
+// /usr/bin/php /home/u231955561/domain/skokra.com/public_html/schedule-time_for_ad.php
 // wget -O /dev/null https://skokra.com/cron/cron-one.php
 // wget -O /dev/null https://skokra.com/cron/cron-two.php
 // wget -O /dev/null https://skokra.com/cron/cron-three.php
@@ -14,7 +16,7 @@ include './backend/user_task.php';
 // wget -O /dev/null https://skokra.com/cron/cron-five.php
 // wget -O /dev/null https://skokra.com/cron/cron-six.php
 // wget -O /dev/null https://skokra.com/cron/cron-seven.php 
-
+ 
 
 echo 'Running...<br>';
 

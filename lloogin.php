@@ -103,7 +103,7 @@ if (isset($_POST['submit'])) {
                         <button class="signup-btn" id="submit" name="submit" disabled>SIGN IN</button>
                     </div>
                 </form>
-                <p style="text-align: center;padding-top:5%;border-top:1px solid lightgrey">Don't Have An Account Yet? <a href="signup">Signup</a></p>
+                <p style="text-align: center;padding-top:5%;border-top:1px solid lightgrey">Don't Have An Account Yet? <a href="<?=get_url() ?>signup">Signup</a></p>
             </div>
         </div>
     </div>

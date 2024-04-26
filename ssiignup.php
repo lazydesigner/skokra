@@ -92,7 +92,7 @@ include './backend/cradential.php';
                         <button class="grey_btn signup-btn" id="submit" name="submit" disabled>SIGN UP</button>
                     </div>
                 </form>
-                <p style="text-align: center;padding-top:5%;border-top:1px solid lightgrey">Already Have An Account? <a href="login">Login</a></p>
+                <p style="text-align: center;padding-top:5%;border-top:1px solid lightgrey">Already Have An Account? <a href="<?=get_url() ?>login">Login</a></p>
             </div>
         </div>
 
