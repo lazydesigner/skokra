@@ -699,19 +699,19 @@ $states = [
 ];
 
 // Output the array
-foreach($states as $state=> $city){
+// foreach($states as $state=> $city){
    
-$query = $con->prepare("INSERT INTO states(state,cities) VALUES (?,?)");
-$cty = json_encode($city);
-$query->execute([$state,$cty]); 
-if($query){
-    if($query->rowCount() >0){
-        echo 'Inserted';
-    }else{
-        echo 'Failer';
-    }
-}else{
-    echo 'failed to Insert';
-}
+// $query = $con->prepare("INSERT INTO states(state,cities) VALUES (?,?)");
+// $cty = json_encode($city);
+// $query->execute([$state,$cty]); 
+// if($query){
+//     if($query->rowCount() >0){
+//         echo 'Inserted';
+//     }else{
+//         echo 'Failer';
+//     }
+// }else{
+//     echo 'failed to Insert';
+// }
 
-}
+// }
