@@ -52,7 +52,7 @@ include './backend/cradential.php';
             <div class="form-body">
                 <h1 style="font-weight: bolder;">JOIN SKOKRA</h1>
                 <h2>Publish and Manage your ads</h2>
-                <form id="signupnotrequired" action="http://localhost/skokra.com/signup" method="post">
+                <form id="signupnotrequired" action="<?=get_url() ?>signup" method="post">
                     <div class="form-group">
                         <label for="emal">Email</label><span id="email-error" style="color: tomato;display:none;font-size:small">email is required</span><br>
                         <input type="email" name="email" class="form-control" placeholder="Email" id="email">
