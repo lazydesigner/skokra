@@ -54,8 +54,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             imagedestroy($image);
             if (file_exists($destinationPath)) {
                 unlink($target . basename($_FILES['image']['name']));
-
-                $con = mysqli_connect('localhost', 'root', '', 'skokra');
+                if (isLocalhost()) {$con = mysqli_connect('localhost', 'root', '', 'skokra');}else{$con = mysqli_connect('localhost', 'u231955561_inskokra', 'Skokra@12com', 'u231955561_in_skokra');}
+                
                 if (!$con) {
                     die('failed to connect');
                 }
