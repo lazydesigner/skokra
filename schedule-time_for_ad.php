@@ -9,13 +9,13 @@ include './backend/user_task.php';
 
 
 // /usr/bin/php /home/u231955561/domain/skokra.com/public_html/schedule-time_for_ad.php
-// wget -O /dev/null https://skokra.com/cron/cron-one.php
-// wget -O /dev/null https://skokra.com/cron/cron-two.php
-// wget -O /dev/null https://skokra.com/cron/cron-three.php
-// wget -O /dev/null https://skokra.com/cron/cron-four.php
-// wget -O /dev/null https://skokra.com/cron/cron-five.php
-// wget -O /dev/null https://skokra.com/cron/cron-six.php
-// wget -O /dev/null https://skokra.com/cron/cron-seven.php 
+// wget -O /dev/null https://in.skokra.com/cron/cron-one.php
+// wget -O /dev/null https://in.skokra.com/cron/cron-two.php
+// wget -O /dev/null https://in.skokra.com/cron/cron-three.php
+// wget -O /dev/null https://in.skokra.com/cron/cron-four.php
+// wget -O /dev/null https://in.skokra.com/cron/cron-five.php
+// wget -O /dev/null https://in.skokra.com/cron/cron-six.php
+// wget -O /dev/null https://in.skokra.com/cron/cron-seven.php 
  
 
 echo 'Running...<br>';
@@ -61,7 +61,11 @@ function runFunctionNearDefinedTime($definedTime, callable $functionToRun, $i) {
 
 // Define the function to run when the time is near
 function myFunctionToRun($s, $e) {
-    Get_User_Details::Scheduled_Ad_Time($s, $e);
+    if(Get_User_Details::Scheduled_Ad_Time($s, $e)){
+        echo "Working";
+    }else{
+        echo 'Not Working';
+    }
 }
 
 $array_of_time = ['08:59:00', '11:59:00', '14:59:00', '17:59:00', '19:59:00', '21:59:00', '23:59:00'];
