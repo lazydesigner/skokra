@@ -22,6 +22,7 @@
 </footer>
 
 <script>
+    if(document.getElementById('list-of-states')){
     document.getElementById('list-of-states').addEventListener('change', (e) => {
         let state = e.target.value;
         const statedata = new FormData();
@@ -36,6 +37,7 @@
                 document.getElementById('cities_s').innerHTML = data;
             })
     })
+}
 
     document.getElementById('searchform').addEventListener('submit', (e) => {
         e.preventDefault()
