@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             foreach ($img as $id=>$value) {
                 if($image_count == 0){
                     $pr = '<div class="preview-tag"><i class="ri-star-fill"></i> Preview</div>';
-                    if(Get_User_Details::Set_Preview_img($_POST['pi'] , 'http://localhost/skokra.com/secure-images/'.$value)){}else{}
+                    if(Get_User_Details::Set_Preview_img($_POST['pi'] , 'https://cdn.skokra.com/secure-images/'.$value)){}else{}
                 }else{
                     $pr = '<div class="preview-tag" style="background-color:grey;"><i class="ri-star-fill"></i> Preview</div>';
                 }
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="preview-image-box">
                        
                        '.$pr.'
-                        <div class="preview-image"><img src="http://localhost/skokra.com/secure-images/'.$value.'" class="skokracropedX" id="skokracroped'.$id.'" width="100%" height="100%" alt="skokra image collection"></div>
+                        <div class="preview-image"><img src="https://cdn.skokra.com/secure-images/'.$value.'" class="skokracropedX" id="skokracroped'.$id.'" width="100%" height="100%" alt="skokra image collection"></div>
                         <div class="edit-preview-img">
                             <div class="crop" onclick="CropTheImage('.$id.')"><i class="ri-crop-line"></i></div>
                             <div class="reupload" onclick="ReuploadImage(\''.$_POST['pi'].'\','.$id.')"><i class="ri-loop-left-line"></i></div>
