@@ -348,7 +348,7 @@ if (isset($stopthefurtherprocess)) {
             const img = new FormData()
             img.append('image', croppedImage)
             img.append('imageName', document.getElementById('preview_image_to_crop').src)
-            fetch('<?= get_url() ?>croptheimage', {
+            fetch('https://cdn.skokra.com/croptheimage.php', {
                     method: 'POST',
                     body: img
                 })
@@ -375,7 +375,7 @@ if (isset($stopthefurtherprocess)) {
             image.append('e', '<?= $_SESSION['email'] ?>')
             image.append('pi', '<?= $_GET['post_id'] ?>')
             image.append('i', i)
-            fetch('<?= get_url() ?>delete-image', {
+            fetch('https://cdn.skokra.com/delete-image.php', {
                 method: 'POST',
                 body: image
             }).then(res => res.json()).then(d => {
