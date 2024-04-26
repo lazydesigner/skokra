@@ -43,7 +43,7 @@ class DatabaseConnection
             }
         } else {
             try {
-                $this->con = new PDO("mysql:host=localhost;dbname=skokra", 'root', '');
+                $this->con = new PDO("mysql:host=localhost;dbname=u231955561_in_skokra", 'u231955561_inskokra', 'Skokra@12com');
                 $this->con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $this->con->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 

@@ -2,7 +2,16 @@
 
 
 session_start();
-require_once $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/backend/user_task.php';
+
+$path = $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/backend/user_task.php';
+
+if (file_exists($path)) {
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/backend/user_task.php';
+}else{
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/user_task.php';
+}
+
+
 if (isset($_SESSION['url'])) {
     unset($_SESSION['url']);
 }
@@ -15,8 +24,8 @@ if (isset($_SESSION['temprary_post_id'])) {
 }
 
 include '../../../routes.php';
-if(isset($_POST['next-step-two'])){
-    header('Location:'.get_url().'u/post-promote/'.$_GET['post_id']);
+if (isset($_POST['next-step-two'])) {
+    header('Location:' . get_url() . 'u/post-promote/' . $_GET['post_id']);
 }
 if (isset($stopthefurtherprocess)) {
     if ($stopthefurtherprocess == true) {
@@ -54,8 +63,10 @@ if (isset($stopthefurtherprocess)) {
 
         .preview-image-box-grid {
             display: grid;
+
             grid-template-columns: repeat(5, minmax(20%, 1fr));
             grid-auto-rows: 250px;
+            justify-content: space-between;
             /* grid-template-rows: auto; */
             column-gap: 5px;
         }
@@ -81,6 +92,16 @@ if (isset($stopthefurtherprocess)) {
             width: 100%;
             height: 100%;
             object-fit: contain;
+        }
+        .multiline-ellipsis {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            /* start showing ellipsis when 3rd line is reached */
+            white-space: pre-wrap;
+            margin: 1% 0;
+            /* let the text wrap preserving spaces */
         }
     </style>
 </head>
@@ -117,10 +138,10 @@ if (isset($stopthefurtherprocess)) {
                 <a href="<?= get_url() ?>u/post-update/<?= $_GET['post_id'] ?>"><small><i class="ri-edit-box-line"></i> Edit Your Ad</small></a>
                 <div class="form-container">
                     <div class="form-flex2">
-                        <p><strong>Title : </strong><?= $result['title'] ?></p>
+                        <p class="multiline-ellipsis"><strong>Title : </strong><?= $result['title'] ?></p>
                     </div>
                     <div class="form-flex2" style="flex-wrap: nowrap;">
-                        <p> <strong>Text : </strong><?= $result['description'] ?></p>
+                        <p class="multiline-ellipsis"> <strong>Text : </strong><?= $result['description'] ?></p>
                     </div>
                     <div class="form-flex2">
                         <?= $result['age'] ?> Years | <?php $category = '';
@@ -218,6 +239,7 @@ if (isset($stopthefurtherprocess)) {
         // }
 
         document.getElementById('draged-or-selected-profile-photo').addEventListener('change', (e) => {
+
             HandelImageUploading(e.target.files)
         })
 
@@ -270,11 +292,13 @@ if (isset($stopthefurtherprocess)) {
             fetch('<?= get_url() ?>show-image', {
                 method: 'post',
                 body: identification
-            }).then(res => res.json()).then(data => {
+            }).then(res => res.json()).then(data => { 
+
                 // document.getElementById('drag-and-drop-profile-photo').classList.add('resized-drop-area')
                 // document.getElementById('preview-image-box-grid').innerHTML = '';
                 document.getElementById('preview-image-box-grid').innerHTML = data['output'];
                 // document.getElementById('preview-image-box-grid').innerHTML += '<div class="drag-and-drop-profile-photo preview-image-box" onclick="OnClick()" ondragleave="PREVENTDefalut(this)" ondragover="PREVENTDefalut(this)" ondrop="droptheimage(this)" id="drag-and-drop-profile-photo"><input type="file" name="drag-and-drop-profile-photo" id="draged-or-selected-profile-photo" hidden multiple><div><p style="text-transform: uppercase;">you can upload upto 10 pictures </p><p><i class="ri-camera-fill"></i></p><p>Drag the picture here or click to select them</p></div></div>';
+                AddPreview_image()
             })
         }
         let cropper;
@@ -389,6 +413,31 @@ if (isset($stopthefurtherprocess)) {
             })
         })
 
+        function AddPreview_image() {
+            let preview_image_box = document.querySelectorAll('.preview-image-box')
+            let preview_image = document.querySelectorAll('.preview-tag')
+            let skokracroped = document.querySelectorAll('.skokracropedX')
+            preview_image_box.forEach((imagex, i) => {
+                imagex.addEventListener('click', (e) => {
+                    let data = new FormData();
+                    data.append('activity', 'preview');
+                    data.append('post_', '<?= $_GET['post_id'] ?>');
+                    data.append('i', skokracroped[i].src);
+                    fetch('<?= get_url() ?>u/activity-center', {
+                        method: 'POST',
+                        body: data
+                    }).then(response => response.json()).then(value => {
+                        if (value['success4'] == 'success4') {
+                            preview_image.forEach(img => {
+                                img.style.backgroundColor = 'grey';
+                            })
+                            preview_image[i].style.backgroundColor = 'dodgerblue';
+                        }
+                    })
+
+                })
+            })
+        }
 
         // REUPLOADING THE IMAGE
 

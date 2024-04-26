@@ -1,7 +1,18 @@
 <?php
 session_start();
-include $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/backend/user_task.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/routes.php';
+$path = $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/backend/user_task.php';
+
+if (file_exists($path)) {
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/backend/user_task.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/routes.php';
+}else{
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/user_task.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/routes.php';
+}
+
+
+// include $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/backend/user_task.php';
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($_POST['items'] == 'phone') {
@@ -12,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             $_SESSION['captcha'] = $captcha;
         }
-
+ 
         if (!empty($_POST['phone'])) {
             if (Get_User_Details::verifyPhoneNumber($_POST['phone'])) {
                 echo json_encode(['status' => 200, 'captcha' => $captcha, 'path' => get_url().'u/post-insert/']);
@@ -35,8 +46,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $phone_number = $_POST['phone'];
         if (!empty($phone_number) && (int)strlen($phone_number) == 10) {
-            $otp = Get_User_Details::OTP_Generator();
-            echo json_encode(['status' => 200, 'otp' => $otp, 'captcha' => $captcha]);
+            if(Get_User_Details::OTP_Generator($phone_number)){
+                echo json_encode(['status' => 200, 'captcha' => $captcha]);
+            }else{
+                echo json_encode(['status' => 500, 'captcha' => $captcha]);
+            }
         } else {
             echo json_encode(['status' => 204, 'captcha' => $captcha, 'a' => strlen($phone_number)]);
         }
@@ -44,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $otp = $_POST['field1'] . $_POST['field2'] . $_POST['field3'] . $_POST['field4'];
         if ($otp == $_SESSION['OTP_V']) {
             if (Get_User_Details::addPhoneNumber(htmlspecialchars($_POST['phone']))) {
-                echo json_encode(["status" => "200", `path`=> get_url().'u/post-insert/']);
+                echo json_encode(["status" => "200", 'path'=> get_url().'u/post-insert']);
             }else{
                 echo json_encode(["status" => "198"]);
             }

@@ -4,6 +4,10 @@ include '../routes.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_FILES['image']['error'] === 0) {
+
+        $maxFileSize = 100 * 1024; // 100KB in bytes
+        if ($_FILES["image"]["size"] <= $maxFileSize) {}
+
         $watermarkImagepath = get_url() . 'assets/images/SKOKRA+LOGO+NEW+(2).webp.png';
         $imageFileType = strtolower(pathinfo(basename($_FILES['image']['name']), PATHINFO_EXTENSION));
         if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "webp") {

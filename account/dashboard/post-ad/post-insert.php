@@ -1,5 +1,11 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/backend/user_task.php';
+$path = $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/backend/user_task.php';
+
+if (file_exists($path)) {
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/backend/user_task.php';
+}else{
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/user_task.php';
+}
 session_start();
 if (isset($_SESSION['url'])) {
     unset($_SESSION['url']);
@@ -31,6 +37,7 @@ $close_verification_btn = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" v
 
         // Replace phone numbers with an empty string
         $title = preg_replace($pattern, '', strip_tags($title, '<a><script>'));
+        
         $description = $_POST['description'];
         $description = preg_replace('/\.(com|in|org|net|gov|info|co)\b/', '', $description);
 
@@ -39,8 +46,8 @@ $close_verification_btn = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" v
         $description = preg_replace($pattern, '', strip_tags($description, '<a><script>'));
         // Important are above
         
-        $african_ethnicity = filter_input(INPUT_POST, 'african', FILTER_SANITIZE_SPECIAL_CHARS);;
-        $nationality = filter_input(INPUT_POST, 'nationality', FILTER_SANITIZE_SPECIAL_CHARS);;
+        $african_ethnicity = filter_input(INPUT_POST, 'african', FILTER_SANITIZE_SPECIAL_CHARS);
+        $nationality = filter_input(INPUT_POST, 'nationality', FILTER_SANITIZE_SPECIAL_CHARS);
         $boobs = filter_input(INPUT_POST, 'boobs', FILTER_SANITIZE_SPECIAL_CHARS);
         $hair = filter_input(INPUT_POST, 'hair', FILTER_SANITIZE_SPECIAL_CHARS);
         $body_type = filter_input(INPUT_POST, 'body-type', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -313,7 +320,7 @@ $close_verification_btn = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" v
                         <label for="category">*Select category</label>
                         <select name="category" id="category">
                             <option value="call-girls">Call Girls</option>
-                            <option value="<?php echo base64_encode('massage') ?>">Massages</option>
+                            <option value="massage">Massages</option>
                             <option value="male-escorts">Male Escorts</option>
                             <option value="transsexual">Transsexual</option>
                             <option value="adult-meetings">Adult Meetings</option>
@@ -322,7 +329,9 @@ $close_verification_btn = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" v
                     <div class="form-group">
                         <label for="city">*Select city</label>
                         <select name="city" id="city">
-                            <option value="1">City 1</option>
+                        <?php foreach($list_of_cities as $city){ ?>
+                                <option value="<?=$city ?>"><?=$city ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                     <div class="form-group form-flex">
@@ -349,7 +358,7 @@ $close_verification_btn = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" v
                 <div class="form-container">
                     <div class="form-group">
                         <label for="category">*Age</label>
-                        <input type="number" name="age" id="age">
+                        <input type="number" maxlength="2" minlength="2" min="18" name="age" id="age">
                     </div>
                     <div class="form-group">
                         <label for="city">*Title</label>
@@ -959,11 +968,14 @@ $close_verification_btn = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" v
                         document.querySelector('input[name="captcha-txt"]').value = '';
                         document.getElementById('captcha-error').innerHTML = '';
                         document.getElementById('otp-input-fields').innerHTML = '<form class="form-otp"><div class="inputs-otp"> <input id="input1" class="otp-input" type="text" maxlength="1"> <input id="input2" type="text" class="otp-input" maxlength="1"> <input id="input3" class="otp-input" type="text" maxlength="1"> <input id="input4" class="otp-input" type="text" maxlength="1"> </div> </form>';
-                        document.getElementById('phone-verification-btns').innerHTML = '<button id="verify_OTP">' + d['otp'] + 'VERIFY CODE NOW</button>';
+                        document.getElementById('phone-verification-btns').innerHTML = '<button id="verify_OTP">VERIFY CODE NOW</button>';
                         setTimeout(() => {
                             get_input_fields()
                         }, 1000)
-                    } else {
+                    }else if(d['status'] == 500){
+                        alert('Failed to send OTP');
+                        document.getElementById('captcha').removeAttribute('readonly', false);
+                    }else {
                         document.querySelector('.hide-the-captcha').innerText = d['captcha'];
                         document.getElementById('captcha').removeAttribute('readonly', false);
                         document.getElementById('captcha-error').innerHTML = '';
@@ -974,6 +986,7 @@ $close_verification_btn = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" v
         })
         document.querySelector('.close-the-verification-tab').addEventListener('click', () => {
             document.querySelector('.phone_number_verification').style.display = 'none';
+            document.getElementById('captcha').removeAttribute('readonly', false);
         })
     </script>
     <script>
@@ -1029,7 +1042,7 @@ $close_verification_btn = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" v
                         body: OTO
                     }).then((response) => response.json()).then(function(data) {
                         if (data['status'] == 200) {
-                            document.getElementById('form_submit').setAttribute('action', d['path'])
+                            document.getElementById('form_submit').setAttribute('action', data['path'])
                             document.getElementById('form_submit').submit()
                         } else {
                             alert('not verified')

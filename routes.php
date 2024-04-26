@@ -1,4 +1,6 @@
 <?php
+
+date_default_timezone_set('Asia/Kolkata');
 function isLocalhost()
 {
     // Define an array of common localhost hostnames or IP addresses
@@ -115,3 +117,81 @@ if(!isset($login_page)){
         }
     }
 }
+
+
+$list_of_cities = [
+    'Agra',
+    'Ahmedabad',
+    'Ajmer',
+    'Alappuzha',
+    'Ambala',
+    'Amli',
+    'Bahadurgarh',
+    'Bangalore',
+    'Bawana',
+    'Belgaum',
+    'Bharuch',
+    'Bhilai',
+    'Bhopal',
+    'Bhubaneswar',
+    'Bhuj',
+    'Chandigarh',
+    'Chennai',
+    'Coimbatore',
+    'Dehradun',
+    'Delhi',
+    'Dibrugarh',
+    'Dimapur',
+    'Erode',
+    'Faridabad',
+    'Ghaziabad',
+    'Goa',
+    'Gorakhpur',
+    'Gurgaon',
+    'Hyderabad',
+    'Indore',
+    'Jaipur',
+    'Jamnagar',
+    'Jodhpur',
+    'Jorhat',
+    'Kadapa',
+    'Kanpur',
+    'Kerala',
+    'Kochi',
+    'Kolkata',
+    'Kota',
+    'Kumhari',
+    'Lucknow',
+    'Ludhiana',
+    'Madurai',
+    'Meerut',
+    'Mormugao',
+    'Mumbai',
+    'Mysore',
+    'Nagapattinam',
+    'Nagpur',
+    'Navsari',
+    'Noida',
+    'Palanpur',
+    'Panvel',
+    'Patna',
+    'Pollachi',
+    'Ponda',
+    'Pune',
+    'Rajkot',
+    'Ranchi',
+    'Rangia',
+    'Ratanpur',
+    'Salem',
+    'Surat',
+    'Thiruvananthapuram',
+    'Tiruchchirappalli',
+    'Tirupati',
+    'Vadodara',
+    'Vapi',
+    'Varanasi',
+    'Vijayawada',
+    'Visakhapatnam'
+]
+
+?>

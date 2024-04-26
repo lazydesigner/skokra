@@ -247,7 +247,7 @@ include './backend/cradential.php';
         if ($result['msg'] == 'exist') { 
             $errormessage = 'Username Already exist';
         } elseif ($result['msg'] == 'success') { $_SESSION['email'] = $email;          
-            $_SESSION['last_activity'] = time(); ?> <script>window.location.href = "u/account/dashboard"; </script> <?php } else { 
+            $_SESSION['last_activity'] = time(); ?> <script>window.location.href = "verification"; </script> <?php } else { 
             $errormessage = 'Provided Password is Incorrect';
         }
     }

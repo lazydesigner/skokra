@@ -2,7 +2,64 @@
 if (isset($_SESSION['captcha'])) {
     unset($_SESSION['captcha']);
 }
+$login_page = 'yes';
 include './routes.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require './phpMailer/src/Exception.php';
+require './phpMailer/src/PHPMailer.php';
+require './phpMailer/src/SMTP.php';
+
+if(isset($_SESSION['email'])){
+    $mail = new PHPMailer(true);
+    
+    $mail->isSMTP();
+    // $mail->Host = 'smtp.gmail.com';
+    $mail->Host = 'smtp.hostinger.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'no_reply@skokra.com';
+    $mail->Password = '$skokrA2024';
+    $mail->SMTPSecure = 'ssl';
+    $mail->Port= 465;
+    
+    $mail->setFrom('no_reply@skokra.com', 'Skokra.in');
+    
+    $mail->addAddress($_SESSION['email']);
+    
+    $mail->isHTML(true);
+    
+    $mail->Subject = 'Activate Your Account';
+    
+    $mail->Body = "
+    <html>
+    <head>
+    <title>OTP Verification</title>
+    </head>
+    <body>
+    <table>
+    <tr>
+    <img src='https://in.skokra.com/assets/images/SKOKRA+LOGO+NEW+(2).webp.png' width='100%' height='100%' alt=''>
+    </tr>
+
+    <tr>
+    <p>Hi <b>".$_SESSION['email']."<b></p>
+    <p>Clink On the Button To Activte Your Account</p>
+    <a href='".get_url()."u/account/dashboard'><button style='border:0;background-color:dodgerblue;color:white;cursor:pointer;width:auto;height:40px;padding:1% 10px;border-radius:5px'>Activate Account</button></a>
+    </tr>
+    </table>
+     </body>
+    </html>
+    ";
+    
+    $mail->send();
+}else{
+    die('Server Error...');
+    exit();
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

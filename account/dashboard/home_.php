@@ -1,28 +1,10 @@
 <?php 
 session_start();
 include '../../routes.php';
-// // LOGOUT CODE
-// if (isset($_SESSION['url'])) {
-//     unset($_SESSION['url']);
-// }
-// $url = $_SERVER['REQUEST_URI'];
-// $path = parse_url($url, PHP_URL_PATH);
-
-// if (isLocalhost()) {
-//     $domainToRemove = "/skokra.com/";
-//     $newUrl = str_replace($domainToRemove, "", $path);
-
-//     if (!isset($_SESSION["email"])) {
-//         header("Location: ".get_url()."login?next=".$newUrl."");  // If not logged in, redirect
-//     }
-// } else {
-//     if (!isset($_SESSION["email"])) {
-//         header("Location: ".get_url()."login?next=".$path."");  // If not logged in, redirect
-//     }
-// }
-// // LOGOUT CODE
 include '../../backend/user_task.php';
-Get_User_Details::Get_Customer_Code()
+Get_User_Details::Get_Customer_Code();
+$row = Get_User_Details::Get_Customer_Details();
+$results = Get_User_Details::Get_Full_ad_detail();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,9 +56,9 @@ Get_User_Details::Get_Customer_Code()
                                 <li>
                                     <div class="action-ads-row">
                                         <p>Active</p>
-                                        <span>0</span>
+                                        <span><?=count($results) ?></span>
                                     </div>
-                                </li>
+                                </li>   
                                 <li>
                                     <div class="action-ads-row">
                                         <p>Not published</p>
@@ -96,17 +78,17 @@ Get_User_Details::Get_Customer_Code()
                                 <li>
                                     <div class="action-ads-row">
                                         <p>Currents</p>
-                                        <span>0</span>
+                                        <span><?php if((int)$row['total_token_left'] < 0){echo  0 ;}else{ echo $row['total_token_left'];} ?></span>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="action-ads-row">
                                         <p>Used</p>
-                                        <span>0</span>
+                                        <span><?=$row['total_token_used'] ?></span>
                                     </div>
                                 </li>
                                 <li>
-                                    <button class="buy-coin" id="buy-coin">Buy Credits</button>
+                                    <a href="<?=get_url() ?>u/account/tokens" target="_blank"><button class="buy-coin" id="buy-coin">Buy Credits</button></a>
                                 </li>
                             </ul>
                         </div>

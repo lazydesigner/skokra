@@ -1,4 +1,7 @@
 <?php
+session_start();
+include '../backend/user_task.php';
+
 $con = mysqli_connect('localhost', 'root', '', 'skokra');
 if (!$con) {
     die('failed to connect');
@@ -26,13 +29,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $image = $result2->fetch_assoc();
             $output = '';
             $img = json_decode($image['images'], true);
-            
+            $image_count = 0;
             foreach ($img as $id=>$value) {
+                if($image_count == 0){
+                    $pr = '<div class="preview-tag"><i class="ri-star-fill"></i> Preview</div>';
+                    if(Get_User_Details::Set_Preview_img($_POST['pi'] , 'http://localhost/skokra.com/secure-images/'.$value)){}else{}
+                }else{
+                    $pr = '<div class="preview-tag" style="background-color:grey;"><i class="ri-star-fill"></i> Preview</div>';
+                }
                 $output .= '
                     <div class="preview-image-box">
                        
-                        <div class="preview-tag"><i class="ri-star-fill"></i> Preview</div>
-                        <div class="preview-image"><img src="http://localhost/skokra.com/secure-images/'.$value.'" id="skokracroped'.$id.'" width="100%" height="100%" alt="skokra image collection"></div>
+                       '.$pr.'
+                        <div class="preview-image"><img src="http://localhost/skokra.com/secure-images/'.$value.'" class="skokracropedX" id="skokracroped'.$id.'" width="100%" height="100%" alt="skokra image collection"></div>
                         <div class="edit-preview-img">
                             <div class="crop" onclick="CropTheImage('.$id.')"><i class="ri-crop-line"></i></div>
                             <div class="reupload" onclick="ReuploadImage(\''.$_POST['pi'].'\','.$id.')"><i class="ri-loop-left-line"></i></div>
@@ -40,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                     </div>
                 ';
+                $image_count +=1 ;
             }
             echo json_encode(['output'=>$output]);
         }

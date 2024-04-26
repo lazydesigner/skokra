@@ -2,6 +2,7 @@
 session_start();
 $login_page = 'yes';
 include './routes.php';
+include './backend/user_task.php';
 ?>
 
 <!DOCTYPE html>
@@ -37,9 +38,9 @@ include './routes.php';
                 </div>
                 <div class="service-cities">
                     <ul>
-                        <li><a href="">lorem ipsum</a></li>
-                        <li><a href="">lorem ipsum</a></li>
-                        <li><a href="">lorem ipsum</a></li>
+                        <li><a href="<?=get_url() ?>">lorem ipsum</a></li>
+                        <li><a href="<?=get_url() ?>">lorem ipsum</a></li>
+                        <li><a href="<?=get_url() ?>">lorem ipsum</a></li>
                     </ul>
                 </div>
             </div>
@@ -55,9 +56,9 @@ include './routes.php';
                 </div>
                 <div class="service-cities">
                     <ul>
-                        <li><a href="">lorem ipsum</a></li>
-                        <li><a href="">lorem ipsum</a></li>
-                        <li><a href="">lorem ipsum</a></li>
+                        <li><a href="<?=get_url() ?>">lorem ipsum</a></li>
+                        <li><a href="<?=get_url() ?>">lorem ipsum</a></li>
+                        <li><a href="<?=get_url() ?>">lorem ipsum</a></li>
                     </ul>
                 </div>
             </div>
@@ -71,9 +72,9 @@ include './routes.php';
                 </div>
                 <div class="service-cities">
                     <ul>
-                        <li><a href="">lorem ipsum</a></li>
-                        <li><a href="">lorem ipsum</a></li>
-                        <li><a href="">lorem ipsum</a></li>
+                        <li><a href="<?=get_url() ?>">lorem ipsum</a></li>
+                        <li><a href="<?=get_url() ?>">lorem ipsum</a></li>
+                        <li><a href="<?=get_url() ?>">lorem ipsum</a></li>
                     </ul>
                 </div>
             </div>
@@ -87,9 +88,9 @@ include './routes.php';
                 </div>
                 <div class="service-cities">
                     <ul>
-                        <li><a href="">lorem ipsum</a></li>
-                        <li><a href="">lorem ipsum</a></li>
-                        <li><a href="">lorem ipsum</a></li>
+                        <li><a href="<?=get_url() ?>">lorem ipsum</a></li>
+                        <li><a href="<?=get_url() ?>">lorem ipsum</a></li>
+                        <li><a href="<?=get_url() ?>">lorem ipsum</a></li>
                     </ul>
                 </div>
             </div>
@@ -103,9 +104,9 @@ include './routes.php';
                 </div>
                 <div class="service-cities">
                     <ul>
-                        <li><a href="">lorem ipsum</a></li>
-                        <li><a href="">lorem ipsum</a></li>
-                        <li><a href="">lorem ipsum</a></li>
+                        <li><a href="<?=get_url() ?>">lorem ipsum</a></li>
+                        <li><a href="<?=get_url() ?>">lorem ipsum</a></li>
+                        <li><a href="<?=get_url() ?>">lorem ipsum</a></li>
                     </ul>
                 </div>
             </div>
@@ -119,9 +120,9 @@ include './routes.php';
                 </div>
                 <div class="service-cities">
                     <ul>
-                        <li><a href="">lorem ipsum</a></li>
-                        <li><a href="">lorem ipsum</a></li>
-                        <li><a href="">lorem ipsum</a></li>
+                        <li><a href="<?=get_url() ?>">lorem ipsum</a></li>
+                        <li><a href="<?=get_url() ?>">lorem ipsum</a></li>
+                        <li><a href="<?=get_url() ?>">lorem ipsum</a></li>
                     </ul>
                 </div>
             </div>
@@ -139,11 +140,11 @@ include './routes.php';
             <strong>Call Girls</strong>
 
             <div class="ads-cities">
-                <a href=""><button>Bangalore</button></a>
-                <a href=""><button>Hyderabad</button></a>
-                <a href=""><button>Delhi</button></a>
-                <a href=""><button>Pune</button></a>
-                <a href=""><button>Mubmai</button></a>
+                <a href="<?=get_url() ?>call-girls/bangalore/"><button>Bangalore</button></a>
+                <a href="<?=get_url() ?>call-girls/hyderabad/"><button>Hyderabad</button></a>
+                <a href="<?=get_url() ?>call-girls/delhi/"><button>Delhi</button></a>
+                <a href="<?=get_url() ?>call-girls/pune/"><button>Pune</button></a>
+                <a href="<?=get_url() ?>call-girls/mumbai/"><button>Mumbai</button></a>
             </div>
 
         </div>
@@ -151,11 +152,11 @@ include './routes.php';
             <strong>Massage</strong>
 
             <div class="ads-cities">
-                <a href=""><button>Bangalore</button></a>
-                <a href=""><button>Hyderabad</button></a>
-                <a href=""><button>Delhi</button></a>
-                <a href=""><button>Pune</button></a>
-                <a href=""><button>Mubmai</button></a>
+                <a href="<?=get_url() ?>massage/bangalore/"><button>Bangalore</button></a>
+                <a href="<?=get_url() ?>massage/hyderabad/"><button>Hyderabad</button></a>
+                <a href="<?=get_url() ?>massage/delhi/"><button>Delhi</button></a>
+                <a href="<?=get_url() ?>massage/pune/"><button>Pune</button></a>
+                <a href="<?=get_url() ?>massage/mumbai/"><button>Mumbai</button></a>
             </div>
 
         </div>
@@ -163,11 +164,11 @@ include './routes.php';
             <strong>Male Escorts</strong>
 
             <div class="ads-cities">
-                <a href=""><button>Bangalore</button></a>
-                <a href=""><button>Hyderabad</button></a>
-                <a href=""><button>Delhi</button></a>
-                <a href=""><button>Pune</button></a>
-                <a href=""><button>Mubmai</button></a>
+                <a href="<?=get_url() ?>male-escorts/bangalore/"><button>Bangalore</button></a>
+                <a href="<?=get_url() ?>male-escorts/hyderabad/"><button>Hyderabad</button></a>
+                <a href="<?=get_url() ?>male-escorts/delhi/"><button>Delhi</button></a>
+                <a href="<?=get_url() ?>male-escorts/pune/"><button>Pune</button></a>
+                <a href="<?=get_url() ?>male-escorts/mumbai/"><button>Mumbai</button></a>
             </div>
 
         </div>
@@ -175,11 +176,11 @@ include './routes.php';
             <strong>Transsexual</strong>
 
             <div class="ads-cities">
-                <a href=""><button>Bangalore</button></a>
-                <a href=""><button>Hyderabad</button></a>
-                <a href=""><button>Delhi</button></a>
-                <a href=""><button>Pune</button></a>
-                <a href=""><button>Mubmai</button></a>
+                <a href="<?=get_url() ?>transsexual/bangalore/"><button>Bangalore</button></a>
+                <a href="<?=get_url() ?>transsexual/hyderabad/"><button>Hyderabad</button></a>
+                <a href="<?=get_url() ?>transsexual/delhi/"><button>Delhi</button></a>
+                <a href="<?=get_url() ?>transsexual/pune/"><button>Pune</button></a>
+                <a href="<?=get_url() ?>transsexual/mumbai/"><button>Mumbai</button></a>
             </div>
 
         </div>
@@ -187,11 +188,11 @@ include './routes.php';
             <strong>Dating</strong>
 
             <div class="ads-cities">
-                <a href=""><button>Bangalore</button></a>
-                <a href=""><button>Hyderabad</button></a>
-                <a href=""><button>Delhi</button></a>
-                <a href=""><button>Pune</button></a>
-                <a href=""><button>Mubmai</button></a>
+                <a href="<?=get_url() ?>dating/bangalore/"><button>Bangalore</button></a>
+                <a href="<?=get_url() ?>dating/hyderabad/"><button>Hyderabad</button></a>
+                <a href="<?=get_url() ?>dating/delhi/"><button>Delhi</button></a>
+                <a href="<?=get_url() ?>dating/pune/"><button>Pune</button></a>
+                <a href="<?=get_url() ?>dating/mumbai/"><button>Mumbai</button></a>
             </div>
 
         </div>
@@ -201,6 +202,7 @@ include './routes.php';
 <?php include './footer.php' ?>
 <?php include $_SERVER['DOCUMENT_ROOT'].'/skokra.com/account/dashboard/private-area.php' ?>
 <script src="./assets/js/common.js" defer></script>
+
 </body>
 
 </html>

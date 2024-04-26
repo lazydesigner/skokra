@@ -8,6 +8,7 @@ class User
     private $Password;
     private $NormalPassword;
     private $Terms;
+    private $Tokens = 100;
     private $customercode;
 
     public function __construct(PDO $con)
@@ -54,9 +55,10 @@ class User
     }
     public function save()
     {
-        $query = $this->con->prepare("INSERT INTO `users` (`email`, `password`,`terms_and_conditions`,`customer_code`) VALUES (:username, :password, :terms, :customer_code)");
+        $query = $this->con->prepare("INSERT INTO `users` (`email`,`password`,`total_token_left`,`terms_and_conditions`,`customer_code`) VALUES (:username, :password, :tokens, :terms, :customer_code)");
         $query->bindParam(":username", $this->Username);
         $query->bindParam(":password", $this->Password);
+        $query->bindParam(":tokens", $this->Tokens);
         $query->bindParam(":terms", $this->Terms);
         $query->bindParam(":customer_code", $this->customercode);
 
