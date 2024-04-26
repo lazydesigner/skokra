@@ -328,7 +328,7 @@ class Get_User_Details
                 if ($InsertSchedule->rowCount() > 0) {
                     echo 'Done';
                 } else {
-                    die();
+                    echo 'Not Done';
                 }
             }
         }
