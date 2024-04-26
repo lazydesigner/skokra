@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
                 
                 if (!$con) {
-                    die('failed to connect'.mysqli_connect_error());
+                    die('failed to connect'.mysqli_connect_error($con));
                 }
                 $array_of_image = [];
                 $array_of_image[] = basename($destinationPath);
