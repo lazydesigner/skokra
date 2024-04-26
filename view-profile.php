@@ -4,6 +4,9 @@ $login_page = 'yes';
 include './routes.php';
 include './backend/user_task.php';
 
+$cat_array = ['transsexual','adult-meeting','massage','male-escorts','call-girls'];
+if(in_array($_GET['cat'], $cat_array)){}else{ die('Invalid Category');}
+
 $row = Get_User_Details::Get_Single_Ad_Detail(explode('0723', $_GET['x'])[1])[0];
 
 $date = new DateTime($row['date_of_insert']);
@@ -176,7 +179,7 @@ if (empty($row['services']) && empty($row['attention_to']) && empty($row['place_
     <?php include './common-header.php' ?>
     <div class="container">
         <div class="page-detail-and-information" aria-label="">
-            <div id="breadcrumbs">
+        <div id="breadcrumbs">
                 <ol style="display: flex;align-items:center;gap:.5%;list-style:none;padding:0" itemscope="" itemtype="http://schema.org/BreadcrumbList">
                     <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" itemprop="item" title="Genuine Call girls &amp; escorts Service: Photos, Phone number | Skoka" class="crumb" href="<?= get_url() ?>">
                             <div class="skokra-breadcrumb" itemprop="name"><i class="ri-home-4-line">
@@ -186,17 +189,28 @@ if (empty($row['services']) && empty($row['attention_to']) && empty($row['place_
                         <meta itemprop="position" content="1">
                     </li>
                     <li><b><i class="ri-arrow-right-s-line"></i></b></li>
-                    <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" itemprop="item" class="crumb" href="<?= get_url() ?>" title="">
-                            <div class="skokra-breadcrumb" itemprop="name">state</div>
+                    <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" href="<?= get_url().strtolower($_GET['cat']) ?>" itemprop="item" class="crumb">
+                            <div class="skokra-breadcrumb" itemprop="name">Independent <?=ucwords(str_replace('-',' ', $_GET['cat'])) ?></div>
                         </a>
                         <meta itemprop="position" content="2">
                     </li>
-                    <li><b><i class="ri-arrow-right-s-line"></i></b></li>
-                    <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" itemprop="item" class="crumb">
-                            <div class="skokra-breadcrumb" itemprop="name">city</div>
+                    <?php if(isset($_GET['cty'])){ 
+                            if(Get_User_Details::checkifitsastateorcity($_GET['cty'])){ ?> 
+                                        
+                        <li><b><i class="ri-arrow-right-s-line"></i></b></li>
+                    <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" itemprop="item" class="crumb" href="<?= get_url().strtolower($_GET['cat'].'/'.str_replace(' ','-', Get_User_Details::getStateByCity($_GET['cty']))) ?>" title="">
+                            <div class="skokra-breadcrumb" itemprop="name"><?=ucwords(str_replace('-',' ', Get_User_Details::getStateByCity($_GET['cty']))) ?></div>
                         </a>
                         <meta itemprop="position" content="3">
                     </li>
+                    <?php } ?>
+                    <li><b><i class="ri-arrow-right-s-line"></i></b></li>
+                    <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" itemprop="item" class="crumb">
+                            <div class="skokra-breadcrumb" itemprop="name"><?=ucwords(str_replace('-',' ', $_GET['cty'])) ?></div>
+                        </a>
+                        <meta itemprop="position" content="4">
+                    </li>    
+                    <?php  } ?>
                 </ol>
             </div>
         </div>

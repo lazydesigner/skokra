@@ -315,7 +315,7 @@ class Get_User_Details
         $endTime = new DateTime($e);
         $result = self::Get_Supertop_ads_detail($s, $e);
         $adList = range(1, count($result)); 
-        $scheduledAds = self::scheduleAds($adList, $startTime, $endTime, 5);
+        $scheduledAds = self::scheduleAds($adList, $startTime, $endTime, 5); 
         $InsertSchedule2 = $con->prepare("DELETE FROM  `ads_slot_time`");
         $InsertSchedule2->execute();
         foreach ($scheduledAds as  $scheduledAd) {
