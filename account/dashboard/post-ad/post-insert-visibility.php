@@ -75,11 +75,15 @@ if (isset($_POST['next-step'])) {
                 $mod = str_replace('am', '', $time_to_show[0]);
                 if (isTimePassed($time_to_show[0])) {
                     $futureDateTime = strtotime("+$n_d_a_s_c days", $currentDateTime);
-                    $top_ad_expiry_date = date("M. j, Y - h:i a", $futureDateTime);
+
+                    $futureDateTimeWithMinutes = strtotime("+180 minutes", $futureDateTime);
+
+                    $top_ad_expiry_date = date("M. j, Y - h:i a", $futureDateTimeWithMinutes);
                 }else{
                     $n_d_a_s_cc = (int)$n_d_a_s_c - 1;
                     $futureDateTime = strtotime("+$n_d_a_s_cc days", $currentDateTime);
-                    $top_ad_expiry_date = date("M. j, Y - h:i a", $futureDateTime);
+                    $futureDateTimeWithMinutes = strtotime("+180 minutes", $futureDateTime);
+                    $top_ad_expiry_date = date("M. j, Y - h:i a", $futureDateTimeWithMinutes);
                 }
                 $date1->setTime($mod, 0, 0);
             } else {
@@ -87,11 +91,13 @@ if (isset($_POST['next-step'])) {
                 if (isTimePassed($time_to_show[0])) {
                     echo '1';
                     $futureDateTime = strtotime("+$n_d_a_s_c days", $currentDateTime);
-                    $top_ad_expiry_date = date("M. j, Y - h:i a", $futureDateTime);
+                    $futureDateTimeWithMinutes = strtotime("+180 minutes", $futureDateTime);
+                    $top_ad_expiry_date = date("M. j, Y - h:i a", $futureDateTimeWithMinutes);
                 }else{
                     $n_d_a_s_cc = (int)$n_d_a_s_c - 1;
                     $futureDateTime = strtotime("+$n_d_a_s_cc days", $currentDateTime);
-                    $top_ad_expiry_date = date("M. j, Y - h:i a", $futureDateTime);
+                    $futureDateTimeWithMinutes = strtotime("+180 minutes", $futureDateTime);
+                    $top_ad_expiry_date = date("M. j, Y - h:i a", $futureDateTimeWithMinutes);
                 }
             }
 
@@ -110,7 +116,8 @@ if (isset($_POST['next-step'])) {
             $starting_time = $date1->format('H:i:s');
             $end_time = $date2->format('H:i:s');
             $futureDateTime = strtotime("+$n_d_a_s_c days", $currentDateTime);
-            $top_ad_expiry_date = date("M. j, Y - h:i a", $futureDateTime);
+            $futureDateTimeWithMinutes = strtotime("+180 minutes", $futureDateTime);
+            $top_ad_expiry_date = date("M. j, Y - h:i a", $futureDateTimeWithMinutes);
         }
         if (isset($_POST['supertopplan'])) {
             $supertop_ad = 1;
