@@ -326,9 +326,9 @@ class Get_User_Details
             $InsertSchedule->execute([$adid, $scheduledtime]);
             if ($InsertSchedule) {
                 if ($InsertSchedule->rowCount() > 0) {
-                    echo 'Done';
+                    return true;
                 } else {
-                    echo 'Not Done';
+                    return false;
                 }
             }
         }
