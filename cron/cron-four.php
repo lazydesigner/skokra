@@ -8,4 +8,6 @@ $s = '18:00:00';
 $e = '20:00:00';
 
 Get_User_Details::Scheduled_Ad_Time($s, $e);
+
+echo 'Working';
 ?>
