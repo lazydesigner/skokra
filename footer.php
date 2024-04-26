@@ -38,7 +38,7 @@
             })
     })
 }
-
+    if(document.getElementById('searchform')){
     document.getElementById('searchform').addEventListener('submit', (e) => {
         e.preventDefault()
         categoryf = document.getElementById('categoryf').value;
@@ -70,5 +70,5 @@
             window.location.href = '<?= get_url() ?>' + categoryf;
         }
 
-    })
+    })}
 </script>
