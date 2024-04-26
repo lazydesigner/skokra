@@ -1,6 +1,6 @@
 <?php
 
-$con = mysqli_connect('localhost', 'root', '', 'skokra');
+$con = mysqli_connect('localhost', 'u231955561_inskokra', 'Skokra@12com', 'u231955561_in_skokra');
 if (!$con) {
     die('failed to connect');
 }
