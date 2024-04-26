@@ -174,7 +174,7 @@ function timeto($timeString)
 
     <?php
     foreach ($results as $result) { 
-        $pattern = '/[*%{}\/|><+=\]\[?.\\\]/u';
+        $pattern = '/[*%{}\/|><+=\]\[?.:,:\'\\\\]/u';
             $url = preg_replace($pattern,'',$result['title']);    
         $url = str_replace(' ','-',$url);    
         $url = 'ad/'.$url.'/?x=0723'.$result['post_id'];

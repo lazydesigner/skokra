@@ -400,7 +400,7 @@ if(Get_User_Details::checkifitsastateorcity($_GET['cty'])){
         <?php
         if(count($rows) == 0){
         foreach ($rows as $row) {
-            $pattern = '/[*%{}\/|><+=\]\[?.\\\]/u';
+            $pattern = '/[*%{}\/|><+=\]\[?.:,:\'\\\\]/u';
             $url = preg_replace($pattern, '', $row['title']);
             $url = str_replace(' ', '-', $url);
             $url = 'ad/' . $url . '/?x=0723' . $row['post_id'];
