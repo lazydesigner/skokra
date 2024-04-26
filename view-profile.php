@@ -4,9 +4,6 @@ $login_page = 'yes';
 include './routes.php';
 include './backend/user_task.php';
 
-$cat_array = ['transsexual','adult-meeting','massage','male-escorts','call-girls'];
-if(in_array($_GET['cat'], $cat_array)){}else{ die('Invalid Category');}
-
 $row = Get_User_Details::Get_Single_Ad_Detail(explode('0723', $_GET['x'])[1])[0];
 
 $date = new DateTime($row['date_of_insert']);
