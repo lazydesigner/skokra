@@ -1,4 +1,6 @@
 <?php
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
 
 $cat_array = ['transsexual', 'adult-meeting', 'massage', 'male-escorts', 'call-girls'];
 if (in_array($_GET['cat'], $cat_array)) {
@@ -17,8 +19,6 @@ $rows = Get_User_Details::Show_Super_Top_Ads();
 $toprows = Get_User_Details::Show_Top_Ads();
 
 $normalAds = Get_User_Details::Show_Ads();
-
-if(is_array($rows)){echo 'Array';}
 
 
 
@@ -404,9 +404,7 @@ if (isset($_GET['cty'])) {
                             <p><?= $row['title'] ?></p>
                         </div>
                     </div>
-            <?php }
-                                                                } ?>
-    <?php }
+            <?php } }}
             } else {
                 echo 'No Profiles';
             } ?>
