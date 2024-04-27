@@ -21,7 +21,7 @@ $toprows = Get_User_Details::Show_Top_Ads();
 
 $normalAds = Get_User_Details::Show_Ads();
 
-
+$pattern = '/[*%{}()\/|><+=\]\[?.:,:"\'\\\\]/u';
 
 
 if (isset($_GET['cty'])) {
@@ -417,7 +417,7 @@ if (isset($_GET['cty'])) {
         <?php
         if (count($superrows) != 0) {
             foreach ($superrows[0] as $row) {
-                $pattern = '/[*%{}()\/|><+=\]\[?.:,:"\'\\\\]/u';
+                // $pattern = '/[*%{}()\/|><+=\]\[?.:,:"\'\\\\]/u';
                 $url = preg_replace($pattern, '', $row['title']);
                 $url = str_replace(' ', '-', $url);
                 $url = 'ad/' . $url . '/?x=0723' . $row['post_id'];
@@ -483,7 +483,7 @@ if (isset($_GET['cty'])) {
         <?php
         if (count($toprows) != 0) {
             foreach ($toprows[0] as $toprow) {
-                $pattern = '/[*%{}\/|><+=\]\[?.\\\]/u';
+                // $pattern = '/[*%{}()\/|><+=\]\[?.:,:"\'\\\\]/u';
                 $url = preg_replace($pattern, '', $toprow['title']);
                 $url = str_replace(' ', '-', $url);
                 $url = 'ad/' . $url . '/?x=0723' . $toprow['post_id'];
@@ -548,7 +548,7 @@ if (isset($_GET['cty'])) {
         <?php
         if (count($normalAds) != 0) {
             foreach ($normalAds[0] as $normalAd) {
-                $pattern = '/[*%{}\/|><+=\]\[?.\\\]/u';
+                // $pattern = '/[*%{}()\/|><+=\]\[?.:,:"\'\\\\]/u';
                 $url = preg_replace($pattern, '', $normalAd['title']);
                 $url = str_replace(' ', '-', $url);
                 $url = 'ad/' . $url . '/?x=0723' . $normalAd['post_id'];
