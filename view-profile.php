@@ -4,12 +4,12 @@ $login_page = 'yes';
 include './routes.php';
 include './backend/user_task.php';
 
-$row = Get_User_Details::Get_Single_Ad_Detail(explode('0723', $_GET['x'])[1])[0];
+$profilerow = Get_User_Details::Get_Single_Ad_Detail(explode('0723', $_GET['x'])[1])[0];
 
-$date = new DateTime($row['date_of_insert']);
+$date = new DateTime($profilerow['date_of_insert']);
 $dateofad = $date->format("d M");
 
-if (empty($row['services']) && empty($row['attention_to']) && empty($row['place_of_service']) && empty($row['price'])) {
+if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empty($profilerow['place_of_service']) && empty($profilerow['price'])) {
     $style1 = 'style="width:100%"';
     $style2 = 'style="width:0%"';
     $c = 4;
@@ -215,13 +215,13 @@ if (empty($row['services']) && empty($row['attention_to']) && empty($row['place_
     <div class="container" style="margin-top: 3%;">
         <div class="profile-flex">
             <div>
-                <div><small><?= $dateofad ?> - Ad ID: <?= substr(str_replace($_SESSION['customer_code'] . '_in', '', $row['adid']), 0, 7); ?></small></div>
-                <div class="profile-age"><span><?= $row['age'] . ' Years' ?></span><span> <i class="ri-map-pin-line"></i> <?= $row['city'] ?></span></div>
-                <h1><?= strtoupper($row['title']) ?></h1>
+                <div><small><?= $dateofad ?> - Ad ID: <?= substr(str_replace($_SESSION['customer_code'] . '_in', '', $profilerow['adid']), 0, 7); ?></small></div>
+                <div class="profile-age"><span><?= $profilerow['age'] . ' Years' ?></span><span> <i class="ri-map-pin-line"></i> <?= $profilerow['city'] ?></span></div>
+                <h1><?= strtoupper($profilerow['title']) ?></h1>
             </div>
             <div>
-                <a href="tel:<?= $row['ad_phone_number'] ?>"><button>Call Now</button></a>
-                <?php if ($row['whatsapp_enable'] == 1) { ?><a href="https://wa.me/<?= $row['ad_phone_number'] ?>" target="_blank"><button style="background-color: green;">Whatsapp</button></a><?php } ?>
+                <a href="tel:<?= $profilerow['ad_phone_number'] ?>"><button>Call Now</button></a>
+                <?php if ($profilerow['whatsapp_enable'] == 1) { ?><a href="https://wa.me/<?= $profilerow['ad_phone_number'] ?>" target="_blank"><button style="background-color: green;">Whatsapp</button></a><?php } ?>
             </div>
         </div>
     </div>
@@ -230,64 +230,64 @@ if (empty($row['services']) && empty($row['attention_to']) && empty($row['place_
             <div class="profile-img" <?= $style1 ?>>
                 <div class="grid-of-images">
                     <?php
-                    $images = json_decode($row['images'], true);
+                    $images = json_decode($profilerow['images'], true);
                     foreach ($images as $img) { ?><div class="img-item"><img src="<?= get_url() . 'secure-images/' . $img ?>" width="100%" height="100%" loading="lazy" alt=""></div><?php } ?>
                 </div>
                 <p><strong><i class="ri-emotion-line"></i> About Me</strong></p>
-                <p><?= $row['description'] ?></p>
+                <p><?= $profilerow['description'] ?></p>
             </div>
 
             <div class="profile-det" <?= $style2 ?>>
 
                 <div class="service-list">
-                    <div><?= $row['african_ethnicity'] ?></div>
-                    <div><?= $row['nationality'] ?></div>
-                    <div><?= $row['boobs'] ?></div>
-                    <div><?= $row['hair'] ?></div>
-                    <div><?= $row['body_type'] ?></div>
+                    <div><?= $profilerow['african_ethnicity'] ?></div>
+                    <div><?= $profilerow['nationality'] ?></div>
+                    <div><?= $profilerow['boobs'] ?></div>
+                    <div><?= $profilerow['hair'] ?></div>
+                    <div><?= $profilerow['body_type'] ?></div>
                 </div>
 
-                <?php if (!empty($row['services'])) { ?>
+                <?php if (!empty($profilerow['services'])) { ?>
                     <div class="div-seprator">
                         <p><strong><i class="ri-hearts-line"></i> Services</strong></p>
 
                         <div class="service-list">
                             <?php
-                            $images = json_decode($row['services'], true);
+                            $images = json_decode($profilerow['services'], true);
                             foreach ($images as $img) { ?><div><?= $img ?></div><?php } ?>
 
                         </div>
 
                     </div><?php } ?>
-                <?php if (!empty($row['attention_to'])) { ?><div class="div-seprator">
+                <?php if (!empty($profilerow['attention_to'])) { ?><div class="div-seprator">
                         <p><strong><i class="ri-empathize-line"></i> Attention To</strong></p>
 
                         <div class="service-list">
                             <?php
-                            $images = json_decode($row['attention_to'], true);
+                            $images = json_decode($profilerow['attention_to'], true);
                             foreach ($images as $img) { ?><div><?= $img ?></div><?php } ?>
                         </div>
                     </div><?php } ?>
-                <?php if (!empty($row['place_of_service'])) { ?><div class="div-seprator">
+                <?php if (!empty($profilerow['place_of_service'])) { ?><div class="div-seprator">
                         <p><strong><i class="ri-map-2-line"></i> Place Of Service</strong></p>
 
                         <div class="service-list">
                             <?php
-                            $images = json_decode($row['place_of_service'], true);
+                            $images = json_decode($profilerow['place_of_service'], true);
                             foreach ($images as $img) { ?><div><?= $img ?></div><?php } ?>
                         </div>
                     </div><?php } ?>
-                <?php if (!empty($row['price'])) { ?><div class="div-seprator">
+                <?php if (!empty($profilerow['price'])) { ?><div class="div-seprator">
                         <p><strong><i class="ri-coin-line"></i> Payments</strong></p>
                         <small>Price </small>
                         <div style="border: 1px solid var(--heading-color);padding:4% 2%;border-radius:10px;display:flex;justify-content:space-between;align-items:center">
                             <p style="margin: 0;">From</p>
-                            <div style="padding: 5px 10px; border-radius: 10px; background: var(--heading-color);color:white"><?= $row['price'] ?></div>
+                            <div style="padding: 5px 10px; border-radius: 10px; background: var(--heading-color);color:white"><?= $profilerow['price'] ?></div>
                         </div>
-                        <?php if (!empty($row['payment_method'])) { ?>
+                        <?php if (!empty($profilerow['payment_method'])) { ?>
                             <div class="service-list" style="margin-top: 4px;">
                                 <?php
-                                $images = json_decode($row['payment_method'], true);
+                                $images = json_decode($profilerow['payment_method'], true);
                                 foreach ($images as $img) { ?><div><?= $img ?></div><?php } ?>
                             </div> <?php } ?>
                     </div><?php } ?>
@@ -296,8 +296,8 @@ if (empty($row['services']) && empty($row['attention_to']) && empty($row['place_
                     <p><strong>Contact Me</strong></p>
                 </div>
                 <div style="display: flex;flex-wrap:wrap;gap:10px;margin-top:5%">
-                    <a href="tel:<?= $row['ad_phone_number'] ?>"><button style="max-width:160px">Call Now</button></a>
-                    <?php if ($row['whatsapp_enable'] == 1) { ?><a href="https://wa.me/<?= $row['ad_phone_number'] ?>" target="_blank"><button style="background-color: green;max-width:160px">Whatsapp</button></a><?php } ?>
+                    <a href="tel:<?= $profilerow['ad_phone_number'] ?>"><button style="max-width:160px">Call Now</button></a>
+                    <?php if ($profilerow['whatsapp_enable'] == 1) { ?><a href="https://wa.me/<?= $profilerow['ad_phone_number'] ?>" target="_blank"><button style="background-color: green;max-width:160px">Whatsapp</button></a><?php } ?>
                 </div>
             </div>
         </div>
