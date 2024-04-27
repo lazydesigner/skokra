@@ -260,7 +260,7 @@ class Get_User_Details
                 } else {
                     $new_date = (int)$row['n_d_a_s_c'] - 1;
                     $update_q2 = $con->prepare("UPDATE profiles_ad SET n_d_a_s_c = ? WHERE post_id = ?");
-                    $update_q2->execute($new_date, [$row['post_id']]);
+                    $update_q2->execute([$new_date, $row['post_id']]);
                 }
                 $results[] = $row;
             }
