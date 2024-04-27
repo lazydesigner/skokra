@@ -18,6 +18,8 @@ $toprows = Get_User_Details::Show_Top_Ads();
 
 $normalAds = Get_User_Details::Show_Ads();
 
+if(is_array($rows)){echo 'Array';}
+
 
 
 
