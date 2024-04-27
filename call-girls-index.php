@@ -1,7 +1,10 @@
 <?php
 
-$cat_array = ['transsexual','adult-meeting','massage','male-escorts','call-girls'];
-if(in_array($_GET['cat'], $cat_array)){}else{ die('Invalid Category');}  //Check if category is
+$cat_array = ['transsexual', 'adult-meeting', 'massage', 'male-escorts', 'call-girls'];
+if (in_array($_GET['cat'], $cat_array)) {
+} else {
+    die('Invalid Category');
+}  //Check if category is
 
 
 session_start();
@@ -16,43 +19,39 @@ $toprows = Get_User_Details::Show_Top_Ads();
 $normalAds = Get_User_Details::Show_Ads();
 
 
-echo count($rows) .'<br>';
-echo count($toprows).'<br>';
-echo count($normalAds).'<br>';
 
 
-if(isset($_GET['cty'])){
-if(Get_User_Details::checkifitsastateorcity($_GET['cty'])){
-    $cityf = Get_User_Details::Get_Cities_detail(Get_User_Details::getStateByCity($_GET['cty']))[0];
-}else{
-    $cityf = Get_User_Details::Get_Cities_detail($_GET['cty'])[0];
-}
-
-    
+if (isset($_GET['cty'])) {
+    if (Get_User_Details::checkifitsastateorcity($_GET['cty'])) {
+        $cityf = Get_User_Details::Get_Cities_detail(Get_User_Details::getStateByCity($_GET['cty']))[0];
+    } else {
+        $cityf = Get_User_Details::Get_Cities_detail($_GET['cty'])[0];
+    }
 
 
-        $cityofcity = '<option value="">All the Cities</option>';
-        
-        if(is_string($cityf['cities'])){
-            $cty = json_decode($cityf['cities'], true);
-        }else{
-            $x = json_encode($cityf['cities']);
-            $cty = json_decode($x, true);
+
+
+    $cityofcity = '<option value="">All the Cities</option>';
+
+    if (is_string($cityf['cities'])) {
+        $cty = json_decode($cityf['cities'], true);
+    } else {
+        $x = json_encode($cityf['cities']);
+        $cty = json_decode($x, true);
+    }
+
+    foreach ($cty as $ct) {
+        if (isset($_GET['cty'])) {
+            $navcty = $_GET['cty'];
+        } else {
+            $navcty = 'skokra';
         }
-        
-        foreach($cty as $ct){
-            if(isset($_GET['cty'])){
-                $navcty = $_GET['cty'];
-            }else{
-                $navcty = 'skokra';
-            }
-            if(strtolower($ct) == strtolower($navcty)){
-                $cityofcity .= '<option value="'.strtolower($ct).'" selected>'.ucwords($ct).'</option>';
-            }else{
-                $cityofcity .= '<option value="'.strtolower($ct).'">'.ucwords($ct).'</option>';
-            }
+        if (strtolower($ct) == strtolower($navcty)) {
+            $cityofcity .= '<option value="' . strtolower($ct) . '" selected>' . ucwords($ct) . '</option>';
+        } else {
+            $cityofcity .= '<option value="' . strtolower($ct) . '">' . ucwords($ct) . '</option>';
         }
-
+    }
 }
 
 ?>
@@ -86,7 +85,10 @@ if(Get_User_Details::checkifitsastateorcity($_GET['cty'])){
             border: 1px solid var(--header-color);
             font-size: small;
         }
-        .page-detail-and-information a{color:#36454F}
+
+        .page-detail-and-information a {
+            color: #36454F
+        }
 
         .stories-container {
             width: 100%;
@@ -284,7 +286,11 @@ if(Get_User_Details::checkifitsastateorcity($_GET['cty'])){
             font-size: 1.3rem;
             font-weight: 500;
         }
-        .service-category a{color:var(--primary-color)}
+
+        .service-category a {
+            color: var(--primary-color)
+        }
+
         .service-category:hover a {
             color: var(--header-color)
         }
@@ -316,7 +322,7 @@ if(Get_User_Details::checkifitsastateorcity($_GET['cty'])){
             padding: 1% 2%;
             border-radius: 30px;
             border: 1px solid var(--header-color);
-            color:var(--primary-color)
+            color: var(--primary-color)
         }
 
         .list-of-cities a:hover {
@@ -350,27 +356,27 @@ if(Get_User_Details::checkifitsastateorcity($_GET['cty'])){
                         <meta itemprop="position" content="1">
                     </li>
                     <li><b><i class="ri-arrow-right-s-line"></i></b></li>
-                    <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" href="<?= get_url().strtolower($_GET['cat']) ?>" itemprop="item" class="crumb">
-                            <div class="skokra-breadcrumb" itemprop="name">Independent <?=ucwords(str_replace('-',' ', $_GET['cat'])) ?></div>
+                    <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" href="<?= get_url() . strtolower($_GET['cat']) ?>" itemprop="item" class="crumb">
+                            <div class="skokra-breadcrumb" itemprop="name">Independent <?= ucwords(str_replace('-', ' ', $_GET['cat'])) ?></div>
                         </a>
                         <meta itemprop="position" content="2">
                     </li>
-                    <?php if(isset($_GET['cty'])){ 
-                            if(Get_User_Details::checkifitsastateorcity($_GET['cty'])){ ?> 
-                                        
+                    <?php if (isset($_GET['cty'])) {
+                        if (Get_User_Details::checkifitsastateorcity($_GET['cty'])) { ?>
+
+                            <li><b><i class="ri-arrow-right-s-line"></i></b></li>
+                            <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" itemprop="item" class="crumb" href="<?= get_url() . strtolower($_GET['cat'] . '/' . str_replace(' ', '-', Get_User_Details::getStateByCity($_GET['cty']))) ?>" title="">
+                                    <div class="skokra-breadcrumb" itemprop="name"><?= ucwords(str_replace('-', ' ', Get_User_Details::getStateByCity($_GET['cty']))) ?></div>
+                                </a>
+                                <meta itemprop="position" content="3">
+                            </li>
+                        <?php } ?>
                         <li><b><i class="ri-arrow-right-s-line"></i></b></li>
-                    <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" itemprop="item" class="crumb" href="<?= get_url().strtolower($_GET['cat'].'/'.str_replace(' ','-', Get_User_Details::getStateByCity($_GET['cty']))) ?>" title="">
-                            <div class="skokra-breadcrumb" itemprop="name"><?=ucwords(str_replace('-',' ', Get_User_Details::getStateByCity($_GET['cty']))) ?></div>
-                        </a>
-                        <meta itemprop="position" content="3">
-                    </li>
-                    <?php } ?>
-                    <li><b><i class="ri-arrow-right-s-line"></i></b></li>
-                    <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" itemprop="item" class="crumb">
-                            <div class="skokra-breadcrumb" itemprop="name"><?=ucwords(str_replace('-',' ', $_GET['cty'])) ?></div>
-                        </a>
-                        <meta itemprop="position" content="4">
-                    </li>    
+                        <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" itemprop="item" class="crumb">
+                                <div class="skokra-breadcrumb" itemprop="name"><?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></div>
+                            </a>
+                            <meta itemprop="position" content="4">
+                        </li>
                     <?php  } ?>
                 </ol>
             </div>
@@ -378,203 +384,79 @@ if(Get_User_Details::checkifitsastateorcity($_GET['cty'])){
     </div>
 
     <div class="container">
-        <?php // if(isset($_GET['q'])){echo 'Result for : '.$_GET['q'] ; }else{ echo $_GET['s']; } ?>
-        <h1>Independent Indian <?=ucwords(str_replace('-',' ',$_GET['cat'])) ?> - India Escorts</h1>
+        <?php // if(isset($_GET['q'])){echo 'Result for : '.$_GET['q'] ; }else{ echo $_GET['s']; } 
+        ?>
+        <h1>Independent Indian <?= ucwords(str_replace('-', ' ', $_GET['cat'])) ?> - India Escorts</h1>
 
         <p style="font-weight: 600;">SUPERTOP STORIES</p>
         <div class="stories-container">
             <?php
-            if(count($rows) == 0){
-            foreach ($rows as $row) { ?>
-                <?php if ($row['preview_image'] == null) { ?><?php } else {
-                                                                $imageData = @getimagesize($row['preview_image']);
-                                                                if ($imageData !== false) { ?>
-                <div class="story-items">
-                    <img src="<?= $row['preview_image'] ?>" width='100%' height='100%' alt="">
-                    <div>
-                        <p><?= $row['title'] ?></p>
+            if (count($rows) != 0) {
+                foreach ($rows as $row) { ?>
+                    <?php if ($row['preview_image'] == null) { ?><?php } else {
+                                                                    $imageData = @getimagesize($row['preview_image']);
+                                                                    if ($imageData !== false) { ?>
+                    <div class="story-items">
+                        <img src="<?= $row['preview_image'] ?>" width='100%' height='100%' alt="">
+                        <div>
+                            <p><?= $row['title'] ?></p>
+                        </div>
                     </div>
-                </div>
-        <?php }
-                                                            } ?>
-    <?php }}else{echo 'No Profiles';}?>
+            <?php }
+                                                                } ?>
+    <?php }
+            } else {
+                echo 'No Profiles';
+            } ?>
         </div>
         <div class="current-date"><small><?php echo strtoupper(date('d F')) ?></small></div>
     </div>
     <div class="container">
         <?php
-        if(count($rows) > 0){
-        foreach ($rows[0] as $row) {
-            $pattern = '/[*%{}\/|><+=\]\[?.:,:\'\\\\]/u';
-            $url = preg_replace($pattern, '', $row['title']);
-            $url = str_replace(' ', '-', $url);
-            $url = 'ad/' . $url . '/?x=0723' . $row['post_id'];
+        if (count($rows) != 0) {
+            foreach ($rows[0] as $row) {
+                $pattern = '/[*%{}\/|><+=\]\[?.:,:\'\\\\]/u';
+                $url = preg_replace($pattern, '', $row['title']);
+                $url = str_replace(' ', '-', $url);
+                $url = 'ad/' . $url . '/?x=0723' . $row['post_id'];
 
         ?>
 
-            <div class="ad-blockdd" data-href='<?= strtolower($url) ?>'>
-                <?php if ($row['preview_image'] == null) { ?><?php } else {
-                                                                $imageData = @getimagesize($row['preview_image']);
-                                                                if ($imageData !== false) { ?><div class="ad-image-block">
-                    <?php if ($row['preview_image'] != null) {
-                                                                        $imageData2 = @getimagesize($row['preview_image']);
-                                                                        if ($imageData2 !== false) { ?> <img src="<?= $row['preview_image'] ?>" alt=""><?php }
-                                                                                                } ?>
-                    <div class="ad-image-count"><i class="ri-camera-3-line"></i><?= count(json_decode($row['images'], true)) ?></div>
-                </div><?php }
-                                                            } ?>
-        <div class="ad-detail-block" style="<?php if ($row['preview_image'] == null) { ?>width:100%; <?php } else {
-                                                                                                        $imageData = @getimagesize($row['preview_image']);
-                                                                                                        if ($imageData === false) { ?>width:100%; <?php }
-                                                                                                                                                        } ?>">
-            <div class="ad-detail-category">
-                <div class="ad-tags"><i class="ri-share-forward-fill"></i><?php if ($row['supertop_ad'] == 1) {
-                                                                                echo 'Ultra Premium';
-                                                                            } else {
-                                                                                echo 'Premium';
-                                                                            } ?></div>
-            </div>
-            <div class="ad-details">
-                <div class="skokra-ad-title multiline-ellipsis1"><a href="<?= strtolower($url) ?>"><?= $row['title'] ?></a></div>
-                <p class="multiline-ellipsis"><?= $row['description'] ?></p>
-                <div class="about-ad">
-                    <div class="about-ad-detail">
-                        <p><?= $row['age'] ?> years</p>
-                        <p>Experience</p>
-                        <p><?php if (!empty($row['address'])) { ?>
-                        <p><?= $row['address'] . ', ' ?></p> <?php } ?> <?php if (isset($row['city'])) { ?><p><?= ucwords($row['city']) ?></p> <?php } ?></p>
-                    </div>
-                </div>
-                <div class="ad-price-and-category about-ad-detail">
-                    <?php if (isset($row['city'])) { ?><p><?php $cat = explode('-', $row['category']);
-                                                        $cat2 = '';
-                                                        for ($i = 0; $i < count($cat); $i++) {
-                                                            if ($i == (count($cat) - 1)) {
-                                                                $cat2 .= ucwords($cat[$i]);
-                                                            } else {
-                                                                $cat2 .= ucwords($cat[$i]) . ' ';
-                                                            }
-                                                        };
-                                                        echo $cat2 . ' in ' . ucwords($row['city']) ?></p> <?php } ?><?php if (!empty($row['price'])) { ?><p><?= 'From Rs. ' . $row['price'] ?></p> <?php } ?>
-                </div>
-            </div>
-            <div class="ad-contact-button">
-                <a href="tel:<?= $row['ad_phone_number'] ?>"><button>call</button></a>
-                <a href="https://wa.me/<?= $row['ad_phone_number'] ?>"><button>Whatsapp</button></a>
-            </div>
-        </div>
-            </div>
-        <?php }} ?>
-    </div>
-    <div class="container">
-        <?php
-        if(count($toprows) > 0){
-        foreach ($toprows[0] as $toprow) {
-            $pattern = '/[*%{}\/|><+=\]\[?.\\\]/u';
-            $url = preg_replace($pattern, '', $toprow['title']);
-            $url = str_replace(' ', '-', $url);
-            $url = 'ad/' . $url . '/?x=0723' . $toprow['post_id'];
-        ?>
-
-            <div class="ad-blockdd" data-href='<?= strtolower($url) ?>'>
-                <?php if ($toprow['preview_image'] == null) { ?><?php } else {
-                                                                $imageData = @getimagesize($toprow['preview_image']);
-                                                                if ($imageData !== false) { ?><div class="ad-image-block">
-                    <?php if ($toprow['preview_image'] != null) {
-                                                                        $imageData2 = @getimagesize($toprow['preview_image']);
-                                                                        if ($imageData2 !== false) { ?> <img src="<?= $toprow['preview_image'] ?>" alt=""><?php }
-                                                                                                    } ?>
-                    <div class="ad-image-count"><i class="ri-camera-3-line"></i><?= count(json_decode($toprow['images']), true) ?></div>
-                </div><?php }
-                                                            } ?>
-        <div class="ad-detail-block" style="<?php if ($toprow['preview_image'] == null) { ?>width:100%; <?php } else {
-                                                                                                        $imageData = @getimagesize($toprow['preview_image']);
-                                                                                                        if ($imageData === false) { ?>width:100%; <?php }
-                                                                                                                                                        } ?>">
-            <div class="ad-detail-category">
-                <div class="ad-tags"><i class="ri-share-forward-fill"></i><?php if ($toprow['supertop_ad'] == 1) {
-                                                                                echo 'Ultra Premium';
-                                                                            } else {
-                                                                                echo 'Premium';
-                                                                            } ?></div>
-            </div>
-            <div class="ad-details">
-                <div class="skokra-ad-title"><a href="<?= strtolower($url) ?>"><?= $toprow['title'] ?></a></div>
-                <p class="multiline-ellipsis"><?= $toprow['description'] ?></p>
-                <div class="about-ad">
-                    <div class="about-ad-detail">
-                        <p><?= $toprow['age'] ?> years</p>
-                        <p>Experience</p>
-                        <p><?php if (!empty($toprow['address'])) { ?>
-                        <p><?= $toprow['address'] . ', ' ?></p> <?php } ?> <?php if (isset($toprow['city'])) { ?><p><?= ucwords($toprow['city']) ?></p> <?php } ?></p>
-                    </div>
-                </div>
-                <div class="ad-price-and-category about-ad-detail">
-                    <?php if (isset($toprow['city'])) { ?><p><?php $cat = explode('-', $toprow['category']);
-                                                            $cat2 = '';
-                                                            for ($i = 0; $i < count($cat); $i++) {
-                                                                if ($i == (count($cat) - 1)) {
-                                                                    $cat2 .= ucwords($cat[$i]);
-                                                                } else {
-                                                                    $cat2 .= ucwords($cat[$i]) . ' ';
-                                                                }
-                                                            };
-                                                            echo $cat2 . ' in ' . ucwords($toprow['city']) ?></p> <?php } ?><?php if (!empty($toprow['price'])) { ?><p><?= 'From Rs. ' . $toprow['price'] ?></p> <?php } ?>
-                </div>
-            </div>
-            <div class="ad-contact-button">
-                <a href="tel:<?= $toprow['ad_phone_number'] ?>"><button>call</button></a>
-                <a href="https://wa.me/<?= $toprow['ad_phone_number'] ?>"><button>Whatsapp</button></a>
-            </div>
-        </div>
-            </div>
-        <?php }} ?>
-    </div>
-    <div class="container">
-        <?php
-        if(count($normalAds) > 0){
-        foreach ($normalAds[0] as $normalAd) {
-            $pattern = '/[*%{}\/|><+=\]\[?.\\\]/u';
-            $url = preg_replace($pattern, '', $normalAd['title']);
-            $url = str_replace(' ', '-', $url);
-            $url = 'ad/' . $url . '/?x=0723' . $normalAd['post_id'];
-        ?>
-
-            <div class="ad-blockdd" data-href='<?= strtolower($url) ?>'>
-                <?php if ($normalAd['preview_image'] == null) { ?><?php } else {
-                                                                    $imageData = @getimagesize($normalAd['preview_image']);
+                <div class="ad-blockdd" data-href='<?= strtolower($url) ?>'>
+                    <?php if ($row['preview_image'] == null) { ?><?php } else {
+                                                                    $imageData = @getimagesize($row['preview_image']);
                                                                     if ($imageData !== false) { ?><div class="ad-image-block">
-                    <?php if ($normalAd['preview_image'] != null) {
-                                                                            $imageData2 = @getimagesize($normalAd['preview_image']);
-                                                                            if ($imageData2 !== false) { ?> <img src="<?= $normalAd['preview_image'] ?>" alt=""><?php }
-                                                                                                    } ?>
-                    <div class="ad-image-count"><i class="ri-camera-3-line"></i><?= count(json_decode($normalAd['images']), true) ?></div>
-                </div><?php }
+                        <?php if ($row['preview_image'] != null) {
+                                                                            $imageData2 = @getimagesize($row['preview_image']);
+                                                                            if ($imageData2 !== false) { ?> <img src="<?= $row['preview_image'] ?>" alt=""><?php }
+                                                                                                                                                } ?>
+                        <div class="ad-image-count"><i class="ri-camera-3-line"></i><?= count(json_decode($row['images'], true)) ?></div>
+                    </div><?php }
                                                                 } ?>
-        <div class="ad-detail-block" style="<?php if ($normalAd['preview_image'] == null) { ?>width:100%; <?php } else {
-                                                                                                            $imageData = @getimagesize($normalAd['preview_image']);
+            <div class="ad-detail-block" style="<?php if ($row['preview_image'] == null) { ?>width:100%; <?php } else {
+                                                                                                            $imageData = @getimagesize($row['preview_image']);
                                                                                                             if ($imageData === false) { ?>width:100%; <?php }
-                                                                                                                                                        } ?>">
-            <div class="ad-detail-category">
-                <!-- <div class="ad-tags"><i class="ri-share-forward-fill"></i><?php if ($normalAd['supertop_ad'] == 0) {
-                                                                                    echo '';
+                                                                                                                                            } ?>">
+                <div class="ad-detail-category">
+                    <div class="ad-tags"><i class="ri-share-forward-fill"></i><?php if ($row['supertop_ad'] == 1) {
+                                                                                    echo 'Ultra Premium';
                                                                                 } else {
-                                                                                    echo '';
-                                                                                } ?></div> -->
-            </div>
-            <div class="ad-details">
-                <div class="skokra-ad-title"><a href="<?= get_url() . strtolower($url) ?>"><?= $normalAd['title'] ?></a></div>
-                <p class="multiline-ellipsis"><?= $normalAd['description'] ?></p>
-                <div class="about-ad">
-                    <div class="about-ad-detail">
-                        <p><?= $normalAd['age'] ?> years</p>
-                        <p>Experience</p>
-                        <p><?php if (!empty($normalAd['address'])) { ?>
-                        <p><?= $normalAd['address'] . ', ' ?></p> <?php } ?> <?php if (isset($normalAd['city'])) { ?><p><?= ucwords($normalAd['city']) ?></p> <?php } ?></p>
-                    </div>
+                                                                                    echo 'Premium';
+                                                                                } ?></div>
                 </div>
-                <div class="ad-price-and-category about-ad-detail">
-                    <?php if (isset($normalAd['city'])) { ?><p><?php $cat = explode('-', $normalAd['category']);
+                <div class="ad-details">
+                    <div class="skokra-ad-title multiline-ellipsis1"><a href="<?= strtolower($url) ?>"><?= $row['title'] ?></a></div>
+                    <p class="multiline-ellipsis"><?= $row['description'] ?></p>
+                    <div class="about-ad">
+                        <div class="about-ad-detail">
+                            <p><?= $row['age'] ?> years</p>
+                            <p>Experience</p>
+                            <p><?php if (!empty($row['address'])) { ?>
+                            <p><?= $row['address'] . ', ' ?></p> <?php } ?> <?php if (isset($row['city'])) { ?><p><?= ucwords($row['city']) ?></p> <?php } ?></p>
+                        </div>
+                    </div>
+                    <div class="ad-price-and-category about-ad-detail">
+                        <?php if (isset($row['city'])) { ?><p><?php $cat = explode('-', $row['category']);
                                                                 $cat2 = '';
                                                                 for ($i = 0; $i < count($cat); $i++) {
                                                                     if ($i == (count($cat) - 1)) {
@@ -583,48 +465,179 @@ if(Get_User_Details::checkifitsastateorcity($_GET['cty'])){
                                                                         $cat2 .= ucwords($cat[$i]) . ' ';
                                                                     }
                                                                 };
-                                                                echo $cat2 . ' in ' . ucwords($normalAd['city']) ?></p> <?php } ?><?php if (!empty($normalAd['price'])) { ?><p><?= 'From Rs. ' . $normalAd['price'] ?></p> <?php } ?>
+                                                                echo $cat2 . ' in ' . ucwords($row['city']) ?></p> <?php } ?><?php if (!empty($row['price'])) { ?><p><?= 'From Rs. ' . $row['price'] ?></p> <?php } ?>
+                    </div>
+                </div>
+                <div class="ad-contact-button">
+                    <a href="tel:<?= $row['ad_phone_number'] ?>"><button>call</button></a>
+                    <a href="https://wa.me/<?= $row['ad_phone_number'] ?>"><button>Whatsapp</button></a>
                 </div>
             </div>
-            <div class="ad-contact-button">
-                <a href="tel:<?= $normalAd['ad_phone_number'] ?>"><button>call</button></a>
-                <a href="https://wa.me/<?= $normalAd['ad_phone_number'] ?>"><button>Whatsapp</button></a>
+                </div>
+        <?php }
+        } ?>
+    </div>
+    <div class="container">
+        <?php
+        if (count($toprows) != 0) {
+            foreach ($toprows[0] as $toprow) {
+                $pattern = '/[*%{}\/|><+=\]\[?.\\\]/u';
+                $url = preg_replace($pattern, '', $toprow['title']);
+                $url = str_replace(' ', '-', $url);
+                $url = 'ad/' . $url . '/?x=0723' . $toprow['post_id'];
+        ?>
+
+                <div class="ad-blockdd" data-href='<?= strtolower($url) ?>'>
+                    <?php if ($toprow['preview_image'] == null) { ?><?php } else {
+                                                                    $imageData = @getimagesize($toprow['preview_image']);
+                                                                    if ($imageData !== false) { ?><div class="ad-image-block">
+                        <?php if ($toprow['preview_image'] != null) {
+                                                                            $imageData2 = @getimagesize($toprow['preview_image']);
+                                                                            if ($imageData2 !== false) { ?> <img src="<?= $toprow['preview_image'] ?>" alt=""><?php }
+                                                                                                                                                    } ?>
+                        <div class="ad-image-count"><i class="ri-camera-3-line"></i><?= count(json_decode($toprow['images']), true) ?></div>
+                    </div><?php }
+                                                                } ?>
+            <div class="ad-detail-block" style="<?php if ($toprow['preview_image'] == null) { ?>width:100%; <?php } else {
+                                                                                                            $imageData = @getimagesize($toprow['preview_image']);
+                                                                                                            if ($imageData === false) { ?>width:100%; <?php }
+                                                                                                                                            } ?>">
+                <div class="ad-detail-category">
+                    <div class="ad-tags"><i class="ri-share-forward-fill"></i><?php if ($toprow['supertop_ad'] == 1) {
+                                                                                    echo 'Ultra Premium';
+                                                                                } else {
+                                                                                    echo 'Premium';
+                                                                                } ?></div>
+                </div>
+                <div class="ad-details">
+                    <div class="skokra-ad-title"><a href="<?= strtolower($url) ?>"><?= $toprow['title'] ?></a></div>
+                    <p class="multiline-ellipsis"><?= $toprow['description'] ?></p>
+                    <div class="about-ad">
+                        <div class="about-ad-detail">
+                            <p><?= $toprow['age'] ?> years</p>
+                            <p>Experience</p>
+                            <p><?php if (!empty($toprow['address'])) { ?>
+                            <p><?= $toprow['address'] . ', ' ?></p> <?php } ?> <?php if (isset($toprow['city'])) { ?><p><?= ucwords($toprow['city']) ?></p> <?php } ?></p>
+                        </div>
+                    </div>
+                    <div class="ad-price-and-category about-ad-detail">
+                        <?php if (isset($toprow['city'])) { ?><p><?php $cat = explode('-', $toprow['category']);
+                                                                    $cat2 = '';
+                                                                    for ($i = 0; $i < count($cat); $i++) {
+                                                                        if ($i == (count($cat) - 1)) {
+                                                                            $cat2 .= ucwords($cat[$i]);
+                                                                        } else {
+                                                                            $cat2 .= ucwords($cat[$i]) . ' ';
+                                                                        }
+                                                                    };
+                                                                    echo $cat2 . ' in ' . ucwords($toprow['city']) ?></p> <?php } ?><?php if (!empty($toprow['price'])) { ?><p><?= 'From Rs. ' . $toprow['price'] ?></p> <?php } ?>
+                    </div>
+                </div>
+                <div class="ad-contact-button">
+                    <a href="tel:<?= $toprow['ad_phone_number'] ?>"><button>call</button></a>
+                    <a href="https://wa.me/<?= $toprow['ad_phone_number'] ?>"><button>Whatsapp</button></a>
+                </div>
             </div>
-        </div>
+                </div>
+        <?php }
+        } ?>
+    </div>
+    <div class="container">
+        <?php
+        if (count($normalAds) != 0) {
+            foreach ($normalAds[0] as $normalAd) {
+                $pattern = '/[*%{}\/|><+=\]\[?.\\\]/u';
+                $url = preg_replace($pattern, '', $normalAd['title']);
+                $url = str_replace(' ', '-', $url);
+                $url = 'ad/' . $url . '/?x=0723' . $normalAd['post_id'];
+        ?>
+
+                <div class="ad-blockdd" data-href='<?= strtolower($url) ?>'>
+                    <?php if ($normalAd['preview_image'] == null) { ?><?php } else {
+                                                                        $imageData = @getimagesize($normalAd['preview_image']);
+                                                                        if ($imageData !== false) { ?><div class="ad-image-block">
+                        <?php if ($normalAd['preview_image'] != null) {
+                                                                                $imageData2 = @getimagesize($normalAd['preview_image']);
+                                                                                if ($imageData2 !== false) { ?> <img src="<?= $normalAd['preview_image'] ?>" alt=""><?php }
+                                                                                                                                                        } ?>
+                        <div class="ad-image-count"><i class="ri-camera-3-line"></i><?= count(json_decode($normalAd['images']), true) ?></div>
+                    </div><?php }
+                                                                    } ?>
+            <div class="ad-detail-block" style="<?php if ($normalAd['preview_image'] == null) { ?>width:100%; <?php } else {
+                                                                                                                $imageData = @getimagesize($normalAd['preview_image']);
+                                                                                                                if ($imageData === false) { ?>width:100%; <?php }
+                                                                                                                                                } ?>">
+                <div class="ad-detail-category">
+                    <!-- <div class="ad-tags"><i class="ri-share-forward-fill"></i><?php if ($normalAd['supertop_ad'] == 0) {
+                                                                                        echo '';
+                                                                                    } else {
+                                                                                        echo '';
+                                                                                    } ?></div> -->
+                </div>
+                <div class="ad-details">
+                    <div class="skokra-ad-title"><a href="<?= get_url() . strtolower($url) ?>"><?= $normalAd['title'] ?></a></div>
+                    <p class="multiline-ellipsis"><?= $normalAd['description'] ?></p>
+                    <div class="about-ad">
+                        <div class="about-ad-detail">
+                            <p><?= $normalAd['age'] ?> years</p>
+                            <p>Experience</p>
+                            <p><?php if (!empty($normalAd['address'])) { ?>
+                            <p><?= $normalAd['address'] . ', ' ?></p> <?php } ?> <?php if (isset($normalAd['city'])) { ?><p><?= ucwords($normalAd['city']) ?></p> <?php } ?></p>
+                        </div>
+                    </div>
+                    <div class="ad-price-and-category about-ad-detail">
+                        <?php if (isset($normalAd['city'])) { ?><p><?php $cat = explode('-', $normalAd['category']);
+                                                                    $cat2 = '';
+                                                                    for ($i = 0; $i < count($cat); $i++) {
+                                                                        if ($i == (count($cat) - 1)) {
+                                                                            $cat2 .= ucwords($cat[$i]);
+                                                                        } else {
+                                                                            $cat2 .= ucwords($cat[$i]) . ' ';
+                                                                        }
+                                                                    };
+                                                                    echo $cat2 . ' in ' . ucwords($normalAd['city']) ?></p> <?php } ?><?php if (!empty($normalAd['price'])) { ?><p><?= 'From Rs. ' . $normalAd['price'] ?></p> <?php } ?>
+                    </div>
+                </div>
+                <div class="ad-contact-button">
+                    <a href="tel:<?= $normalAd['ad_phone_number'] ?>"><button>call</button></a>
+                    <a href="https://wa.me/<?= $normalAd['ad_phone_number'] ?>"><button>Whatsapp</button></a>
+                </div>
             </div>
-        <?php }} ?>
+                </div>
+        <?php }
+        } ?>
     </div>
     <div class="container list-of-cities-container">
         <strong>Call Girls</strong>
 
         <div class="list-of-cities">
-            <a href="<?=get_url() ?>call-girls/kanpur">Kanpur</a>
-            <a href="<?=get_url() ?>call-girls/delhi">Delhi</a>
-            <a href="<?=get_url() ?>call-girls/agra">Agra</a>
-            <a href="<?=get_url() ?>call-girls/jaipur">Jaipur</a>
-            <a href="<?=get_url() ?>call-girls/goa">Goa</a>
-            <a href="<?=get_url() ?>call-girls/mumbai">Mumbai</a>
-            <a href="<?=get_url() ?>call-girls/pune">Pune</a>
-            <a href="<?=get_url() ?>call-girls/chennai">Chennai</a>
-            <a href="<?=get_url() ?>call-girls/lucknow">Lucknow</a>
-            <a href="<?=get_url() ?>call-girls/noida">Noida</a>
-            <a href="<?=get_url() ?>call-girls/gurugram">Gurugram</a>
-            <a href="<?=get_url() ?>call-girls/patna">Patna</a>
-            <a href="<?=get_url() ?>call-girls/varanasi">Varanasi</a>
+            <a href="<?= get_url() ?>call-girls/kanpur">Kanpur</a>
+            <a href="<?= get_url() ?>call-girls/delhi">Delhi</a>
+            <a href="<?= get_url() ?>call-girls/agra">Agra</a>
+            <a href="<?= get_url() ?>call-girls/jaipur">Jaipur</a>
+            <a href="<?= get_url() ?>call-girls/goa">Goa</a>
+            <a href="<?= get_url() ?>call-girls/mumbai">Mumbai</a>
+            <a href="<?= get_url() ?>call-girls/pune">Pune</a>
+            <a href="<?= get_url() ?>call-girls/chennai">Chennai</a>
+            <a href="<?= get_url() ?>call-girls/lucknow">Lucknow</a>
+            <a href="<?= get_url() ?>call-girls/noida">Noida</a>
+            <a href="<?= get_url() ?>call-girls/gurugram">Gurugram</a>
+            <a href="<?= get_url() ?>call-girls/patna">Patna</a>
+            <a href="<?= get_url() ?>call-girls/varanasi">Varanasi</a>
         </div>
 
     </div>
     <div class="container service-category">
-        <a href="<?=get_url() ?>call-girls">Call Girls</a>
+        <a href="<?= get_url() ?>call-girls">Call Girls</a>
     </div>
     <div class="container service-category">
-        <a href="<?=get_url() ?>massages">Massages</a>
+        <a href="<?= get_url() ?>massages">Massages</a>
     </div>
     <div class="container service-category">
-        <a href="<?=get_url() ?>male-escorts">Male Escorts</a>
+        <a href="<?= get_url() ?>male-escorts">Male Escorts</a>
     </div>
     <div class="container service-category">
-        <a href="<?=get_url() ?>transsexual">Transsexual</a>
+        <a href="<?= get_url() ?>transsexual">Transsexual</a>
     </div>
     <?php include './footer.php' ?>
     <?php
