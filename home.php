@@ -200,8 +200,18 @@ include './backend/user_task.php';
     </div>
 
 <?php include './footer.php' ?>
-<?php include $_SERVER['DOCUMENT_ROOT'].'/skokra.com/account/dashboard/private-area.php' ?>
-<script src="./assets/js/common.js" defer></script>
+<?php 
+$path = $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/account/dashboard/private-area.php';
+
+    if (file_exists($path)) {
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/account/dashboard/private-area.php';
+    } else {
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/account/dashboard/private-area.php';
+    }
+
+
+?>
+<script src="<?=get_url() ?>assets/js/common.js" defer></script>
 
 </body>
 
