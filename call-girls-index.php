@@ -393,6 +393,7 @@ if (isset($_GET['cty'])) {
         <p style="font-weight: 600;">SUPERTOP STORIES</p>
         <div class="stories-container">
             <?php
+        echo count($rows);
             if (count($rows) != 0) {
                 foreach ($rows as $row) { ?>
                     <?php if ($row['preview_image'] == null) { ?><?php } else {
@@ -415,7 +416,6 @@ if (isset($_GET['cty'])) {
     </div>
     <div class="container">
         <?php
-        echo count($rows);
         if (count($rows) != 0) {
             foreach ($rows[0] as $row) {
                 $pattern = '/[*%{}\/|><+=\]\[?.:,:\'\\\\]/u';
