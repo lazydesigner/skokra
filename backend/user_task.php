@@ -319,7 +319,7 @@ class Get_User_Details
         // if($result['ad_shift'] == 'day')   { $rep = 5 ;}else{ $rep = 10; } 
            
         $adList = range(1, count($result)); 
-        $scheduledAds = self::scheduleAds($adList, $startTime, $endTime, $rep); 
+        $scheduledAds = self::scheduleAds($adList, $startTime, $endTime, 5); 
         $InsertSchedule2 = $con->prepare("DELETE FROM  `ads_slot_time`");
         $InsertSchedule2->execute();
         foreach ($scheduledAds as  $scheduledAd) {
