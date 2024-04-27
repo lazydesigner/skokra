@@ -393,7 +393,7 @@ if (isset($_GET['cty'])) {
         <p style="font-weight: 600;">SUPERTOP STORIES</p>
         <div class="stories-container">
             <?php
-            if (!empty($rows)) {
+            if (count($rows) != 0) {
                 foreach ($rows as $row) { ?>
                     <?php if ($row['preview_image'] == null) { ?><?php } else {
                                                                     $imageData = @getimagesize($row['preview_image']);
@@ -404,7 +404,9 @@ if (isset($_GET['cty'])) {
                             <p><?= $row['title'] ?></p>
                         </div>
                     </div>
-            <?php } }}
+            <?php }
+                                                                } ?>
+    <?php }
             } else {
                 echo 'No Profiles';
             } ?>
@@ -413,7 +415,7 @@ if (isset($_GET['cty'])) {
     </div>
     <div class="container">
         <?php
-        if (!empty($rows)) {
+        if (count($rows) != 0) {
             foreach ($rows[0] as $row) {
                 $pattern = '/[*%{}\/|><+=\]\[?.:,:\'\\\\]/u';
                 $url = preg_replace($pattern, '', $row['title']);
@@ -479,7 +481,7 @@ if (isset($_GET['cty'])) {
     </div>
     <div class="container">
         <?php
-        if (!empty($toprows)) {
+        if (count($toprows) != 0) {
             foreach ($toprows[0] as $toprow) {
                 $pattern = '/[*%{}\/|><+=\]\[?.\\\]/u';
                 $url = preg_replace($pattern, '', $toprow['title']);
@@ -544,7 +546,7 @@ if (isset($_GET['cty'])) {
     </div>
     <div class="container">
         <?php
-        if (!empty($normalAds)) {
+        if (count($normalAds) != 0) {
             foreach ($normalAds[0] as $normalAd) {
                 $pattern = '/[*%{}\/|><+=\]\[?.\\\]/u';
                 $url = preg_replace($pattern, '', $normalAd['title']);
