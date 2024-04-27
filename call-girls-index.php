@@ -390,11 +390,17 @@ if (isset($_GET['cty'])) {
     <div class="container">
         <?php // if(isset($_GET['q'])){echo 'Result for : '.$_GET['q'] ; }else{ echo $_GET['s']; } 
         ?>
-        <h1>Independent Indian <?= ucwords(str_replace('-', ' ', $_GET['cat'])) ?> - India Escorts</h1>
+        <h1>Independent Indian <?= ucwords(str_replace('-', ' ', $_GET['cat'])) ?></h1>
 
         <p style="font-weight: 600;">SUPERTOP STORIES</p>
         <div class="stories-container">
             <?php
+
+echo '===========================================';
+if(count($rows) != 0){echo 'Filled';}else{echo 'Empty';}
+echo '===========================================';
+
+
             if (count($rows) != 0) {
                 foreach ($rows as $row) { ?>
                     <?php if ($row['preview_image'] == null) { ?><?php } else {
@@ -406,9 +412,7 @@ if (isset($_GET['cty'])) {
                             <p><?= $row['title'] ?></p>
                         </div>
                     </div>
-            <?php }
-                                                                } ?>
-    <?php }
+            <?php }} }
             } else {
                 echo 'No Profiles';
             } ?>
