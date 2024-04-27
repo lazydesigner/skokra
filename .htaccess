@@ -46,7 +46,7 @@ RewriteRule ^delete-image([/]?)$ image_processing/delete-image.php [NC,L]
 
 #SHOW AD
 
-ReWriteRule ^ad/([0-9a-z\-]+)([/]?)$ view-profile.php [NC,L]
+ReWriteRule ^ad/([0-9a-z_\-]+)([/]?)$ view-profile.php [NC,L]
 
 
 
