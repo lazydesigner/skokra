@@ -15,6 +15,7 @@ include './routes.php';
 include './backend/user_task.php';
 
 $rows = Get_User_Details::Show_Super_Top_Ads();
+echo count($rows);
 
 $toprows = Get_User_Details::Show_Top_Ads();
 
@@ -393,7 +394,6 @@ if (isset($_GET['cty'])) {
         <p style="font-weight: 600;">SUPERTOP STORIES</p>
         <div class="stories-container">
             <?php
-        echo count($rows);
             if (count($rows) != 0) {
                 foreach ($rows as $row) { ?>
                     <?php if ($row['preview_image'] == null) { ?><?php } else {
