@@ -14,9 +14,8 @@ $login_page = 'yes';
 include './routes.php';
 include './backend/user_task.php';
 
-$rows = Get_User_Details::Show_Super_Top_Ads();
+$superrows = Get_User_Details::Show_Super_Top_Ads();
 
-if(count($rows) != 0){echo 'Filled';}else{echo 'Empty';}
 
 $toprows = Get_User_Details::Show_Top_Ads();
 
@@ -396,13 +395,8 @@ if (isset($_GET['cty'])) {
         <div class="stories-container">
             <?php
 
-echo '===========================================';
-if(count($rows) != 0){echo 'Filled';}else{echo 'Empty';}
-echo '===========================================';
-
-
-            if (count($rows) != 0) {
-                foreach ($rows as $row) { ?>
+            if (count($superrows) != 0) {
+                foreach ($superrows as $row) { ?>
                     <?php if ($row['preview_image'] == null) { ?><?php } else {
                                                                     $imageData = @getimagesize($row['preview_image']);
                                                                     if ($imageData !== false) { ?>
@@ -421,8 +415,8 @@ echo '===========================================';
     </div>
     <div class="container">
         <?php
-        if (count($rows) != 0) {
-            foreach ($rows[0] as $row) {
+        if (count($superrows) != 0) {
+            foreach ($superrows[0] as $row) {
                 $pattern = '/[*%{}()\/|><+=\]\[?.:,:"\'\\\\]/u';
                 $url = preg_replace($pattern, '', $row['title']);
                 $url = str_replace(' ', '-', $url);
