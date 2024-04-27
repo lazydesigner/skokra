@@ -10,10 +10,19 @@ if (file_exists($path)) {
 // Assuming $pdo is your PDO connection object Apr. 26, 2024 - 11:08 pm
 $currentDate = date('M. d, Y');
 
-$sql = "DELETE FROM profiles_ad WHERE DATE_FORMAT(top_ad_expiry_date, '%b. %e, %Y') < :currentDate";
-$stmt = $pdo->prepare($sql);
+$database = new DatabaseConnection();
+$con = $database->getConnection();
+
+$sql = "SELECT * FROM profiles_ad WHERE DATE_FORMAT(top_ad_expiry_date, '%b. %e, %Y') < :currentDate";
+$stmt = $con->prepare($sql);
 $stmt->bindParam(':currentDate', $currentDate);
 $stmt->execute();
+
+if($stmt->rowCount() > 0){
+    while($row = $stmt->fetchAll(PDO::FETCH_ASSOC)){
+        print_r($row);
+    }
+}
 
 
 ?>
