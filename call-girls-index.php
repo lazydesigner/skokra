@@ -399,7 +399,7 @@ if(Get_User_Details::checkifitsastateorcity($_GET['cty'])){
     </div>
     <div class="container">
         <?php
-        if(count($rows) == 0){
+        if(count($rows) > 0){
         foreach ($rows[0] as $row) {
             $pattern = '/[*%{}\/|><+=\]\[?.:,:\'\\\\]/u';
             $url = preg_replace($pattern, '', $row['title']);
@@ -464,7 +464,7 @@ if(Get_User_Details::checkifitsastateorcity($_GET['cty'])){
     </div>
     <div class="container">
         <?php
-        if(count($toprows) == 0){
+        if(count($toprows) > 0){
         foreach ($toprows[0] as $toprow) {
             $pattern = '/[*%{}\/|><+=\]\[?.\\\]/u';
             $url = preg_replace($pattern, '', $toprow['title']);
@@ -528,7 +528,7 @@ if(Get_User_Details::checkifitsastateorcity($_GET['cty'])){
     </div>
     <div class="container">
         <?php
-        if(count($normalAds) == 0){
+        if(count($normalAds) > 0){
         foreach ($normalAds[0] as $normalAd) {
             $pattern = '/[*%{}\/|><+=\]\[?.\\\]/u';
             $url = preg_replace($pattern, '', $normalAd['title']);
