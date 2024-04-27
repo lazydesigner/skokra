@@ -50,6 +50,10 @@ if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empt
             font-size: small;
         }
 
+        .page-detail-and-information a {
+            color: #36454F
+        }
+
         .multiline-ellipsis {
             overflow: hidden;
             display: -webkit-box;

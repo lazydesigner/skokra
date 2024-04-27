@@ -4,15 +4,22 @@ $rows = Get_User_Details::Get_states_detail()[0];
 $state = '<option value="">All the regions</option>';
 $city = '<option value="">All the Cities</option>';
 
+
+if(isset($_GET['cty'])){
+$getcity = $_GET['cty'];
+}else{
+    $getcity = $profilerow['city'] ; 
+}
+
 // print_r($rows);
 
 foreach($rows as $row){
 
-    if(isset($_GET['cty'])){
-        if(Get_User_Details::checkifitsastateorcity($_GET['cty'])){
-            $navstate = Get_User_Details::getStateByCity($_GET['cty']);
+    if(isset($getcity)){
+        if(Get_User_Details::checkifitsastateorcity($getcity)){
+            $navstate = Get_User_Details::getStateByCity($getcity);
         }else{
-            $navstate = str_replace('-', ' ', $_GET['cty']);
+            $navstate = str_replace('-', ' ', $getcity);
         }
     }else{
         $navstate = 'skokra';
@@ -26,8 +33,8 @@ foreach($rows as $row){
 
     $cty = json_decode($row['cities'], true);
     foreach($cty as $ct){
-        if(isset($_GET['cty'])){
-            $navcty = $_GET['cty'];
+        if(isset($getcity)){
+            $navcty = $getcity;
         }else{
             $navcty = 'skokra';
         }
