@@ -9,11 +9,11 @@ $login_page = 'yes';
 include './routes.php';
 include './backend/user_task.php';
 
-$rows = Get_User_Details::Show_Super_Top_Ads();
+$rows = Get_User_Details::Show_Super_Top_Ads()[0];
 
-$toprows = Get_User_Details::Show_Top_Ads();
+$toprows = Get_User_Details::Show_Top_Ads()[0];
 
-$normalAds = Get_User_Details::Show_Ads();
+$normalAds = Get_User_Details::Show_Ads()[0];
 
 print_r($rows);
 echo '<br>=========================================<br>';
