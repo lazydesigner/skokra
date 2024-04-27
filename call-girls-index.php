@@ -392,7 +392,7 @@ if(Get_User_Details::checkifitsastateorcity($_GET['cty'])){
                 </div>
         <?php }
                                                             } ?>
-    <?php }}?>
+    <?php }}else{echo 'No Profiles';}?>
         </div>
         <div class="current-date"><small><?php echo strtoupper(date('d F')) ?></small></div>
     </div>
