@@ -316,7 +316,7 @@ class Get_User_Details
         $result = self::Get_Supertop_ads_detail($s, $e);
         if(count($result) != 0){
          
-        if($result['ad_shift'] == 'day')   {$rep = 5}else{$reep = 10} 
+        if($result['ad_shift'] == 'day')   { $rep = 5 ;}else{ $rep = 10; } 
            
         $adList = range(1, count($result)); 
         $scheduledAds = self::scheduleAds($adList, $startTime, $endTime, $rep); 
