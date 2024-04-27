@@ -15,8 +15,6 @@ include './routes.php';
 include './backend/user_task.php';
 
 $rows = Get_User_Details::Show_Super_Top_Ads();
-echo count($rows);
-echo gettype(count($rows));
 
 $toprows = Get_User_Details::Show_Top_Ads();
 
@@ -419,7 +417,7 @@ if (isset($_GET['cty'])) {
         <?php
         if (count($rows) != 0) {
             foreach ($rows[0] as $row) {
-                $pattern = '/[*%{}\/|><+=\]\[?.:,:\'\\\\]/u';
+                $pattern = '/[*%{}()\/|><+=\]\[?.:,:\'\\\\]/u';
                 $url = preg_replace($pattern, '', $row['title']);
                 $url = str_replace(' ', '-', $url);
                 $url = 'ad/' . $url . '/?x=0723' . $row['post_id'];
