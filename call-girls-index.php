@@ -415,6 +415,7 @@ if (isset($_GET['cty'])) {
     </div>
     <div class="container">
         <?php
+        echo count($rows);
         if (count($rows) != 0) {
             foreach ($rows[0] as $row) {
                 $pattern = '/[*%{}\/|><+=\]\[?.:,:\'\\\\]/u';
