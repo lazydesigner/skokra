@@ -562,7 +562,7 @@ if (isset($_GET['cty'])) {
                                                                                 $imageData2 = @getimagesize($normalAd['preview_image']);
                                                                                 if ($imageData2 !== false) { ?> <img src="<?= $normalAd['preview_image'] ?>" alt=""><?php }
                                                                                                                                                         } ?>
-                        <div class="ad-image-count"><i class="ri-camera-3-line"></i><?= count(json_decode($normalAd['images']), true) ?></div>
+                        <div class="ad-image-count"><i class="ri-camera-3-line"></i><?= count(json_decode($normalAd['images'], true)) ?></div>
                     </div><?php }
                                                                     } ?>
             <div class="ad-detail-block" style="<?php if ($normalAd['preview_image'] == null) { ?>width:100%; <?php } else {
