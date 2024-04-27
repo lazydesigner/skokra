@@ -24,7 +24,10 @@ $stmt->execute();
 
 if($stmt->rowCount() > 0){
     while($row = $stmt->fetchAll(PDO::FETCH_ASSOC)){
-        print_r($row);
+        foreach( $row as $key => $val ) {
+            $update_q = $con->prepare("UPDATE profiles_ad SET top_ad = 0, supertop_ad = 0, n_t_a_s_c_f = 0, n_d_a_s_c = 0 WHERE post_id = ?");
+            $update_q->execute([$row[$key]['post_id']]);
+        }
     }
 }else{
     echo 'No Result';
