@@ -24,7 +24,7 @@ $stmt->execute();
 
 if($stmt->rowCount() > 0){
     while($row = $stmt->fetchAll(PDO::FETCH_ASSOC)){
-        print_r($row[0]);
+        print_r($row);
     }
 }else{
     echo 'No Result';
