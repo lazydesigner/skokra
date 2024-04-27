@@ -15,11 +15,6 @@ $toprows = Get_User_Details::Show_Top_Ads()[0];
 
 $normalAds = Get_User_Details::Show_Ads()[0];
 
-print_r($rows);
-echo '<br>=========================================<br>';
-print_r($toprows);
-echo '<br>=========================================<br>';
-print_r($normalAds);
 
 
 if(isset($_GET['cty'])){
