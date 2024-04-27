@@ -11,7 +11,7 @@ if (isset($stopthefurtherprocess)) {
     if ($stopthefurtherprocess == true) {
         $result = Get_User_Details::Get_ad_detail($_GET['post_id']);
         
-        $pattern = '/[*%{}()\/|><+=\]\[?.:,:\'\\\\]/u';
+        $pattern = '/[*%{}()\/|><+=\]\[?.:,:"\'\\\\]/u';
             $url = preg_replace($pattern,'',$result['title']);    
         $url = str_replace(' ','-',$url);    
         $url = 'ad/'.$url.'/?x=0723'.$result['post_id'];
