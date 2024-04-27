@@ -34,4 +34,21 @@ if($stmt->rowCount() > 0){
 }
 
 
+$sql2 = "SELECT * FROM profiles_ad WHERE STR_TO_DATE(ad_expiry_date, '%b %e, %Y') < :currentDate";
+$stmt2 = $con->prepare($sql2);
+$stmt2->bindParam(':currentDate', $currentDate);
+$stmt2->execute();
+
+if($stmt2->rowCount() > 0){
+    while($row2 = $stmt2->fetchAll(PDO::FETCH_ASSOC)){
+        foreach( $row2 as $key2 => $val2 ) {
+            $update_q2 = $con->prepare("UPDATE profiles_ad SET suspend = 1 WHERE post_id = ?");
+            $update_q2->execute([$row2[$key2]['post_id']]);
+        }
+    }
+}else{
+    echo 'Not Found';
+}
+
+
 ?>
