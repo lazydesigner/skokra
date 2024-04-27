@@ -758,7 +758,7 @@ class Get_User_Details
                 $superquery2  = $con->prepare("SELECT * FROM profiles_ad WHERE adid = ? AND top_ad = 1 AND supertop_ad = 1");
                 $superquery2->execute([$row["ad_id"]]);
                 if ($superquery2->rowCount() > 0) {
-                    while ($row2 = $superquery2->fetch(PDO::FETCH_ASSOC)) {
+                    while ($row2 = $superquery2->fetchAll(PDO::FETCH_ASSOC)) {
                         $results[] = $row2;
                     }
                 }
@@ -797,7 +797,7 @@ class Get_User_Details
                 $superquery2  = $con->prepare("SELECT * FROM profiles_ad WHERE adid = ? AND top_ad = 1 AND supertop_ad = 0");
                 $superquery2->execute([$row["ad_id"]]);
                 if ($superquery2->rowCount() > 0) {
-                    while ($row2 = $superquery2->fetch(PDO::FETCH_ASSOC)) {
+                    while ($row2 = $superquery2->fetchAll(PDO::FETCH_ASSOC)) {
                         $results[] = $row2;
                     }
                 }
@@ -820,7 +820,7 @@ class Get_User_Details
         $query  = $con->prepare("SELECT * FROM profiles_ad WHERE  top_ad = 0 AND supertop_ad = 0 AND ad_complete = 1");
         $query->execute();
         if ($query->rowCount() > 0) {
-            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            while ($row = $query->fetchAll(PDO::FETCH_ASSOC)) {
                 $results[] = $row;
             }
             if (!empty($results)) {
