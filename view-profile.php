@@ -236,7 +236,11 @@ if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empt
                 <div class="grid-of-images">
                     <?php
                     $images = json_decode($profilerow['images'], true);
-                    foreach ($images as $img) { ?><div class="img-item"><img src="<?='https://cdn.skokra.com/secure-images/' . $img ?>" width="100%" height="100%" loading="lazy" alt=""></div><?php } ?>
+                    foreach ($images as $img) { $imageData = @getimagesize('https://cdn.skokra.com/secure-images/'.$img); if($imageData !== false){ ?>
+                    <div class="img-item">
+                        <img src="<?='https://cdn.skokra.com/secure-images/' . $img ?>" width="100%" height="100%" loading="lazy" alt="">
+                    </div>
+                    <?php }} ?>
                 </div>
                 <?php } ?>
                 <p><strong><i class="ri-emotion-line"></i> About Me</strong></p>
