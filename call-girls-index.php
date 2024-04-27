@@ -554,7 +554,7 @@ if (isset($_GET['cty'])) {
                 $url = 'ad/' . $url . '/?x=0723' . $normalAd['post_id'];
         ?>
 
-                <div class="ad-blockdd" data-href='<?= strtolower($url) ?>'>
+                <div class="ad-blockdd" data-href='<?= get_url() .strtolower($url) ?>'>
                     <?php if ($normalAd['preview_image'] == null) { ?><?php } else {
                                                                         $imageData = @getimagesize($normalAd['preview_image']);
                                                                         if ($imageData !== false) { ?><div class="ad-image-block">
