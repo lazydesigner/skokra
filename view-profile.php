@@ -186,24 +186,24 @@ if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empt
                         <meta itemprop="position" content="1">
                     </li>
                     <li><b><i class="ri-arrow-right-s-line"></i></b></li>
-                    <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" href="<?= get_url().strtolower($_GET['cat']) ?>" itemprop="item" class="crumb">
-                            <div class="skokra-breadcrumb" itemprop="name">Independent <?=ucwords(str_replace('-',' ', $_GET['cat'])) ?></div>
+                    <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" href="<?= get_url().strtolower($profilerow['category']) ?>" itemprop="item" class="crumb">
+                            <div class="skokra-breadcrumb" itemprop="name">Independent <?=ucwords(str_replace('-',' ', $profilerow['category'])) ?></div>
                         </a>
                         <meta itemprop="position" content="2">
                     </li>
-                    <?php if(isset($_GET['cty'])){ 
-                            if(Get_User_Details::checkifitsastateorcity($_GET['cty'])){ ?> 
+                    <?php if(isset($profilerow['city'])){ 
+                            if(Get_User_Details::checkifitsastateorcity($profilerow['city'])){ ?> 
                                         
                         <li><b><i class="ri-arrow-right-s-line"></i></b></li>
-                    <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" itemprop="item" class="crumb" href="<?= get_url().strtolower($_GET['cat'].'/'.str_replace(' ','-', Get_User_Details::getStateByCity($_GET['cty']))) ?>" title="">
-                            <div class="skokra-breadcrumb" itemprop="name"><?=ucwords(str_replace('-',' ', Get_User_Details::getStateByCity($_GET['cty']))) ?></div>
+                    <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" itemprop="item" class="crumb" href="<?= get_url().strtolower($profilerow['category'].'/'.str_replace(' ','-', Get_User_Details::getStateByCity($profilerow['city']))) ?>" title="">
+                            <div class="skokra-breadcrumb" itemprop="name"><?=ucwords(str_replace('-',' ', Get_User_Details::getStateByCity($profilerow['city']))) ?></div>
                         </a>
                         <meta itemprop="position" content="3">
                     </li>
                     <?php } ?>
                     <li><b><i class="ri-arrow-right-s-line"></i></b></li>
                     <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" itemprop="item" class="crumb">
-                            <div class="skokra-breadcrumb" itemprop="name"><?=ucwords(str_replace('-',' ', $_GET['cty'])) ?></div>
+                            <div class="skokra-breadcrumb" itemprop="name"><?=ucwords(str_replace('-',' ', $profilerow['city'])) ?></div>
                         </a>
                         <meta itemprop="position" content="4">
                     </li>    
