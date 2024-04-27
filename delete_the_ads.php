@@ -8,22 +8,23 @@ if (file_exists($path)) {
 } else {
     require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/connection.php';
 }
-echo 'a';
 
 // Assuming $pdo is your PDO connection object Apr. 26, 2024 - 11:08 pm
-$currentDate = date('M. d, Y');
+$currentDate = date('Y-m-d');
 
 $database = new DatabaseConnection();
 $con = $database->getConnection();
 
-$sql = "SELECT * FROM profiles_ad WHERE DATE_FORMAT(top_ad_expiry_date, '%b. %e, %Y') < :currentDate";
+$sql = "SELECT * FROM profiles_ad WHERE STR_TO_DATE(REPLACE(top_ad_expiry_date, '.', ''), '%b %e, %Y - %l:%i %p') < :currentDate";
 $stmt = $con->prepare($sql);
 $stmt->bindParam(':currentDate', $currentDate);
 $stmt->execute();
 
+
+
 if($stmt->rowCount() > 0){
     while($row = $stmt->fetchAll(PDO::FETCH_ASSOC)){
-        print_r($row);
+        print_r($row[0]);
     }
 }else{
     echo 'No Result';
