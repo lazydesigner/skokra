@@ -1,4 +1,6 @@
 <?php  
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
 $path = $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/backend/connection.php';
 
 if (file_exists($path)) {
