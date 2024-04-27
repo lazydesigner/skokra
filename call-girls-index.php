@@ -16,6 +16,10 @@ $toprows = Get_User_Details::Show_Top_Ads();
 $normalAds = Get_User_Details::Show_Ads();
 
 
+echo count($rows) .'<br>';
+echo count($toprows).'<br>';
+echo count($normalAds).'<br>';
+
 
 if(isset($_GET['cty'])){
 if(Get_User_Details::checkifitsastateorcity($_GET['cty'])){
