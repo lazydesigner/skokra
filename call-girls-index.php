@@ -9,11 +9,11 @@ $login_page = 'yes';
 include './routes.php';
 include './backend/user_task.php';
 
-$rows = Get_User_Details::Show_Super_Top_Ads()[0];
+$rows = Get_User_Details::Show_Super_Top_Ads();
 
-$toprows = Get_User_Details::Show_Top_Ads()[0];
+$toprows = Get_User_Details::Show_Top_Ads();
 
-$normalAds = Get_User_Details::Show_Ads()[0];
+$normalAds = Get_User_Details::Show_Ads();
 
 
 
@@ -400,7 +400,7 @@ if(Get_User_Details::checkifitsastateorcity($_GET['cty'])){
     <div class="container">
         <?php
         if(count($rows) == 0){
-        foreach ($rows as $row) {
+        foreach ($rows[0] as $row) {
             $pattern = '/[*%{}\/|><+=\]\[?.:,:\'\\\\]/u';
             $url = preg_replace($pattern, '', $row['title']);
             $url = str_replace(' ', '-', $url);
@@ -465,7 +465,7 @@ if(Get_User_Details::checkifitsastateorcity($_GET['cty'])){
     <div class="container">
         <?php
         if(count($toprows) == 0){
-        foreach ($toprows as $toprow) {
+        foreach ($toprows[0] as $toprow) {
             $pattern = '/[*%{}\/|><+=\]\[?.\\\]/u';
             $url = preg_replace($pattern, '', $toprow['title']);
             $url = str_replace(' ', '-', $url);
@@ -529,7 +529,7 @@ if(Get_User_Details::checkifitsastateorcity($_GET['cty'])){
     <div class="container">
         <?php
         if(count($normalAds) == 0){
-        foreach ($normalAds as $normalAd) {
+        foreach ($normalAds[0] as $normalAd) {
             $pattern = '/[*%{}\/|><+=\]\[?.\\\]/u';
             $url = preg_replace($pattern, '', $normalAd['title']);
             $url = str_replace(' ', '-', $url);
