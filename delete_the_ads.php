@@ -6,6 +6,7 @@ if (file_exists($path)) {
 } else {
     require_once $_SERVER['DOCUMENT_ROOT'] . '/backend/connection.php';
 }
+echo 'a';
 
 // Assuming $pdo is your PDO connection object Apr. 26, 2024 - 11:08 pm
 $currentDate = date('M. d, Y');
@@ -22,6 +23,8 @@ if($stmt->rowCount() > 0){
     while($row = $stmt->fetchAll(PDO::FETCH_ASSOC)){
         print_r($row);
     }
+}else{
+    echo 'No Result';
 }
 
 
