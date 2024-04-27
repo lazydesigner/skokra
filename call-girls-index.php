@@ -391,7 +391,7 @@ if (isset($_GET['cty'])) {
         <p style="font-weight: 600;">SUPERTOP STORIES</p>
         <div class="stories-container">
             <?php
-            if (count($rows) != 0) {
+            if (!empty($rows)) {
                 foreach ($rows as $row) { ?>
                     <?php if ($row['preview_image'] == null) { ?><?php } else {
                                                                     $imageData = @getimagesize($row['preview_image']);
@@ -413,7 +413,7 @@ if (isset($_GET['cty'])) {
     </div>
     <div class="container">
         <?php
-        if (count($rows) != 0) {
+        if (!empty($rows)) {
             foreach ($rows[0] as $row) {
                 $pattern = '/[*%{}\/|><+=\]\[?.:,:\'\\\\]/u';
                 $url = preg_replace($pattern, '', $row['title']);
@@ -479,7 +479,7 @@ if (isset($_GET['cty'])) {
     </div>
     <div class="container">
         <?php
-        if (count($toprows) != 0) {
+        if (!empty($toprows)) {
             foreach ($toprows[0] as $toprow) {
                 $pattern = '/[*%{}\/|><+=\]\[?.\\\]/u';
                 $url = preg_replace($pattern, '', $toprow['title']);
@@ -544,7 +544,7 @@ if (isset($_GET['cty'])) {
     </div>
     <div class="container">
         <?php
-        if (count($normalAds) != 0) {
+        if (!empty($normalAds)) {
             foreach ($normalAds[0] as $normalAd) {
                 $pattern = '/[*%{}\/|><+=\]\[?.\\\]/u';
                 $url = preg_replace($pattern, '', $normalAd['title']);
