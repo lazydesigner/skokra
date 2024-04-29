@@ -48,7 +48,7 @@ RewriteRule ^delete-image([/]?)$ image_processing/delete-image.php [NC,L]
 
 ReWriteRule ^ad/([0-9a-z_\-]+)([/]?)$ view-profile.php [NC,L]
 
-ReWriteRule ^call-girls([/]?)$ call-girs-only.php [NC,L]
+ReWriteRule ^call-girls([/]?)$ call-girls-only.php [NC,L]
 
 RewriteRule ^get_plan_det([/]?)$ az.php [NC,L]
 RewriteRule ^schedule-time-for-ad([/]?)$ schedule-time_for_ad.php [NC,L]
