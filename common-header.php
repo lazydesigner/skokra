@@ -7,7 +7,7 @@ $city = '<option value="">All the Cities</option>';
 
 if(isset($_GET['cty'])){
 $getcity = $_GET['cty'];
-}else{
+}elseif(isset($profilerow['city'])){
     $getcity = $profilerow['city'] ; 
 }
 

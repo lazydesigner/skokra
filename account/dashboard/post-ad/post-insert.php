@@ -16,6 +16,18 @@ $POST_INSERT = 'yes'; //to hide  add post button in this page
 include '../../../routes.php';
 
 
+$list_of_citie = '<option value="">All the Cities</option>';
+$list_of_cities = Get_User_Details::Get_states_detail()[0];
+
+foreach($list_of_cities as $list_of_city){
+    $list_of_cty = json_decode($list_of_city['cities'], true);
+    foreach($list_of_cty as $list_of_ct){
+        $list_of_citie .= '<option value="'.strtolower(str_replace(' ','-', $list_of_ct)).'">'.ucwords($list_of_ct).'</option>';
+    }
+}
+
+
+
 $close_verification_btn = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" height="14" width="14" id="Delete-1--Streamline-Core"><desc>Delete 1 Streamline Icon: https://streamlinehq.com</desc><g id="Delete-1--Streamline-Core"><path id="Union" fill="#000" fill-rule="evenodd" d="M1.70711 0.292893c-0.39053 -0.3905241 -1.023693 -0.3905241 -1.414217 0 -0.3905241 0.390524 -0.3905241 1.023687 0 1.414217L5.58579 7 0.292893 12.2929c-0.3905241 0.3905 -0.3905241 1.0237 0 1.4142 0.390524 0.3905 1.023687 0.3905 1.414217 0L7 8.41421l5.2929 5.29289c0.3905 0.3905 1.0237 0.3905 1.4142 0 0.3905 -0.3905 0.3905 -1.0237 0 -1.4142L8.41421 7l5.29289 -5.29289c0.3905 -0.39053 0.3905 -1.023693 0 -1.414217 -0.3905 -0.3905241 -1.0237 -0.3905241 -1.4142 0L7 5.58579 1.70711 0.292893Z" clip-rule="evenodd" stroke-width="1"></path></g></svg>';
 
     if(isset($_POST['terms-and-condition'])){
@@ -329,9 +341,7 @@ $close_verification_btn = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" v
                     <div class="form-group">
                         <label for="city">*Select city</label>
                         <select name="city" id="city">
-                        <?php foreach($list_of_cities as $city){ ?>
-                                <option value="<?=$city ?>"><?=$city ?></option>
-                            <?php } ?>
+                            <?php echo $list_of_citie ?>
                         </select>
                     </div>
                     <div class="form-group form-flex">

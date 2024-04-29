@@ -406,10 +406,7 @@ if (isset($_GET['cty'])) {
                             <p><?= $row['title'] ?></p>
                         </div>
                     </div>
-            <?php }} }
-            } else {
-                echo 'No Profiles';
-            } ?>
+            <?php }} } } ?>
         </div>
         <div class="current-date"><small><?php echo strtoupper(date('d F')) ?></small></div>
     </div>

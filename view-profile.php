@@ -161,18 +161,34 @@ if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empt
             border-radius: 10px;
             border: 1px solid var(--heading-color);
         }
-        .report-abuse{
+
+        .report-abuse {
             width: 100%;
             min-height: 100px;
             border-radius: 10px;
             border: 1px solid var(--primary-color);
-            padding:1%;
+            padding: 1%;
             margin-top: 5%;
         }
-        .report-abuse p{margin: 0;color:tomato;}
-        .report-abuse i{font-size: 1.5rem;}
-        .report-abuse ul{margin: 0;padding-left:2%;}
-        .report-abuse ul li{margin: 1% 0;font-size: small;}
+
+        .report-abuse p {
+            margin: 0;
+            color: tomato;
+        }
+
+        .report-abuse i {
+            font-size: 1.5rem;
+        }
+
+        .report-abuse ul {
+            margin: 0;
+            padding-left: 2%;
+        }
+
+        .report-abuse ul li {
+            margin: 1% 0;
+            font-size: small;
+        }
     </style>
 </head>
 
@@ -180,7 +196,7 @@ if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empt
     <?php include './common-header.php' ?>
     <div class="container">
         <div class="page-detail-and-information" aria-label="">
-        <div id="breadcrumbs">
+            <div id="breadcrumbs">
                 <ol style="display: flex;align-items:center;gap:.5%;list-style:none;padding:0" itemscope="" itemtype="http://schema.org/BreadcrumbList">
                     <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" itemprop="item" title="Genuine Call girls &amp; escorts Service: Photos, Phone number | Skoka" class="crumb" href="<?= get_url() ?>">
                             <div class="skokra-breadcrumb" itemprop="name"><i class="ri-home-4-line">
@@ -190,27 +206,27 @@ if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empt
                         <meta itemprop="position" content="1">
                     </li>
                     <li><b><i class="ri-arrow-right-s-line"></i></b></li>
-                    <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" href="<?= get_url().strtolower($profilerow['category']) ?>" itemprop="item" class="crumb">
-                            <div class="skokra-breadcrumb" itemprop="name">Independent <?=ucwords(str_replace('-',' ', $profilerow['category'])) ?></div>
+                    <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" href="<?= get_url() . strtolower($profilerow['category']) ?>" itemprop="item" class="crumb">
+                            <div class="skokra-breadcrumb" itemprop="name">Independent <?= ucwords(str_replace('-', ' ', $profilerow['category'])) ?></div>
                         </a>
                         <meta itemprop="position" content="2">
                     </li>
-                    <?php if(isset($profilerow['city'])){ 
-                            if(Get_User_Details::checkifitsastateorcity($profilerow['city'])){ ?> 
-                                        
+                    <?php if (isset($profilerow['city'])) {
+                        if (Get_User_Details::checkifitsastateorcity($profilerow['city'])) { ?>
+
+                            <li><b><i class="ri-arrow-right-s-line"></i></b></li>
+                            <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" itemprop="item" class="crumb" href="<?= get_url() . strtolower($profilerow['category'] . '/' . str_replace(' ', '-', Get_User_Details::getStateByCity($profilerow['city']))) ?>" title="">
+                                    <div class="skokra-breadcrumb" itemprop="name"><?= ucwords(str_replace('-', ' ', Get_User_Details::getStateByCity($profilerow['city']))) ?></div>
+                                </a>
+                                <meta itemprop="position" content="3">
+                            </li>
+                        <?php } ?>
                         <li><b><i class="ri-arrow-right-s-line"></i></b></li>
-                    <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" itemprop="item" class="crumb" href="<?= get_url().strtolower($profilerow['category'].'/'.str_replace(' ','-', Get_User_Details::getStateByCity($profilerow['city']))) ?>" title="">
-                            <div class="skokra-breadcrumb" itemprop="name"><?=ucwords(str_replace('-',' ', Get_User_Details::getStateByCity($profilerow['city']))) ?></div>
-                        </a>
-                        <meta itemprop="position" content="3">
-                    </li>
-                    <?php } ?>
-                    <li><b><i class="ri-arrow-right-s-line"></i></b></li>
-                    <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" itemprop="item" class="crumb">
-                            <div class="skokra-breadcrumb" itemprop="name"><?=ucwords(str_replace('-',' ', $profilerow['city'])) ?></div>
-                        </a>
-                        <meta itemprop="position" content="4">
-                    </li>    
+                        <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" itemprop="item" class="crumb">
+                                <div class="skokra-breadcrumb" itemprop="name"><?= ucwords(str_replace('-', ' ', $profilerow['city'])) ?></div>
+                            </a>
+                            <meta itemprop="position" content="4">
+                        </li>
                     <?php  } ?>
                 </ol>
             </div>
@@ -232,19 +248,25 @@ if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empt
     <div class="container" style="margin-top: 3%;">
         <div class="profile-flex">
             <div class="profile-img" <?= $style1 ?>>
-            <?php if(!empty($profilerow['images']) || $profilerow['images'] != null ){ ?>
-                <div class="grid-of-images">
-                    <?php
-                    $images = json_decode($profilerow['images'], true);
-                    foreach ($images as $img) { $imageData = @getimagesize('https://cdn.skokra.com/secure-images/'.$img); if($imageData !== false){ ?>
-                    <div class="img-item">
-                        <img src="<?='https://cdn.skokra.com/secure-images/' . $img ?>" width="100%" height="100%" loading="lazy" alt="">
-                    </div>
-                    <?php }} ?>
+                <div>
+                    <img src="<?=$profilerow['preview_image'] ?>" alt="">
                 </div>
-                <?php } ?>
                 <p><strong><i class="ri-emotion-line"></i> About Me</strong></p>
                 <p><?= $profilerow['description'] ?></p>
+                <?php if (!empty($profilerow['images']) || $profilerow['images'] != null) { ?>
+                    <div class="grid-of-images">
+                        <?php
+                        $images = json_decode($profilerow['images'], true);
+                        foreach ($images as $img) {
+                            $imageData = @getimagesize('https://cdn.skokra.com/secure-images/' . $img);
+                            if ($imageData !== false) { ?>
+                                <div class="img-item">
+                                    <img src="<?= 'https://cdn.skokra.com/secure-images/' . $img ?>" width="100%" height="100%" loading="lazy" alt="">
+                                </div>
+                        <?php }
+                        } ?>
+                    </div>
+                <?php } ?>
             </div>
 
             <div class="profile-det" <?= $style2 ?>>
