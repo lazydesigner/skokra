@@ -812,7 +812,7 @@ class Get_User_Details
         }
     }
 
-    public static function Show_Ads($city, $state)
+    public static function Show_Ads($state, $city)
     {
         $database = new DatabaseConnection();
         $con = $database->getConnection();
