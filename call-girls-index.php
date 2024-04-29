@@ -19,7 +19,7 @@ $superrows = Get_User_Details::Show_Super_Top_Ads();
 
 $toprows = Get_User_Details::Show_Top_Ads();
 
-$normalAds = Get_User_Details::Show_Ads();
+$normalAds = Get_User_Details::Show_Ads($_GET['cty']);
 
 $pattern = '/[*%{}()\/|><+=\]\[?.:,:"\'\\\\]/u';
 

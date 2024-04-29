@@ -159,13 +159,13 @@ class Get_User_Details
     }
 
 
-    public static function AdInsert($category, $city, $address, $area, $age, $title, $description, $african_ethnicity, $nationality, $boobs, $hair, $body_type, $services, $attention_to, $place_of_service, $price, $payment_method, $contact, $email, $ad_phone_number, $whatsapp_enable, $terms_and_condition, $orgination_enable, $website_name, $orgination_name, $website_url)
+    public static function AdInsert($category, $state, $city, $address, $area, $age, $title, $description, $african_ethnicity, $nationality, $boobs, $hair, $body_type, $services, $attention_to, $place_of_service, $price, $payment_method, $contact, $email, $ad_phone_number, $whatsapp_enable, $terms_and_condition, $orgination_enable, $website_name, $orgination_name, $website_url)
     {
         $database = new DatabaseConnection();
         $con = $database->getConnection();
         //checking the user is already registered
 
-        $query = "INSERT INTO profiles_ad(adid,category,city,address,area,age,title,description,african_ethnicity,nationality,boobs,hair,body_type,services,attention_to,place_of_service,price, payment_method,contact,email,ad_phone_number,whatsapp_enable,terms_and_condition,orgination_enable,website_name,orgination_name,website_url,user_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO profiles_ad(adid,category,city,address,area,age,title,description,african_ethnicity,nationality,boobs,hair,body_type,services,attention_to,place_of_service,price, payment_method,contact,email,ad_phone_number,whatsapp_enable,terms_and_condition,orgination_enable,website_name,orgination_name,website_url,user_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $adid = '';
         $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
         $code = '';
@@ -178,7 +178,7 @@ class Get_User_Details
         $_SESSION['temprary_post_id'] = $code;
 
         $insertad = $con->prepare($query);
-        $insertad->execute([$adid, $category, $city, $address, $area, $age, $title, $description, $african_ethnicity, $nationality, $boobs, $hair, $body_type, $services, $attention_to, $place_of_service, $price, $payment_method, $contact, $email, $ad_phone_number, $whatsapp_enable, $terms_and_condition, $orgination_enable, $website_name, $orgination_name, $website_url, $_SESSION['user_identification']]);
+        $insertad->execute([$adid, $category, $state, $city, $address, $area, $age, $title, $description, $african_ethnicity, $nationality, $boobs, $hair, $body_type, $services, $attention_to, $place_of_service, $price, $payment_method, $contact, $email, $ad_phone_number, $whatsapp_enable, $terms_and_condition, $orgination_enable, $website_name, $orgination_name, $website_url, $_SESSION['user_identification']]);
 
         if ($insertad->rowCount() > 0) {
             return true;
@@ -812,13 +812,13 @@ class Get_User_Details
         }
     }
 
-    public static function Show_Ads()
+    public static function Show_Ads($city)
     {
         $database = new DatabaseConnection();
         $con = $database->getConnection();
 
-        $query  = $con->prepare("SELECT * FROM profiles_ad WHERE  top_ad = 0 AND supertop_ad = 0 AND ad_complete = 1");
-        $query->execute();
+        $query  = $con->prepare("SELECT * FROM profiles_ad WHERE city = ?, top_ad = 0 AND supertop_ad = 0 AND ad_complete = 1");
+        $query->execute([$city]);
         if ($query->rowCount() > 0) {
             while ($row = $query->fetchAll(PDO::FETCH_ASSOC)) {
                 $results[] = $row;

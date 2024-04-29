@@ -32,7 +32,9 @@ $close_verification_btn = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" v
 
     if(isset($_POST['terms-and-condition'])){
         $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
+        
         $city = filter_input(INPUT_POST, 'city', FILTER_SANITIZE_SPECIAL_CHARS);
+        $state = Get_User_Details::getStateByCity($city);
         // Important are above
         $address = filter_input(INPUT_POST, 'address', FILTER_SANITIZE_SPECIAL_CHARS);
         $area = filter_input(INPUT_POST, 'area', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -83,7 +85,7 @@ $close_verification_btn = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" v
         
             if(!empty($category) && !empty($city) && !empty($age) && !empty($title) && !empty($description)){
             
-            if(Get_User_Details::AdInsert($category, $city, $address, $area, $age, $title, $description, $african_ethnicity, $nationality, $boobs, $hair, $body_type, $services, $attention_to, $place_of_service,  $price, $payment_method, $contact, $_SESSION['email'], $ad_phone_number, $whatsapp_enable, $terms_and_condition, $orgination_enable, $website_name, $orgination_name, $website_url)){
+            if(Get_User_Details::AdInsert($category, $state, $city, $address, $area, $age, $title, $description, $african_ethnicity, $nationality, $boobs, $hair, $body_type, $services, $attention_to, $place_of_service,  $price, $payment_method, $contact, $_SESSION['email'], $ad_phone_number, $whatsapp_enable, $terms_and_condition, $orgination_enable, $website_name, $orgination_name, $website_url)){
                 header('Location: '.get_url().'u/post-insert-image/'.$_SESSION['temprary_post_id'].'');
             }else{
                 ?> <script>alert('Something went wrong. !please try after some time or contact the executives')</script> <?php
