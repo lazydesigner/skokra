@@ -703,7 +703,7 @@ class Get_User_Details
                 // print_r($result);
                 foreach ($results as $result) {
                     $array = array_map('strtolower', json_decode($result['cities']));
-                    if (in_array(strtolower($city), $array)) {
+                    if (in_array(strtolower(str_replace('-',' ',$city)), $array)) {
                         return $result['state'];
                         break;
                     } else {
