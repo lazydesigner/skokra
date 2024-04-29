@@ -817,7 +817,7 @@ class Get_User_Details
         $database = new DatabaseConnection();
         $con = $database->getConnection();
 
-        $query  = $con->prepare("SELECT * FROM profiles_ad WHERE city = ?, top_ad = 0 AND supertop_ad = 0 AND ad_complete = 1");
+        $query  = $con->prepare("SELECT * FROM profiles_ad WHERE (state = ? OR city = ?) AND top_ad = 0 AND supertop_ad = 0 AND ad_complete = 1");
         $query->execute([$city]);
         if ($query->rowCount() > 0) {
             while ($row = $query->fetchAll(PDO::FETCH_ASSOC)) {

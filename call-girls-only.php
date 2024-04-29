@@ -124,7 +124,7 @@ $rows = Get_User_Details::Get_states_detail()[0];
 
                 
                     
-                        <div><a href="<?=get_url().'call-girls/'.strtolower(str_replace(' ','-',$row['state'])).'/'.strtolower(str_replace(' ','-',$city)) ?>"><?= ucwords($city) ?></a></div>
+                        <div><a href="<?=get_url().'call-girls/'.strtolower(str_replace(' ','-',$city)) ?>"><?= ucwords($city) ?></a></div>
                    
              
 
