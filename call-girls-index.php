@@ -26,7 +26,7 @@ $pattern = '/[*%{}()\/|><+=\]\[?.:,:"\'\\\\]/u';
 
 if (isset($_GET['cty'])) {
     if (Get_User_Details::checkifitsastateorcity($_GET['cty'])) {
-        $cityf = Get_User_Details::Get_Cities_detail(Get_User_Details::getStateByCity($_GET['cty']))[0];
+        $cityf = Get_User_Details::Get_Cities_detail(Get_User_Details::getStateByCity($_GET['cty']));       //[0] is removed
     } else {
         $cityf = Get_User_Details::Get_Cities_detail($_GET['cty'])[0];
     }
