@@ -812,13 +812,16 @@ class Get_User_Details
         }
     }
 
-    public static function Show_Ads($state, $city)
+    public static function Show_Ads($city)
     {
         $database = new DatabaseConnection();
         $con = $database->getConnection();
-
-        $query  = $con->prepare("SELECT * FROM profiles_ad WHERE (state = ? OR city = ?) AND top_ad = 0 AND supertop_ad = 0 AND ad_complete = 1");
-        $query->execute([$state, $city]);
+        if (Get_User_Details::checkifitsastateorcity($_GET['cty'])) {
+        $query  = $con->prepare("SELECT * FROM profiles_ad WHERE city = ? AND top_ad = 0 AND supertop_ad = 0 AND ad_complete = 1");
+        }else{
+            $query  = $con->prepare("SELECT * FROM profiles_ad WHERE state = ? AND top_ad = 0 AND supertop_ad = 0 AND ad_complete = 1");
+        }
+        $query->execute([$city]);
         if ($query->rowCount() > 0) {
             while ($row = $query->fetchAll(PDO::FETCH_ASSOC)) {
                 $results[] = $row;
