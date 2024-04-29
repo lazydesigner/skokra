@@ -22,7 +22,7 @@ $toprows = Get_User_Details::Show_Top_Ads();
 if (Get_User_Details::checkifitsastateorcity($_GET['cty'])) {
     $normalAds = Get_User_Details::Show_Ads($_GET['cty']);
 }else{
-    $normalAds = Get_User_Details::Show_Ads($_GET['cty']);
+    $normalAds = Get_User_Details::Show_Ads(ucwords(str_replace('-',' ',$_GET['cty'])));
 }
 
 
