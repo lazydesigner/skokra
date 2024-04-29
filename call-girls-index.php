@@ -19,7 +19,7 @@ $superrows = Get_User_Details::Show_Super_Top_Ads();
 
 $toprows = Get_User_Details::Show_Top_Ads();
 
-$normalAds = Get_User_Details::Show_Ads(Get_User_Details::getStateByCity($_GET['cty']), $_GET['cty']);
+$normalAds = Get_User_Details::Show_Ads(strtolower(str_replace(' ','-',Get_User_Details::getStateByCity($_GET['cty']))), $_GET['cty']);
 
 $pattern = '/[*%{}()\/|><+=\]\[?.:,:"\'\\\\]/u';
 
