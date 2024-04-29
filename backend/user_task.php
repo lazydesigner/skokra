@@ -165,7 +165,7 @@ class Get_User_Details
         $con = $database->getConnection();
         //checking the user is already registered
 
-        $query = "INSERT INTO profiles_ad(adid,category,city,address,area,age,title,description,african_ethnicity,nationality,boobs,hair,body_type,services,attention_to,place_of_service,price, payment_method,contact,email,ad_phone_number,whatsapp_enable,terms_and_condition,orgination_enable,website_name,orgination_name,website_url,user_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO profiles_ad(adid,category,state,city,address,area,age,title,description,african_ethnicity,nationality,boobs,hair,body_type,services,attention_to,place_of_service,price, payment_method,contact,email,ad_phone_number,whatsapp_enable,terms_and_condition,orgination_enable,website_name,orgination_name,website_url,user_id) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $adid = '';
         $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
         $code = '';
