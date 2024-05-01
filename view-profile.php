@@ -246,7 +246,7 @@ if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empt
             </div>
             <div>
                 <a href="tel:<?= $profilerow['ad_phone_number'] ?>"><button>Call Now</button></a>
-                <?php if ($profilerow['whatsapp_enable'] == 1) { ?><a href="https://wa.me/<?= $profilerow['ad_phone_number'] ?>" target="_blank"><button style="background-color: green;">Whatsapp</button></a><?php } ?>
+                <?php if ($profilerow['whatsapp_enable'] == 12) { ?><a href="https://wa.me/<?= $profilerow['ad_phone_number'] ?>" target="_blank"><button style="background-color: green;">Whatsapp</button></a><?php } ?>
             </div>
         </div>
     </div>
@@ -334,7 +334,7 @@ if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empt
                 </div>
                 <div style="display: flex;flex-wrap:wrap;gap:10px;margin-top:5%">
                     <a href="tel:<?= $profilerow['ad_phone_number'] ?>"><button style="max-width:160px">Call Now</button></a>
-                    <?php if ($profilerow['whatsapp_enable'] == 1) { ?><a href="https://wa.me/<?= $profilerow['ad_phone_number'] ?>" target="_blank"><button style="background-color: green;max-width:160px">Whatsapp</button></a><?php } ?>
+                    <?php if ($profilerow['whatsapp_enable'] == 12) { ?><a href="https://wa.me/<?= $profilerow['ad_phone_number'] ?>" target="_blank"><button style="background-color: green;max-width:160px">Whatsapp</button></a><?php } ?>
                 </div>
             </div>
         </div>
