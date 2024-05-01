@@ -253,7 +253,7 @@ if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empt
                 </div>
                 <p><strong><i class="ri-emotion-line"></i> About Me</strong></p>
                 <p><?= $profilerow['description'] ?></p>
-                <?php if (!empty($profilerow['images']) || $profilerow['images'] != null) { ?>
+                <?php if($profilerow['top_ad'] != 0){ if (!empty($profilerow['images']) || $profilerow['images'] != null) { ?>
                     <div class="grid-of-images">
                         <?php
                         $images = json_decode($profilerow['images'], true);
@@ -266,7 +266,7 @@ if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empt
                         <?php }
                         } ?>
                     </div>
-                <?php } ?>
+                <?php }} ?>
             </div>
 
             <div class="profile-det" <?= $style2 ?>>
