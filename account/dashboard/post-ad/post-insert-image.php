@@ -81,7 +81,7 @@ if (isset($stopthefurtherprocess)) {
             display: grid;
             place-items: center;
         }
-        .lock-img i{font-size: 1.5rem;}
+        .lock-img i{font-size: 1.5rem;color: white;}
 
         .crop-the-image-container {
             width: 100%;
