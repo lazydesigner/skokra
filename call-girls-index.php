@@ -430,7 +430,7 @@ if (isset($_GET['cty'])) {
 
         ?>
 
-                <div class="ad-blockdd" data-href='<?= strtolower($url) ?>'>
+                <div class="ad-blockdd" data-href='<?=  get_url() .strtolower($url) ?>'>
                     <?php if ($row['preview_image'] == null) { ?><?php } else {
                                                                     $imageData = @getimagesize($row['preview_image']);
                                                                     if ($imageData !== false) { ?><div class="ad-image-block">
@@ -453,7 +453,7 @@ if (isset($_GET['cty'])) {
                                                                                 } ?></div>
                 </div>
                 <div class="ad-details">
-                    <div class="skokra-ad-title multiline-ellipsis1"><a href="<?= strtolower($url) ?>"><?= $row['title'] ?></a></div>
+                    <div class="skokra-ad-title multiline-ellipsis1"><a href="<?=  get_url() .strtolower($url) ?>"><?= $row['title'] ?></a></div>
                     <p class="multiline-ellipsis"><?= $row['description'] ?></p>
                     <div class="about-ad">
                         <div class="about-ad-detail">
@@ -495,7 +495,7 @@ if (isset($_GET['cty'])) {
                 $url = 'ad/' . $url . '/?x=0723' . $toprow['post_id'];
         ?>
 
-                <div class="ad-blockdd" data-href='<?= strtolower($url) ?>'>
+                <div class="ad-blockdd" data-href='<?= get_url() . strtolower($url) ?>'>
                     <?php if ($toprow['preview_image'] == null) { ?><?php } else {
                                                                     $imageData = @getimagesize($toprow['preview_image']);
                                                                     if ($imageData !== false) { ?><div class="ad-image-block">
@@ -518,7 +518,7 @@ if (isset($_GET['cty'])) {
                                                                                 } ?></div>
                 </div>
                 <div class="ad-details">
-                    <div class="skokra-ad-title"><a href="<?= strtolower($url) ?>"><?= $toprow['title'] ?></a></div>
+                    <div class="skokra-ad-title"><a href="<?=  get_url() .strtolower($url) ?>"><?= $toprow['title'] ?></a></div>
                     <p class="multiline-ellipsis"><?= $toprow['description'] ?></p>
                     <div class="about-ad">
                         <div class="about-ad-detail">
