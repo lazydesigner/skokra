@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             foreach ($img as $id=>$value) {
                 if($image_count == 0){
                     $pr = '<div class="preview-tag"><i class="ri-star-fill"></i> Preview</div>';
-                    $l = '<div class="lock-img" id="lock-img" style="background=transparent"></div>';
+                    $l = '<div class="lock-img" id="lock-img" style="background-color:transparent"></div>';
                     if(Get_User_Details::Set_Preview_img($_POST['pi'] , 'https://cdn.skokra.com/secure-images/'.$value)){}else{}
                 }else{
                     $pr = '<div class="preview-tag" style="background-color:grey;"><i class="ri-star-fill"></i> Preview</div>';
