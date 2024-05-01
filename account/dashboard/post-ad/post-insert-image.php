@@ -284,8 +284,8 @@ if (isset($stopthefurtherprocess)) {
             image.append('image', imageupload[0])
             image.append('e', '<?= $_SESSION['email'] ?>')
             image.append('pi', '<?= $_GET['post_id'] ?>')
-            fetch('<?= get_url() ?>image_processing/image-upload.php', {
-            // fetch('https://cdn.skokra.com/image-upload.php', {
+            // fetch('<?= get_url() ?>image_processing/image-upload.php', {
+            fetch('https://cdn.skokra.com/image-upload.php', {
                 method: 'POST',
                 body: image
             }).then(res => res.json()).then(d => {
