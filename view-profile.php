@@ -249,7 +249,7 @@ if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empt
         <div class="profile-flex">
             <div class="profile-img" <?= $style1 ?>>
                 <div>
-                    <img src="<?=$profilerow['preview_image'] ?>" width="100%" height="auto" alt="call girls in India">
+                    <img src="<?=$profilerow['preview_image'] ?>" width="100%" style="65%" height="auto" alt="call girls in India">
                 </div>
                 <p><strong><i class="ri-emotion-line"></i> About Me</strong></p>
                 <p><?= $profilerow['description'] ?></p>
