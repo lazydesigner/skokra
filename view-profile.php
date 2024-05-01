@@ -272,11 +272,11 @@ if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empt
             <div class="profile-det" <?= $style2 ?>>
 
                 <div class="service-list">
-                    <div><?= $profilerow['african_ethnicity'] ?></div>
-                    <div><?= $profilerow['nationality'] ?></div>
-                    <div><?= $profilerow['boobs'] ?></div>
-                    <div><?= $profilerow['hair'] ?></div>
-                    <div><?= $profilerow['body_type'] ?></div>
+                    <div><?php if(!empty($profilerow['african_ethnicity'])){echo $profilerow['african_ethnicity'];} ?></div>
+                    <div><?php if(!empty($profilerow['nationality'])){echo $profilerow['nationality'];} ?></div>
+                    <div><?php if(!empty($profilerow['boobs'])){echo $profilerow['boobs'];} ?></div>
+                    <div><?php if(!empty($profilerow['hair'])){echo $profilerow['hair'];} ?></div>
+                    <div><?php if(!empty($profilerow['body_type'])){echo $profilerow['body_type'];} ?></div>
                 </div>
 
                 <?php if (!empty($profilerow['services'])) { ?>
