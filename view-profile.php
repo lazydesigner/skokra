@@ -36,6 +36,7 @@ if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empt
     <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/common-header.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/footer.css" defer>
+    <link rel="stylesheet" href="<?= get_url() ?>assets/css/respontomobile.css" defer>  
     <title>Document</title>
     <style>
         .page-detail-and-information .skokra-breadcrumb {
