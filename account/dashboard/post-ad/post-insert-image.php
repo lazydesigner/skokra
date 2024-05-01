@@ -64,7 +64,7 @@ if (isset($stopthefurtherprocess)) {
         .preview-image-box-grid {
             display: grid;
             
-            grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
+            grid-template-columns: repeat(5, minmax(20%, 1fr));
             grid-auto-rows: 250px;
             justify-content: space-between;
             /* grid-template-rows: auto; */
