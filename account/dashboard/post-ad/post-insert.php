@@ -50,7 +50,8 @@ $close_verification_btn = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" v
         $pattern = '/(?:\d{10}|\d{5}\s?\d{5}|\d{3}\s?\d{3}\s?\d{4})/';
 
         // Replace phone numbers with an empty string
-        $title = preg_replace($pattern, '', strip_tags($title, '<a><script>'));
+        // $title = preg_replace($pattern, '', strip_tags($title, '<a><script>'));
+        $title = strip_tags($title, '<a><script>');
         
         $description = $_POST['description'];
         $description = preg_replace('/\.(com|in|org|net|gov|info|co)\b/', '', $description);
@@ -374,11 +375,11 @@ $close_verification_btn = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" v
                     </div>
                     <div class="form-group">
                         <label for="city">*Title</label>
-                        <textarea name="title" id="title" cols="30" rows="5" placeholder="Give your ad a good title"></textarea>
+                        <textarea name="title" id="title" cols="30" minlength="100" maxlength="400" rows="5" placeholder="Give your ad a good title"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="city">*Description</label>
-                        <textarea name="description" id="description" cols="30" rows="8" placeholder="Use this space to describe yourself, your body, your skills and what you like..."></textarea>
+                        <textarea name="description" id="description" minlength="100" maxlength="1000" cols="30" rows="8" placeholder="Use this space to describe yourself, your body, your skills and what you like..."></textarea>
                     </div>
                 </div>
             </div>
@@ -797,37 +798,37 @@ $close_verification_btn = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" v
             } else {
                 terms.classList.remove('red-border');
             }
-            if (category.value == '' && category.value.trim().length == 0) {
+            if (category.value == '' || category.value.trim().length == 0) {
                 category.classList.add('red-border');
                 return false
             } else {
                 category.classList.remove('red-border');
             }
-            if (city.value == '' && city.value.trim().length == 0) {
+            if (city.value == '' || city.value.trim().length == 0) {
                 city.classList.add('red-border');
                 return false
             } else {
                 city.classList.remove('red-border');
             }
-            if (age.value == '' && age.value.trim().length == 0 && parseInt(age.value) > 19) {
+            if (age.value == '' || age.value.trim().length == 0 || parseInt(age.value) < 19) {
                 age.classList.add('red-border');
                 return false
             } else {
                 age.classList.remove('red-border');
             }
-            if (title.value == '' && title.value.trim().length == 0) {
+            if ((title.value == '' || title.value.trim().length == 0 || title.value.trim().split(/\s+/).length < 10 || title.value.trim().split(/\s+/).length > 20) ) {
                 title.classList.add('red-border');
                 return false
             } else {
                 title.classList.remove('red-border');
             }
-            if (description.value == '' && description.value.trim().length == 0) {
+            if ((description.value == '' || description.value.trim().length == 0 || description.value.trim().split(/\s+/).length < 20 || description.value.trim().split(/\s+/).length > 600)) {
                 description.classList.add('red-border');
                 return false
             } else {
                 description.classList.remove('red-border');
             }
-            if (phone.value == '' && phone.value.trim().length == 0) {
+            if (phone.value == '' || phone.value.trim().length == 0) {
                 phone.classList.add('red-border');
                 return false
             } else {

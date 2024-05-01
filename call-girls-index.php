@@ -2,6 +2,7 @@
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 
+
 $cat_array = ['transsexual', 'adult-meeting', 'massage', 'male-escorts', 'call-girls','dating'];
 if (in_array($_GET['cat'], $cat_array)) {
 } else {
