@@ -10,8 +10,8 @@ $date = new DateTime($profilerow['date_of_insert']);
 $dateofad = $date->format("d M");
 
 if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empty($profilerow['place_of_service']) && empty($profilerow['price'])) {
-    $style1 = 'style="width:100%"';
-    $style2 = 'style="width:0%"';
+    $style1 = '';
+    $style2 = '';
     $c = 4;
     $w = 24;
 } else {
