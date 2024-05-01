@@ -142,6 +142,11 @@ if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empt
             font-size: 1.1rem;
             line-height: 25px;
         }
+        .profile-img div img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
 
         .div-seprator p {
             font-size: 1.5rem;
