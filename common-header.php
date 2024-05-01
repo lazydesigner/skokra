@@ -102,6 +102,7 @@ foreach($rows as $row){
                     </div>
                 </div>
             </form>
+            <a id="forward-the-link" data-href="<?= get_url() ?>u/post-insert/"><button class="post-your-ad post-your-ad2"><span>POST YOUR AD</span><i class="ri-arrow-right-line"></i></button></a>
         </div>
     </div>
 <?php } ?>

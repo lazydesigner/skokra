@@ -78,6 +78,7 @@ if (isset($_GET['cty'])) {
     <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/common-header.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/footer.css" defer>
+    <link rel="stylesheet" href="<?= get_url() ?>assets/css/respontomobile.css" defer>  
     <title>Document</title>
     <style>
         /* .page-detail-and-information ol li{ */
@@ -154,7 +155,8 @@ if (isset($_GET['cty'])) {
         .ad-blockdd {
             margin-top: 2%;
             width: 100%;
-            height: 300px;
+            min-height:auto;
+            max-height: 300px;
             display: flex;
             background-color: whitesmoke;
             border: 1px solid var(--header-color);
@@ -258,6 +260,7 @@ if (isset($_GET['cty'])) {
         .about-ad-detail p {
             width: fit-content;
             padding: 0 1%;
+            text-wrap: nowrap;
             border-radius: 10px;
             background-color: lightblue;
             margin: .5% 0;
@@ -455,7 +458,7 @@ if (isset($_GET['cty'])) {
                     <div class="about-ad">
                         <div class="about-ad-detail">
                             <p><?= $row['age'] ?> years</p>
-                            <p>Experience</p>
+                            <p><?php if(!empty($row['services'])){$serv = json_decode($row['services'], true); echo $serv[0];} ?></p>
                             <p><?php if (!empty($row['address'])) { ?>
                             <p><?= $row['address'] . ', ' ?></p> <?php } ?> <?php if (isset($row['city'])) { ?><p><?= ucwords($row['city']) ?></p> <?php } ?></p>
                         </div>
@@ -475,7 +478,7 @@ if (isset($_GET['cty'])) {
                 </div>
                 <div class="ad-contact-button">
                     <a href="tel:<?= $row['ad_phone_number'] ?>"><button>call</button></a>
-                    <a href="https://wa.me/<?= $row['ad_phone_number'] ?>"><button>Whatsapp</button></a>
+                    <!-- <a href="https://wa.me/<?= $row['ad_phone_number'] ?>"><button>Whatsapp</button></a> -->
                 </div>
             </div>
                 </div>
@@ -520,7 +523,7 @@ if (isset($_GET['cty'])) {
                     <div class="about-ad">
                         <div class="about-ad-detail">
                             <p><?= $toprow['age'] ?> years</p>
-                            <p>Experience</p>
+                            <p><?php if(!empty($toprow['services'])){$serv = json_decode($toprow['services'], true); echo $serv[0]; } ?></p>
                             <p><?php if (!empty($toprow['address'])) { ?>
                             <p><?= $toprow['address'] . ', ' ?></p> <?php } ?> <?php if (isset($toprow['city'])) { ?><p><?= ucwords($toprow['city']) ?></p> <?php } ?></p>
                         </div>
@@ -540,7 +543,7 @@ if (isset($_GET['cty'])) {
                 </div>
                 <div class="ad-contact-button">
                     <a href="tel:<?= $toprow['ad_phone_number'] ?>"><button>call</button></a>
-                    <a href="https://wa.me/<?= $toprow['ad_phone_number'] ?>"><button>Whatsapp</button></a>
+                    <!-- <a href="https://wa.me/<?= $toprow['ad_phone_number'] ?>"><button>Whatsapp</button></a> -->
                 </div>
             </div>
                 </div>
@@ -585,7 +588,7 @@ if (isset($_GET['cty'])) {
                     <div class="about-ad">
                         <div class="about-ad-detail">
                             <p><?= $normalAd['age'] ?> years</p>
-                            <p>Experience</p>
+                            <p><?php if(!empty($normalAd['services'])){$serv = json_decode($normalAd['services'], true); echo $serv[0];} ?></p>
                             <p><?php if (!empty($normalAd['address'])) { ?>
                             <p><?= $normalAd['address'] . ', ' ?></p> <?php } ?> <?php if (isset($normalAd['city'])) { ?><p><?= ucwords($normalAd['city']) ?></p> <?php } ?></p>
                         </div>
@@ -605,7 +608,7 @@ if (isset($_GET['cty'])) {
                 </div>
                 <div class="ad-contact-button">
                     <a href="tel:<?= $normalAd['ad_phone_number'] ?>"><button>call</button></a>
-                    <a href="https://wa.me/<?= $normalAd['ad_phone_number'] ?>"><button>Whatsapp</button></a>
+                    <!-- <a href="https://wa.me/<?= $normalAd['ad_phone_number'] ?>"><button>Whatsapp</button></a> -->
                 </div>
             </div>
                 </div>

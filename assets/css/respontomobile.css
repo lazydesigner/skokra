@@ -1,0 +1,59 @@
+
+.post-your-ad span{display: inline;}
+.post-your-ad2 span{display:inline;}
+.post-your-ad2 {display:none;}
+@media (min-width:320px) and (max-width:550px) {
+    .container{width:90%}
+    .service-card-1{
+        width: 100%;
+    }
+    .section-for-add{
+        padding: 3% 0;
+    }
+    .ads-cities button {
+    margin: 1% .5%;
+    }
+    footer ul{padding: 0;flex-wrap: wrap;}
+    footer ul li {
+        padding: 0.5% 4%;
+        margin: 1% 0;
+    }
+    .form-group{
+        display: block;
+    }
+    select[name='cities'] {width: 40%;}
+    select[name='area'] {width: 25%;}
+    select, input{width: 100%;margin: 1% 0;}
+    form button {width: 32%;}
+    .user-account div{width: 40px;}
+    .nav .logo{width: 50%;display: grid;}
+    .post-your-ad{width: 50px;}
+    
+    .post-your-ad2{
+        display: block;
+        width: 100%;
+        margin: 5% 0;
+    }
+    .post-your-ad span{display: none;margin-right: 2%;}
+    .post-your-ad2 span{display:inline;}
+    .search-header {padding: 0 0 5% 0;}
+}
+
+
+@media (min-width:550px) and (max-width:700px) {
+    .service-card-1{
+        width: 49%;
+    }
+    .ads-cities button {
+    margin: 1% .5%;
+    }
+    .nav .logo{width: 35%;display: grid;}
+    .user-account div{width: 40px;}
+    .service-card-img-name{width: 100%;}
+    .container{width:90%}
+    footer ul{padding: 0;flex-wrap: wrap;}
+    footer ul li {
+        padding: 0.5% 2%;
+        margin: 1% 0;
+    }
+}
