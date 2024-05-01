@@ -477,7 +477,7 @@ if (isset($_GET['cty'])) {
                     </div>
                 </div>
                 <div class="ad-contact-button">
-                    <a href="tel:<?= $row['ad_phone_number'] ?>"><button>call</button></a>
+                    <a href="tel:<?= $row['ad_phone_number'] ?>"><button>Call <?= $row['ad_phone_number'] ?></button></a>
                     <!-- <a href="https://wa.me/<?= $row['ad_phone_number'] ?>"><button>Whatsapp</button></a> -->
                 </div>
             </div>
@@ -542,7 +542,7 @@ if (isset($_GET['cty'])) {
                     </div>
                 </div>
                 <div class="ad-contact-button">
-                    <a href="tel:<?= $toprow['ad_phone_number'] ?>"><button>call</button></a>
+                    <a href="tel:<?= $toprow['ad_phone_number'] ?>"><button>Call <?= $toprow['ad_phone_number'] ?></button></a>
                     <!-- <a href="https://wa.me/<?= $toprow['ad_phone_number'] ?>"><button>Whatsapp</button></a> -->
                 </div>
             </div>
@@ -607,7 +607,7 @@ if (isset($_GET['cty'])) {
                     </div>
                 </div>
                 <div class="ad-contact-button">
-                    <a href="tel:<?= $normalAd['ad_phone_number'] ?>"><button>call</button></a>
+                    <a href="tel:<?= $normalAd['ad_phone_number'] ?>"><button>Call <?= $normalAd['ad_phone_number'] ?></button></a>
                     <!-- <a href="https://wa.me/<?= $normalAd['ad_phone_number'] ?>"><button>Whatsapp</button></a> -->
                 </div>
             </div>
