@@ -405,7 +405,7 @@ if (isset($_GET['cty'])) {
             <?php
 
             if (count($superrows) != 0) {
-                foreach ($superrows as $row) { ?>
+                foreach ($superrows[0] as $row) { ?>
                     <?php if ($row['preview_image'] == null) { ?><?php } else {
                                                                     $imageData = @getimagesize($row['preview_image']);
                                                                     if ($imageData !== false) { ?>
