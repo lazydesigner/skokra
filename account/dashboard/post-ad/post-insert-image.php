@@ -63,13 +63,25 @@ if (isset($stopthefurtherprocess)) {
 
         .preview-image-box-grid {
             display: grid;
-
+            
             grid-template-columns: repeat(5, minmax(20%, 1fr));
             grid-auto-rows: 250px;
             justify-content: space-between;
             /* grid-template-rows: auto; */
             column-gap: 5px;
         }
+        .preview-image{position: relative;}
+        .lock-img{
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .5);
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: grid;
+            place-items: center;
+        }
+        .lock-img i{font-size: 1.5rem;}
 
         .crop-the-image-container {
             width: 100%;
@@ -168,6 +180,7 @@ if (isset($stopthefurtherprocess)) {
                             <div class="preview-image-box-grid" id="preview-image-box-grid">
 
                                 <!-- resized-drop-area is the class to be added below to make it small and responsive -->
+                           
                             </div>
                             <div class="drag-and-drop-profile-photo " id="drag-and-drop-profile-photo">
                                 <input type="file" name="drag-and-drop-profile-photo" hidden id="draged-or-selected-profile-photo" multiple>
@@ -271,7 +284,8 @@ if (isset($stopthefurtherprocess)) {
             image.append('image', imageupload[0])
             image.append('e', '<?= $_SESSION['email'] ?>')
             image.append('pi', '<?= $_GET['post_id'] ?>')
-            fetch('https://cdn.skokra.com/image-upload.php', {
+            fetch('<?= get_url() ?>image_processing/image-upload.php', {
+            // fetch('https://cdn.skokra.com/image-upload.php', {
                 method: 'POST',
                 body: image
             }).then(res => res.json()).then(d => {
@@ -294,11 +308,16 @@ if (isset($stopthefurtherprocess)) {
                 body: identification
             }).then(res => res.json()).then(data => { 
 
-                // document.getElementById('drag-and-drop-profile-photo').classList.add('resized-drop-area')
+                if(data['count'] >= 10 ){
+                    document.getElementById('drag-and-drop-profile-photo').style.display = 'none'
+                }
+
+                document.getElementById('drag-and-drop-profile-photo').classList.add('resized-drop-area')
                 // document.getElementById('preview-image-box-grid').innerHTML = '';
                 document.getElementById('preview-image-box-grid').innerHTML = data['output'];
                 // document.getElementById('preview-image-box-grid').innerHTML += '<div class="drag-and-drop-profile-photo preview-image-box" onclick="OnClick()" ondragleave="PREVENTDefalut(this)" ondragover="PREVENTDefalut(this)" ondrop="droptheimage(this)" id="drag-and-drop-profile-photo"><input type="file" name="drag-and-drop-profile-photo" id="draged-or-selected-profile-photo" hidden multiple><div><p style="text-transform: uppercase;">you can upload upto 10 pictures </p><p><i class="ri-camera-fill"></i></p><p>Drag the picture here or click to select them</p></div></div>';
                 AddPreview_image()
+                
             })
         }
         let cropper;
@@ -417,6 +436,7 @@ if (isset($stopthefurtherprocess)) {
             let preview_image_box = document.querySelectorAll('.preview-image-box')
             let preview_image = document.querySelectorAll('.preview-tag')
             let skokracroped = document.querySelectorAll('.skokracropedX')
+            let lock_img = document.querySelectorAll('#lock-img')
             preview_image_box.forEach((imagex, i) => {
                 imagex.addEventListener('click', (e) => {
                     let data = new FormData();
@@ -428,10 +448,16 @@ if (isset($stopthefurtherprocess)) {
                         body: data
                     }).then(response => response.json()).then(value => {
                         if (value['success4'] == 'success4') {
-                            preview_image.forEach(img => {
+                            preview_image.forEach((img,j) => {
                                 img.style.backgroundColor = 'grey';
+                                lock_img[j].innerHTML = ''
+                                lock_img[j].style.backgroundColor = 'rgba(0, 0, 0, .5)'
+                                lock_img[j].innerHTML = '<i class="ri-lock-2-line"></i>';
+                                
                             })
-                            preview_image[i].style.backgroundColor = 'dodgerblue';
+                                preview_image[i].style.backgroundColor = 'dodgerblue';
+                                lock_img[i].style.backgroundColor = 'transparent'
+                                lock_img[i].innerHTML = '';
                         }
                     })
 
