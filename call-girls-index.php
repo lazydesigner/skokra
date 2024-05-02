@@ -767,11 +767,13 @@ if (isset($_GET['cty'])) {
         border-radius: 10px;
         /* display: inline; */
     }
+    .close_the_story{position: absolute;width: 50px;height: 50px;border-radius: 50%;display: grid;place-items: center;background-color: white;color: black;right: -50px;top: -50px;}
     .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal{bottom: var(--swiper-pagination-bottom, auto);}
     </style>
 
     <div class="story" id="story">
         <div class="story-div">
+            <div class="close_the_story" onclick="close_the_story()">X</div>
             <div class="story-info">
                 <div class="story-title">
                 </div>
@@ -853,13 +855,16 @@ if (isset($_GET['cty'])) {
             .then(data=>{
                 document.querySelector('.story').style.display='flex'
                 document.querySelector('.story-title').innerHTML = '<p>'+data['title']+'</p>'
-                document.querySelector('.story-services').innerHTML = '<div>'+data['age']+' Years</div><div>'+data['city'], data['state']+'</div>';
-                console.log(JSON.parse(data['services']))
-                console.log(JSON.parse(data['services'])[0])
-                console.log('============================================')
-                console.log(JSON.parse(data['images']))
-
-            
+                document.querySelector('.story-services').innerHTML = '<div>'+data['age']+' Years</div><div>'+data['city'], data['state']+'</div><div>'+JSON.parse(data['services'])[0]+'</div>';
+                images = JSON.parse(data['images']);
+                im = '';
+                images.forEach((img, i)=>{
+                    im += '<div class="swiper-slide"><img src="'+img+'" width="100%" height="100%" alt="Skokra Calll girls ad Agency"></div>'
+                    if(i == 3){
+                        return true;
+                    }
+                })
+                document.querySelector('.swiper-wrapper').innerHTML= im
             
             })
         }
