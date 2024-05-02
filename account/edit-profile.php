@@ -3,7 +3,6 @@ session_start();
 include '../routes.php';
 include '../backend/user_task.php';
 $row = Get_User_Details::Get_Customer_Details();
-print_r($row);
 ?>
 <!DOCTYPE html>
 <html lang="en">
