@@ -694,6 +694,8 @@ if (isset($_GET['cty'])) {
 
         .story-services {
             margin-top: 1%;
+            display: flex;
+            gap: 5px;
         }
 
         .story-services div {
@@ -852,9 +854,10 @@ if (isset($_GET['cty'])) {
                 document.querySelector('.story').style.display='flex'
                 document.querySelector('.story-title').innerHTML = '<p>'+data['title']+'</p>'
                 document.querySelector('.story-services').innerHTML = '<div>'+data['age']+' Years</div><div>'+data['city'], data['state']+'</div>';
-                console.log(data['services'])
+                console.log(JSON.stringify(data['services']))
+                console.log(JSON.stringify(data['services'])[0])
                 console.log('============================================')
-                console.log(data['images'])
+                console.log(JSON.stringify(data['images']))
 
             
             
