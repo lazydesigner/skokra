@@ -754,7 +754,7 @@ if (isset($_GET['cty'])) {
         /* display: inline; */
     }
     .close_the_story{position: absolute;width: 50px;height: 50px;border-radius: 50%;display: grid;place-items: center;background-color: white;color: black;right: -50px;top: -50px;}
-    .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal{bottom: var(--swiper-pagination-bottom, auto);}
+    /* .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal{bottom: var(--swiper-pagination-bottom, auto);} */
     </style>
 
     <div class="story" id="story">
@@ -838,7 +838,7 @@ if (isset($_GET['cty'])) {
             .then(data=>{
                 document.querySelector('.story').style.display='flex'
                 document.querySelector('.story-title').innerHTML = '<p>'+data['title']+'</p>'
-                document.querySelector('.story-services').innerHTML = '<div>'+data['age']+' Years</div><div>'+data['city'], data['state']+'</div><div>'+JSON.parse(data['services'])[0]+'</div>';
+                document.querySelector('.story-services').innerHTML = '<div>'+data['age']+' Years</div><div>'+data['city'] +', '+ data['state']+'</div><div>'+JSON.parse(data['services'])[0]+'</div>';
                 images = JSON.parse(data['images']);
                 im = '';
                 images.forEach((img, i)=>{
