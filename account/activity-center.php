@@ -55,6 +55,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $city .= '<option value="'.strtolower($ct).'">'.ucwords($ct).'</option>';
         }
         echo json_encode($city);
+    }elseif ($_POST['activity'] == 'story') {
+        $ad = Get_User_Details::Get_ad_detail($_POST['storyId']);
+        echo json_encode($ad);
     }
 } else {
     echo json_encode(['a' => 'a']);

@@ -3,10 +3,10 @@ ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 
 
-$cat_array = ['transsexual', 'adult-meeting', 'massage', 'male-escorts', 'call-girls','dating'];
+$cat_array = ['transsexual', 'adult-meeting', 'massage', 'male-escorts', 'call-girls', 'dating'];
 if (in_array($_GET['cat'], $cat_array)) {
 } else {
-    header( "Location: ".get_url()."" );
+    header("Location: " . get_url() . "");
 }
 
 
@@ -22,8 +22,8 @@ $toprows = Get_User_Details::Show_Top_Ads();
 
 if (Get_User_Details::checkifitsastateorcity($_GET['cty'])) {
     $normalAds = Get_User_Details::Show_Ads($_GET['cty']);
-}else{
-    $normalAds = Get_User_Details::Show_Ads(ucwords(str_replace('-',' ',$_GET['cty'])));
+} else {
+    $normalAds = Get_User_Details::Show_Ads(ucwords(str_replace('-', ' ', $_GET['cty'])));
 }
 
 
@@ -75,10 +75,13 @@ if (isset($_GET['cty'])) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/common-header.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/footer.css" defer>
-    <link rel="stylesheet" href="<?= get_url() ?>assets/css/respontomobile.css" defer>  
+    <link rel="stylesheet" href="<?= get_url() ?>assets/css/respontomobile.css" defer>
     <title>Document</title>
     <style>
         /* .page-detail-and-information ol li{ */
@@ -155,7 +158,7 @@ if (isset($_GET['cty'])) {
         .ad-blockdd {
             margin-top: 2%;
             width: 100%;
-            min-height:auto;
+            min-height: auto;
             max-height: 300px;
             display: flex;
             background-color: whitesmoke;
@@ -409,15 +412,18 @@ if (isset($_GET['cty'])) {
                     <?php if ($row['preview_image'] == null) { ?><?php } else {
                                                                     $imageData = @getimagesize($row['preview_image']);
                                                                     if ($imageData !== false) { ?>
-                    <div class="story-items">
+                    <div class="story-items" onclick="showStory(<?= $row['adid'] ?>)">
                         <img src="<?= $row['preview_image'] ?>" width='100%' height='100%' alt="">
                         <div>
                             <p><?= $row['title'] ?></p>
                         </div>
                     </div>
-            <?php }} } } ?>
+    <?php }
+                                                                }
+                                                            }
+                                                        } ?>
         </div>
-        <div class="current-date"><small><?php echo strtoupper(date('d F')) ?></small></div>
+        <div class="current-date" style="margin-top: 2%;"><small><?php echo strtoupper(date('d F')) ?></small></div>
     </div>
     <div class="container">
         <?php
@@ -430,21 +436,21 @@ if (isset($_GET['cty'])) {
 
         ?>
 
-                <div class="ad-blockdd" data-href='<?=  get_url() .strtolower($url) ?>'>
+                <div class="ad-blockdd" data-href='<?= get_url() . strtolower($url) ?>'>
                     <?php if ($row['preview_image'] == null) { ?><?php } else {
                                                                     $imageData = @getimagesize($row['preview_image']);
                                                                     if ($imageData !== false) { ?><div class="ad-image-block">
                         <?php if ($row['preview_image'] != null) {
                                                                             $imageData2 = @getimagesize($row['preview_image']);
                                                                             if ($imageData2 !== false) { ?> <img src="<?= $row['preview_image'] ?>" alt=""><?php }
-                                                                                                                                                } ?>
+                                                                                                                                                    } ?>
                         <div class="ad-image-count"><i class="ri-camera-3-line"></i><?= count(json_decode($row['images'], true)) ?></div>
                     </div><?php }
                                                                 } ?>
             <div class="ad-detail-block" style="<?php if ($row['preview_image'] == null) { ?>width:100%; <?php } else {
                                                                                                             $imageData = @getimagesize($row['preview_image']);
                                                                                                             if ($imageData === false) { ?>width:100%; <?php }
-                                                                                                                                            } ?>">
+                                                                                                                                                } ?>">
                 <div class="ad-detail-category">
                     <div class="ad-tags"><i class="ri-share-forward-fill"></i><?php if ($row['supertop_ad'] == 1) {
                                                                                     echo 'Ultra Premium';
@@ -453,12 +459,15 @@ if (isset($_GET['cty'])) {
                                                                                 } ?></div>
                 </div>
                 <div class="ad-details">
-                    <div class="skokra-ad-title multiline-ellipsis1"><a href="<?=  get_url() .strtolower($url) ?>"><?= $row['title'] ?></a></div>
+                    <div class="skokra-ad-title multiline-ellipsis1"><a href="<?= get_url() . strtolower($url) ?>"><?= $row['title'] ?></a></div>
                     <p class="multiline-ellipsis"><?= $row['description'] ?></p>
                     <div class="about-ad">
                         <div class="about-ad-detail">
                             <p><?= $row['age'] ?> years</p>
-                            <p><?php if(!empty($row['services'])){$serv = json_decode($row['services'], true); echo $serv[0];} ?></p>
+                            <p><?php if (!empty($row['services'])) {
+                                    $serv = json_decode($row['services'], true);
+                                    echo $serv[0];
+                                } ?></p>
                             <p><?php if (!empty($row['address'])) { ?>
                             <p><?= $row['address'] . ', ' ?></p> <?php } ?> <?php if (isset($row['city'])) { ?><p><?= ucwords($row['city']) ?></p> <?php } ?></p>
                         </div>
@@ -502,14 +511,14 @@ if (isset($_GET['cty'])) {
                         <?php if ($toprow['preview_image'] != null) {
                                                                             $imageData2 = @getimagesize($toprow['preview_image']);
                                                                             if ($imageData2 !== false) { ?> <img src="<?= $toprow['preview_image'] ?>" alt=""><?php }
-                                                                                                                                                    } ?>
+                                                                                                                                                        } ?>
                         <div class="ad-image-count"><i class="ri-camera-3-line"></i><?= count(json_decode($toprow['images']), true) ?></div>
                     </div><?php }
                                                                 } ?>
             <div class="ad-detail-block" style="<?php if ($toprow['preview_image'] == null) { ?>width:100%; <?php } else {
                                                                                                             $imageData = @getimagesize($toprow['preview_image']);
                                                                                                             if ($imageData === false) { ?>width:100%; <?php }
-                                                                                                                                            } ?>">
+                                                                                                                                                } ?>">
                 <div class="ad-detail-category">
                     <div class="ad-tags"><i class="ri-share-forward-fill"></i><?php if ($toprow['supertop_ad'] == 1) {
                                                                                     echo 'Ultra Premium';
@@ -518,12 +527,15 @@ if (isset($_GET['cty'])) {
                                                                                 } ?></div>
                 </div>
                 <div class="ad-details">
-                    <div class="skokra-ad-title"><a href="<?=  get_url() .strtolower($url) ?>"><?= $toprow['title'] ?></a></div>
+                    <div class="skokra-ad-title"><a href="<?= get_url() . strtolower($url) ?>"><?= $toprow['title'] ?></a></div>
                     <p class="multiline-ellipsis"><?= $toprow['description'] ?></p>
                     <div class="about-ad">
                         <div class="about-ad-detail">
                             <p><?= $toprow['age'] ?> years</p>
-                            <p><?php if(!empty($toprow['services'])){$serv = json_decode($toprow['services'], true); echo $serv[0]; } ?></p>
+                            <p><?php if (!empty($toprow['services'])) {
+                                    $serv = json_decode($toprow['services'], true);
+                                    echo $serv[0];
+                                } ?></p>
                             <p><?php if (!empty($toprow['address'])) { ?>
                             <p><?= $toprow['address'] . ', ' ?></p> <?php } ?> <?php if (isset($toprow['city'])) { ?><p><?= ucwords($toprow['city']) ?></p> <?php } ?></p>
                         </div>
@@ -560,21 +572,21 @@ if (isset($_GET['cty'])) {
                 $url = 'ad/' . $url . '/?x=0723' . $normalAd['post_id'];
         ?>
 
-                <div class="ad-blockdd" data-href='<?= get_url() .strtolower($url) ?>'>
+                <div class="ad-blockdd" data-href='<?= get_url() . strtolower($url) ?>'>
                     <?php if ($normalAd['preview_image'] == null) { ?><?php } else {
                                                                         $imageData = @getimagesize($normalAd['preview_image']);
                                                                         if ($imageData !== false) { ?><div class="ad-image-block">
                         <?php if ($normalAd['preview_image'] != null) {
                                                                                 $imageData2 = @getimagesize($normalAd['preview_image']);
                                                                                 if ($imageData2 !== false) { ?> <img src="<?= $normalAd['preview_image'] ?>" alt=""><?php }
-                                                                                                                                                        } ?>
+                                                                                                                                                            } ?>
                         <div class="ad-image-count"><i class="ri-camera-3-line"></i><?= count(json_decode($normalAd['images'], true)) ?></div>
                     </div><?php }
                                                                     } ?>
             <div class="ad-detail-block" style="<?php if ($normalAd['preview_image'] == null) { ?>width:100%; <?php } else {
                                                                                                                 $imageData = @getimagesize($normalAd['preview_image']);
                                                                                                                 if ($imageData === false) { ?>width:100%; <?php }
-                                                                                                                                                } ?>">
+                                                                                                                                                    } ?>">
                 <div class="ad-detail-category">
                     <!-- <div class="ad-tags"><i class="ri-share-forward-fill"></i><?php if ($normalAd['supertop_ad'] == 0) {
                                                                                         echo '';
@@ -588,7 +600,10 @@ if (isset($_GET['cty'])) {
                     <div class="about-ad">
                         <div class="about-ad-detail">
                             <p><?= $normalAd['age'] ?> years</p>
-                            <p><?php if(!empty($normalAd['services'])){$serv = json_decode($normalAd['services'], true); echo $serv[0];} ?></p>
+                            <p><?php if (!empty($normalAd['services'])) {
+                                    $serv = json_decode($normalAd['services'], true);
+                                    echo $serv[0];
+                                } ?></p>
                             <p><?php if (!empty($normalAd['address'])) { ?>
                             <p><?= $normalAd['address'] . ', ' ?></p> <?php } ?> <?php if (isset($normalAd['city'])) { ?><p><?= ucwords($normalAd['city']) ?></p> <?php } ?></p>
                         </div>
@@ -647,6 +662,149 @@ if (isset($_GET['cty'])) {
     <div class="container service-category">
         <a href="<?= get_url() ?>transsexual">Transsexual</a>
     </div>
+    <style>
+        .story {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .8);
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .story-info {
+            padding: 2%;
+        }
+
+        .story-div {
+            width: 50%;
+            height: 90%;
+            background-color: black;
+            border-radius: 5px;
+        }
+
+        .story-title p {
+            color: white;
+            margin: 0;
+        }
+
+        .story-services {
+            margin-top: 1%;
+        }
+
+        .story-services div {
+            background-color: #0060B0;
+            color: white;
+            border-radius: 10px;
+            font-weight: 600;
+            padding: 1% 3%;
+            width: fit-content;
+        }
+
+        .story-indecator {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5px;
+        }
+
+        .itdecator {
+            width: 32.5%;
+            height: 5px;
+            border-radius: 5px;
+            background-color: grey;
+            overflow: hidden;
+        }
+
+        .itdecator div {
+            width: 0;
+            height: 100%;
+            background-color: #0060B0;
+            transition: width 3s;
+        }
+
+        .story-img-div {
+            width: 100%;
+            height: 77.5%;
+            margin-top: 2%;
+            /* border: 1px solid #0060B0;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(100%, 1fr)); */
+            position: relative;
+            /* overflow: hidden; */
+        }
+
+        .swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .swiper-pagination-bullet{
+        width: 30%;
+        height: 5px;
+        border-radius: 10px;
+        /* display: inline; */
+    }
+    </style>
+
+    <div class="story" id="story">
+        <div class="story-div">
+            <div class="story-info">
+                <div class="story-title">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit incidunt reprehenderit illum dolores voluptatem ipsam nostrum dolorem fugiat facilis omnis.</p>
+                </div>
+                <div class="story-services">
+                    <div>Call Girl</div>
+                </div>
+            </div>
+            <div class="story-indecator">
+            <!-- <div class="swiper-pagination"></div>
+                <div class="itdecator ind">
+                    <div></div>
+                </div>
+                <div class="itdecator ind2">
+                    <div></div>
+                </div>
+                <div class="itdecator ind3">
+                    <div></div>
+                </div> -->
+            </div>
+            <div class="story-img-div">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">Slide 1</div>
+                        <div class="swiper-slide">Slide 2</div>
+                        <div class="swiper-slide">Slide 3</div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <?php include './footer.php' ?>
     <?php
 
@@ -657,15 +815,33 @@ if (isset($_GET['cty'])) {
     } else {
         require_once $_SERVER['DOCUMENT_ROOT'] . '/account/dashboard/private-area.php';
     }
-
-
     ?>
-
-
 
     <script src="<?= get_url() ?>assets/js/common.js" defer></script>
 
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
+<!-- Initialize Swiper -->
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    cssMode: true,
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    pagination: {
+      el: ".swiper-pagination",
+    },
+    mousewheel: true,
+    keyboard: true,
+  });
+</script>
     <script>
         const ad_blockdd = document.querySelectorAll('.ad-blockdd');
         ad_blockdd.forEach((ad, i) => {
@@ -673,8 +849,18 @@ if (isset($_GET['cty'])) {
                 url = ad_blockdd[i].getAttribute('data-href')
                 window.location.href = url;
             })
-
         })
+
+        function showStory(id){
+            const story = new FormData();
+            story.append("storyId", id);
+            story.append("activity", 'story');
+            fetch('<?= get_url() ?>u/activity-center',{
+                method:'POST',
+                body:story
+            }).then(res=>res.json())
+            .then(data=>console.log(data))
+        }
     </script>
 
 </body>
