@@ -49,7 +49,7 @@ $results = Get_User_Details::Get_Full_ad_detail();
                             <ul>
                                 <li>
                                     <div class="action-ads-row">
-                                        <h2><i class="ri-edit-box-line"></i>Your Ads</h2>
+                                        <a href="<?=get_url() ?>u/account/ads"><h2><i class="ri-edit-box-line"></i>Your Ads</h2></a>
                                         <i class="ri-arrow-right-s-line sko"></i>
                                     </div>
                                 </li>
@@ -71,7 +71,7 @@ $results = Get_User_Details::Get_Full_ad_detail();
                             <ul>
                                 <li>
                                     <div class="action-ads-row">
-                                        <h2><i class="ri-database-2-fill"></i></i>Credits</h2>
+                                        <a href="<?get_url() ?>u/account/tokens"><h2><i class="ri-database-2-fill"></i></i>Credits</h2></a>
                                         <i class="ri-arrow-right-s-line sko"></i>
                                     </div>
                                 </li>
