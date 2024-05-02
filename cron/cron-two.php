@@ -34,7 +34,7 @@ $mail = new PHPMailer(true);
     
     $mail->setFrom('no_reply@skokra.com', 'Skokra.in');
     
-    $mail->addAddress($_SESSION['email']);
+    $mail->addAddress('deepakbaradwaj933@gmail.com');
     
     $mail->isHTML(true);
     
