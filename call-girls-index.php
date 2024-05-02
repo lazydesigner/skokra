@@ -685,6 +685,7 @@ if (isset($_GET['cty'])) {
             height: 90%;
             background-color: black;
             border-radius: 5px;
+            position: relative;
         }
 
         .story-title p {
