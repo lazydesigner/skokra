@@ -16,7 +16,7 @@
                         Your Ad</span></a>
                 </div>
                 <div class="private-area-items">
-                    <span><i class="ri-database-2-fill"></i><br>Credits</span>
+                    <a href="<?get_url() ?>u/account/tokens"><span><i class="ri-database-2-fill"></i><br>Credits</span></a>
                 </div>
                 <div class="private-area-items">
                     <span><i class="ri-line-chart-line"></i><br>Products</span>

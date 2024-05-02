@@ -82,6 +82,7 @@ align-items: center;
     border-radius: 5px;
 }
 .action-ads h2{margin: 0;padding: 0;font-size: 1.5rem;}
+.action-ads a{color: var(--heading-color);}
 .action-ads .sko{
     font-size: 2rem;
 }
@@ -90,6 +91,9 @@ align-items: center;
     background-color: white;
     border-radius: 50%;
 }
+
+
+
 .action-ads-row p{
     padding: 0;
     margin: 0;
@@ -100,6 +104,10 @@ align-items: center;
     margin-bottom: 6%;
 }
 .action-ads ul li:first-child:hover{
+    color: var(--header-color);
+    cursor: pointer;
+}
+.action-ads ul li a:hover{
     color: var(--header-color);
     cursor: pointer;
 }
