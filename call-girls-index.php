@@ -715,21 +715,6 @@ if (isset($_GET['cty'])) {
             padding: 0 5px;
         }
 
-        .itdecator {
-            width: 32.5%;
-            height: 5px;
-            border-radius: 5px;
-            background-color: grey;
-            overflow: hidden;
-        }
-
-        .itdecator div {
-            width: 0;
-            height: 100%;
-            background-color: #0060B0;
-            transition: width 3s;
-        }
-
         .story-img-div {
             width: 100%;
             height: 77.5%;
@@ -759,7 +744,7 @@ if (isset($_GET['cty'])) {
       display: block;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
     }
     .swiper-pagination-bullet{
         width: 30%;
@@ -786,9 +771,6 @@ if (isset($_GET['cty'])) {
                 <div class="swiper mySwiper">
                     <div class="swiper-pagination"></div>
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">Slide 1</div>
-                        <div class="swiper-slide">Slide 2</div>
-                        <div class="swiper-slide">Slide 3</div>
                     </div>
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
