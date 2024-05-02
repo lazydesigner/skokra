@@ -765,13 +765,13 @@ if (isset($_GET['cty'])) {
         border-radius: 10px;
         /* display: inline; */
     }
+    .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal{bottom: var(--swiper-pagination-bottom, auto);}
     </style>
 
     <div class="story" id="story">
         <div class="story-div">
             <div class="story-info">
                 <div class="story-title">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit incidunt reprehenderit illum dolores voluptatem ipsam nostrum dolorem fugiat facilis omnis.</p>
                 </div>
                 <div class="story-services">
                 </div>
@@ -851,8 +851,11 @@ if (isset($_GET['cty'])) {
             .then(data=>{
                 document.querySelector('.story').style.display='flex'
                 document.querySelector('.story-title').innerHTML = '<p>'+data['title']+'</p>'
-                document.querySelector('.story-services').innerHTML = '<div>'+data['age']+' Years</div>';
-                console.log(data)
+                document.querySelector('.story-services').innerHTML = '<div>'+data['age']+' Years</div><div>'+data['city'], data['state']+'</div>';
+                console.log(data['services'])
+                console.log('============================================')
+                console.log(data['images'])
+
             
             
             })
