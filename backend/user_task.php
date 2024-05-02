@@ -222,6 +222,22 @@ class Get_User_Details
         }
         // if()
     }
+    public static function Get_ad_detail2($post_id)
+    {
+
+        $database = new DatabaseConnection();
+        $con = $database->getConnection();
+
+        $query = $con->prepare("SELECT * FROM profiles_ad WHERE post_id = ?");
+        $query->execute([$post_id]);
+        if ($query->rowCount() > 0) {
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+            return $result;
+        } else {
+           return [] ;
+        }
+        // if()
+    }
     public static function Get_Full_ad_detail()
     {
 

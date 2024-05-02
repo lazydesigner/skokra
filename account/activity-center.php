@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         echo json_encode($city);
     }elseif ($_POST['activity'] == 'story') {
-        $ad = Get_User_Details::Get_ad_detail($_POST['storyId']);
+        $ad = Get_User_Details::Get_ad_detail2($_POST['storyId']);
         echo json_encode($ad);
     }
 } else {
