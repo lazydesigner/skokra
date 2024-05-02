@@ -204,11 +204,11 @@ $plan =  $plan->fetch(PDO::FETCH_ASSOC)
                     <div>
                         <div class="profile-det" style="justify-content: space-between;margin:2% 0">
                             <div><span style="font-weight:600">Top <?= $plan['times_a_day'] . ' X ' . $plan['number_of_days'] . ' ' . $plan['ad_shift'] ?></span> <br><small><i class="ri-time-line"></i> 8 p.m - 10 p.m</small></div>
-                            <div style="font-size: small;">Rs <?= $plan['number_of_credits'] * $plan['cost_of_token'] ?>.00 <br> (<?= $plan['number_of_credits'] ?> Credits) </div>
+                            <div style="font-size: small;">Rs <?= $plan['number_of_credits'] * $plan['cost_of_token'] ?>.00 <br> (<?= $plan['number_of_credits'] ?> Tokens) </div>
                         </div>
                         <div class="profile-det" style="justify-content: space-between; ">
                             <div>+ SuperTop</div>
-                            <div style="font-size: small;">Rs <?= $plan['super_top_ad'] * $plan['cost_of_token'] ?>.00 <br> (<?= $plan['super_top_ad'] ?> Credits) </div>
+                            <div style="font-size: small;">Rs <?= $plan['super_top_ad'] * $plan['cost_of_token'] ?>.00 <br> (<?= $plan['super_top_ad'] ?> Tokens) </div>
                         </div>
                     </div>
                 </div>
@@ -234,7 +234,7 @@ $plan =  $plan->fetch(PDO::FETCH_ASSOC)
                 </div>
                 <div style="padding:2%;border-radius:5px;box-shadow:0 0 6px 3px lightgrey">
                     <div class="price-itemd" style="padding:4% 1%;border:0;display:flex;justify-content:space-between"><span><b>Total: </b></span> <span id="total_p"><b>
-                                <div style="font-size: small;color:#DC006C">Rs <?= ($plan['super_top_ad'] + $plan['number_of_credits']) * $plan['cost_of_token'] ?>.00 <br> (<?= $plan['number_of_credits'] + $plan['super_top_ad'] ?> Credits) </div>
+                                <div style="font-size: small;color:#DC006C">Rs <?= ($plan['super_top_ad'] + $plan['number_of_credits']) * $plan['cost_of_token'] ?>.00 <br> (<?= $plan['number_of_credits'] + $plan['super_top_ad'] ?> Tokens) </div>
                             </b></span></div>
                     <div class="price-btn">
                         <button id="paynow" value='<?php if($customer['total_token_left'] < ($plan['number_of_credits'] + $plan['super_top_ad'])){ ?>visa<?php }else{ ?>token<?php } ?> '>Pay Now</button>

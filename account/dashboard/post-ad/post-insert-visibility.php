@@ -285,7 +285,7 @@ if (isset($_POST['next-step'])) {
                                         <div>
                                             <strong><?= $row['times_a_day'] . 'X' . $row['number_of_days'] ?></strong><br>
                                             <p><?= $row['times_a_day'] ?> top-ups a <?= $row['ad_shift'] ?> for <?= $row['number_of_days'] ?> <?= $row['ad_shift'] ?></p>
-                                            <div><b>Rs <?php echo $row['number_of_credits'] * $row['cost_of_token'] ?>.00 (<?= $row['number_of_credits'] ?> credits)</b></div>
+                                            <div><b>Rs <?php echo $row['number_of_credits'] * $row['cost_of_token'] ?>.00 (<?= $row['number_of_credits'] ?> tokens)</b></div>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -313,7 +313,7 @@ if (isset($_POST['next-step'])) {
                                         <div>
                                             <h4>SuperTop</h4>
                                             <small>More visibility and higher call volume</small><br><br>
-                                            <b>+ Rs <?php echo $row['super_top_ad'] * $row['cost_of_token'] ?>.00 (<?= $row['super_top_ad'] ?> credits)</b>
+                                            <b>+ Rs <?php echo $row['super_top_ad'] * $row['cost_of_token'] ?>.00 (<?= $row['super_top_ad'] ?> tokens)</b>
                                         </div>
                                         <div>
                                             <label class="switch" style="width:6%">
@@ -325,200 +325,6 @@ if (isset($_POST['next-step'])) {
                                 </div>
                             </div>
                         <?php } ?>
-                        <!-- <div class="time-slot time-slot-one">
-                            <div class="time-slot-flex">
-                                <input type="radio" value="3" name="price-plan" id="price-plan" hidden>
-                                <div class="form-flex">
-                                    <div class="select_plan" for="price-plan"><i class="ri-checkbox-blank-circle-line"></i></div>
-                                    <div>
-                                        <strong>5X1</strong><br>
-                                        <p>5 top-ups a day for 1 day</p>
-                                        <div><b >Rs <?php echo $cost_of_one_token * 3 ?>.00 (3 credits)</b></div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Day</label><br>
-                                    <select name="" id="select-select-field" disabled>
-                                        <option value="">Select time slot</option>
-                                        <option value="9am-12">9am - 12pm</option>
-                                        <option value="12-3">12pm - 3pm</option>
-                                        <option value="3-6">3pm - 6pm</option>
-                                        <option value="6-8">6pm - 8pm</option>
-                                        <option value="8-10">8pm - 10pm</option>
-                                        <option value="10-12am">10pm - 12am</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="upgrade-to-supertop">
-                                <p>Upgrades</p>
-                                <small>Upgrade to get more calls</small>
-                                <div class="time-slot-flex upgrade-super" style="justify-content: space-between;">
-                                    <div>
-                                        <h4>SuperTop</h4>
-                                        <small>More visibility and higher call volume</small><br><br>
-                                        <b>+ Rs <?php echo $cost_of_one_token * 2 ?>.00 (2 credits)</b>
-                                    </div>
-                                    <div>
-                                        <label class="switch" style="width:6%">
-                                            <input type="checkbox" value="2" id="supertopplan" name="supertopplan">
-                                            <span class="slider"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="time-slot time-slot-two">
-                            <div class="time-slot-flex">
-                                <input type="radio" value="8" name="price-plan" id="price-plan" hidden>
-                                <div class="form-flex">
-                                    <div class="select_plan" for="price-plan"><i class="ri-checkbox-blank-circle-line"></i></div>
-                                    <div>
-                                        <strong>5X3</strong><br>
-                                        <p>5 top-ups a day for 3 day</p>
-                                        <b>Rs <?php echo $cost_of_one_token * 8 ?>.00 (8 credits)</b>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Day</label><br>
-                                    <select name="" id="select-select-field" disabled>
-                                        <option value="">Select time slot</option>
-                                        <option value="9am-12">9am - 12pm</option>
-                                        <option value="12-3">12pm - 3pm</option>
-                                        <option value="3-6">3pm - 6pm</option>
-                                        <option value="6-8">6pm - 8pm</option>
-                                        <option value="8-10">8pm - 10pm</option>
-                                        <option value="10-12am">10pm - 12am</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="upgrade-to-supertop">
-                                <p>Upgrades</p>
-                                <small>Upgrade to get more calls</small>
-                                <div class="time-slot-flex upgrade-super" style="justify-content: space-between;">
-                                    <div>
-                                        <h4>SuperTop</h4>
-                                        <small>More visibility and higher call volume</small><br><br>
-                                        <b>+ Rs <?php echo $cost_of_one_token * 4 ?>.00 (4 credits)</b>
-                                    </div>
-                                    <div>
-                                        <label class="switch" style="width:6%">
-                                            <input type="checkbox" value="4" id="supertopplan" name="supertopplan">
-                                            <span class="slider"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="time-slot time-slot-three">
-                            <div class="time-slot-flex">
-                                <input type="radio" value="16" name="price-plan" id="price-plan" hidden>
-                                <div class="form-flex">
-                                    <div class="select_plan" for="price-plan"><i class="ri-checkbox-blank-circle-line"></i></div>
-                                    <div>
-                                        <strong>5X7</strong><br>
-                                        <p>5 top-ups a day for 7 day</p>
-                                        <b>Rs <?php echo $cost_of_one_token * 16 ?>.00 (16 credits)</b>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Day</label><br>
-                                    <select name="" id="select-select-field" disabled>
-                                        <option value="">Select time slot</option>
-                                        <option value="9am-12">9am - 12pm</option>
-                                        <option value="12-3">12pm - 3pm</option>
-                                        <option value="3-6">3pm - 6pm</option>
-                                        <option value="6-8">6pm - 8pm</option>
-                                        <option value="8-10">8pm - 10pm</option>
-                                        <option value="10-12am">10pm - 12am</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="upgrade-to-supertop">
-                                <p>Upgrades</p>
-                                <small>Upgrade to get more calls</small>
-                                <div class="time-slot-flex upgrade-super" style="justify-content: space-between;">
-                                    <div>
-                                        <h4>SuperTop</h4>
-                                        <small>More visibility and higher call volume</small><br><br>
-                                        <b>+ Rs <?php echo $cost_of_one_token * 8 ?>.00 (8 credits)</b>
-                                    </div>
-                                    <div>
-                                        <label class="switch" style="width:6%">
-                                            <input type="checkbox" value="8" id="supertopplan" name="supertopplan">
-                                            <span class="slider"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="time-slot time-slot-four">
-                            <div class="time-slot-flex">
-                                <input type="radio" value="4" name="price-plan" id="price-plan" hidden>
-                                <div class="form-flex">
-                                    <div class="select_plan" for="price-plan"><i class="ri-checkbox-blank-circle-line"></i></div>
-                                    <div>
-                                        <strong>10X1</strong><br>
-                                        <p>10 top-ups a day for 1 day</p>
-                                        <b>Rs <?php echo $cost_of_one_token * 4 ?>.00 (4 credits)</b>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Neight</label><br>
-                                    <small>12 a.m - 9 a.m</small>
-                                </div>
-                            </div>
-                            <div class="upgrade-to-supertop">
-                                <p><i class="ri-arrow-up-double-fill"></i> Upgrades</p>
-                                <small>Upgrade to get more calls</small>
-                                <div class="time-slot-flex upgrade-super" style="justify-content: space-between;">
-                                    <div>
-                                        <h4>SuperTop</h4>
-                                        <small>More visibility and higher call volume</small><br><br>
-                                        <b>+ Rs <?php echo $cost_of_one_token * 6 ?>.00 (6 credits)</b>
-                                    </div>
-                                    <div>
-                                        <label class="switch" style="width:6%">
-                                            <input type="checkbox" value="6" id="supertopplan" name="supertopplan">
-                                            <span class="slider"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="time-slot time-slot-five">
-                            <div class="time-slot-flex">
-                                <input type="radio" value="20" name="price-plan" id="price-plan" hidden>
-                                <div class="form-flex">
-                                    <div class="select_plan" for="price-plan"><i class="ri-checkbox-blank-circle-line"></i></div>
-                                    <div>
-                                        <strong>10X7</strong><br>
-                                        <p>10 top-ups a day for 7 day</p>
-                                        <b>Rs <?php echo $cost_of_one_token * 20 ?>.00 (20 credits)</b>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Neight</label><br>
-                                    <small>12 a.m - 9 a.m</small>
-                                </div>
-                            </div>
-                            <div class="upgrade-to-supertop">
-                                <p><i class="ri-arrow-up-double-fill"></i> Upgrades</p>
-                                <small>Upgrade to get more calls</small>
-                                <div class="time-slot-flex upgrade-super" style="justify-content: space-between;">
-                                    <div>
-                                        <h4>SuperTop</h4>
-                                        <small>More visibility and higher call volume</small><br><br>
-                                        <b>+ Rs <?php echo $cost_of_one_token * 10 ?>.00 (8 credits)</b>
-                                    </div>
-                                    <div>
-                                        <label class="switch" style="width:6%">
-                                            <input type="checkbox" value="8" id="supertopplan" name="supertopplan">
-                                            <span class="slider"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
                 <div class="form-container" style="position: sticky;top:2%">
