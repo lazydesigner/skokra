@@ -16,7 +16,7 @@
                         Your Ad</span></a>
                 </div>
                 <div class="private-area-items">
-                    <a href="<?get_url() ?>u/account/tokens"><span><i class="ri-database-2-fill"></i><br>Credits</span></a>
+                    <a href="<?=get_url() ?>u/account/tokens"><span><i class="ri-database-2-fill"></i><br>Credits</span></a>
                 </div>
                 <div class="private-area-items">
                     <span><i class="ri-line-chart-line"></i><br>Products</span>
@@ -25,7 +25,7 @@
                     <span><i class="ri-coupon-3-fill"></i><br>Coupons</span>
                 </div>
                 <div class="private-area-items">
-                    <span><i class="ri-account-pin-circle-fill"></i><br>Edit Profile</span>
+                    <a href="<?=get_url() ?>u/account/edit-profile/"><span><i class="ri-account-pin-circle-fill"></i><br>Edit Profile</span></a>
                 </div>
             </div>
             <div class="private-area-logout">

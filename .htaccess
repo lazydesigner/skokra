@@ -37,6 +37,7 @@ ReWriteRule ^u/post-update/([0-9a-z\-]+)([/]?)$ account/dashboard/post-ad/post-u
 
 #SHOW ALL USERS AD
 ReWriteRule ^u/account/ads([/]?)$ account/dashboard/user-ads/user-active-ads.php [NC,L]
+ReWriteRule ^u/account/edit-profile/([/]?)$ account/edit-profile.php [NC,L]
 
 
 RewriteRule ^image-upload([/]?)$ image_processing/image-upload.php [NC,L]

@@ -111,7 +111,7 @@ $results = Get_User_Details::Get_Full_ad_detail();
                             <ul>
                                 <li>
                                     <div class="action-ads-row">
-                                        <h2><i class="ri-user-settings-fill"></i>Edit Profile</h2>
+                                        <a href="<?=get_url() ?>u/account/edit-profile/"><h2><i class="ri-user-settings-fill"></i>Edit Profile</h2></a>
                                         <i class="ri-arrow-right-s-line sko"></i>
                                     </div>
                                 </li>
@@ -125,7 +125,7 @@ $results = Get_User_Details::Get_Full_ad_detail();
                     </div>
                 </div>
                 <div class="action-col">
-                    <div class="age-verification-form">
+                    <div class="age-verification-form" style="background-color: #F8F9FA;">
                         <h2><i class="ri-pass-valid-line"></i>Verify Your Age!</h2>
                         <ul>
                             <li><i class="ri-information-line"></i> How does it work?</li>
@@ -157,8 +157,8 @@ $results = Get_User_Details::Get_Full_ad_detail();
                     <small>Contact us through one of our channels from Monday to Friday from 2pm to 9pm.</small>
                 </div>
                 <div class="need-help-button">
-                    <a href=""><i class="ri-whatsapp-fill"></i> Whatsapp</a>
-                    <a href=""><i class="ri-telegram-fill"></i> Telegram</a>
+                    <a href="" style="color: var(--primary-color);"><i class="ri-whatsapp-fill"></i> Whatsapp</a>
+                    <a href="" style="color: var(--primary-color);"><i class="ri-telegram-fill"></i> Telegram</a>
                 </div>
             </div>
         </div>
