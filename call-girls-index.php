@@ -412,7 +412,7 @@ if (isset($_GET['cty'])) {
                     <?php if ($row['preview_image'] == null) { ?><?php } else {
                                                                     $imageData = @getimagesize($row['preview_image']);
                                                                     if ($imageData !== false) { ?>
-                    <div class="story-items" onclick="showStory('<?= $row['adid'] ?>')">
+                    <div class="story-items" onclick="showStory('<?= $row['post_id'] ?>')">
                         <img src="<?= $row['preview_image'] ?>" width='100%' height='100%' alt="">
                         <div>
                             <p><?= $row['title'] ?></p>
