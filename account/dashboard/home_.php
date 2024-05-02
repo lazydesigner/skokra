@@ -88,7 +88,7 @@ $results = Get_User_Details::Get_Full_ad_detail();
                                     </div>
                                 </li>
                                 <li>
-                                    <a href="<?=get_url() ?>u/account/tokens" target="_blank"><button class="buy-coin" id="buy-coin">Buy Credits</button></a>
+                                    <a href="<?=get_url() ?>u/account/tokens" target="_blank"><button class="buy-coin" id="buy-coin">Buy Tokens</button></a>
                                 </li>
                             </ul>
                         </div>
