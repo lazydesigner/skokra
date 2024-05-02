@@ -751,10 +751,11 @@ if (isset($_GET['cty'])) {
         width: 30%;
         height: 5px;
         border-radius: 10px;
+       
         /* display: inline; */
     }
-    .close_the_story{position: absolute;width: 50px;height: 50px;border-radius: 50%;display: grid;place-items: center;background-color: white;color: black;right: -50px;top: -50px;}
-    /* .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal{bottom: var(--swiper-pagination-bottom, auto);} */
+    .close_the_story{position: absolute;width: 50px;height: 50px;border-radius: 50%;display: grid;place-items: center;background-color: white;color: black;right: -40px;top: 10px;}
+    .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal{bottom: var(--swiper-pagination-bottom, auto);}
     </style>
 
     <div class="story" id="story">
@@ -770,11 +771,11 @@ if (isset($_GET['cty'])) {
             </div>
             <div class="story-img-div">
                 <div class="swiper mySwiper">
-                    <div class="swiper-pagination"></div>
                     <div class="swiper-wrapper">
                     </div>
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
                 </div>
             </div>
         </div>
@@ -838,7 +839,7 @@ if (isset($_GET['cty'])) {
             .then(data=>{
                 document.querySelector('.story').style.display='flex'
                 document.querySelector('.story-title').innerHTML = '<p>'+data['title']+'</p>'
-                document.querySelector('.story-services').innerHTML = '<div>'+data['age']+' Years</div><div>'+data['city'] +', '+ data['state']+'</div><div>'+JSON.parse(data['services'])[0]+'</div>';
+                document.querySelector('.story-services').innerHTML = '<div>'+data['age']+' Years</div><div style=" text-transform: capitalize;">'+data['city'] +', '+ data['state']+'</div><div>'+JSON.parse(data['services'])[0]+'</div>';
                 images = JSON.parse(data['images']);
                 im = '';
                 images.forEach((img, i)=>{
