@@ -868,6 +868,11 @@ if (isset($_GET['cty'])) {
             
             })
         }
+
+        function close_the_story(){
+            document.querySelector('.story').style.display='none'
+        }
+
     </script>
 
 </body>
