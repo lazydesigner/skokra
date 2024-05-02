@@ -859,7 +859,7 @@ if (isset($_GET['cty'])) {
                 images = JSON.parse(data['images']);
                 im = '';
                 images.forEach((img, i)=>{
-                    im += '<div class="swiper-slide"><img src="'+img+'" width="100%" height="100%" alt="Skokra Calll girls ad Agency"></div>'
+                    im += '<div class="swiper-slide"><img src="https://cdn.skokra.com/secure-images/'+img+'" width="100%" height="100%" alt="Skokra Calll girls ad Agency"></div>'
                     if(i == 3){
                         return true;
                     }
