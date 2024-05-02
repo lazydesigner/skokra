@@ -774,23 +774,13 @@ if (isset($_GET['cty'])) {
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit incidunt reprehenderit illum dolores voluptatem ipsam nostrum dolorem fugiat facilis omnis.</p>
                 </div>
                 <div class="story-services">
-                    <div>Call Girl</div>
                 </div>
             </div>
             <div class="story-indecator">
-            <!-- <div class="swiper-pagination"></div>
-                <div class="itdecator ind">
-                    <div></div>
-                </div>
-                <div class="itdecator ind2">
-                    <div></div>
-                </div>
-                <div class="itdecator ind3">
-                    <div></div>
-                </div> -->
             </div>
             <div class="story-img-div">
                 <div class="swiper mySwiper">
+                    <div class="swiper-pagination"></div>
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">Slide 1</div>
                         <div class="swiper-slide">Slide 2</div>
@@ -798,7 +788,6 @@ if (isset($_GET['cty'])) {
                     </div>
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination"></div>
                 </div>
             </div>
         </div>
@@ -859,7 +848,14 @@ if (isset($_GET['cty'])) {
                 method:'POST',
                 body:story
             }).then(res=>res.json())
-            .then(data=>console.log(data))
+            .then(data=>{
+                document.querySelector('.story').style.display='flex'
+                document.querySelector('.story-title').innerHTML = '<p>'+data['title']+'</p>'
+                document.querySelector('.story-services').innerHTML = '<div>'+data['age']+' Years</div>';
+                console.log(data)
+            
+            
+            })
         }
     </script>
 
