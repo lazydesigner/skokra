@@ -1,7 +1,7 @@
 <div class="private-area-background" id="private-area-background">
     <div class="private-area">
         <div class="private-area-heading">
-            <strong>Private Area</strong>
+            <strong>Personal Space</strong>
             <div id="cloase-the-private-area">X</div>
         </div>
         <div class="private-area-body">
