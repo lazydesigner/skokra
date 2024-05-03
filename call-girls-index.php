@@ -463,9 +463,10 @@ if (isset($_GET['cty'])) {
         }
         .ad-blockdd {
     width: 100%;
-    max-height: auto;
+    max-height: fit-content;
     flex-wrap: wrap;}
-    .ad-image-block{height: 200px;}
+    .ad-image-block{height: 200px;width: 100%;}
+    .ad-detail-block{width: 100%;}
     .ad-image-block img {
     object-fit: cover;
     object-position: top;
