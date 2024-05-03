@@ -271,14 +271,14 @@ class Get_User_Details
         $query->execute([$start, $end, 1]);
         if ($query->rowCount() > 0) {
             while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-                if ($row['n_d_a_s_c'] == 1 || $row['n_d_a_s_c'] < 1) {
-                    $update_q = $con->prepare("UPDATE profiles_ad SET top_ad = 0, supertop_ad = 0, n_t_a_s_c_f = 0, n_d_a_s_c = 0 WHERE post_id = ?");
-                    $update_q->execute([$row['post_id']]);
-                } else {
-                    $new_date = (int)$row['n_d_a_s_c'] - 1;
-                    $update_q2 = $con->prepare("UPDATE profiles_ad SET n_d_a_s_c = ? WHERE post_id = ?");
-                    $update_q2->execute([$new_date, $row['post_id']]);
-                }
+                // if ($row['n_d_a_s_c'] == 1 || $row['n_d_a_s_c'] < 1) {
+                //     $update_q = $con->prepare("UPDATE profiles_ad SET top_ad = 0, supertop_ad = 0, n_t_a_s_c_f = 0, n_d_a_s_c = 0 WHERE post_id = ?");
+                //     $update_q->execute([$row['post_id']]);
+                // } else {
+                //     $new_date = (int)$row['n_d_a_s_c'] - 1;
+                //     $update_q2 = $con->prepare("UPDATE profiles_ad SET n_d_a_s_c = ? WHERE post_id = ?");
+                //     $update_q2->execute([$new_date, $row['post_id']]);
+                // }
                 $results[] = $row;
             }
             if (!empty($results)) {
