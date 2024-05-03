@@ -500,11 +500,11 @@ if (isset($_GET['cty'])) {
 
     .ad-image-block{width: 32%;}
     .ad-detail-block{width: 68%;}
-    .ad-contact-button{display: none;}
+    /* .ad-contact-button{display: none;} */
     .skokra-ad-title{font-size: 1.2rem;}
     .ad-details p {font-size: .9rem;
     line-height: 19px;}
-    .multiline-ellipsis {-webkit-line-clamp: 4;}
+    .multiline-ellipsis {-webkit-line-clamp: 3;}
     .multiline-ellipsis1 {-webkit-line-clamp: 2; }
 }
    
