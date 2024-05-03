@@ -8,6 +8,9 @@ include '../backend/user_task.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+// Cron JOb Time 06:29 am
+// wget -O /dev/null https://in.skokra.com/cron/cron-two.php
+
 require '../phpMailer/src/Exception.php';
 require '../phpMailer/src/PHPMailer.php';
 require '../phpMailer/src/SMTP.php';

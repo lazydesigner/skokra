@@ -4,6 +4,8 @@ $login_page = 'yes';
 include '../routes.php';
 include '../backend/user_task.php';
 
+// Cron JOb Time 09:29 am
+// wget -O /dev/null https://in.skokra.com/cron/cron-three.php
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;

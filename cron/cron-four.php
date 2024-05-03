@@ -5,6 +5,9 @@ include '../routes.php';
 include '../backend/user_task.php';
 
 
+// Cron JOb Time 12:29 pm
+// wget -O /dev/null https://in.skokra.com/cron/cron-four.php
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
