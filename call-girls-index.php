@@ -470,6 +470,19 @@ if (isset($_GET['cty'])) {
     .ad-image-block img {
     object-fit: cover;
     object-position: top;
+
+        /* TOP ADS CSS */
+    .topcss .ad-image-block{height: 200px;width: 40%;}
+    .topcss .ad-detail-block{width: 60%;}
+    .topcss .ad-contact-button{display: none;}
+    .topcss .skokra-ad-title{font-size: .9rem;}
+    .topcss .ad-details p {
+    font-size: .8rem;
+    line-height: 17px;}
+    .topcss .multiline-ellipsis {-webkit-line-clamp: 4;}
+    .topcss .multiline-ellipsis1 {-webkit-line-clamp: 2; }
+
+
 }
 .page-detail-and-information .skokra-breadcrumb {
     padding: 5% 5px;
@@ -483,9 +496,17 @@ if (isset($_GET['cty'])) {
 }
 @media (min-width:550px) and (max-width:1200px) {
     .story-div{width: 65%;}
-    .story-items {
-            width: 22%;
-        }
+    .story-items {width: 22%;}
+
+    .ad-image-block{width: 25%;}
+    .ad-detail-block{width: 75%;}
+    .ad-contact-button{display: none;}
+    .skokra-ad-title{font-size: 1.2rem;}
+    .ad-details p {
+    font-size: 1rem;
+    line-height: 20px;}
+    .multiline-ellipsis {-webkit-line-clamp: 4;}
+    .multiline-ellipsis1 {-webkit-line-clamp: 2; }
 }
    
    </style>
@@ -628,7 +649,7 @@ if (isset($_GET['cty'])) {
         <?php }
         } ?>
     </div>
-    <div class="container">
+    <div class="container topcss">
         <?php
         if (count($toprows) != 0) {
             foreach ($toprows[0] as $toprow) {
@@ -696,7 +717,7 @@ if (isset($_GET['cty'])) {
         <?php }
         } ?>
     </div>
-    <div class="container">
+    <div class="container  topcss">
         <?php
         if (count($normalAds) != 0) {
             foreach ($normalAds[0] as $normalAd) {
