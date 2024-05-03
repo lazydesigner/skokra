@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+
+if(isset($_GET['post_id'])){
+    echo '<script>alert("Continous Payment Failer is Detected ! Please Contact Our Executive to buy Tokens")</script>';
+    // header('Location:' . get_url() . 'u/post-promote/' . $_GET['post_id']);
+}
+
 include '../routes.php';
 include '../backend/user_task.php';
 

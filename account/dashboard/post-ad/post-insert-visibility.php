@@ -157,7 +157,8 @@ if (isset($_POST['next-step'])) {
             header('Location:' . get_url() . 'u/post-finish/' . $_GET['post_id']);
             exit;
         } else {
-            echo '<script>alert("Something Went Wrong! Please Try Later")</script>';
+            header('Location:' . get_url() . 'u/account/tokens/' . $_GET['post_id']);
+            exit;
         }
     } else {
         $fields = [];
@@ -303,7 +304,6 @@ if (isset($_POST['next-step'])) {
                                         <?php } else { ?>
                                             <small>12 a.m - 9 a.m</small>
                                         <?php } ?>
-
                                     </div>
                                 </div>
                                 <div class="upgrade-to-supertop">

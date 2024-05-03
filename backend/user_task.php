@@ -399,6 +399,12 @@ class Get_User_Details
         if ($query_customer_code->execute([$_SESSION['email']])) {
             $res = $query_customer_code->fetch(PDO::FETCH_ASSOC);
         }
+
+        if ((int)$res['total_token_left'] <= $token) {
+            return false;
+            exit();
+        }
+
         if ($purpose == 'negative') {
 
             if ((int)$res['total_token_left'] <= 0) {

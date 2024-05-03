@@ -28,6 +28,7 @@ ReWriteRule ^u/post-promote/([0-9a-z\-]+)([/]?)$ account/dashboard/post-ad/post-
 ReWriteRule ^u/post-finish/([0-9a-z\-]+)([/]?)$ account/dashboard/post-ad/post-finish.php?post_id=$1 [NC,L]
 ReWriteRule ^u/post-manager/([0-9a-z\-]+)([/]?)$ account/dashboard/post-ad/post-manager.php?post_id=$1 [NC,L]
 ReWriteRule ^u/activity-center([/]?)$ account/activity-center.php [NC,L]
+ReWriteRule ^u/account/tokens/([0-9a-z\-]+)([/]?)$ account/buy-tokens.php?post_id=$1 [NC,L]
 ReWriteRule ^u/account/tokens([/]?)$ account/buy-tokens.php [NC,L]
 ReWriteRule ^u/order-checkout/([0-9a-z\-]+)([/]?)$ account/order-checkout.php?post_id=$1 [NC,L]
 #https://www.skokka.in/u/order-checkout/6622691bef2e2620478efcbe/?renew=1
