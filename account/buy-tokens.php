@@ -92,7 +92,7 @@ $rows = Get_User_Details::Price_plan();
                 <?php foreach ($rows[0] as $row) { ?>
                     <div class="price-items">
                         <div><b><?= $row['number_of_credits'] + $row['free_tokens'] ?> Tokens</b> <br>
-                        <?php if($row['free_tokens'] != 0){ ?><b><?= $row['number_of_credits'] .'+'. $row['free_tokens'] ?></b><?php }?>
+                        <?php if($row['free_tokens'] != 0){ ?><b><?= $row['number_of_credits'] .'+'. $row['free_tokens'].' Free' ?></b><?php }?>
                         </div>
                         <div> <?php if($row['free_tokens'] != 0){ ?><p style="text-decoration:line-through;color:grey"><?="Rs ".($row['number_of_credits'] + $row['free_tokens'])*$row['price_per_credit'] ?></p><?php }?>
                        <p style="font-weight: bold;" id="total"><?="Rs ".($row['number_of_credits'])*$row['price_per_credit'] ?></p></div>

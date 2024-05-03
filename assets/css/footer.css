@@ -82,7 +82,8 @@ a[aria-label="instagram"],a[aria-label="facebook"],a[aria-label="twitter"]{
    position: fixed;
    inset: 0;
     display: none;
-    place-items: center;
+    /* align-items: self-start;
+    justify-content: center; */
     background-color: rgba(0, 0, 0, 0.608);
 }
 .private-area{
@@ -92,9 +93,26 @@ a[aria-label="instagram"],a[aria-label="facebook"],a[aria-label="twitter"]{
     border-radius: 5px;    
     display: block;
     overflow: hidden;
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 1;
 }
+
+.private_animation{
+    -webkit-animation: slidedown .4s ease-in-out;
+    animation: slidedown .4s ease-in-out;
+}
+@-webkit-keyframes slidedown {
+    0% {top: 40%;}
+    100% {top: 50%!important;}
+}
+@keyframes slidedown {
+    0% {top: 40%;}
+    100% {top: 50%!important;}
+}
+
 .private-area-heading{
     width: 100%;
     height: 15%;

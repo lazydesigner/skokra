@@ -355,6 +355,139 @@ if (isset($_GET['cty'])) {
             /* let the text wrap preserving spaces */
         }
     </style>
+        <style>
+        .story {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .8);
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .story-info {
+            padding: 2%;
+        }
+
+        .story-div {
+            width: 50%;
+            height: 90%;
+            background-color: black;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .story-title p {
+            color: white;
+            margin: 0;
+        }
+
+        .story-services {
+            margin-top: 1%;
+            display: flex;
+            gap: 5px;
+        }
+
+        .story-services div {
+            background-color: #0060B0;
+            color: white;
+            border-radius: 10px;
+            font-weight: 600;
+            padding: 1% 3%;
+            width: fit-content;
+        }
+
+        .story-indecator {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5px;
+        }
+
+        .story-img-div {
+            width: 100%;
+            height: 77.5%;
+            margin-top: 2%;
+            /* border: 1px solid #0060B0;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(100%, 1fr)); */
+            position: relative;
+            /* overflow: hidden; */
+        }
+
+        .swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .swiper-pagination-bullet{
+        width: 30%;
+        height: 5px;
+        border-radius: 10px;
+       
+        /* display: inline; */
+    }
+    .close_the_story{position: absolute;width: 50px;height: 50px;border-radius: 50%;display: grid;place-items: center;background-color: white;color: black;right: -40px;top: 10px;}
+    .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal{bottom: var(--swiper-pagination-bottom, auto);}
+   
+    @media (min-width:320px) and (max-width:550px) {
+        .story-div{width: 90%;}
+        .close_the_story {
+            top: -20px;
+            right: -10px;
+            width: 35px;
+            height: 35px;
+        }
+        .story-items {
+            width: 40%;
+        }
+        .ad-blockdd {
+    width: 100%;
+    max-height: auto;
+    flex-wrap: wrap;}
+    .ad-image-block{height: 200px;}
+    .ad-image-block img {
+    object-fit: cover;
+    object-position: top;
+}
+.page-detail-and-information .skokra-breadcrumb {
+    padding: 5% 5px;
+    font-size: x-small;
+}
+
+
+
+
+
+}
+@media (min-width:550px) and (max-width:1200px) {
+    .story-div{width: 65%;}
+    .story-items {
+            width: 22%;
+        }
+}
+   
+   </style>
 </head>
 
 <body>
@@ -662,101 +795,7 @@ if (isset($_GET['cty'])) {
     <div class="container service-category">
         <a href="<?= get_url() ?>transsexual">Transsexual</a>
     </div>
-    <style>
-        .story {
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, .8);
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            display: none;
-            align-items: center;
-            justify-content: center;
-        }
 
-        .story-info {
-            padding: 2%;
-        }
-
-        .story-div {
-            width: 50%;
-            height: 90%;
-            background-color: black;
-            border-radius: 5px;
-            position: relative;
-        }
-
-        .story-title p {
-            color: white;
-            margin: 0;
-        }
-
-        .story-services {
-            margin-top: 1%;
-            display: flex;
-            gap: 5px;
-        }
-
-        .story-services div {
-            background-color: #0060B0;
-            color: white;
-            border-radius: 10px;
-            font-weight: 600;
-            padding: 1% 3%;
-            width: fit-content;
-        }
-
-        .story-indecator {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 5px;
-        }
-
-        .story-img-div {
-            width: 100%;
-            height: 77.5%;
-            margin-top: 2%;
-            /* border: 1px solid #0060B0;
-            display: grid;
-            grid-template-columns: repeat(3, minmax(100%, 1fr)); */
-            position: relative;
-            /* overflow: hidden; */
-        }
-
-        .swiper {
-      width: 100%;
-      height: 100%;
-    }
-
-    .swiper-slide {
-      text-align: center;
-      font-size: 18px;
-      background: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .swiper-slide img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-    .swiper-pagination-bullet{
-        width: 30%;
-        height: 5px;
-        border-radius: 10px;
-       
-        /* display: inline; */
-    }
-    .close_the_story{position: absolute;width: 50px;height: 50px;border-radius: 50%;display: grid;place-items: center;background-color: white;color: black;right: -40px;top: 10px;}
-    .swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal{bottom: var(--swiper-pagination-bottom, auto);}
-    </style>
 
     <div class="story" id="story">
         <div class="story-div">

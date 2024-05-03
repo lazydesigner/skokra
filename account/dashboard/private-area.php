@@ -40,15 +40,18 @@
     document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('open-private-area').addEventListener('click', () => {
             document.getElementById('private-area-background').style.display = 'grid'
+            document.querySelector('.private-area').classList.toggle('private_animation')
         })
         document.getElementById('cloase-the-private-area').addEventListener('click', () => {
             document.getElementById('private-area-background').style.display = 'none'
+            document.querySelector('.private-area').classList.toggle('private_animation')
         })
         document.querySelector('.private-area').addEventListener('click', (e) => {
             e.stopPropagation()
         })
         document.getElementById('private-area-background').addEventListener('click', () => {
-            document.getElementById('private-area-background').style.display = 'none'
+            document.getElementById('private-area-background').style.display = 'none' 
+            document.querySelector('.private-area').classList.toggle('private_animation')
         })
     })
 </script>
