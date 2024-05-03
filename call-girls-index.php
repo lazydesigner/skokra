@@ -494,17 +494,16 @@ if (isset($_GET['cty'])) {
 
 
 }
-@media (min-width:550px) and (max-width:1200px) {
+@media (min-width:550px) and (max-width:900px) {
     .story-div{width: 65%;}
     .story-items {width: 22%;}
 
-    .ad-image-block{width: 25%;}
-    .ad-detail-block{width: 75%;}
+    .ad-image-block{width: 32%;}
+    .ad-detail-block{width: 68%;}
     .ad-contact-button{display: none;}
     .skokra-ad-title{font-size: 1.2rem;}
-    .ad-details p {
-    font-size: 1rem;
-    line-height: 20px;}
+    .ad-details p {font-size: .9rem;
+    line-height: 19px;}
     .multiline-ellipsis {-webkit-line-clamp: 4;}
     .multiline-ellipsis1 {-webkit-line-clamp: 2; }
 }
