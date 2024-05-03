@@ -80,6 +80,10 @@ $rows = Get_User_Details::Price_plan();
             text-align: center;
             margin: 3% 0;
         }
+        @media (min-width:320px) and (max-width:550px) {
+            .price-grid,.payment-btn{width: 100%;}
+            .price-flex{flex-wrap: wrap;}
+        }
     </style>
 </head>
 
