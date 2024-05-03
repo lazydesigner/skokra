@@ -270,7 +270,7 @@ if (isset($stopthefurtherprocess)) {
                     <div class="ad-expiry">
                         <p>Expiry date: <b><?=$result['ad_expiry_date'] ?></b></p>
                         <small>Posted by: <b><?=$result['email'] ?></b></small><br>
-                        <div><a href="">View your ad online <i class="ri-arrow-right-s-fill"></i></a></div>
+                        <div><a href="<?=get_url().strtolower($url) ?>">View your ad online <i class="ri-arrow-right-s-fill"></i></a></div>
                     </div>
                 </div>
                 <div class="ad-flex-col">
@@ -279,9 +279,10 @@ if (isset($stopthefurtherprocess)) {
             </div>
             <h2 style="font-size: small;margin:1% 0 1.5% 0">Share Your Ad</h2>
             <div class="share-flex">
-                <a href=""><i class="ri-file-copy-line"></i> Copy Link</a>
-                <a href=""><i class="ri-whatsapp-line"></i> Whatsapp</a>
-                <a href=""><i class="ri-mail-line"></i> Email</a>
+                <div id="textToCopy" style="display: none;"><?=get_url().strtolower($url) ?></div>
+                <a onclick="copyText()"><i class="ri-file-copy-line"></i> Copy Link</a>
+                <a href="whatsapp://send?text=Check%20out%20this%20awesome%20website:%20<?=get_url().strtolower($url) ?>" target="_blank"><i class="ri-whatsapp-line"></i> Whatsapp</a>
+                <!-- <a href=""><i class="ri-mail-line"></i> Email</a> -->
             </div>
         </div>
     </div>
@@ -415,6 +416,28 @@ if (isset($stopthefurtherprocess)) {
         })
         
     })
+
+function copyText() {
+  // Select the text to copy
+  var texttocopy = document.getElementById("textToCopy");
+  
+  // Create a temporary input element
+  var dummyinput = document.createElement("textarea");
+  dummyinput.value = text.innerText;
+  document.body.appendChild(dummyinput);
+  
+  // Select the text within the input element
+  dummyinput.select();
+  
+  // Copy the selected text
+  document.execCommand("copy");
+  
+  // Remove the temporary input element
+  document.body.removeChild(dummyinput);
+  
+  // Alert the user that the text has been copied
+  alert("Text copied!");
+}
 </script>
 </body>
 
