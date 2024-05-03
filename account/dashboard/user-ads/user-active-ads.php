@@ -51,6 +51,7 @@ function timeto($timeString)
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/account/common.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/account/user-ads.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/footer.css">
+    <link rel="stylesheet" href="<?= get_url() ?>assets/css/respontomobile.css" defer>
     <meta name="robots" content="noindex, nofollow">
     <title>SKOKRA - User Dashboard</title>
     <style>

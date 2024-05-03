@@ -18,6 +18,7 @@ $rows = Get_User_Details::Price_plan();
     <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/account/common.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/footer.css" defer>
+    <link rel="stylesheet" href="<?= get_url() ?>assets/css/respontomobile.css" defer>
     <title>Skokra - Manage your ads</title>
     <style>
         .price-btn {
