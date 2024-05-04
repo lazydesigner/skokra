@@ -470,6 +470,7 @@ if (isset($_GET['cty'])) {
     .ad-image-block img {
     object-fit: cover;
     object-position: top;
+}
 
         /* TOP ADS CSS */
     .topcss > .ad-image-block{height: 200px;width: 40%;}
@@ -483,7 +484,6 @@ if (isset($_GET['cty'])) {
     .topcss > .multiline-ellipsis1 {-webkit-line-clamp: 2; }
 
 
-}
 .page-detail-and-information .skokra-breadcrumb {
     padding: 5% 5px;
     font-size: x-small;
