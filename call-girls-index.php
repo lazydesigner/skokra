@@ -168,7 +168,7 @@ if (isset($_GET['cty'])) {
         }
 
         .ad-image-block {
-            width: 24%;
+            width: 22%;
             height: 100%;
             position: relative;
             background-color: lightblue;
@@ -194,7 +194,7 @@ if (isset($_GET['cty'])) {
         }
 
         .ad-detail-block {
-            width: 76%;
+            width: 78%;
             /* width: 100%; */
             height: 100%;
             padding: 1%;
