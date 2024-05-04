@@ -270,7 +270,7 @@ class Get_User_Details
         // $query = $con->prepare("SELECT * FROM profiles_ad WHERE top_ad = 1 AND starting_time >= CAST(? AS TIME) AND end_time <= CAST(? AS TIME) AND `ad_complete` = ?");
         $query->execute([$start, $end, 1]);
         if ($query->rowCount() > 0) {
-            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+            while ($row = $query->fetch(PDO::FETCH_ASSOC)) { 
                 if ($row['n_d_a_s_c'] == 1 || $row['n_d_a_s_c'] < 1) {
                     $update_q = $con->prepare("UPDATE profiles_ad SET top_ad = 1, supertop_ad = 1, n_t_a_s_c_f = 0, n_d_a_s_c = 0 WHERE post_id = ?");
                     $update_q->execute([$row['post_id']]);
@@ -348,12 +348,19 @@ class Get_User_Details
             $InsertSchedule->execute([$adid, $scheduledtime]);
             if ($InsertSchedule) {
                 if ($InsertSchedule->rowCount() > 0) {
-                    return true;
+                    $a = 'yes';
                 } else {
-                    return false;
+                    $a = 'no';
                 }
             }
-        }}
+        }
+        if($a = 'yes'){
+            return true;
+        }else{
+            return false;
+        }
+    
+    }
     }
 
     public static function Get_Full_Paused_ad_detail()
