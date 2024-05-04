@@ -74,7 +74,7 @@ if (isset($_GET['cty'])) {
     <meta name="description" content="">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" async>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" defer>
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" async/>
 
@@ -641,7 +641,7 @@ if (isset($_GET['cty'])) {
                                                                         $imageData = @getimagesize($row['preview_image']);
                                                                         if ($imageData !== false) { ?>
                         <div class="story-items" onclick="showStory('<?= $row['post_id'] ?>')">
-                            <img src="<?= $row['preview_image'] ?>" width='100%' height='100%' alt="">
+                            <img src="<?= $row['preview_image'] ?>" loading="lazy" width='100%' height='100%' alt="">
                             <div>
                                 <p><?= $row['title'] ?></p>
                             </div>
@@ -672,7 +672,7 @@ if (isset($_GET['cty'])) {
                                                                         if ($imageData !== false) { ?><div class="ad-image-block">
                             <?php if ($row['preview_image'] != null) {
                                                                                 $imageData2 = @getimagesize($row['preview_image']);
-                                                                                if ($imageData2 !== false) { ?> <img src="<?= $row['preview_image'] ?>" alt=""><?php }
+                                                                                if ($imageData2 !== false) { ?> <img src="<?= $row['preview_image'] ?>" loading="lazy" width="100%" height="100%" alt=""><?php }
                                                                                                                                                     } ?>
                             <div class="ad-image-count"><i class="ri-camera-3-line"></i><?= count(json_decode($row['images'], true)) ?></div>
                         </div><?php }
@@ -741,7 +741,7 @@ if (isset($_GET['cty'])) {
                                                                     if ($imageData !== false) { ?><div class="ad-image-block">
                         <?php if ($toprow['preview_image'] != null) {
                                                                             $imageData2 = @getimagesize($toprow['preview_image']);
-                                                                            if ($imageData2 !== false) { ?> <img src="<?= $toprow['preview_image'] ?>" alt=""><?php }
+                                                                            if ($imageData2 !== false) { ?> <img src="<?= $toprow['preview_image'] ?>" loading="lazy" width="100%" height="100%" alt=""><?php }
                                                                                                                                                         } ?>
                         <div class="ad-image-count"><i class="ri-camera-3-line"></i><?= count(json_decode($toprow['images']), true) ?></div>
                     </div><?php }
@@ -809,7 +809,7 @@ if (isset($_GET['cty'])) {
                                                                         if ($imageData !== false) { ?><div class="ad-image-block">
                         <?php if ($normalAd['preview_image'] != null) {
                                                                                 $imageData2 = @getimagesize($normalAd['preview_image']);
-                                                                                if ($imageData2 !== false) { ?> <img src="<?= $normalAd['preview_image'] ?>" alt=""><?php }
+                                                                                if ($imageData2 !== false) { ?> <img src="<?= $normalAd['preview_image'] ?>" loading="lazy" width="100%" height="100%" alt=""><?php }
                                                                                                                                                             } ?>
                         <div class="ad-image-count"><i class="ri-camera-3-line"></i><?= count(json_decode($normalAd['images'], true)) ?></div>
                     </div><?php }
