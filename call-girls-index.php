@@ -521,16 +521,16 @@ if (isset($_GET['cty'])) {
                 font-size: .9rem;
             }
 
-            .topcss>.ad-details p {
+            .topcss .ad-details p {
                 font-size: .8rem;
                 line-height: 17px;
             }
 
-            .topcss>.multiline-ellipsis {
+            .topcss .multiline-ellipsis {
                 -webkit-line-clamp: 4;
             }
 
-            .topcss>.multiline-ellipsis1 {
+            .topcss .multiline-ellipsis1 {
                 -webkit-line-clamp: 2;
             }
 
