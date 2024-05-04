@@ -56,7 +56,7 @@ foreach($rows as $row){
 <header>
     <div class="container">
         <nav class="nav">
-            <a href="<?= get_url() ?>" class="logo"><img src="<?= get_url() ?>assets/images/SKOKRA+LOGO+NEW+(2).webp.png" width="100%" height="100%" alt=""></a>
+            <a href="<?= get_url() ?>" class="logo"><img src="<?= get_url() ?>assets/images/SKOKRA+LOGO+NEW+(2).webp.png" width="100%" height="100%" alt="" aria-label="skokra Ads network"></a>
             <ul>
 
                 <?php if (!isset($_SESSION['email'])) { ?>
@@ -68,7 +68,7 @@ foreach($rows as $row){
                         <div id="open-private-area"><i class="ri-user-star-line"></i><br><small><?= $_SESSION['email'] ?></small></div>
                     </li>
                 <?php } ?>
-                <li><a id="forward-the-link" data-href="<?= get_url() ?>u/post-insert/"><button class="post-your-ad"><span>POST YOUR AD</span><i class="ri-arrow-right-line"></i></button></a></li>
+                <li><a id="forward-the-link" data-href="<?= get_url() ?>u/post-insert/"><button class="post-your-ad" aria-label="POST YOUR AD"><span>POST YOUR AD</span><i class="ri-arrow-right-line"></i></button></a></li>
             </ul>
         </nav>
     </div>
