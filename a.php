@@ -11,6 +11,12 @@ $con = $database->getConnection();
 
 // echo '==============================================';
 
-$a = Get_User_Details::Scheduled_Ad_Time('12:00:00', '15:00:00');
+$a = Get_User_Details::Show_Super_Top_Ads();
 
-print_r($a);
+foreach ($a as $rows) {
+    foreach($rows as $row){
+        print_r($row);
+    echo '<br>==============================================================================<br>';
+    echo $row['post_id'];
+    echo '<br>==============================================================================<br>';
+}}

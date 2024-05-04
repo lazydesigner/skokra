@@ -168,7 +168,7 @@ if (isset($_GET['cty'])) {
         }
 
         .ad-image-block {
-            width: 17%;
+            width: 24%;
             height: 100%;
             position: relative;
             background-color: lightblue;
@@ -194,7 +194,7 @@ if (isset($_GET['cty'])) {
         }
 
         .ad-detail-block {
-            width: 83%;
+            width: 76%;
             /* width: 100%; */
             height: 100%;
             padding: 1%;
@@ -472,15 +472,15 @@ if (isset($_GET['cty'])) {
     object-position: top;
 
         /* TOP ADS CSS */
-    .topcss .ad-image-block{height: 200px;width: 40%;}
-    .topcss .ad-detail-block{width: 60%;}
-    .topcss .ad-contact-button{display: none;}
-    .topcss .skokra-ad-title{font-size: .9rem;}
-    .topcss .ad-details p {
+    .topcss > .ad-image-block{height: 200px;width: 40%;}
+    .topcss > .ad-detail-block{width: 60%;}
+    .topcss > .ad-contact-button{display: none;}
+    .topcss > .skokra-ad-title{font-size: .9rem;}
+    .topcss > .ad-details p {
     font-size: .8rem;
     line-height: 17px;}
-    .topcss .multiline-ellipsis {-webkit-line-clamp: 4;}
-    .topcss .multiline-ellipsis1 {-webkit-line-clamp: 2; }
+    .topcss > .multiline-ellipsis {-webkit-line-clamp: 4;}
+    .topcss > .multiline-ellipsis1 {-webkit-line-clamp: 2; }
 
 
 }
@@ -562,7 +562,7 @@ if (isset($_GET['cty'])) {
             <?php
 
             if (count($superrows) != 0) {
-                foreach ($superrows[0] as $row) { ?>
+                foreach ($superrows as $rows) {foreach($rows as $row){ ?>
                     <?php if ($row['preview_image'] == null) { ?><?php } else {
                                                                     $imageData = @getimagesize($row['preview_image']);
                                                                     if ($imageData !== false) { ?>
@@ -574,7 +574,7 @@ if (isset($_GET['cty'])) {
                     </div>
     <?php }
                                                                 }
-                                                            }
+                                                            }}
                                                         } ?>
         </div>
         <div class="current-date" style="margin-top: 2%;"><small><?php echo strtoupper(date('d F')) ?></small></div>
@@ -582,7 +582,8 @@ if (isset($_GET['cty'])) {
     <div class="container">
         <?php
         if (count($superrows) != 0) {
-            foreach ($superrows[0] as $row) {
+            foreach ($superrows as $rows) {
+                foreach($rows as $row){
                 // $pattern = '/[*%{}()\/|><+=\]\[?.:,:"\'\\\\]/u';
                 $url = preg_replace($pattern, '', $row['title']);
                 $url = str_replace(' ', '-', $url);
@@ -645,7 +646,7 @@ if (isset($_GET['cty'])) {
                 </div>
             </div>
                 </div>
-        <?php }
+        <?php }}
         } ?>
     </div>
     <div class="container topcss">

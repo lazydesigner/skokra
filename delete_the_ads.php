@@ -15,7 +15,7 @@ $currentDate = date('Y-m-d');
 $database = new DatabaseConnection();
 $con = $database->getConnection();
 
-$sql = "SELECT * FROM profiles_ad WHERE STR_TO_DATE(REPLACE(top_ad_expiry_date, '.', ''), '%b %e, %Y - %l:%i %p') < :currentDate";
+$sql = "SELECT * FROM profiles_ad WHERE STR_TO_DATE(REPLACE(top_ad_expiry_date, '.', ''), '%b %e, %Y - %l:%i %p') < :currentDate OR n_d_a_s_c < 1";
 $stmt = $con->prepare($sql);
 $stmt->bindParam(':currentDate', $currentDate);
 $stmt->execute();
@@ -33,6 +33,7 @@ if($stmt->rowCount() > 0){
     echo 'No Result';
 }
 
+// =============================================================================================|
 
 $sql2 = "SELECT * FROM profiles_ad WHERE STR_TO_DATE(ad_expiry_date, '%b %e, %Y') < :currentDate";
 $stmt2 = $con->prepare($sql2);
@@ -49,6 +50,25 @@ if($stmt2->rowCount() > 0){
 }else{
     echo 'Not Found';
 }
+
+// =============================================================================================|
+
+// $sql3 = "SELECT * FROM profiles_ad WHERE n_d_a_s_c < 1";
+// $stmt3 = $con->prepare($sql3);
+// $stmt3->bindParam(':currentDate', $currentDate);
+// $stmt3->execute();
+
+// if($stmt3->rowCount() > 0){
+//     while($row3 = $stmt3->fetchAll(PDO::FETCH_ASSOC)){
+//         foreach( $row3 as $key3 => $val3 ) {
+//             $update_q3 = $con->prepare("UPDATE profiles_ad SET top_ad = 0, supertop_ad = 0, n_t_a_s_c_f = 0, n_d_a_s_c = 0 WHERE post_id = ?");
+//             $update_q3->execute([$row3[$key3]['post_id']]);
+//         }
+//     }
+// }else{
+//     echo 'Not Found';
+// }
+
 
 
 ?>
