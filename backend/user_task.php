@@ -266,7 +266,7 @@ class Get_User_Details
         $database = new DatabaseConnection();
         $con = $database->getConnection();
 
-        $query = $con->prepare("SELECT * FROM profiles_ad WHERE top_ad = 1 AND starting_time >= ? AND end_time <= ? AND `ad_complete` = ?");
+        $query = $con->prepare("SELECT * FROM profiles_ad WHERE top_ad = 1 AND n_d_a_s_c > 0 AND starting_time >= ? AND end_time <= ? AND `ad_complete` = ?");
         // $query = $con->prepare("SELECT * FROM profiles_ad WHERE top_ad = 1 AND starting_time >= CAST(? AS TIME) AND end_time <= CAST(? AS TIME) AND `ad_complete` = ?");
         $query->execute([$start, $end, 1]);
         if ($query->rowCount() > 0) {
@@ -279,6 +279,7 @@ class Get_User_Details
                     $update_q2 = $con->prepare("UPDATE profiles_ad SET n_d_a_s_c = ? WHERE post_id = ?");
                     $update_q2->execute([$new_date, $row['post_id']]);
                 }
+
                 $results[] = $row;
             }
             if (!empty($results)) {
