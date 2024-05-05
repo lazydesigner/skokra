@@ -728,7 +728,8 @@ if (isset($_GET['cty'])) {
     <div class="container topcss">
         <?php
         if (count($toprows) != 0) {
-            foreach ($toprows[0] as $toprow) {
+            foreach ($toprows as $toprows) {
+                foreach($toprows as $toprow){
                 // $pattern = '/[*%{}()\/|><+=\]\[?.:,:"\'\\\\]/u';
                 $url = preg_replace($pattern, '', $toprow['title']);
                 $url = str_replace(' ', '-', $url);
@@ -790,7 +791,7 @@ if (isset($_GET['cty'])) {
                 </div>
             </div>
                 </div>
-        <?php }
+        <?php }}
         } ?>
     </div>
     <div class="container  topcss">
