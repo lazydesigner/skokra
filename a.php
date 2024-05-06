@@ -24,16 +24,14 @@ $con = $database->getConnection();
 // ) AS subquery
 // ORDER BY scheduled_time ASC;
 
-$q = $con->prepare("SELECT DISTINCT ad_id
-FROM (
-    SELECT ad_id,
-        CASE
-            WHEN scheduled_time > NOW() THEN 0  -- Future ads
-            ELSE 1  -- Passed ads
-        END AS scheduled_time
-    FROM ads_slot_time
-) AS subquery
-ORDER BY scheduled_time ASC
+$q = $con->prepare("SELECT *
+FROM ads_slot_time
+ORDER BY 
+    CASE
+        WHEN scheduled_time > NOW() THEN 0  -- Future ads
+        ELSE 1  -- Passed ads
+    END,
+    scheduled_time;
 ");
 
 $q->execute();

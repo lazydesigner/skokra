@@ -374,12 +374,14 @@ $close_verification_btn = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" v
                         <input type="number" maxlength="2" minlength="2" min="18" name="age" id="age">
                     </div>
                     <div class="form-group">
-                        <label for="city">*Title</label>
+                        <label for="city">*Title <span id="title-count"></span></label>
                         <textarea name="title" id="title" cols="30" minlength="100" maxlength="400" rows="5" placeholder="Give your ad a good title"></textarea>
+                        <small>(10 - 20 Words)</small>
                     </div>
                     <div class="form-group">
-                        <label for="city">*Description</label>
+                        <label for="city">*Description <span id="description-count"></span></label>
                         <textarea name="description" id="description" minlength="100" maxlength="1000" cols="30" rows="8" placeholder="Use this space to describe yourself, your body, your skills and what you like..."></textarea>
+                        <small>(20 - 600 Words)</small>                    
                     </div>
                 </div>
             </div>
@@ -782,6 +784,14 @@ $close_verification_btn = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" v
     <?php include '../private-area.php' ?>
 
     <script>
+        document.getElementById('title').addEventListener('keyup',()=>{
+            val = document.getElementById('title').value.trim().split(/\s+/).length
+            document.getElementById('title-count').innerHTML = '('+val+' Words)';
+        })
+        document.getElementById('description').addEventListener('keyup',()=>{
+            val = document.getElementById('description').value.trim().split(/\s+/).length
+            document.getElementById('description-count').innerHTML = '('+val+' Words)';
+        })
         document.getElementById('next-step').addEventListener("click", function(e) {
             e.preventDefault()
             category = document.getElementById('category');
