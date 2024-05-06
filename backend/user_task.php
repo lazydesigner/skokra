@@ -774,15 +774,14 @@ class Get_User_Details
         // $superquery  = $con->prepare("SELECT * FROM profiles_ad WHERE top_ad = 1 AND supertop_ad = 1 AND ad_complete = 1");
         $superquery  = $con->prepare("SELECT DISTINCT ad_id
         FROM (
-            SELECT *,
+            SELECT ad_id,
                 CASE
-                    WHEN scheduled_time <= NOW() THEN 1  -- Ads already scheduled and passed
-                    ELSE 0  -- Ads scheduled in the future
-                END AS passed,
-                ABS(TIMESTAMPDIFF(SECOND, NOW(), scheduled_time)) AS time_diff
+                    WHEN scheduled_time > NOW() THEN 0  -- Future ads
+                    ELSE 1  -- Passed ads
+                END AS scheduled_time
             FROM ads_slot_time
         ) AS subquery
-        ORDER BY passed ASC, time_diff ASC");
+        ORDER BY scheduled_time ASC");
         $superquery->execute();
         if ($superquery->rowCount() > 0) {
             while ($row = $superquery->fetch(PDO::FETCH_ASSOC)) {
@@ -813,15 +812,14 @@ class Get_User_Details
         // $superquery  = $con->prepare("SELECT * FROM profiles_ad WHERE top_ad = 1 AND supertop_ad = 0 AND ad_complete = 1");
         $superquery  = $con->prepare("SELECT DISTINCT ad_id
         FROM (
-            SELECT *,
+            SELECT ad_id,
                 CASE
-                    WHEN scheduled_time <= NOW() THEN 1  -- Ads already scheduled and passed
-                    ELSE 0  -- Ads scheduled in the future
-                END AS passed,
-                ABS(TIMESTAMPDIFF(SECOND, NOW(), scheduled_time)) AS time_diff
+                    WHEN scheduled_time > NOW() THEN 0  -- Future ads
+                    ELSE 1  -- Passed ads
+                END AS scheduled_time
             FROM ads_slot_time
         ) AS subquery
-        ORDER BY passed ASC, time_diff ASC");
+        ORDER BY scheduled_time ASC");
         $superquery->execute();
         if ($superquery->rowCount() > 0) {
             while ($row = $superquery->fetch(PDO::FETCH_ASSOC)) {

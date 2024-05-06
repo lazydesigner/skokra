@@ -11,12 +11,36 @@ $con = $database->getConnection();
 
 // echo '==============================================';
 
-$a = Get_User_Details::Show_Super_Top_Ads();
+// $a = Get_User_Details::Show_Super_Top_Ads();
 
-foreach ($a as $rows) {
-    foreach($rows as $row){
-        print_r($row);
-    echo '<br>==============================================================================<br>';
-    echo $row['post_id'];
-    echo '<br>==============================================================================<br>';
-}}
+// SELECT DISTINCT ad_id
+// FROM (
+//     SELECT ad_id,
+//         CASE
+//             WHEN scheduled_time > NOW() THEN 0  -- Future ads
+//             ELSE 1  -- Passed ads
+//         END AS scheduled_time
+//     FROM ads_slot_time
+// ) AS subquery
+// ORDER BY scheduled_time ASC;
+
+$q = $con->prepare("SELECT DISTINCT ad_id
+FROM (
+    SELECT ad_id,
+        CASE
+            WHEN scheduled_time > NOW() THEN 0  -- Future ads
+            ELSE 1  -- Passed ads
+        END AS scheduled_time
+    FROM ads_slot_time
+) AS subquery
+ORDER BY scheduled_time ASC
+");
+
+$q->execute();
+$result = $q->fetchAll();
+
+echo '<pre>';
+print_r($result);
+echo '</pre>';
+
+?>
