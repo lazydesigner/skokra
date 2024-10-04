@@ -631,7 +631,11 @@ class Get_User_Details
             if (!$duplicate || $duplicate->rowCount() == 0) {
                 return false;
             } else {
-                return true;
+                if($con->affected_rows > 0){
+                    return true;
+                }else{
+                    return false;
+                }
             }
         }
     }
