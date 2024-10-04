@@ -221,8 +221,8 @@ if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empt
                         if (Get_User_Details::checkifitsastateorcity($profilerow['city'])) { ?>
 
                             <li><b><i class="ri-arrow-right-s-line"></i></b></li>
-                            <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" itemprop="item" class="crumb" href="<?= get_url() . strtolower($profilerow['category'] . '/' . str_replace(' ', '-', Get_User_Details::getStateByCity($profilerow['city']))) ?>" title="">
-                                    <div class="skokra-breadcrumb" itemprop="name"><?= ucwords(str_replace('-', ' ', Get_User_Details::getStateByCity($profilerow['city']))) ?></div>
+                            <li itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" itemprop="item" class="crumb" href="<?= get_url() . strtolower($profilerow['category'] . '/' . str_replace(' ', '-', strtolower($profilerow['state']))) ?>" title="">
+                                    <div class="skokra-breadcrumb" itemprop="name"><?= ucwords(str_replace('-', ' ', ucwords($profilerow['state']))) ?></div>
                                 </a>
                                 <meta itemprop="position" content="3">
                             </li>
