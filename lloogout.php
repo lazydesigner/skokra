@@ -1,5 +1,5 @@
 <?php 
-include $_SERVER['DOCUMENT_ROOT'].'/skokra.com/routes.php';
+include $_SERVER['DOCUMENT_ROOT'].'/routes.php';
 
 session_start();
 session_unset();

@@ -37,6 +37,18 @@ function timeto($timeString)
 }
 
 
+
+function remove_emoji($url) {
+    // This regex removes emojis by matching non-alphanumeric and non-ASCII characters
+    $url = preg_replace('/[^\x20-\x7E]/u', '', $url);
+    // Replace multiple consecutive dashes with a single dash
+    $url = preg_replace('/-+/', '-', $url);
+
+    // Trim any leading or trailing dashes
+    return trim($url, '-');
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -175,8 +187,9 @@ function timeto($timeString)
 
     <?php
     foreach ($results as $result) { 
-        $pattern = '/[*%{}()\/|><+=\]\[?.:,:"\'\\\\]/u';
-            $url = preg_replace($pattern,'',$result['title']);    
+        $pattern = '/[*%{}()\/|><+=\]\[?.,:"\'\\\\&;$^@!]/u';
+            $url = preg_replace($pattern,'',$result['title']);  
+            $url = remove_emoji($url);  
         $url = str_replace(' ','-',$url);    
         $url = 'ad/'.$url.'/?x=0723'.$result['post_id'];
         
