@@ -27,7 +27,7 @@ if (Get_User_Details::checkifitsastateorcity($_GET['cty'])) {
 }
 
 
-$pattern = '/[*%{}()\/|><+=\]\[?.:,:"\'\\\\]/u';
+$pattern = '/[*%{}()\/|><+=\]\[?.,:"\'\\\\&;$^@!]/u';
 
 function remove_emoji($url) {
     // This regex removes emojis by matching non-alphanumeric and non-ASCII characters
@@ -649,7 +649,7 @@ if (isset($_GET['cty'])) {
                 foreach ($superrows as $rows) {
                     foreach ($rows as $row) { ?>
                         <?php if ($row['preview_image'] == null) { ?><?php } else {
-                                                                        $imageData = file_exists($row['preview_image']);
+                                                                        $imageData =  @fopen($row['preview_image'],'r');
                                                                         if ($imageData !== false) { ?>
                         <div class="story-items" onclick="showStory('<?= $row['post_id'] ?>')">
                             <img src="<?= $row['preview_image'] ?>" loading="lazy" width='100%' height='100%' alt="">
@@ -680,17 +680,17 @@ if (isset($_GET['cty'])) {
 
                     <div class="ad-blockdd" data-href='<?= get_url() . strtolower($url) ?>'>
                         <?php if ($row['preview_image'] == null) { ?><?php } else {
-                                                                        $imageData = file_exists($row['preview_image']);
+                                                                        $imageData =  @fopen($row['preview_image'],'r');
                                                                         if ($imageData !== false) { ?><div class="ad-image-block">
                             <?php if ($row['preview_image'] != null) {
-                                                                                $imageData2 = file_exists($row['preview_image']);
+                                                                                $imageData2 =  @fopen($row['preview_image'],'r');
                                                                                 if ($imageData2 !== false) { ?> <img src="<?= $row['preview_image'] ?>" loading="lazy" width="100%" height="100%" alt=""><?php }
                                                                                                                                                     } ?>
                             <div class="ad-image-count"><i class="ri-camera-3-line"></i><?= count(json_decode($row['images'], true)) ?></div>
                         </div><?php }
                                                                     } ?>
                 <div class="ad-detail-block" style="<?php if ($row['preview_image'] == null) { ?>width:100%; <?php } else {
-                                                                                                                $imageData = file_exists($row['preview_image']);
+                                                                                                                $imageData =  @fopen($row['preview_image'],'r');
                                                                                                                 if ($imageData === false) { ?>width:100%; <?php }
                                                                                                                                                 } ?>">
                     <div class="ad-detail-category">
@@ -751,17 +751,17 @@ if (isset($_GET['cty'])) {
 
                 <div class="ad-blockdd" data-href='<?= get_url() . strtolower($url) ?>'>
                     <?php if ($toprow['preview_image'] == null) { ?><?php } else {
-                                                                    $imageData = file_exists($toprow['preview_image']);
+                                                                    $imageData =  @fopen($toprow['preview_image'],'r');
                                                                     if ($imageData !== false) { ?><div class="ad-image-block">
                         <?php if ($toprow['preview_image'] != null) {
-                                                                            $imageData2 = file_exists($toprow['preview_image']);
+                                                                            $imageData2 =  @fopen($toprow['preview_image'],'r');
                                                                             if ($imageData2 !== false) { ?> <img src="<?= $toprow['preview_image'] ?>" loading="lazy" width="100%" height="100%" alt=""><?php }
                                                                                                                                                         } ?>
                         <div class="ad-image-count"><i class="ri-camera-3-line"></i><?= count(json_decode($toprow['images']), true) ?></div>
                     </div><?php }
                                                                 } ?>
             <div class="ad-detail-block" style="<?php if ($toprow['preview_image'] == null) { ?>width:100%; <?php } else {
-                                                                                                            $imageData = file_exists($toprow['preview_image']);
+                                                                                                            $imageData =  @fopen($toprow['preview_image'],'r');
                                                                                                             if ($imageData === false) { ?>width:100%; <?php }
                                                                                                                                                 } ?>">
                 <div class="ad-detail-category">
