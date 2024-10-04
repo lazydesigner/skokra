@@ -141,7 +141,7 @@ include './backend/user_task.php';
             <strong>Call Girls</strong>
 
             <div class="ads-cities">
-                <a href="<?=get_url() ?>call-girls/bangalore/"><button>Bangalore</button></a>
+                <a href="<?=get_url() ?>call-girls/bengaluru/"><button>Bangalore</button></a>
                 <a href="<?=get_url() ?>call-girls/hyderabad/"><button>Hyderabad</button></a>
                 <a href="<?=get_url() ?>call-girls/delhi/"><button>Delhi</button></a>
                 <a href="<?=get_url() ?>call-girls/pune/"><button>Pune</button></a>
@@ -153,7 +153,7 @@ include './backend/user_task.php';
             <strong>Massage</strong>
 
             <div class="ads-cities">
-                <a href="<?=get_url() ?>massage/bangalore/"><button>Bangalore</button></a>
+                <a href="<?=get_url() ?>massage/bengaluru/"><button>Bangalore</button></a>
                 <a href="<?=get_url() ?>massage/hyderabad/"><button>Hyderabad</button></a>
                 <a href="<?=get_url() ?>massage/delhi/"><button>Delhi</button></a>
                 <a href="<?=get_url() ?>massage/pune/"><button>Pune</button></a>
@@ -165,7 +165,7 @@ include './backend/user_task.php';
             <strong>Male Escorts</strong>
 
             <div class="ads-cities">
-                <a href="<?=get_url() ?>male-escorts/bangalore/"><button>Bangalore</button></a>
+                <a href="<?=get_url() ?>male-escorts/bengaluru/"><button>Bangalore</button></a>
                 <a href="<?=get_url() ?>male-escorts/hyderabad/"><button>Hyderabad</button></a>
                 <a href="<?=get_url() ?>male-escorts/delhi/"><button>Delhi</button></a>
                 <a href="<?=get_url() ?>male-escorts/pune/"><button>Pune</button></a>
@@ -177,7 +177,7 @@ include './backend/user_task.php';
             <strong>Transsexual</strong>
 
             <div class="ads-cities">
-                <a href="<?=get_url() ?>transsexual/bangalore/"><button>Bangalore</button></a>
+                <a href="<?=get_url() ?>transsexual/bengaluru/"><button>Bangalore</button></a>
                 <a href="<?=get_url() ?>transsexual/hyderabad/"><button>Hyderabad</button></a>
                 <a href="<?=get_url() ?>transsexual/delhi/"><button>Delhi</button></a>
                 <a href="<?=get_url() ?>transsexual/pune/"><button>Pune</button></a>
@@ -189,7 +189,7 @@ include './backend/user_task.php';
             <strong>Dating</strong>
 
             <div class="ads-cities">
-                <a href="<?=get_url() ?>dating/bangalore/"><button>Bangalore</button></a>
+                <a href="<?=get_url() ?>dating/bengaluru/"><button>Bangalore</button></a>
                 <a href="<?=get_url() ?>dating/hyderabad/"><button>Hyderabad</button></a>
                 <a href="<?=get_url() ?>dating/delhi/"><button>Delhi</button></a>
                 <a href="<?=get_url() ?>dating/pune/"><button>Pune</button></a>

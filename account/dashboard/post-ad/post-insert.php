@@ -89,7 +89,7 @@ $close_verification_btn = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" v
             if(Get_User_Details::AdInsert($category, $state, $city, $address, $area, $age, $title, $description, $african_ethnicity, $nationality, $boobs, $hair, $body_type, $services, $attention_to, $place_of_service,  $price, $payment_method, $contact, $_SESSION['email'], $ad_phone_number, $whatsapp_enable, $terms_and_condition, $orgination_enable, $website_name, $orgination_name, $website_url)){
                 header('Location: '.get_url().'u/post-insert-image/'.$_SESSION['temprary_post_id'].'');
             }else{
-                ?> <script>alert('Something went wrong. !please try after some time or contact the executives')</script> <?php
+                ?> <script>alert('Something went wrong. !please try after some time or contact the executives ')</script> <?php
             }
             
         }else{

@@ -29,6 +29,17 @@ if (Get_User_Details::checkifitsastateorcity($_GET['cty'])) {
 
 $pattern = '/[*%{}()\/|><+=\]\[?.:,:"\'\\\\]/u';
 
+function remove_emoji($url) {
+    // This regex removes emojis by matching non-alphanumeric and non-ASCII characters
+    $url = preg_replace('/[^\x20-\x7E]/u', '', $url);
+    // Replace multiple consecutive dashes with a single dash
+    $url = preg_replace('/-+/', '-', $url);
+
+    // Trim any leading or trailing dashes
+    return trim($url, '-');
+}
+
+
 
 if (isset($_GET['cty'])) {
     if (Get_User_Details::checkifitsastateorcity($_GET['cty'])) {
@@ -638,7 +649,7 @@ if (isset($_GET['cty'])) {
                 foreach ($superrows as $rows) {
                     foreach ($rows as $row) { ?>
                         <?php if ($row['preview_image'] == null) { ?><?php } else {
-                                                                        $imageData = @getimagesize($row['preview_image']);
+                                                                        $imageData = file_exists($row['preview_image']);
                                                                         if ($imageData !== false) { ?>
                         <div class="story-items" onclick="showStory('<?= $row['post_id'] ?>')">
                             <img src="<?= $row['preview_image'] ?>" loading="lazy" width='100%' height='100%' alt="">
@@ -661,6 +672,7 @@ if (isset($_GET['cty'])) {
                 foreach ($rows as $row) {
                     // $pattern = '/[*%{}()\/|><+=\]\[?.:,:"\'\\\\]/u';
                     $url = preg_replace($pattern, '', $row['title']);
+                    $url = remove_emoji($url);
                     $url = str_replace(' ', '-', $url);
                     $url = 'ad/' . $url . '/?x=0723' . $row['post_id'];
 
@@ -668,17 +680,17 @@ if (isset($_GET['cty'])) {
 
                     <div class="ad-blockdd" data-href='<?= get_url() . strtolower($url) ?>'>
                         <?php if ($row['preview_image'] == null) { ?><?php } else {
-                                                                        $imageData = @getimagesize($row['preview_image']);
+                                                                        $imageData = file_exists($row['preview_image']);
                                                                         if ($imageData !== false) { ?><div class="ad-image-block">
                             <?php if ($row['preview_image'] != null) {
-                                                                                $imageData2 = @getimagesize($row['preview_image']);
+                                                                                $imageData2 = file_exists($row['preview_image']);
                                                                                 if ($imageData2 !== false) { ?> <img src="<?= $row['preview_image'] ?>" loading="lazy" width="100%" height="100%" alt=""><?php }
                                                                                                                                                     } ?>
                             <div class="ad-image-count"><i class="ri-camera-3-line"></i><?= count(json_decode($row['images'], true)) ?></div>
                         </div><?php }
                                                                     } ?>
                 <div class="ad-detail-block" style="<?php if ($row['preview_image'] == null) { ?>width:100%; <?php } else {
-                                                                                                                $imageData = @getimagesize($row['preview_image']);
+                                                                                                                $imageData = file_exists($row['preview_image']);
                                                                                                                 if ($imageData === false) { ?>width:100%; <?php }
                                                                                                                                                 } ?>">
                     <div class="ad-detail-category">
@@ -732,23 +744,24 @@ if (isset($_GET['cty'])) {
                 foreach($toprows as $toprow){
                 // $pattern = '/[*%{}()\/|><+=\]\[?.:,:"\'\\\\]/u';
                 $url = preg_replace($pattern, '', $toprow['title']);
+                $url = remove_emoji($url);
                 $url = str_replace(' ', '-', $url);
                 $url = 'ad/' . $url . '/?x=0723' . $toprow['post_id'];
         ?>
 
                 <div class="ad-blockdd" data-href='<?= get_url() . strtolower($url) ?>'>
                     <?php if ($toprow['preview_image'] == null) { ?><?php } else {
-                                                                    $imageData = @getimagesize($toprow['preview_image']);
+                                                                    $imageData = file_exists($toprow['preview_image']);
                                                                     if ($imageData !== false) { ?><div class="ad-image-block">
                         <?php if ($toprow['preview_image'] != null) {
-                                                                            $imageData2 = @getimagesize($toprow['preview_image']);
+                                                                            $imageData2 = file_exists($toprow['preview_image']);
                                                                             if ($imageData2 !== false) { ?> <img src="<?= $toprow['preview_image'] ?>" loading="lazy" width="100%" height="100%" alt=""><?php }
                                                                                                                                                         } ?>
                         <div class="ad-image-count"><i class="ri-camera-3-line"></i><?= count(json_decode($toprow['images']), true) ?></div>
                     </div><?php }
                                                                 } ?>
             <div class="ad-detail-block" style="<?php if ($toprow['preview_image'] == null) { ?>width:100%; <?php } else {
-                                                                                                            $imageData = @getimagesize($toprow['preview_image']);
+                                                                                                            $imageData = file_exists($toprow['preview_image']);
                                                                                                             if ($imageData === false) { ?>width:100%; <?php }
                                                                                                                                                 } ?>">
                 <div class="ad-detail-category">
@@ -800,23 +813,24 @@ if (isset($_GET['cty'])) {
             foreach ($normalAds[0] as $normalAd) {
                 // $pattern = '/[*%{}()\/|><+=\]\[?.:,:"\'\\\\]/u';
                 $url = preg_replace($pattern, '', $normalAd['title']);
+                $url = remove_emoji($url);
                 $url = str_replace(' ', '-', $url);
                 $url = 'ad/' . $url . '/?x=0723' . $normalAd['post_id'];
         ?>
 
                 <div class="ad-blockdd" data-href='<?= get_url() . strtolower($url) ?>'>
                     <?php if ($normalAd['preview_image'] == null) { ?><?php } else {
-                                                                        $imageData = @getimagesize($normalAd['preview_image']);
+                                                                        $imageData = file_exists($normalAd['preview_image']);
                                                                         if ($imageData !== false) { ?><div class="ad-image-block">
                         <?php if ($normalAd['preview_image'] != null) {
-                                                                                $imageData2 = @getimagesize($normalAd['preview_image']);
+                                                                                $imageData2 = file_exists($normalAd['preview_image']);
                                                                                 if ($imageData2 !== false) { ?> <img src="<?= $normalAd['preview_image'] ?>" loading="lazy" width="100%" height="100%" alt=""><?php }
                                                                                                                                                             } ?>
                         <div class="ad-image-count"><i class="ri-camera-3-line"></i><?= count(json_decode($normalAd['images'], true)) ?></div>
                     </div><?php }
                                                                     } ?>
             <div class="ad-detail-block" style="<?php if ($normalAd['preview_image'] == null) { ?>width:100%; <?php } else {
-                                                                                                                $imageData = @getimagesize($normalAd['preview_image']);
+                                                                                                                $imageData = file_exists($normalAd['preview_image']);
                                                                                                                 if ($imageData === false) { ?>width:100%; <?php }
                                                                                                                                                     } ?>">
                 <div class="ad-detail-category">
