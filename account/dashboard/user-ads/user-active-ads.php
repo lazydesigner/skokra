@@ -323,8 +323,10 @@ function remove_emoji($url) {
                         window.location.href = "<?= get_url() . 'u/account/ads/' ?>";
                     }else if (value['success5'] == 'success5') {
                         window.location.href = "<?= get_url() . 'u/account/ads/' ?>";
+                    }else if (value['failed5'] == 'failer') {
+                        alert('Duplicating Content is Not allowed');
                     }else{
-                        console.log(value)
+                        
                     }
                 })
             }

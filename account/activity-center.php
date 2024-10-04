@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (Get_User_Details::Duplicate_Ad($_POST['post_'])) {
             echo json_encode(['success5' => 'success5']);
         } else {
-            echo json_encode(['success' => 'failer']);
+            echo json_encode(['failed5' => 'failer']);
         }
     } elseif ($_POST['activity'] == 'statesd') {
         $cityf = Get_User_Details::Get_Cities_detail($_POST['state'])[0];
