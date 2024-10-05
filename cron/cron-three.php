@@ -43,6 +43,6 @@ $mail = new PHPMailer(true);
     
     $mail->Body = "starting: $s Ending: $e ";
     
-    $mail->send();
+    // $mail->send();
 
 ?>

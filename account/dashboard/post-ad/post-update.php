@@ -25,7 +25,7 @@ function Select_opt2($value, $option){
     if($option != null){
         $option2 = json_decode($option);
     if(in_array(strtolower($value), array_map('strtolower', $option2))){
-        echo 'selected';
+        echo 'checked';
     }else{
         echo '';
     }}else{echo '';}
@@ -640,7 +640,7 @@ foreach($list_of_cities as $list_of_city){
         })
 
         // Select all radio and checkbox inputs that have the selected attribute
-let inputs = document.querySelectorAll('input[type="radio"][selected], input[type="checkbox"][selected]');
+let inputs = document.querySelectorAll('input[type="radio"][selected], input[type="checkbox"][checked]');
 
 // Loop through each input
 inputs.forEach(function(input) {
