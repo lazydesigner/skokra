@@ -16,7 +16,7 @@ if (file_exists($path)) {
 $result = Get_User_Details::Get_ad_detail($_GET['post_id']);
 function Select_opt($value, $option){
     if(strtolower($value) == strtolower($option)){
-        echo 'selected';
+        echo 'checked';
     }else{
         echo '';
     }
@@ -639,8 +639,8 @@ foreach($list_of_cities as $list_of_city){
             })
         })
 
-        // Select all radio and checkbox inputs that have the selected attribute
-let inputs = document.querySelectorAll('input[type="radio"][selected], input[type="checkbox"][checked]');
+        // Select all radio and checkbox inputs that have the checked attribute
+let inputs = document.querySelectorAll('input[type="radio"][checked], input[type="checkbox"][checked]');
 
 // Loop through each input
 inputs.forEach(function(input) {
