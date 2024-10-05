@@ -73,6 +73,60 @@ foreach($list_of_cities as $list_of_city){
             color: #36454F;
         }
 
+        .preview-image-box-grid {
+            display: grid;
+            
+            grid-template-columns: repeat(5, minmax(20%, 1fr));
+            grid-auto-rows: 250px;
+            justify-content: space-between;
+            /* grid-template-rows: auto; */
+            column-gap: 5px;
+        }
+        .preview-image{position: relative;}
+        .lock-img{
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .5);
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: grid;
+            place-items: center;
+        }
+        .lock-img i{font-size: 1.5rem;color: white;}
+
+        .crop-the-image-container {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: none;
+            place-items: center;
+        }
+
+        .preview-the-image {
+            width: 400px;
+            height: 400px;
+            background-color: lightgrey;
+        }
+
+        .preview-the-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .multiline-ellipsis {
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            /* start showing ellipsis when 3rd line is reached */
+            white-space: pre-wrap;
+            margin: 1% 0;
+            /* let the text wrap preserving spaces */
+        }
     </style>
 </head>
 
@@ -587,7 +641,6 @@ foreach($list_of_cities as $list_of_city){
 
         // Select all radio and checkbox inputs that have the selected attribute
 let inputs = document.querySelectorAll('input[type="radio"][selected], input[type="checkbox"][selected]');
-console.log(inputs)
 
 // Loop through each input
 inputs.forEach(function(input) {
