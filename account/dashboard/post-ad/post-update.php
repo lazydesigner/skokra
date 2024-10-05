@@ -145,6 +145,7 @@ foreach($list_of_cities as $list_of_city){
                 </div>
             </div>
             <div class="container">
+            <input type="file" name="drag-and-drop-profile-photo" hidden id="replace-the-selected-profile-photo">
             <div class="top-form-field">
                 <label for=""><strong>Your Photos</strong></label>
             </div>
@@ -487,6 +488,18 @@ foreach($list_of_cities as $list_of_city){
             </div>
         </div>
     </div>
+
+
+    <div class="crop-the-image-container" id="crop-the-image-container">
+        <div>
+            <div class="preview-the-image" id="preview-the-image">
+                <img src="" id="preview_image_to_crop" alt="">
+            </div>
+            <button id='crop-button'>Crop</button>
+            <button id="close_the_preview">Back</button>
+        </div>
+    </div>
+
     <div class="container"><?php include '../../../footer.php' ?></div>
     <?php include '../private-area.php' ?>
 
