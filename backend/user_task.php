@@ -181,12 +181,7 @@ class Get_User_Details
         $insertad->execute([$adid, $category, $state, $city, $address, $area, $age, $title, $description, $african_ethnicity, $nationality, $boobs, $hair, $body_type, $services, $attention_to, $place_of_service, $price, $payment_method, $contact, $email, $ad_phone_number, $whatsapp_enable, $terms_and_condition, $orgination_enable, $website_name, $orgination_name, $website_url, $_SESSION['user_identification']]);
 
         if ($insertad->rowCount() > 0) {
-            if($con->affected_rows > 0){
-                return true;
-            }else{
-                return false;
-            }
-           
+                return true;           
         } else {
             return false;
         }
@@ -631,11 +626,7 @@ class Get_User_Details
             if (!$duplicate || $duplicate->rowCount() == 0) {
                 return false;
             } else {
-                if($con->affected_rows > 0){
-                    return true;
-                }else{
-                    return false;
-                }
+                return true;
             }
         }
     }
