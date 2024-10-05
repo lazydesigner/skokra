@@ -1,7 +1,17 @@
 <?php 
 session_start();
-include '../routes.php';
-include '../backend/user_task.php';
+
+$path =  $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/routes.php';
+
+if (file_exists($path)) {
+    include $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/routes.php';
+    include $_SERVER['DOCUMENT_ROOT'] .'/skokra.com/backend/user_task.php';
+} else {
+    include $_SERVER['DOCUMENT_ROOT'] . '/routes.php';
+    include $_SERVER['DOCUMENT_ROOT'] .'/backend/user_task.php';
+}
+
+
 $row = Get_User_Details::Get_Customer_Details();
 ?>
 <!DOCTYPE html>

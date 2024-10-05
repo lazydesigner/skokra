@@ -355,7 +355,7 @@ if (isset($stopthefurtherprocess)) {
                         <small>suspend</small></a>
                 </div>
                 <div class="add-col">
-                    <a href="<?= get_url() ?>u/post-update/"><i class="ri-edit-box-line"></i><br><small>Edit</small></a>
+                    <a href="<?= get_url() ?>u/post-update/<?=$_GET['post_id'] ?>"><i class="ri-edit-box-line"></i><br><small>Edit</small></a>
                 </div>
                 <div class="add-col">
                     <a onclick="Activity('del','<?=$_GET['post_id'] ?>','Are You Sure you want to delete this Ad permanently')"><i class="ri-delete-bin-fill"></i><br>

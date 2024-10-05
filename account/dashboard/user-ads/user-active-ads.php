@@ -258,7 +258,7 @@ function remove_emoji($url) {
                         <small>suspend</small></a>
                 </div>
                 <div class="add-col">
-                    <a href="<?= get_url() ?>u/post-update/"><i class="ri-edit-box-line"></i><br><small>Edit</small></a>
+                    <a href="<?= get_url() ?>u/post-update/<?= str_replace($_SESSION['customer_code'] . '_in', '', $result['adid']); ?>"><i class="ri-edit-box-line"></i><br><small>Edit</small></a>
                 </div>
                 <div class="add-col">
                     <a onclick="Activity('del','<?= str_replace($_SESSION['customer_code'] . '_in', '', $result['adid']); ?>','Are You Sure you want to delete this Ad permanently')"><i class="ri-delete-bin-fill"></i><br>

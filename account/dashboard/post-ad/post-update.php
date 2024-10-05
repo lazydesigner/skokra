@@ -1,7 +1,50 @@
 <?php 
 session_start();
-$POST_INSERT = 'yes'; //to hide  add post button in this page
-include '../../../routes.php';
+$POST_INSERT = 'yes'; //to hide add post button in this page
+
+$path =  $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/routes.php';
+
+if (file_exists($path)) {
+    include $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/routes.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/backend/user_task.php';
+} else {
+    include $_SERVER['DOCUMENT_ROOT'] . '/routes.php';
+    include $_SERVER['DOCUMENT_ROOT'] . '/backend/user_task.php';
+}
+
+
+$result = Get_User_Details::Get_ad_detail($_GET['post_id']);
+function Select_opt($value, $option){
+    if(strtolower($value) == strtolower($option)){
+        echo 'selected';
+    }else{
+        echo '';
+    }
+}
+function Select_opt2($value, $option){
+    if($option != null){
+        $option2 = json_decode($option);
+    if(in_array(strtolower($value), array_map('strtolower', $option2))){
+        echo 'selected';
+    }else{
+        echo '';
+    }}else{echo '';}
+}
+
+$list_of_citie = '<option value="">All the Cities</option>';
+$list_of_cities = Get_User_Details::Get_states_detail()[0];
+
+foreach($list_of_cities as $list_of_city){
+    $list_of_cty = json_decode($list_of_city['cities'], true);
+    foreach($list_of_cty as $list_of_ct){
+        if(strtolower(str_replace(' ','-', $list_of_ct)) == strtolower($result['city'])){
+            $list_of_citie .= '<option value="'.strtolower(str_replace(' ','-', $list_of_ct)).'" selected>'.ucwords($list_of_ct).'</option>';
+        }else{
+        $list_of_citie .= '<option value="'.strtolower(str_replace(' ','-', $list_of_ct)).'">'.ucwords($list_of_ct).'</option>';
+    }}
+}
+
+
 
 ?>
 <!DOCTYPE html>
@@ -36,7 +79,7 @@ include '../../../routes.php';
     </div>
 
 
-    <form id="form" action="<?= get_url() ?>xv" method="POST">
+    <form id="form" action="<?= get_url() ?>update-insert-ad" method="POST">
         <div class="step-one">
             <div class="container">
                 <div class="top-form-field">
@@ -47,16 +90,17 @@ include '../../../routes.php';
                     <div class="form-group">
                         <label for="category">*Select category</label>
                         <select name="category" id="category">
-                            <option value="call-girls">Call Girls</option>
-                            <option value="massages">Massages</option>
-                            <option value="male-escorts">Male Escorts</option>
-                            <option value="transsexual">Transsexual</option>
-                            <option value="adult-meetings">Adult Meetings</option>
+                            <option value="call-girls" <?=Select_opt('call-girls',$result['category']) ?>>Call Girls</option>
+                            <option value="massages" <?=Select_opt('massages',$result['category']) ?>>Massages</option>
+                            <option value="male-escorts" <?=Select_opt('male-escorts',$result['category']) ?>>Male Escorts</option>
+                            <option value="transsexual" <?=Select_opt('transsexual',$result['category']) ?>>Transsexual</option>
+                            <option value="adult-meetings" <?=Select_opt('adult-meetings',$result['category']) ?>>Adult Meetings</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="city">*Select city</label>
                         <select name="city" id="city">
+                            <?=$list_of_citie ?>
                         </select>
                     </div>
                     <div class="form-group form-flex">
@@ -83,15 +127,15 @@ include '../../../routes.php';
                 <div class="form-container">
                     <div class="form-group">
                         <label for="category">*Age</label>
-                        <input type="number" name="age">
+                        <input type="number" value="<?=$result['age'] ?>" name="age">
                     </div>
                     <div class="form-group">
                         <label for="city">*Title</label>
-                        <textarea name="title" id="" cols="30" rows="5" placeholder="Give your ad a good title"></textarea>
+                        <textarea name="title" id="" cols="30" rows="5" placeholder="Give your ad a good title"><?=$result['title'] ?></textarea>
                     </div>
                     <div class="form-group">
                         <label for="city">*Description</label>
-                        <textarea name="description" id="" cols="30" rows="8" placeholder="Use this space to describe yourself, your body, your skills and what you like..."></textarea>
+                        <textarea name="description" id="" cols="30" rows="8" placeholder="Use this space to describe yourself, your body, your skills and what you like..."><?=$result['description'] ?></textarea>
                     </div>
                 </div>
             </div>
@@ -103,17 +147,13 @@ include '../../../routes.php';
                     <div class="form-group">
                         <div class="preview-drap-or-selected-image">
 
-                            <div class="preview-image-box">
-                                <div class="preview-tag"><i class="ri-star-fill"></i> Preview</div>
-                                <div class="preview-image"><img src="" alt=""></div>
-                                <div class="edit-preview-img">
-                                    <div class="crop"><i class="ri-crop-line"></i></div>
-                                    <div class="reupload"><i class="ri-loop-left-line"></i></div>
-                                    <div class="delete"><i class="ri-delete-bin-5-line"></i></div>
-                                </div>
-                            </div>
+                        <div class="preview-image-box-grid" id="preview-image-box-grid">
 
-                            <div class="drag-and-drop-profile-photo resized-drop-are" id="drag-and-drop-profile-photo">
+<!-- resized-drop-area is the class to be added below to make it small and responsive -->
+
+</div>
+
+                            <div class="drag-and-drop-profile-photo" id="drag-and-drop-profile-photo">
                                 <input type="file" name="drag-and-drop-profile-photo" id="draged-or-selected-profile-photo">
                                 <div>
                                     <p style="text-transform: uppercase;">you can upload upto 10 pictures </p>
@@ -142,42 +182,42 @@ include '../../../routes.php';
                             <label for="african" class="category">
                                 <div>African</div>
                             </label>
-                            <input type="radio" name="african" id="african" value="African">
+                            <input type="radio" name="african"  <?=Select_opt('African',$result['african_ethnicity']) ?> id="african" value="African">
 
                             <label for="indian" class="category" id="indian">
                                 <div>Indian</div>
                             </label>
-                            <input type="radio" name="african" id="indian" value="Indian">
+                            <input type="radio" name="african"  <?=Select_opt('Indian',$result['african_ethnicity']) ?> id="indian" value="Indian">
 
                             <label for="asian" class="category" id="asian">
                                 <div>Asian</div>
                             </label>
-                            <input type="radio" name="african" id="asian" value="Asian">
+                            <input type="radio" name="african"  <?=Select_opt('Asian',$result['african_ethnicity']) ?> id="asian" value="Asian">
 
                             <label for="arab" class="category" id="arab">
                                 <div>Arab</div>
                             </label>
-                            <input type="radio" name="african" id="arab" value="Arab">
+                            <input type="radio" name="african"  <?=Select_opt('Arab',$result['african_ethnicity']) ?> id="arab" value="Arab">
 
                             <label for="latin" class="category" id="latin">
                                 <div>Latin</div>
                             </label>
-                            <input type="radio" name="african" id="latin" value="Latin">
+                            <input type="radio" name="african"  <?=Select_opt('Latin',$result['african_ethnicity']) ?> id="latin" value="Latin">
 
                             <label for="caucasian" class="category" id="caucasian">
                                 <div>Caucasian</div>
                             </label>
-                            <input type="radio" name="african" id="caucasian" value="Caucasian">
+                            <input type="radio" name="african"  <?=Select_opt('Caucasian',$result['african_ethnicity']) ?> id="caucasian" value="Caucasian">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="city">Nationality</label>
                         <select name="nationality" id="nationality">
                             <option value="0">Select Nationality</option>
-                            <option value="indian">Indian</option>
-                            <option value="russian">Russian</option>
-                            <option value="australian">Australian</option>
-                            <option value="american">American</option>
+                            <option value="indian"  <?=Select_opt('indian',$result['nationality']) ?>>Indian</option>
+                            <option value="russian" <?=Select_opt('russian',$result['nationality']) ?>>Russian</option>
+                            <option value="australian <?=Select_opt('australian',$result['nationality']) ?>">Australian</option>
+                            <option value="american" <?=Select_opt('american',$result['nationality']) ?>>American</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -186,12 +226,12 @@ include '../../../routes.php';
                             <label for="natural-boobs" class="boobs">
                                 <div>Natural Boobs</div>
                             </label>
-                            <input type="radio" name="boobs" id="natural-boobs" value="Natural Boobs">
+                            <input type="radio" name="boobs" <?=Select_opt('Natural Boobs',$result['boobs']) ?> id="natural-boobs" value="Natural Boobs">
 
                             <label for="busty" class="boobs" id="busty">
                                 <div>Busty</div>
                             </label>
-                            <input type="radio" name="boobs" id="busty" value="Busty">
+                            <input type="radio" name="boobs" <?=Select_opt('Busty',$result['boobs']) ?> id="busty" value="Busty">
                         </div>
                     </div>
                     <div class="form-group">
@@ -200,21 +240,21 @@ include '../../../routes.php';
                             <label for="blond-hair" class="hair">
                                 <div>Blond Hair</div>
                             </label>
-                            <input type="radio" name="hair" id="blond-hair" value="Blond Hair">
+                            <input type="radio" name="hair" id="blond-hair" value="Blond Hair" <?=Select_opt('Blond Hair',$result['hair']) ?>>
 
                             <label for="brown-hair" class="hair">
-                                <div>Blond Hair</div>
+                                <div>Brown Hair</div>
                             </label>
-                            <input type="radio" name="hair" id="brown-hair" value="Blond Hair">
+                            <input type="radio" name="hair" id="brown-hair" value="Brown Hair" <?=Select_opt('Brown Hair',$result['hair']) ?>>
                             <label for="black-hair" class="hair">
                                 <div>Black Hair</div>
                             </label>
-                            <input type="radio" name="hair" id="black-hair" value="Black Hair">
+                            <input type="radio" name="hair" id="black-hair" value="Black Hair" <?=Select_opt('Black Hair',$result['hair']) ?>>
 
                             <label for="red-hair" class="hair">
                                 <div>Red Hair</div>
                             </label>
-                            <input type="radio" name="hair" id="red-hair" value="Red Hair">
+                            <input type="radio" name="hair" id="red-hair" value="Red Hair" <?=Select_opt('Red Hair',$result['hair']) ?>>
                         </div>
                     </div>
                     <div class="form-group">
@@ -223,12 +263,12 @@ include '../../../routes.php';
                             <label for="slim" class="body-type">
                                 <div>Slim</div>
                             </label>
-                            <input type="radio" name="body-type" id="slim" value="slim">
+                            <input type="radio" name="body-type" id="slim" value="slim"  <?=Select_opt('slim',$result['body_type']) ?>>
 
                             <label for="curvy" class="body-type">
                                 <div>Curvy</div>
                             </label>
-                            <input type="radio" name="body-type" id="curvy" value="curvy">
+                            <input type="radio" name="body-type" id="curvy" value="curvy" <?=Select_opt('curvy',$result['body_type']) ?>>
                         </div>
                     </div>
                 </div>
@@ -242,46 +282,46 @@ include '../../../routes.php';
                     <div class="form-group">
                         <label for="category">Services</label>
                         <div class="form-flex">
-                            <input type="checkbox" name="services[]" id="service1" value="Oral">
+                            <input type="checkbox" name="services[]" <?=Select_opt2('Oral',$result['services']) ?> id="service1" value="Oral">
                             <label class="service_" for="service1">
                                 <div>Oral</div>
-                            </label><input type="checkbox" name="services[]" id="service2" value="Anal">
+                            </label><input type="checkbox" name="services[]" <?=Select_opt2('Anal',$result['services']) ?> id="service2" value="Anal">
                             <label class="service_" for="service2">
                                 <div>Anal</div>
-                            </label><input type="checkbox" name="services[]" id="service3" value="BDSM">
+                            </label><input type="checkbox" name="services[]" <?=Select_opt2('BDSM',$result['services']) ?> id="service3" value="BDSM">
                             <label class="service_" for="service3">
                                 <div>BDSM</div>
-                            </label><input type="checkbox" name="services[]" id="service4" value="GirlFriend Experience">
+                            </label><input type="checkbox" name="services[]" <?=Select_opt2('GirlFriend Experience',$result['services']) ?> id="service4" value="GirlFriend Experience">
                             <label class="service_" for="service4">
                                 <div>Girlfriend experience</div>
-                            </label><input type="checkbox" name="services[]" id="service5" value="Videocall">
+                            </label><input type="checkbox" name="services[]" <?=Select_opt2('Videocall',$result['services']) ?> id="service5" value="Videocall">
                             <label class="service_" for="service5">
                                 <div>Videocall</div>
-                            </label><input type="checkbox" name="services[]" id="service6" value="Threesome">
+                            </label><input type="checkbox" name="services[]" <?=Select_opt2('Threesome',$result['services']) ?> id="service6" value="Threesome">
                             <label class="service_" for="service6">
                                 <div>Threesome</div>
-                            </label><input type="checkbox" name="services[]" id="service7" value="Role play">
+                            </label><input type="checkbox" name="services[]" <?=Select_opt2('Role play',$result['services']) ?> id="service7" value="Role play">
                             <label class="service_" for="service7">
                                 <div>Role play</div>
-                            </label><input type="checkbox" name="services[]" id="service8" value="Porn actressess">
+                            </label><input type="checkbox" name="services[]" <?=Select_opt2('Porn actressess',$result['services']) ?> id="service8" value="Porn actressess">
                             <label class="service_" for="service8">
                                 <div>Porn actresses</div>
-                            </label><input type="checkbox" name="services[]" id="service9" value="Erotic massage">
+                            </label><input type="checkbox" name="services[]" <?=Select_opt2('Erotic massage',$result['services']) ?> id="service9" value="Erotic massage">
                             <label class="service_" for="service9">
                                 <div>Erotic massage</div>
-                            </label><input type="checkbox" name="services[]" id="service10" value="French kiss">
+                            </label><input type="checkbox" name="services[]" <?=Select_opt2('French kiss',$result['services']) ?> id="service10" value="French kiss">
                             <label class="service_" for="service10">
                                 <div>French kiss</div>
-                            </label><input type="checkbox" name="services[]" id="service11" value="Sexting">
+                            </label><input type="checkbox" name="services[]" <?=Select_opt2('Sexting',$result['services']) ?> id="service11" value="Sexting">
                             <label class="service_" for="service11">
                                 <div>Sexting</div>
-                            </label><input type="checkbox" name="services[]" id="service12" value="Body ejaculation">
+                            </label><input type="checkbox" name="services[]" <?=Select_opt2('Body ejaculation',$result['services']) ?> id="service12" value="Body ejaculation">
                             <label class="service_" for="service12">
                                 <div>Body ejaculation</div>
-                            </label><input type="checkbox" name="services[]" id="service13" value="Fetish">
+                            </label><input type="checkbox" name="services[]" <?=Select_opt2('Fetish',$result['services']) ?> id="service13" value="Fetish">
                             <label class="service_" for="service13">
                                 <div>Fetish</div>
-                            </label><input type="checkbox" name="services[]" id="service14" value="Tantric massage">
+                            </label><input type="checkbox" name="services[]" <?=Select_opt2('Tantric massage',$result['services']) ?> id="service14" value="Tantric massage">
                             <label class="service_" for="service14">
                                 <div>Tantric massage</div>
                             </label>
@@ -290,19 +330,19 @@ include '../../../routes.php';
                     <div class="form-group">
                         <label for="city">Attention to</label>
                         <div class="form-flex">
-                            <input type="checkbox" id="attention_men" name="attention_to[]" value="Men">
+                            <input type="checkbox" id="attention_men" <?=Select_opt2('Men',$result['attention_to']) ?> name="attention_to[]" value="Men">
                             <label class="Attention" for="attention_men">
                                 <div>Men</div>
                             </label>
-                            <input type="checkbox" id="Attention_women" name="attention_to[]" value="Women">
+                            <input type="checkbox" id="Attention_women" <?=Select_opt2('Women',$result['attention_to']) ?> name="attention_to[]" value="Women">
                             <label class="Attention" for="Attention_women">
                                 <div>Women</div>
                             </label>
-                            <input type="checkbox" id="Attention_couple" name="attention_to[]" value="Couples">
+                            <input type="checkbox" id="Attention_couple" <?=Select_opt2('Couple',$result['attention_to']) ?> name="attention_to[]" value="Couples">
                             <label class="Attention" for="Attention_couple">
                                 <div>Couples</div>
                             </label>
-                            <input type="checkbox" id="Attention_disabled" name="attention_to[]" value="disabled">
+                            <input type="checkbox" id="Attention_disabled" <?=Select_opt2('disabled',$result['attention_to']) ?> name="attention_to[]" value="disabled">
                             <label class="Attention" for="Attention_disabled">
                                 <div>Disabled</div>
                             </label>
@@ -311,23 +351,23 @@ include '../../../routes.php';
                     <div class="form-group">
                         <label for="city">Place of service</label>
                         <div class="form-flex">
-                            <input type="checkbox" id="place_of_service_home" name="place_of_service[]" value="At Home" />
+                            <input type="checkbox" id="place_of_service_home" <?=Select_opt2('At Home',$result['place_of_service']) ?> name="place_of_service[]" value="At Home" />
                             <label class="place_of_service" for="place_of_service_home">
                                 <div>At Home</div>
                             </label>
-                            <input type="checkbox" id="place_of_service_party" name="place_of_service[]" value="Event And Parties">
+                            <input type="checkbox" id="place_of_service_party" <?=Select_opt2('Event And Parties',$result['place_of_service']) ?> name="place_of_service[]" value="Event And Parties">
                             <label class="place_of_service" for="place_of_service_party">
                                 <div>Event And Parties</div>
                             </label>
-                            <input type="checkbox" id="place_of_service_hotel" name="place_of_service[]" value="Hotel / Motel">
+                            <input type="checkbox" id="place_of_service_hotel" <?=Select_opt2('Hotel / Motel',$result['place_of_service']) ?> name="place_of_service[]" value="Hotel / Motel">
                             <label class="place_of_service" for="place_of_service_hotel">
                                 <div>Hotel / Motel</div>
                             </label>
-                            <input type="checkbox" id="place_of_service_clubs" name="place_of_service[]" value="clubs">
+                            <input type="checkbox" id="place_of_service_clubs" <?=Select_opt2('clubs',$result['place_of_service']) ?> name="place_of_service[]" value="clubs">
                             <label class="place_of_service" for="place_of_service_clubs">
                                 <div>Clubs</div>
                             </label>
-                            <input type="checkbox" id="place_of_service_outcall" name="place_of_service[]" value="OutCall">
+                            <input type="checkbox" id="place_of_service_outcall" <?=Select_opt2('OutCall',$result['place_of_service']) ?> name="place_of_service[]" value="OutCall">
                             <label class="place_of_service" for="place_of_service_outcall">
                                 <div>Outcall</div>
                             </label>
@@ -362,11 +402,11 @@ include '../../../routes.php';
                     <div class="form-group">
                         <label for="payment-method">Payment methods</label>
                         <div class="form-flex">
-                            <input type="checkbox" value="cash" name="payment-method[]" id="cash">
+                            <input type="checkbox" value="cash" <?=Select_opt2('cash',$result['payment_method']) ?> name="payment-method[]" id="cash">
                             <label class="payment" for="cash">
                                 <div>Cash</div>
                             </label>
-                            <input type="checkbox" value="credit-card" name="payment-method[]" id="credit-card">
+                            <input type="checkbox" value="credit-card" <?=Select_opt2('credit-card',$result['payment_method']) ?> name="payment-method[]" id="credit-card">
                             <label class="payment" for="credit-card">
                                 <div>Credit Card</div>
                             </label>
@@ -387,33 +427,33 @@ include '../../../routes.php';
                                     <p id="confirm-contact"><span style="color:dodgerblue"><i class="ri-checkbox-circle-fill"></i></span></p> Only phone
                                 </div>
                             </label>
-                            <input type="radio" name="contact" id="phone" value="phone" checked>
+                            <input type="radio" <?=Select_opt('phone',$result['contact']) ?> name="contact" id="phone" value="phone" checked>
                             <label for="email-phone" class="contact">
                                 <div style="display: flex;align-items: center;gap:3%">
                                     <p id="confirm-contact"><i class="ri-checkbox-blank-circle-line"></i></p> Email and Phone
                                 </div>
                             </label>
-                            <input type="radio" name="contact" value="email-phone" id="email-phone">
+                            <input type="radio" <?=Select_opt('email-phone',$result['contact']) ?> name="contact" value="email-phone" id="email-phone">
                             <label for="eamil" class="contact">
                                 <div style="display: flex;align-items: center;gap:3%">
                                     <p id="confirm-contact"><i class="ri-checkbox-blank-circle-line"></i></p> Only Email
                                 </div>
                             </label>
-                            <input type="radio" name="contact" value="email" id="email">
+                            <input type="radio" <?=Select_opt('email',$result['contact']) ?> name="contact" value="email" id="email">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="category">Email Address</label>
-                        <input type="text" name="user-email">
+                        <input type="text" value="<?=$_SESSION['email'] ?>" readonly disabled name="user-email">
                     </div>
                     <div class="form-group">
                         <label for="payment-method">Phone Number</label>
-                        <input type="number" name="ad-phone-number" id="">
+                        <input type="number" value="<?=$result['ad_phone_number'] ?>" readonly disabled name="ad-phone-number" id="">
                     </div>
                     <div class="form-group">
                         <div class="form-flex">
                             <label class="switch">
-                                <input type="checkbox" value="true" name="whatsapp-emable">
+                                <input type="checkbox" value="true" <?php if($result['whatsapp_enable'] == 1){echo 'checked';} ?> name="whatsapp-emable">
                                 <span class="slider"></span>
                             </label>Whatsapp
                         </div>
@@ -446,8 +486,6 @@ include '../../../routes.php';
     <?php include '../private-area.php' ?>
 
     <script>
-        let count = 1
-
         // document.getElementById('progress').addEventListener('click',()=>{
         //     // CREATE A BUTTON WITH NAME PROGRESS
         //     count++
@@ -529,6 +567,28 @@ include '../../../routes.php';
             })
         })
 
+        // Select all radio and checkbox inputs that have the selected attribute
+let inputs = document.querySelectorAll('input[type="radio"][selected], input[type="checkbox"][selected]');
+console.log(inputs)
+
+// Loop through each input
+inputs.forEach(function(input) {
+    // Get the id of the current input
+    let inputId = input.id;
+
+    // If the input has an id, use it to find the associated label
+    if (inputId) {
+        let label = document.querySelector(`label[for="${inputId}"]`);
+        
+        // If the label is found, add the 'label' class to the input and/or label
+        if (label) {
+            label.classList.add('label');   // Add class to associated label if needed
+        }
+    }
+});
+
+
+
         // document.getElementById('next-step').addEventListener('click',(e)=>{
         //     e.preventDefault()
         //     const formdata = document.getElementById('form')
@@ -545,6 +605,244 @@ include '../../../routes.php';
         //         }
         //     }
         // })
+    </script>
+
+    <script>
+        // Image Functioning
+        let count = 1
+
+
+        const dropZone = document.getElementById('drag-and-drop-profile-photo');
+
+        dropZone.addEventListener('click', () => {
+            document.getElementById('draged-or-selected-profile-photo').click()
+        })
+
+        // function OnClick() {
+        //     event.stopPropagation();
+        //     document.getElementById('draged-or-selected-profile-photo').click();
+        //     console.log('clicked for image selection');
+        // }
+
+        document.getElementById('draged-or-selected-profile-photo').addEventListener('change', (e) => {
+
+            HandelImageUploading(e.target.files)
+        })
+
+        dropZone.addEventListener('dragover', PREVENTDefalut, false)
+        // dropZone.addEventListener('drop', PREVENTDefalut, false)
+        dropZone.addEventListener('dragleave', PREVENTDefalut, false)
+
+        function PREVENTDefalut() {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        // function droptheimage() {
+        //     event.preventDefault();
+        //     event.stopPropagation();
+        //     HandelImageUploading(event.dataTransfer.files)
+        //     // event.dataTransfer.clearData();
+        // }
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            HandelImageUploading(e.dataTransfer.files)
+            e.dataTransfer.clearData()
+        }, false)
+
+        function HandelImageUploading(imageupload) {
+
+            const image = new FormData()
+            image.append('image', imageupload[0])
+            image.append('e', '<?= $_SESSION['email'] ?>')
+            image.append('pi', '<?= $_GET['post_id'] ?>')
+            // fetch('<?= get_url() ?>image_processing/image-upload.php', {
+            fetch('https://cdn.skokra.com/image-upload.php', {
+                method: 'POST',
+                body: image
+            }).then(res => res.json()).then(d => {
+                // document.getElementById('draged-or-selected-profile-photo').value = '';
+                document.getElementById('preview-image-box-grid').innerHTML = '';
+                if (d['status'] == true) {
+                    ShowPreviewImage('<?= $_SESSION['email'] ?>')
+                }
+            })
+        }
+
+        ShowPreviewImage('<?= $_SESSION['email'] ?>')
+
+        function ShowPreviewImage(identifications) {
+            const identification = new FormData()
+            identification.append('i', identifications)
+            identification.append('pi', '<?= $_GET['post_id'] ?>')
+            fetch('<?= get_url() ?>show-image', {
+                method: 'post',
+                body: identification
+            }).then(res => res.json()).then(data => { 
+
+                if(data['count'] >= 10 ){
+                    document.getElementById('drag-and-drop-profile-photo').style.display = 'none'
+                }
+
+                document.getElementById('drag-and-drop-profile-photo').classList.add('resized-drop-area')
+                // document.getElementById('preview-image-box-grid').innerHTML = '';
+                document.getElementById('preview-image-box-grid').innerHTML = data['output'];
+                // document.getElementById('preview-image-box-grid').innerHTML += '<div class="drag-and-drop-profile-photo preview-image-box" onclick="OnClick()" ondragleave="PREVENTDefalut(this)" ondragover="PREVENTDefalut(this)" ondrop="droptheimage(this)" id="drag-and-drop-profile-photo"><input type="file" name="drag-and-drop-profile-photo" id="draged-or-selected-profile-photo" hidden multiple><div><p style="text-transform: uppercase;">you can upload upto 10 pictures </p><p><i class="ri-camera-fill"></i></p><p>Drag the picture here or click to select them</p></div></div>';
+                AddPreview_image()
+                
+            })
+        }
+
+// =================================================
+let cropper;
+
+        function CropTheImage(id) {
+
+            let preview = document.getElementById('skokracroped' + id).src;
+
+            document.getElementById('crop-the-image-container').style.display = 'grid'
+
+            document.getElementById('preview_image_to_crop').src = '';
+
+            document.getElementById('preview_image_to_crop').src = preview;
+
+
+            CropFunction()
+
+        }
+
+        function CropFunction() {
+            prev = document.getElementById('preview_image_to_crop')
+            const cropperOptions = {
+                aspectRatio: 1 / 1, // Aspect ratio of the crop box (square)
+                viewMode: 2, // Displayed image covers the crop box
+                dragMode: 'move', // Can only move the crop box
+                autoCropArea: 1, // Always create a 100% crop box
+                movable: false, // Disable dragging
+                zoomable: false, // Disable zooming
+                rotatable: false, // Disable rotating
+                scalable: false // Disable scaling
+            };
+            cropper = new Cropper(prev, cropperOptions);
+        }
+
+        document.getElementById('crop-button').addEventListener('click', function(e) {
+            e.preventDefault()
+            const croppedCanvas = cropper.getCroppedCanvas({
+                width: 200, // Set width of the output image
+                height: 200 // Set height of the output image
+            });
+
+            // Convert the canvas to base64 data URL
+            const croppedImage = croppedCanvas.toDataURL();
+
+            // Do something with the croppedImage, for example, upload it to the server
+            // Here you can use AJAX to send the croppedImage to the server
+            const img = new FormData()
+            img.append('image', croppedImage)
+            img.append('imageName', document.getElementById('preview_image_to_crop').src)
+            fetch('https://cdn.skokra.com/croptheimage.php', {
+                    method: 'POST',
+                    body: img
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data['status'] == 200) {
+                        ShowPreviewImage('<?= $_SESSION['email'] ?>');
+                        document.getElementById('crop-the-image-container').style.display = 'none';
+                        cropper.destroy();
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+        document.getElementById('close_the_preview').addEventListener('click', () => {
+            document.getElementById('crop-the-image-container').style.display = 'none';
+            document.getElementById('preview_image_to_crop').src = '';
+            cropper.destroy();
+        })
+
+        // DELETING THE IMAGE FUNCTION
+        function DeleteImage(pi, i) {
+            const image = new FormData()
+            image.append('e', '<?= $_SESSION['email'] ?>')
+            image.append('pi', '<?= $_GET['post_id'] ?>')
+            image.append('i', i)
+            fetch('https://cdn.skokra.com/delete-image.php', {
+                method: 'POST',
+                body: image
+            }).then(res => res.json()).then(d => {
+                if (d['status'] == 200) {
+                    ShowPreviewImage('<?= $_SESSION['email'] ?>')
+                } else {
+                    alert('image not deleted')
+                }
+            })
+        }
+        // DELETING THE IMAGE FUNCTION
+
+        // REUPLOADING THE IMAGE pi->post-id--i->id
+        let image_i;
+
+        function ReuploadImage(pi, i) {
+            document.getElementById('replace-the-selected-profile-photo').click()
+            image_i = i
+        }
+        document.getElementById('replace-the-selected-profile-photo').addEventListener('change', (e) => {
+            const image = new FormData()
+            image.append('image', e.target.files[0])
+            image.append('e', '<?= $_SESSION['email'] ?>')
+            image.append('pi', '<?= $_GET['post_id'] ?>')
+            image.append('i', image_i)
+            fetch('https://cdn.skokra.com/image-upload.php', {
+                method: 'POST',
+                body: image
+            }).then(res => res.json()).then(d => {
+                document.getElementById('draged-or-selected-profile-photo').value = '';
+                document.getElementById('preview-image-box-grid').innerHTML = '';
+                if (d['status'] == true) {
+                    ShowPreviewImage('<?= $_SESSION['email'] ?>')
+                }
+            })
+        })
+
+        function AddPreview_image() {
+            let preview_image_box = document.querySelectorAll('.preview-image-box')
+            let preview_image = document.querySelectorAll('.preview-tag')
+            let skokracroped = document.querySelectorAll('.skokracropedX')
+            let lock_img = document.querySelectorAll('#lock-img')
+            preview_image_box.forEach((imagex, i) => {
+                imagex.addEventListener('click', (e) => {
+                    let data = new FormData();
+                    data.append('activity', 'preview');
+                    data.append('post_', '<?= $_GET['post_id'] ?>');
+                    data.append('i', skokracroped[i].src);
+                    fetch('<?= get_url() ?>u/activity-center', {
+                        method: 'POST',
+                        body: data
+                    }).then(response => response.json()).then(value => {
+                        if (value['success4'] == 'success4') {
+                            preview_image.forEach((img,j) => {
+                                img.style.backgroundColor = 'grey';
+                                lock_img[j].innerHTML = ''
+                                lock_img[j].style.backgroundColor = 'rgba(0, 0, 0, .5)'
+                                lock_img[j].innerHTML = '<i class="ri-lock-2-line"></i>';
+                                
+                            })
+                                preview_image[i].style.backgroundColor = 'dodgerblue';
+                                lock_img[i].style.backgroundColor = 'transparent'
+                                lock_img[i].innerHTML = '';
+                        }
+                    })
+
+                })
+            })
+        }
+
+
+
+        // Image Functioning
     </script>
 
 

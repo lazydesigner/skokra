@@ -3,17 +3,19 @@ ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 
 
+
+session_start();
+$login_page = 'yes';
+include './routes.php';
+include './backend/user_task.php';
+
+
 $cat_array = ['transsexual', 'adult-meeting', 'massage', 'male-escorts', 'call-girls', 'dating'];
 if (in_array($_GET['cat'], $cat_array)) {
 } else {
     header("Location: " . get_url() . "");
 }
 
-
-session_start();
-$login_page = 'yes';
-include './routes.php';
-include './backend/user_task.php';
 
 $superrows = Get_User_Details::Show_Super_Top_Ads();
 

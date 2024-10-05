@@ -246,7 +246,18 @@ $plan =  $plan->fetch(PDO::FETCH_ASSOC)
     </div>
 
     <?php include '../footer.php' ?>
-    <?php include $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/account/dashboard/private-area.php' ?>
+    <?php 
+    
+    $path22 =  $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/account/dashboard/private-area.php';
+
+if (file_exists($path22)) {
+    include $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/account/dashboard/private-area.php';
+} else {
+    include $_SERVER['DOCUMENT_ROOT'] . '/account/dashboard/private-area.php';
+}
+    
+    
+    ?>
     <script src="../assets/js/common.js" defer></script>
 
     <script>

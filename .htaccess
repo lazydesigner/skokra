@@ -21,7 +21,7 @@ ReWriteRule ^u/account/dashboard([/]?)$ account/dashboard/home_.php [NC,L]
 ReWriteRule ^api/user/checkContact([/]?)$ account/dashboard/checkup.php [NC,L]
 
 #POST AD
-ReWriteRule ^insert-ad([/]?)$ account/dashboard/post-ad/xv.php [NC,L]
+ReWriteRule ^update-insert-ad([/]?)$ account/dashboard/post-ad/xv.php [NC,L]
 ReWriteRule ^u/post-insert([/]?)$ account/dashboard/post-ad/post-insert.php [NC,L]
 ReWriteRule ^u/post-insert-image/([0-9a-z\-]+)([/]?)$ account/dashboard/post-ad/post-insert-image.php?post_id=$1 [NC,L]
 ReWriteRule ^u/post-promote/([0-9a-z\-]+)([/]?)$ account/dashboard/post-ad/post-insert-visibility.php?post_id=$1 [NC,L]
@@ -34,7 +34,7 @@ ReWriteRule ^u/order-checkout/([0-9a-z\-]+)([/]?)$ account/order-checkout.php?po
 #https://www.skokka.in/u/order-checkout/6622691bef2e2620478efcbe/?renew=1
 
 #EDIT ADs
-ReWriteRule ^u/post-update/([0-9a-z\-]+)([/]?)$ account/dashboard/post-ad/post-update.php?post_id=$1 [NC,L]
+ReWriteRule ^u/post-update/([0-9a-z\-]+)?$ account/dashboard/post-ad/post-update.php?post_id=$1 [NC,L]
 
 #SHOW ALL USERS AD
 ReWriteRule ^u/account/ads([/]?)$ account/dashboard/user-ads/user-active-ads.php [NC,L]
