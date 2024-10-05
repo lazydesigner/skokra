@@ -762,6 +762,7 @@ inputs.forEach(function(input) {
             const identification = new FormData()
             identification.append('i', identifications)
             identification.append('pi', '<?= $_GET['post_id'] ?>')
+            identification.append('up_img', 'updating')
             fetch('<?= get_url() ?>show-image', {
                 method: 'post',
                 body: identification

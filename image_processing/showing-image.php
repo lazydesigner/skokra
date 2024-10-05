@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $customer_code = $row['customer_code']; // Fetch a result row as an associative array.
-        $post = 'SELECT images from profiles_ad where adid = ?';
+        $post = 'SELECT images, preview_image from profiles_ad where adid = ?';
         $stmtt = mysqli_prepare($con, $post);
         $code =$customer_code . '_in' . $_POST['pi'];
         $stmtt->bind_param('s', $code); //Bind the customer code with post id
@@ -35,7 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if($image_count == 0){
                     $pr = '<div class="preview-tag"><i class="ri-star-fill"></i> Preview</div>';
                     $l = '<div class="lock-img" id="lock-img" style="background-color:transparent"></div>';
-                    if(Get_User_Details::Set_Preview_img($_POST['pi'] , 'https://cdn.skokra.com/secure-images/'.$value)){}else{}
+
+                    if(isset($_POST['up_img'])){
+                        $pre_img_view = $image['preview_image'];
+                    }else{
+                        $pre_img_view ='https://cdn.skokra.com/secure-images/'.$value.'';
+                        if(Get_User_Details::Set_Preview_img($_POST['pi'] , 'https://cdn.skokra.com/secure-images/'.$value)){}else{}
+                    }
+                    
                 }else{
                     $pr = '<div class="preview-tag" style="background-color:grey;"><i class="ri-star-fill"></i> Preview</div>';
                     $l = '<div class="lock-img" id="lock-img"><i class="ri-lock-2-line"></i></div>';
@@ -43,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $output .= '
                     <div class="preview-image-box">                       
                        '.$pr.'
-                        <div class="preview-image">'.$l.'<img src="https://cdn.skokra.com/secure-images/'.$value.'" class="skokracropedX" id="skokracroped'.$id.'" width="100%" height="100%" alt="skokra image collection"></div>
+                        <div class="preview-image">'.$l.'<img src="'.$pre_img_view.'" class="skokracropedX" id="skokracroped'.$id.'" width="100%" height="100%" alt="skokra image collection"></div>
                         <div class="edit-preview-img">
                             <div class="crop" onclick="CropTheImage('.$id.')"><i class="ri-crop-line"></i></div>
                             <div class="reupload" onclick="ReuploadImage(\''.$_POST['pi'].'\','.$id.')"><i class="ri-loop-left-line"></i></div>
