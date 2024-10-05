@@ -21,6 +21,10 @@ function Select_opt($value, $option){
         echo '';
     }
 }
+
+
+
+
 function Select_opt2($value, $option){
     if($option != null){
         $option2 = json_decode($option);
@@ -29,6 +33,14 @@ function Select_opt2($value, $option){
     }else{
         echo '';
     }}else{echo '';}
+}
+
+function Select_opt3($value, $option){
+    if(strtolower($value) == strtolower($option)){
+        echo 'selected';
+    }else{
+        echo '';
+    }
 }
 
 $list_of_citie = '<option value="">All the Cities</option>';
@@ -144,16 +156,17 @@ foreach($list_of_cities as $list_of_city){
                 <div class="top-form-field">
                     <strong>Your Ad</strong>
                     <small>*Required fields</small>
+                    <input type="text" name="post_id" hidden value="<?=$_GET['post_id'] ?>">
                 </div>
                 <div class="form-container">
                     <div class="form-group">
                         <label for="category">*Select category</label>
                         <select name="category" id="category">
-                            <option value="call-girls" <?=Select_opt('call-girls',$result['category']) ?>>Call Girls</option>
-                            <option value="massages" <?=Select_opt('massages',$result['category']) ?>>Massages</option>
-                            <option value="male-escorts" <?=Select_opt('male-escorts',$result['category']) ?>>Male Escorts</option>
-                            <option value="transsexual" <?=Select_opt('transsexual',$result['category']) ?>>Transsexual</option>
-                            <option value="adult-meetings" <?=Select_opt('adult-meetings',$result['category']) ?>>Adult Meetings</option>
+                            <option value="call-girls" <?=Select_opt3('call-girls',$result['category']) ?>>Call Girls</option>
+                            <option value="massages" <?=Select_opt3('massages',$result['category']) ?>>Massages</option>
+                            <option value="male-escorts" <?=Select_opt3('male-escorts',$result['category']) ?>>Male Escorts</option>
+                            <option value="transsexual" <?=Select_opt3('transsexual',$result['category']) ?>>Transsexual</option>
+                            <option value="adult-meetings" <?=Select_opt3('adult-meetings',$result['category']) ?>>Adult Meetings</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -274,10 +287,10 @@ foreach($list_of_cities as $list_of_city){
                         <label for="city">Nationality</label>
                         <select name="nationality" id="nationality">
                             <option value="0">Select Nationality</option>
-                            <option value="indian"  <?=Select_opt('indian',$result['nationality']) ?>>Indian</option>
-                            <option value="russian" <?=Select_opt('russian',$result['nationality']) ?>>Russian</option>
-                            <option value="australian <?=Select_opt('australian',$result['nationality']) ?>">Australian</option>
-                            <option value="american" <?=Select_opt('american',$result['nationality']) ?>>American</option>
+                            <option value="indian"  <?=Select_opt3('indian',$result['nationality']) ?>>Indian</option>
+                            <option value="russian" <?=Select_opt3('russian',$result['nationality']) ?>>Russian</option>
+                            <option value="australian <?=Select_opt3('australian',$result['nationality']) ?>">Australian</option>
+                            <option value="american" <?=Select_opt3('american',$result['nationality']) ?>>American</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -445,18 +458,18 @@ foreach($list_of_cities as $list_of_city){
                         <label for="category">Price per hour</label>
                         <select name="price" id="price">
                             <option value="0">Select Price</option>
-                            <option value="indian">From Rs 1000</option>
-                            <option value="indian">From Rs 2000</option>
-                            <option value="indian">From Rs 3000</option>
-                            <option value="indian">From Rs 4000</option>
-                            <option value="indian">From Rs 5000</option>
-                            <option value="indian">From Rs 6000</option>
-                            <option value="indian">From Rs 7000</option>
-                            <option value="indian">From Rs 8000</option>
-                            <option value="indian">From Rs 9000</option>
-                            <option value="indian">From Rs 10000</option>
-                            <option value="indian">From Rs 11000</option>
-                            <option value="indian">> 12000</option>
+                            <option value="1000"  <?=Select_opt3('1000',$result['price']) ?>>From Rs 1000</option>
+                            <option value="2000"  <?=Select_opt3('2000',$result['price']) ?>>From Rs 2000</option>
+                            <option value="3000"  <?=Select_opt3('3000',$result['price']) ?>>From Rs 3000</option>
+                            <option value="4000"  <?=Select_opt3('4000',$result['price']) ?>>From Rs 4000</option>
+                            <option value="5000"  <?=Select_opt3('5000',$result['price']) ?>>From Rs 5000</option>
+                            <option value="6000"  <?=Select_opt3('6000',$result['price']) ?>>From Rs 6000</option>
+                            <option value="7000"  <?=Select_opt3('7000',$result['price']) ?>>From Rs 7000</option>
+                            <option value="8000"  <?=Select_opt3('8000',$result['price']) ?>>From Rs 8000</option>
+                            <option value="9000"  <?=Select_opt3('9000',$result['price']) ?>>From Rs 9000</option>
+                            <option value="10000"  <?=Select_opt3('10000',$result['price']) ?>>From Rs 10000</option>
+                            <option value="11000"  <?=Select_opt3('11000',$result['price']) ?>>From Rs 11000</option>
+                            <option value="12000"  <?=Select_opt3('12000',$result['price']) ?>>> 12000</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -522,7 +535,7 @@ foreach($list_of_cities as $list_of_city){
             </div>
             <div class="container">
                 <button class="next-step" id="next-step"><i class="ri-lock-unlock-fill"></i> ACTIVATE A PROMO AND UNLOCK IMAGES</button>
-                <button class="next-step" id="next-step">GO ON</button>
+                <button class="next-step" name='update_post_ad' id="next-step">GO ON</button>
             </div>
         </div>
     </form>
@@ -585,6 +598,7 @@ foreach($list_of_cities as $list_of_city){
                     } else {
                         radio.nextElementSibling.checked = false;
                         radio.classList.remove('label');
+                        console.log('clicked')
                     }
                 });
             });
@@ -614,14 +628,15 @@ foreach($list_of_cities as $list_of_city){
         })
 
         document.addEventListener('DOMContentLoaded', () => {
-            const categoryRadios = document.querySelectorAll('[class="category"]');
-            const boobsRadios = document.querySelectorAll('[class="boobs"]');
-            const hairRadios = document.querySelectorAll('[class="hair"]');
-            const bodyRadios = document.querySelectorAll('[class="curvy"]');
+            const categoryRadios = document.querySelectorAll('.category');
+            const boobsRadios = document.querySelectorAll('.boobs');
+            const hairRadios = document.querySelectorAll('.hair');
+            const bodyRadios = document.querySelectorAll('.body-type');
 
             handleRadioButtons(categoryRadios);
             handleRadioButtons(boobsRadios);
             handleRadioButtons(hairRadios);
+            handleRadioButtons(bodyRadios);
         });
 
         const contactRadios = document.querySelectorAll('.contact');

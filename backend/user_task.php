@@ -497,6 +497,35 @@ class Get_User_Details
         }
     }
 
+    public static function Update_Post_Ad_After_Editing(array $fields, $table, $post_id)
+    {
+        $database = new DatabaseConnection();
+        $con = $database->getConnection();
+        $index = 0;
+        $sql = "UPDATE " . $table . " SET  ";
+        $values = [];
+        foreach ($fields as $name => $value) {
+            if ($index == (count($fields) - 1)) {
+                $sql .= $name . " = ?";
+            } else {
+                $sql .= $name . " = ?,";
+            }
+            $values[] = $value;
+            $index += 1;
+        }
+        $sql .= "WHERE `adid` = ? ";
+        $values[] = $post_id;
+            $query = $con->prepare($sql);
+            $query->execute($values);
+            if ($query) {
+                if ($query->rowCount() > 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+    }
+
 
     public static function Delete_Post($post_id)
     {

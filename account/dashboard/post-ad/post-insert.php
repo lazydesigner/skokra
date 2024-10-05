@@ -63,9 +63,9 @@ $close_verification_btn = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" v
         
         $african_ethnicity = filter_input(INPUT_POST, 'african', FILTER_SANITIZE_SPECIAL_CHARS);
         $nationality = filter_input(INPUT_POST, 'nationality', FILTER_SANITIZE_SPECIAL_CHARS);
-        $boobs = filter_input(INPUT_POST, 'boobs', FILTER_SANITIZE_SPECIAL_CHARS);
-        $hair = filter_input(INPUT_POST, 'hair', FILTER_SANITIZE_SPECIAL_CHARS);
-        $body_type = filter_input(INPUT_POST, 'body-type', FILTER_SANITIZE_SPECIAL_CHARS);
+        $boobs = htmlspecialchars($_POST['boobs']);
+        $hair = htmlspecialchars($_POST['hair']);
+        $body_type = htmlspecialchars($_POST['body-type']);
 
         if(isset($_POST['services'])){$services = json_encode(array_map('htmlspecialchars', $_POST['services']));}else{$services = null ;}
         if(isset($_POST['attention_to'])){$attention_to = json_encode(array_map('htmlspecialchars', $_POST['attention_to']));}else{ $attention_to = null; }
@@ -930,6 +930,7 @@ $close_verification_btn = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" v
             handleRadioButtons(categoryRadios);
             handleRadioButtons(boobsRadios);
             handleRadioButtons(hairRadios);
+            handleRadioButtons(bodyRadios);
         });
 
         const contactRadios = document.querySelectorAll('.contact');
