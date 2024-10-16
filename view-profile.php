@@ -241,7 +241,7 @@ if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empt
     <div class="container" style="margin-top: 3%;">
         <div class="profile-flex">
             <div>
-                <div><small><?= $dateofad ?> - Ad ID: <?php if(isset($_SESSION['customer_code'])){echo substr(str_replace($_SESSION['customer_code'] . '_in', '', $profilerow['adid']), 0, 7);}else{echo substr($profilerow['adid'], 0, 7);} ?></small></div>
+                <div><small><?= $dateofad ?> - Ad ID: <?php if(isset($_SESSION['customer_code'])){echo substr(str_replace($_SESSION['customer_code'] . '_in', '', $profilerow['adid']), -7);}else{echo substr($profilerow['adid'], -7);} ?></small></div>
                 <div class="profile-age"><span><?= $profilerow['age'] . ' Years' ?></span><span> <i class="ri-map-pin-line"></i> <?= $profilerow['city'] ?></span></div>
                 <h1><?= strtoupper($profilerow['title']) ?></h1>
             </div>
