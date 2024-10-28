@@ -258,7 +258,7 @@ if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empt
                     <img src="<?=$profilerow['preview_image'] ?>" width="100%" style="65%" height="auto" alt="call girls in India">
                 </div>
                 <p><strong><i class="ri-emotion-line"></i> About Me</strong></p>
-                <p><?= $profilerow['description'] ?></p>
+                <p><?= nl2br(htmlspecialchars($profilerow['description'])) ?></p>
                 <?php if($profilerow['top_ad'] != 0){ if (!empty($profilerow['images']) || $profilerow['images'] != null) { ?>
                     <div class="grid-of-images">
                         <?php
