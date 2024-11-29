@@ -50,13 +50,13 @@ include './backend/user_task.php';
         <div class="services-cards">
             <div class="service-card-1">
                 <div style="width: 50%;"><div class="service-card-img">
-                    <img src="./assets/images/woman-2219964_640.jpg" width="100%" height="100%" alt="">
+                    <img src="./assets/images/call-girl19.webp" width="100%" height="100%" alt="">
                     <div class="service-card-img-name"><i class="ri-empathize-fill"></i> Call Girls</div>
                 </div></div>
-                <div style="width: 50%;padding:2%"><div class="service-card-p">
+                <div style="width: 50%;padding:2%;display:flex;flex-direction:column;justify-content:space-between"><div class="service-card-p">
                     Find the Girl Who Matches Your Energy and Makes You Feel Amazing and Stress-Free!
                 </div>
-                <div class="service-cities">
+                <div class="service-cities" style="height: auto;">
                     <ul>
                         <li><a href="<?=get_url() ?>call-girls/delhi">Delhi</a></li>
                         <li><a href="<?=get_url() ?>call-girls/lucknow">Lucknow</a></li>
