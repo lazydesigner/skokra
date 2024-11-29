@@ -593,6 +593,7 @@ if (isset($_GET['cty'])) {
                 -webkit-line-clamp: 2;
             }
         }
+        .ad-image-count{display:none}
     </style>
 </head>
 

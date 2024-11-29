@@ -39,9 +39,9 @@ foreach($rows as $row){
             $navcty = 'skokra';
         }
         if(strtolower($ct) == strtolower($navcty)){
-            $city .= '<option value="'.strtolower($ct).'" selected>'.ucwords($ct).'</option>';
+            $city .= '<option value="'.str_replace(' ', '-',strtolower($ct)).'" selected>'.ucwords($ct).'</option>';
         }else{
-            $city .= '<option value="'.strtolower($ct).'">'.ucwords($ct).'</option>';
+            $city .= '<option value="'.str_replace(' ', '-',strtolower($ct)).'">'.ucwords($ct).'</option>';
         }
     }
 
