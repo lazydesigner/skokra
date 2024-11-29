@@ -88,6 +88,7 @@ if (isset($_GET['cty'])) {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" defer>
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" async/>
+    <link rel="shortcut icon" href="<?= get_url() ?>assets/images/favicon.ico" type="image/x-icon">
 
     <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/common-header.css">

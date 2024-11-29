@@ -15,6 +15,7 @@ include './backend/user_task.php';
     <meta name="description" content="">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <meta name="robots" content="noindex, nofollow">
+    <link rel="shortcut icon" href="<?= get_url() ?>assets/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/home.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/footer.css" defer>
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/respontomobile.css" defer>
@@ -168,7 +169,7 @@ include './backend/user_task.php';
         <p class="infornation-text2">Browse through our Escort Gallery to find your ideal companion, then contact us via call or WhatsApp. Coordinate an encounter with your perfect date whether you are organizing a gathering and need attractive women for your friends, business partners, boss, politician, client, etc. We have the staff you need for your event with a discount for three or more bookings.</p>
 
         <h3 style="color: var(--heading-color); text-align:center">What makes our escort agency better than other call girl services in India? </h3>
-        <p class="infornation-text">There is more than one reason why Skokra.com is one of the most popular escort platforms in India. Our escorts provide quality service to their friends in every aspect and strive to be the best. That is why our customers love us.</p>
+        <p class="infornation-text" style="">There is more than one reason why Skokra.com is one of the most popular escort platforms in India. Our escorts provide quality service to their friends in every aspect and strive to be the best. That is why our customers love us.</p>
 
    
 

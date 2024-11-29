@@ -18,6 +18,7 @@ include './backend/user_task.php';
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/home.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/footer.css" defer>
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/respontomobile.css" defer>
+    <link rel="shortcut icon" href="<?= get_url() ?>assets/images/favicon.ico" type="image/x-icon">
     <title>Skokra - Privacy and Policy</title>
 
     <style>

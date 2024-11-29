@@ -49,6 +49,7 @@ if (isset($_POST['submit'])) {
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.6.0/remixicon.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" async>
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/signup.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/footer.css" defer>
+    <link rel="shortcut icon" href="<?= get_url() ?>assets/images/favicon.ico" type="image/x-icon">
     <title>Login - skokra</title>
     <style>
         .showerror {
