@@ -1,11 +1,11 @@
 <footer>
     <ul>
-        <li><a href="">Terms and Conditions</a></li>
-        <li><a href="">Privacy Policy</a></li>
-        <li><a href="">Contact us</a></li>
-        <li><a href="">Promote your ads</a></li>
-        <li><a href="">Help</a></li>
-        <li><a href="">Skokra Network</a></li>
+        <li><a href="<?=get_url() ?>terms-and-conditions/">Terms and Conditions</a></li>
+        <li><a href="<?=get_url() ?>privacy-and-policy/">Privacy Policy</a></li>
+        <li><a href="<?=get_url() ?>">Contact us</a></li>
+        <li><a href="<?= get_url() ?>u/post-insert/">Promote your ads</a></li>
+        <li><a href="<?=get_url() ?>">Help</a></li>
+        <li><a href="<?=get_url() ?>">Skokra Network</a></li>
     </ul>
     <div class="footer-follow">
         <ul>

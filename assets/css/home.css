@@ -260,6 +260,12 @@ form button:hover{
     color: var(--heading-color);
     border-bottom: 1px solid lightgray;
 }
+.infornation-text2{
+    padding:0 5%;
+    text-align: center;
+    line-height: 24px;
+    color: var(--heading-color); 
+}
 .section-for-add{
     width: 100%;
     height: auto;

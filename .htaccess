@@ -46,6 +46,9 @@ RewriteRule ^show-image([/]?)$ image_processing/showing-image.php [NC,L]
 RewriteRule ^delete-image([/]?)$ image_processing/delete-image.php [NC,L]
 
 
+ReWriteRule ^terms-and-conditions([/]?)$ terms-and-services.php [NC,L]
+ReWriteRule ^privacy-and-policy([/]?)$ privacy-and-policy.php [NC,L]
+
 #SHOW AD
 
 ReWriteRule ^ad/([0-9a-z_\-]+)([/]?)$ view-profile.php [NC,L]
@@ -61,7 +64,6 @@ ReWriteRule ^([0-9a-z\-]+)/([0-9a-z\-]+)([/]?)$ call-girls-index.php?cat=$1&cty=
 
 #ReWriteRule ^contact-us([/]?)$ contact-us.php [NC,L]
 #ReWriteRule ^call-girls/([0-9A-Za-z\-]+)/([0-9A-Za-z\-]+)/([0-9A-Za-z\-]+)([/]?)$ profile_index.php?state=$1&city=$2&id=$3 [NC,L]
-
 
 
 #RewriteRule ^call-girl-in-delhi/?$ /call-girls/delhi/ [R=301,L]
