@@ -1001,7 +1001,7 @@ if (isset($_GET['cty'])) {
     </div>
 
     <div class="container" style="border:2px solid lightgrey; padding:10px 5px; border-radius:5px;margin:2% auto ">
-        <p><strong>Skokra.com doesn't intervene between pleasure seeker1 and Advertisers2</strong></p>
+        <p><strong>Skokra.com doesn't intervene between pleasure seeker and Advertisers</strong></p>
         <small>By accessing our website and using our adult escort classified ads, the online visitor accepts our terms and conditions.
 The adult classified ads are posted by a third person; we are not responsible for the content and images posted by them. Posting content and images consents to their having the right to use them on our website. Skokra is a free classified website that also follows the moral rules of society. We forbid any child pornography on our website. Skokra is also not responsible for any monetary transactions between the pleasure seeker and advertisers. 
 1 Please seeker is an online visitor who visits our website for real fun. They take a number of desired independent girls or escort agencies and contact them.
