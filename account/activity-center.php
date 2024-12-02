@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         
         foreach($cty as $ct){
-            $city .= '<option value="'.strtolower($ct).'">'.ucwords($ct).'</option>';
+            $city .= '<option value="'.strtolower($ct).'_'.strtolower($_POST['state']).'">'.ucwords($ct).'</option>';
         }
         echo json_encode($city);
     }elseif ($_POST['activity'] == 'story') {

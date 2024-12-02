@@ -21,7 +21,7 @@ foreach($rows as $row){
         }else{
             $navstate = str_replace('-', ' ', $getcity);
         }
-    }else{
+    }else{ 
         $navstate = 'skokra';
     }
 
@@ -39,9 +39,9 @@ foreach($rows as $row){
             $navcty = 'skokra';
         }
         if(strtolower($ct) == strtolower($navcty)){
-            $city .= '<option value="'.str_replace(' ', '-',strtolower($ct)).'" selected>'.ucwords($ct).'</option>';
+            $city .= '<option value="'.str_replace(' ', '-',strtolower($ct)).'_'.str_replace(' ', '-',strtolower($row["state"])).'" selected>'.ucwords($ct).'</option>';
         }else{
-            $city .= '<option value="'.str_replace(' ', '-',strtolower($ct)).'">'.ucwords($ct).'</option>';
+            $city .= '<option value="'.str_replace(' ', '-',strtolower($ct)).'_'.str_replace(' ', '-',strtolower($row["state"])).'">'.ucwords($ct).'</option>';
         }
     }
 
@@ -81,10 +81,10 @@ foreach($rows as $row){
                     <div class="form-group">
                         <select name="category" id="categoryf">
                             <option value="call-girls" <?php if(isset($_GET['cat'])){if($_GET['cat'] == 'call-girls'){ echo 'selected'; }} ?>>Call Girls</option>
-                            <option value="male-escorts" <?php if(isset($_GET['cat'])){if($_GET['cat'] == 'male-escorts'){ echo 'selected'; }} ?>>Male Escorts</option>
+                            <!-- <option value="male-escorts" <?php if(isset($_GET['cat'])){if($_GET['cat'] == 'male-escorts'){ echo 'selected'; }} ?>>Male Escorts</option>
                             <option value="massage" <?php if(isset($_GET['cat'])){if($_GET['cat'] == 'massage'){ echo 'selected'; }} ?>>massage</option>
                             <option value="adult-meeting" <?php if(isset($_GET['cat'])){if($_GET['cat'] == 'adult-meeting'){ echo 'selected'; }} ?>>Adult Meeting</option>
-                            <option value="transsexual" <?php if(isset($_GET['cat'])){if($_GET['cat'] == 'transsexual'){ echo 'selected'; }} ?>>Transsexual</option>
+                            <option value="transsexual" <?php if(isset($_GET['cat'])){if($_GET['cat'] == 'transsexual'){ echo 'selected'; }} ?>>Transsexual</option> -->
                         </select>
                         <input type="search" id="search" placeholder="Search Here...">
                     </div>

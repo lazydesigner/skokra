@@ -4,6 +4,8 @@ Options -Indexes
 #RewriteCond %{HTTPS} off
 #RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+
+
 ReWriteRule ^$ home.php [NC,L]
 RewriteRule ^secure-images/(.*)$ uploads/$1 [L]
 
@@ -61,6 +63,7 @@ RewriteRule ^schedule-time-for-ad([/]?)$ schedule-time_for_ad.php [NC,L]
 
 ReWriteRule ^([0-9a-z\-]+)([/]?)$ call-girls-index.php?cat=$1 [NC,L]
 ReWriteRule ^([0-9a-z\-]+)/([0-9a-z\-]+)([/]?)$ call-girls-index.php?cat=$1&cty=$2 [NC,L]
+ReWriteRule ^([0-9a-z\-]+)/([0-9a-z\-]+)/([0-9a-z\-]+)([/]?)$ call-girls-index2.php?cat=$1&st=$2&cty=$3 [NC,L]
 
 #ReWriteRule ^contact-us([/]?)$ contact-us.php [NC,L]
 #ReWriteRule ^call-girls/([0-9A-Za-z\-]+)/([0-9A-Za-z\-]+)/([0-9A-Za-z\-]+)([/]?)$ profile_index.php?state=$1&city=$2&id=$3 [NC,L]

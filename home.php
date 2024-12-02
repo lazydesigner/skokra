@@ -60,7 +60,7 @@ include './backend/user_task.php';
                 <div class="service-cities" style="height: auto;">
                     <ul>
                         <li><a href="<?=get_url() ?>call-girls/delhi">Delhi</a></li>
-                        <li><a href="<?=get_url() ?>call-girls/lucknow">Lucknow</a></li>
+                        <li><a href="<?=get_url() ?>call-girls/uttar-pradesh/lucknow">Lucknow</a></li>
                         <li><a href="<?=get_url() ?>call-girls/bengaluru/">Bengaluru</a></li>
                     </ul>
                 </div></div>
@@ -181,10 +181,10 @@ include './backend/user_task.php';
 
             <div class="ads-cities">
                 <a href="<?=get_url() ?>call-girls/bengaluru/"><button>Bangalore</button></a>
-                <a href="<?=get_url() ?>call-girls/hyderabad/"><button>Hyderabad</button></a>
+                <a href="<?=get_url() ?>call-girls/telangana/hyderabad/"><button>Hyderabad</button></a>
                 <a href="<?=get_url() ?>call-girls/delhi/"><button>Delhi</button></a>
-                <a href="<?=get_url() ?>call-girls/pune/"><button>Pune</button></a>
-                <a href="<?=get_url() ?>call-girls/mumbai/"><button>Mumbai</button></a>
+                <a href="<?=get_url() ?>call-girls/maharashtra/pune/"><button>Pune</button></a>
+                <a href="<?=get_url() ?>call-girls/maharashtra/mumbai/"><button>Mumbai</button></a>
             </div>
 
         </div>

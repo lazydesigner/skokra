@@ -1,6 +1,9 @@
 <?php
 
 
+// This Page Show City Content 
+
+
 
 session_start();
 $login_page = 'yes';
@@ -8,7 +11,8 @@ include './routes.php';
 include './backend/user_task.php';
 
 
-$cat_array = ['transsexual', 'adult-meeting', 'massage', 'male-escorts', 'call-girls', 'dating'];
+$cat_array = ['call-girls'];
+// $cat_array = ['transsexual', 'adult-meeting', 'massage', 'male-escorts', 'call-girls', 'dating'];
 if (in_array($_GET['cat'], $cat_array)) {
 } else {
     header("Location: " . get_url() . "");
@@ -22,7 +26,6 @@ $toprows = Get_User_Details::Show_Top_Ads();
 
 if (Get_User_Details::checkifitsastateorcity($_GET['cty'])) {
     $normalAds = Get_User_Details::Show_Ads($_GET['cty']);
-    header('Location:'.get_url().$_GET['cat'].'/'.strtolower(str_replace(' ', '-', Get_User_Details::getStateByCity($_GET['cty']))).'/'.$_GET['cty'].'');
 } else {
     $normalAds = Get_User_Details::Show_Ads(ucwords(str_replace('-', ' ', $_GET['cty'])));
 }
@@ -367,6 +370,7 @@ if (isset($_GET['cty'])) {
             white-space: pre-wrap;
             /* let the text wrap preserving spaces */
         }
+        .container {color:var(--heading-color)}
     </style>
     <style>
         .story {
@@ -642,7 +646,14 @@ if (isset($_GET['cty'])) {
     <div class="container">
         <?php // if(isset($_GET['q'])){echo 'Result for : '.$_GET['q'] ; }else{ echo $_GET['s']; } 
         ?>
-        <h1>Independent Indian <?= ucwords(str_replace('-', ' ', $_GET['cat'])) ?></h1>
+        <h1><?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>
+ <?= ucwords(str_replace('-', ' ', $_GET['cat'])) ?>
+ | <?= ucwords(str_replace('-', ' ', $_GET['cat'])) ?>
+ in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> 24/7</h1>
+
+ <h2>
+    Latest Profiles Posted by <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Call Girls
+</h2>
 
         <p style="font-weight: 600;">SUPERTOP STORIES</p>
         <div class="stories-container">
@@ -879,6 +890,59 @@ if (isset($_GET['cty'])) {
         <?php }
         } ?>
     </div>
+    <div class="container">
+    
+<h2>Best Call Girl Service in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> | Skokra</h2>
+
+<p>Skokra is here to assist you in finding top-class call girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> for your pleasure. We are available around the clock to ensure your moments are infused with romance. We offer independent, open-minded call girls who can gratify your desires. Our passionate and energetic female escorts in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> are striving to deliver pleasure. You can book female partners in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> 24/7 without being scammed by local <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> escort agencies.</p>
+
+<h3>Are you looking for sexual pleasure in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>?</h3>
+<p>Life offers many pleasures, but one of the best pleasures is having Call girls in your arms. If you are looking for the best call girls in Delhi, Skokra is the perfect place to find a unique and stunning <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> escort that suits your interests. Explore a new level of intimacy with hot girls that ensures some unforgettable moments and fulfils your satisfaction. No what the place is, whether it's your place or any hotel, they always make you comfortable and fulfil your wishes to have sex.</p>
+
+<h3>Hire the best Independent <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Escorts in a few minutes.</h3>
+<p>Skokra escort directory offers an opportunity for you to connect with a reliable, genuine, and sophisticated escort in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>. We enable you not only to get quality service but also to get rid of shady agencies that play tricks and keep you in the dark as we ensure complete transparency and safety. As opposed to most escort agencies in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> and brothels, our perspective is different, resulting in your convenience, safety, and satisfaction. Move to our platform, where luxury is paired with trust and decency. </p>
+
+<h2>100% Real <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Call Girl Images with Phone Number</h2>
+<p>It is not easy to find a real and genuine escort service provider in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>. Many imposters post fake images and their phone numbers at low rates as we are a huge escort directory that operates internationally. We have a support team who can help you in case of any fraud and false data or images.</p>
+
+<h3>Modern-Day Adult Services in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></h3>
+<p>aipur has a history of courtesans in our society who have now converted to modern-day escorts. <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> call girls run their businesses in a well-defined legal and professional environment. They basically provide their services to a broad range of customers, including businessmen, tourists, and locals who are in need of erotic companionship in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>. This digital era allows online clients easier access to 200+ <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> call girl profiles with full discretion and privacy.</p><p>
+    The service is not limited to only adultery, fun, or intercourse. Sometimes, people need female companionship to attend events, private parties, movies, or deep conversations. </p>
+
+    <h2>Types of Escorts available in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></h2>
+    <p><?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> escorts can be classified into the following categories:</p>
+
+    <h3>Independent call girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> </h3>
+    <p>Independent call girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> refers to those who work independently, manage their own time, fix their meetings, rates, and sometimes advertise on our website or social media pages.</p>
+    
+    <h3>Agency Call Girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></h3>
+    <p><?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> escort agency call girls are the ones connected to an agency that takes care of the logistics, bookings, and interactions with the clients. These agencies may or may not be liable. So please agencies very wisely.</p>
+
+    <h3>VIP Call Girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>    </h3>
+    <p>VIP call girls specialize in high-class clients. Mostly, these girls are High-class models or TV actresses. Most of these high-class escorts serve VIP clients with their luxury experiences.</p>
+
+    <h4>Escort Service Booking process in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></h4>
+    <p>The clients or online website visitors have the option of 100+ escort profiles of different ages, ranging from <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> college call girls to mature housewife escorts in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>. Bookings are usually done either by calling or WhatsApp chat with agencies or independent girls with full confidentiality.</p><p>
+        We are a premier yet budget-friendly escort service in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>. With nearly a great experience providing intimate services, our website offers some of the most alluring escorts in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> at a reasonable price. An unforgettable evening filled with enticing escorts is just a call away. Our best <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> call girls can fulfil your deepest desires and unquenched passions. You can easily indulge in sensual delights through our call-girl service in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>.</p>
+
+        <h3>Legal and Ethical Considerations in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Escort Service</h3>
+
+        <p>Working together with reliable agencies or individuals who stay within the legal parameters is a key factor in ensuring safety and alignment. Our online platform is working as a classified site where these reliable agencies and independent escort can post their ad to get connected with genuine clients. Skokra is a web directory for many call girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> that emphasizes real and safe meetings.</p>
+
+        <h2>Women seeking men in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></h2>
+        <p>Are you a gentleman looking for some erotic fun? Are you looking for a female companion in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>? It doesn't matter whether you are married or unmarried. But if you are looking for genuine independent females in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> seeking men, then you come to the right website. Our platform can also find you female companions for long-term relationships rather than a one-night stand in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>. <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> is a city where you can't easily find someone to spend a passionate night with. No brokers, no agents, only genuine independent <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> call girls or housewives just at your phone call. </p>
+
+        <p><strong>Is Skokra liable in terms of Discreet and confidentiality?</strong></p>
+        <p>Our website is a third-party platform to meet advertisers (Independent call girls) and online visitors (Clients). We never disclose any private information to anyone. We don't save browsing history, IP address, Personal Details, etc. We also request our clients to discreetly share their information with independent escorts. </p>
+
+        <p><strong>What payment method do you accept?</strong></p>
+        <p>As a classified website, we don't charge any money from the client's end. If you need to pay to escort, make sure you spend face to face. Do not pay anything for the sake of advance.</p>
+
+        <!-- Tags -->
+        <!-- Tags -->
+
+
+    </div>
     <div class="container list-of-cities-container">
         <strong>Call Girls</strong>
 
@@ -934,6 +998,14 @@ if (isset($_GET['cty'])) {
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="container" style="border:2px solid lightgrey; padding:10px 5px; border-radius:5px;margin:2% auto ">
+        <p><strong>Skokra.com doesn't intervene between pleasure seeker1 and Advertisers2</strong></p>
+        <small>By accessing our website and using our adult escort classified ads, the online visitor accepts our terms and conditions.
+The adult classified ads are posted by a third person; we are not responsible for the content and images posted by them. Posting content and images consents to their having the right to use them on our website. Skokra is a free classified website that also follows the moral rules of society. We forbid any child pornography on our website. Skokra is also not responsible for any monetary transactions between the pleasure seeker and advertisers. 
+1 Please seeker is an online visitor who visits our website for real fun. They take a number of desired independent girls or escort agencies and contact them.
+2 Advertiser is defined as an ad publisher/ independent girl/ escort agency who posts their ad on our website to seek genuine clients.</small>
     </div>
 
 

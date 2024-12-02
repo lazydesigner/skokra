@@ -1,9 +1,9 @@
 <footer>
     <ul>
-        <li><a href="<?=get_url() ?>terms-and-conditions/">Terms and Conditions</a></li>
-        <li><a href="<?=get_url() ?>privacy-and-policy/">Privacy Policy</a></li>
+        <li><a href="<?=get_url() ?>terms-and-conditions">Terms and Conditions</a></li>
+        <li><a href="<?=get_url() ?>privacy-and-policy">Privacy Policy</a></li>
         <li><a href="<?=get_url() ?>">Contact us</a></li>
-        <li><a href="<?= get_url() ?>u/post-insert/">Promote your ads</a></li>
+        <li><a href="<?= get_url() ?>u/post-insert">Promote your ads</a></li>
         <li><a href="<?=get_url() ?>">Help</a></li>
         <li><a href="<?=get_url() ?>">Skokra Network</a></li>
     </ul>
@@ -43,30 +43,33 @@
         e.preventDefault()
         categoryf = document.getElementById('categoryf').value;
         list_of_states = document.getElementById('list-of-states').value;
-        cities_s = document.getElementById('cities_s').value;
+        cities_s_ = document.getElementById('cities_s').value;
+        
+        cities_s = cities_s_.split("_");
+
         search = document.getElementById('search').value;
 
         if (list_of_states.trim().length != 0) {
             window.location.href = '<?= get_url() ?>' + categoryf + '/' + list_of_states;
         }
-        if (cities_s.trim().length != 0) {
-            window.location.href = '<?= get_url() ?>' + categoryf + '/' + cities_s;
+        if (cities_s[0].trim().length != 0) {
+            window.location.href = '<?= get_url() ?>' + categoryf + '/'+cities_s[1]+ '/' + cities_s[0];
         }
 
         if (search.trim().length != 0) {
             if (list_of_states.trim().length != 0){
                 window.location.href = '<?= get_url() ?>' + categoryf + '/' + list_of_states+'/?s='+search
             }
-            if (cities_s.trim().length != 0) {
-                window.location.href = '<?= get_url() ?>' + categoryf + '/' + cities_s+'/?s='+search
+            if (cities_s[0].trim().length != 0) {
+                window.location.href = '<?= get_url() ?>' + categoryf + '/' + cities_s[0]+'/?s='+search
             }
-            if(list_of_states.trim().length == 0 && cities_s.trim().length == 0){
+            if(list_of_states.trim().length == 0 && cities_s[0].trim().length == 0){
             window.location.href = '<?= get_url() ?>' + categoryf+'/?s='+search;
             }
 
         }
 
-        if(list_of_states.trim().length == 0 && cities_s.trim().length == 0 && search.trim().length == 0){
+        if(list_of_states.trim().length == 0 && cities_s[0].trim().length == 0 && search.trim().length == 0){
             window.location.href = '<?= get_url() ?>' + categoryf;
         }
 
