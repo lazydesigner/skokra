@@ -86,7 +86,7 @@ if (isset($_GET['cty'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.6.0/remixicon.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" async>
-    <meta name="description" content="">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" defer>
@@ -98,7 +98,8 @@ if (isset($_GET['cty'])) {
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/common-header.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/footer.css" defer>
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/respontomobile.css" async>
-    <title>Document</title>
+    <title>Independent Call Girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> | <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Escorts - Skokra</title>
+    <meta name="description" content="Are you looking for genuine <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> escorts with real images and mobile number? Skokra has 500+ Independent call girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> with full satisfaction.">
     <style>
         /* .page-detail-and-information ol li{ */
         /* border: 1px solid var(--header-color); */
