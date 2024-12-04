@@ -6,6 +6,16 @@
 
 
 session_start();
+$uri = $_SERVER['REQUEST_URI'];
+// Check if the URL contains any uppercase letters
+if (preg_match('/[A-Z]/', $uri)) {
+    // Convert the URL to lowercase
+    $lowercaseUri = strtolower($uri);
+
+    // Perform a 301 redirect to the lowercase URL
+    header("Location: $lowercaseUri", true, 301);
+    exit;
+}
 $login_page = 'yes';
 include './routes.php';
 include './backend/user_task.php';
@@ -33,7 +43,8 @@ if (Get_User_Details::checkifitsastateorcity($_GET['cty'])) {
 
 $pattern = '/[*%{}()\/|><+=\]\[?.,:"\'\\\\&;$^@!]/u';
 
-function remove_emoji($url) {
+function remove_emoji($url)
+{
     // This regex removes emojis by matching non-alphanumeric and non-ASCII characters
     $url = preg_replace('/[^\x20-\x7E]/u', '', $url);
     // Replace multiple consecutive dashes with a single dash
@@ -71,9 +82,9 @@ if (isset($_GET['cty'])) {
             $navcty = 'skokra';
         }
         if (strtolower($ct) == strtolower($navcty)) {
-            $cityofcity .= '<option value="' . strtolower($ct) . '_'.strtolower(str_replace(' ', '-', Get_User_Details::getStateByCity($_GET['cty']))).'" selected>' . ucwords($ct) . '</option>';
+            $cityofcity .= '<option value="' . strtolower($ct) . '_' . strtolower(str_replace(' ', '-', Get_User_Details::getStateByCity($_GET['cty']))) . '" selected>' . ucwords($ct) . '</option>';
         } else {
-            $cityofcity .= '<option value="' . strtolower($ct) . '_'.strtolower(str_replace(' ', '-', Get_User_Details::getStateByCity($_GET['cty']))).'">' . ucwords($ct) . '</option>';
+            $cityofcity .= '<option value="' . strtolower($ct) . '_' . strtolower(str_replace(' ', '-', Get_User_Details::getStateByCity($_GET['cty']))) . '">' . ucwords($ct) . '</option>';
         }
     }
 }
@@ -86,15 +97,16 @@ if (isset($_GET['cty'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.6.0/remixicon.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" async>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" defer>
     <!-- Link Swiper's CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" async/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" async />
     <link rel="shortcut icon" href="<?= get_url() ?>assets/images/favicon.ico" type="image/x-icon">
 
     <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="<?= strtolower(get_url() . $_GET['cat'] . '/' . Get_User_Details::getStateByCity($_GET['cty']).'/'.$_GET['cty'].'/') ?>" />
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/common-header.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/footer.css" defer>
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/respontomobile.css" async>
@@ -129,7 +141,7 @@ if (isset($_GET['cty'])) {
             align-items: center;
         }
 
-        .container h1 {
+        .container h1, h2, h3, h4 {
             font-size: 1.2rem;
         }
 
@@ -371,7 +383,10 @@ if (isset($_GET['cty'])) {
             white-space: pre-wrap;
             /* let the text wrap preserving spaces */
         }
-        .container {color:var(--heading-color)}
+
+        .container {
+            color: var(--heading-color)
+        }
     </style>
     <style>
         .story {
@@ -599,11 +614,15 @@ if (isset($_GET['cty'])) {
                 -webkit-line-clamp: 2;
             }
         }
-        .ad-image-count{display:none}
+
+        .ad-image-count {
+            display: none
+        }
     </style>
 </head>
 
 <body>
+    
     <?php include './common-header.php' ?>
     <div class="container">
         <div class="page-detail-and-information" aria-label="">
@@ -648,13 +667,13 @@ if (isset($_GET['cty'])) {
         <?php // if(isset($_GET['q'])){echo 'Result for : '.$_GET['q'] ; }else{ echo $_GET['s']; } 
         ?>
         <h1><?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>
- <?= ucwords(str_replace('-', ' ', $_GET['cat'])) ?>
- | <?= ucwords(str_replace('-', ' ', $_GET['cat'])) ?>
- in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> 24/7</h1>
+            <?= ucwords(str_replace('-', ' ', $_GET['cat'])) ?>
+            | <?= ucwords(str_replace('-', ' ', $_GET['cat'])) ?>
+            in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> 24/7</h1>
 
- <h2>
-    Latest Profiles Posted by <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Call Girls
-</h2>
+        <h2>
+            Latest Profiles Posted by <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Call Girls
+        </h2>
 
         <p style="font-weight: 600;">SUPERTOP STORIES</p>
         <div class="stories-container">
@@ -664,7 +683,7 @@ if (isset($_GET['cty'])) {
                 foreach ($superrows as $rows) {
                     foreach ($rows as $row) { ?>
                         <?php if ($row['preview_image'] == null) { ?><?php } else {
-                                                                        $imageData =  @fopen($row['preview_image'],'r');
+                                                                        $imageData =  @fopen($row['preview_image'], 'r');
                                                                         if ($imageData !== false) { ?>
                         <div class="story-items" onclick="showStory('<?= $row['post_id'] ?>')">
                             <img src="<?= $row['preview_image'] ?>" loading="lazy" width='100%' height='100%' alt="">
@@ -695,19 +714,19 @@ if (isset($_GET['cty'])) {
 
                     <div class="ad-blockdd" data-href='<?= get_url() . strtolower($url) ?>'>
                         <?php if ($row['preview_image'] == null) { ?><?php } else {
-                                                                        $imageData =  @fopen($row['preview_image'],'r');
+                                                                        $imageData =  @fopen($row['preview_image'], 'r');
                                                                         if ($imageData !== false) { ?><div class="ad-image-block">
                             <?php if ($row['preview_image'] != null) {
-                                                                                $imageData2 =  @fopen($row['preview_image'],'r');
+                                                                                $imageData2 =  @fopen($row['preview_image'], 'r');
                                                                                 if ($imageData2 !== false) { ?> <img src="<?= $row['preview_image'] ?>" loading="lazy" width="100%" height="100%" alt=""><?php }
-                                                                                                                                                    } ?>
+                                                                                                                                                                                                    } ?>
                             <div class="ad-image-count"><i class="ri-camera-3-line"></i><?= count(json_decode($row['images'], true)) ?></div>
                         </div><?php }
                                                                     } ?>
                 <div class="ad-detail-block" style="<?php if ($row['preview_image'] == null) { ?>width:100%; <?php } else {
-                                                                                                                $imageData =  @fopen($row['preview_image'],'r');
+                                                                                                                $imageData =  @fopen($row['preview_image'], 'r');
                                                                                                                 if ($imageData === false) { ?>width:100%; <?php }
-                                                                                                                                                } ?>">
+                                                                                                                                                    } ?>">
                     <div class="ad-detail-category">
                         <div class="ad-tags"><i class="ri-share-forward-fill"></i><?php if ($row['supertop_ad'] == 1) {
                                                                                         echo 'Ultra Premium';
@@ -756,70 +775,71 @@ if (isset($_GET['cty'])) {
         <?php
         if (count($toprows) != 0) {
             foreach ($toprows as $toprows) {
-                foreach($toprows as $toprow){
-                // $pattern = '/[*%{}()\/|><+=\]\[?.:,:"\'\\\\]/u';
-                $url = preg_replace($pattern, '', $toprow['title']);
-                $url = remove_emoji($url);
-                $url = str_replace(' ', '-', $url);
-                $url = 'ad/' . $url . '/?x=0723' . $toprow['post_id'];
+                foreach ($toprows as $toprow) {
+                    // $pattern = '/[*%{}()\/|><+=\]\[?.:,:"\'\\\\]/u';
+                    $url = preg_replace($pattern, '', $toprow['title']);
+                    $url = remove_emoji($url);
+                    $url = str_replace(' ', '-', $url);
+                    $url = 'ad/' . $url . '/?x=0723' . $toprow['post_id'];
         ?>
 
-                <div class="ad-blockdd" data-href='<?= get_url() . strtolower($url) ?>'>
-                    <?php if ($toprow['preview_image'] == null) { ?><?php } else {
-                                                                    $imageData =  @fopen($toprow['preview_image'],'r');
-                                                                    if ($imageData !== false) { ?><div class="ad-image-block">
-                        <?php if ($toprow['preview_image'] != null) {
-                                                                            $imageData2 =  @fopen($toprow['preview_image'],'r');
-                                                                            if ($imageData2 !== false) { ?> <img src="<?= $toprow['preview_image'] ?>" loading="lazy" width="100%" height="100%" alt=""><?php }
-                                                                                                                                                        } ?>
-                        <div class="ad-image-count"><i class="ri-camera-3-line"></i><?= count(json_decode($toprow['images']), true) ?></div>
-                    </div><?php }
-                                                                } ?>
-            <div class="ad-detail-block" style="<?php if ($toprow['preview_image'] == null) { ?>width:100%; <?php } else {
-                                                                                                            $imageData =  @fopen($toprow['preview_image'],'r');
-                                                                                                            if ($imageData === false) { ?>width:100%; <?php }
+                    <div class="ad-blockdd" data-href='<?= get_url() . strtolower($url) ?>'>
+                        <?php if ($toprow['preview_image'] == null) { ?><?php } else {
+                                                                        $imageData =  @fopen($toprow['preview_image'], 'r');
+                                                                        if ($imageData !== false) { ?><div class="ad-image-block">
+                            <?php if ($toprow['preview_image'] != null) {
+                                                                                $imageData2 =  @fopen($toprow['preview_image'], 'r');
+                                                                                if ($imageData2 !== false) { ?> <img src="<?= $toprow['preview_image'] ?>" loading="lazy" width="100%" height="100%" alt=""><?php }
+                                                                                                                                                                                                } ?>
+                            <div class="ad-image-count"><i class="ri-camera-3-line"></i><?= count(json_decode($toprow['images']), true) ?></div>
+                        </div><?php }
+                                                                    } ?>
+                <div class="ad-detail-block" style="<?php if ($toprow['preview_image'] == null) { ?>width:100%; <?php } else {
+                                                                                                                $imageData =  @fopen($toprow['preview_image'], 'r');
+                                                                                                                if ($imageData === false) { ?>width:100%; <?php }
                                                                                                                                                 } ?>">
-                <div class="ad-detail-category">
-                    <div class="ad-tags"><i class="ri-share-forward-fill"></i><?php if ($toprow['supertop_ad'] == 1) {
-                                                                                    echo 'Ultra Premium';
-                                                                                } else {
-                                                                                    echo 'Premium';
-                                                                                } ?></div>
-                </div>
-                <div class="ad-details">
-                    <div class="skokra-ad-title"><a href="<?= get_url() . strtolower($url) ?>"><?= $toprow['title'] ?></a></div>
-                    <p class="multiline-ellipsis"><?= $toprow['description'] ?></p>
-                    <div class="about-ad">
-                        <div class="about-ad-detail">
-                            <p><?= $toprow['age'] ?> years</p>
-                            <p><?php if (!empty($toprow['services'])) {
-                                    $serv = json_decode($toprow['services'], true);
-                                    echo $serv[0];
-                                } ?></p>
-                            <p><?php if (!empty($toprow['address'])) { ?>
-                            <p><?= $toprow['address'] . ', ' ?></p> <?php } ?> <?php if (isset($toprow['city'])) { ?><p><?= ucwords($toprow['city']) ?></p> <?php } ?></p>
+                    <div class="ad-detail-category">
+                        <div class="ad-tags"><i class="ri-share-forward-fill"></i><?php if ($toprow['supertop_ad'] == 1) {
+                                                                                        echo 'Ultra Premium';
+                                                                                    } else {
+                                                                                        echo 'Premium';
+                                                                                    } ?></div>
+                    </div>
+                    <div class="ad-details">
+                        <div class="skokra-ad-title"><a href="<?= get_url() . strtolower($url) ?>"><?= $toprow['title'] ?></a></div>
+                        <p class="multiline-ellipsis"><?= $toprow['description'] ?></p>
+                        <div class="about-ad">
+                            <div class="about-ad-detail">
+                                <p><?= $toprow['age'] ?> years</p>
+                                <p><?php if (!empty($toprow['services'])) {
+                                        $serv = json_decode($toprow['services'], true);
+                                        echo $serv[0];
+                                    } ?></p>
+                                <p><?php if (!empty($toprow['address'])) { ?>
+                                <p><?= $toprow['address'] . ', ' ?></p> <?php } ?> <?php if (isset($toprow['city'])) { ?><p><?= ucwords($toprow['city']) ?></p> <?php } ?></p>
+                            </div>
+                        </div>
+                        <div class="ad-price-and-category about-ad-detail">
+                            <?php if (isset($toprow['city'])) { ?><p><?php $cat = explode('-', $toprow['category']);
+                                                                        $cat2 = '';
+                                                                        for ($i = 0; $i < count($cat); $i++) {
+                                                                            if ($i == (count($cat) - 1)) {
+                                                                                $cat2 .= ucwords($cat[$i]);
+                                                                            } else {
+                                                                                $cat2 .= ucwords($cat[$i]) . ' ';
+                                                                            }
+                                                                        };
+                                                                        echo $cat2 . ' in ' . ucwords($toprow['city']) ?></p> <?php } ?><?php if (!empty($toprow['price'])) { ?><p><?= 'From Rs. ' . $toprow['price'] ?></p> <?php } ?>
                         </div>
                     </div>
-                    <div class="ad-price-and-category about-ad-detail">
-                        <?php if (isset($toprow['city'])) { ?><p><?php $cat = explode('-', $toprow['category']);
-                                                                    $cat2 = '';
-                                                                    for ($i = 0; $i < count($cat); $i++) {
-                                                                        if ($i == (count($cat) - 1)) {
-                                                                            $cat2 .= ucwords($cat[$i]);
-                                                                        } else {
-                                                                            $cat2 .= ucwords($cat[$i]) . ' ';
-                                                                        }
-                                                                    };
-                                                                    echo $cat2 . ' in ' . ucwords($toprow['city']) ?></p> <?php } ?><?php if (!empty($toprow['price'])) { ?><p><?= 'From Rs. ' . $toprow['price'] ?></p> <?php } ?>
+                    <div class="ad-contact-button">
+                        <a href="tel:<?= $toprow['ad_phone_number'] ?>"><button>Call <?= $toprow['ad_phone_number'] ?></button></a>
+                        <!-- <a href="https://wa.me/<?= $toprow['ad_phone_number'] ?>"><button>Whatsapp</button></a> -->
                     </div>
                 </div>
-                <div class="ad-contact-button">
-                    <a href="tel:<?= $toprow['ad_phone_number'] ?>"><button>Call <?= $toprow['ad_phone_number'] ?></button></a>
-                    <!-- <a href="https://wa.me/<?= $toprow['ad_phone_number'] ?>"><button>Whatsapp</button></a> -->
-                </div>
-            </div>
-                </div>
-        <?php }}
+                    </div>
+        <?php }
+            }
         } ?>
     </div>
     <div class="container  topcss">
@@ -835,17 +855,17 @@ if (isset($_GET['cty'])) {
 
                 <div class="ad-blockdd" data-href='<?= get_url() . strtolower($url) ?>'>
                     <?php if ($normalAd['preview_image'] == null) { ?><?php } else {
-                                                                        $imageData = @fopen($normalAd['preview_image'],'r');
+                                                                        $imageData = @fopen($normalAd['preview_image'], 'r');
                                                                         if ($imageData !== false) { ?><div class="ad-image-block">
                         <?php if ($normalAd['preview_image'] != null) {
-                                                                                $imageData2 = @fopen($normalAd['preview_image'],'r');
+                                                                                $imageData2 = @fopen($normalAd['preview_image'], 'r');
                                                                                 if ($imageData2 !== false) { ?> <img src="<?= $normalAd['preview_image'] ?>" loading="lazy" width="100%" height="100%" alt=""><?php }
-                                                                                                                                                            } ?>
+                                                                                                                                                                                                        } ?>
                         <div class="ad-image-count"><i class="ri-camera-3-line"></i><?= count(json_decode($normalAd['images'], true)) ?></div>
                     </div><?php }
                                                                     } ?>
             <div class="ad-detail-block" style="<?php if ($normalAd['preview_image'] == null) { ?>width:100%; <?php } else {
-                                                                                                                $imageData = @fopen($normalAd['preview_image'],'r');
+                                                                                                                $imageData = @fopen($normalAd['preview_image'], 'r');
                                                                                                                 if ($imageData === false) { ?>width:100%; <?php }
                                                                                                                                                     } ?>">
                 <div class="ad-detail-category">
@@ -891,40 +911,42 @@ if (isset($_GET['cty'])) {
         <?php }
         } ?>
     </div>
-    <div class="container">
-    
-<h2>Best Call Girl Service in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> | Skokra</h2>
+    <div class="container" style="text-align: center;">
 
-<p>Skokra is here to assist you in finding top-class call girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> for your pleasure. We are available around the clock to ensure your moments are infused with romance. We offer independent, open-minded call girls who can gratify your desires. Our passionate and energetic female escorts in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> are striving to deliver pleasure. You can book female partners in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> 24/7 without being scammed by local <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> escort agencies.</p>
+        <h2>Best Call Girl Service in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> | Skokra</h2>
 
-<h3>Are you looking for sexual pleasure in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>?</h3>
-<p>Life offers many pleasures, but one of the best pleasures is having Call girls in your arms. If you are looking for the best call girls in Delhi, Skokra is the perfect place to find a unique and stunning <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> escort that suits your interests. Explore a new level of intimacy with hot girls that ensures some unforgettable moments and fulfils your satisfaction. No what the place is, whether it's your place or any hotel, they always make you comfortable and fulfil your wishes to have sex.</p>
+        <p>Skokra is here to assist you in finding top-class call girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> for your pleasure. We are available around the clock to ensure your moments are infused with romance. We offer independent, open-minded call girls who can gratify your desires. Our passionate and energetic female escorts in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> are striving to deliver pleasure. You can book female partners in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> 24/7 without being scammed by local <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> escort agencies.</p>
 
-<h3>Hire the best Independent <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Escorts in a few minutes.</h3>
-<p>Skokra escort directory offers an opportunity for you to connect with a reliable, genuine, and sophisticated escort in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>. We enable you not only to get quality service but also to get rid of shady agencies that play tricks and keep you in the dark as we ensure complete transparency and safety. As opposed to most escort agencies in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> and brothels, our perspective is different, resulting in your convenience, safety, and satisfaction. Move to our platform, where luxury is paired with trust and decency. </p>
+        <h3>Are you looking for sexual pleasure in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>?</h3>
+        <p>Life offers many pleasures, but one of the best pleasures is having Call girls in your arms. If you are looking for the best call girls in Delhi, Skokra is the perfect place to find a unique and stunning <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> escort that suits your interests. Explore a new level of intimacy with hot girls that ensures some unforgettable moments and fulfils your satisfaction. No what the place is, whether it's your place or any hotel, they always make you comfortable and fulfil your wishes to have sex.</p>
 
-<h2>100% Real <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Call Girl Images with Phone Number</h2>
-<p>It is not easy to find a real and genuine escort service provider in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>. Many imposters post fake images and their phone numbers at low rates as we are a huge escort directory that operates internationally. We have a support team who can help you in case of any fraud and false data or images.</p>
+        <h3>Hire the best Independent <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Escorts in a few minutes.</h3>
+        <p>Skokra escort directory offers an opportunity for you to connect with a reliable, genuine, and sophisticated escort in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>. We enable you not only to get quality service but also to get rid of shady agencies that play tricks and keep you in the dark as we ensure complete transparency and safety. As opposed to most escort agencies in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> and brothels, our perspective is different, resulting in your convenience, safety, and satisfaction. Move to our platform, where luxury is paired with trust and decency. </p>
 
-<h3>Modern-Day Adult Services in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></h3>
-<p>aipur has a history of courtesans in our society who have now converted to modern-day escorts. <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> call girls run their businesses in a well-defined legal and professional environment. They basically provide their services to a broad range of customers, including businessmen, tourists, and locals who are in need of erotic companionship in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>. This digital era allows online clients easier access to 200+ <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> call girl profiles with full discretion and privacy.</p><p>
-    The service is not limited to only adultery, fun, or intercourse. Sometimes, people need female companionship to attend events, private parties, movies, or deep conversations. </p>
+        <h2>100% Real <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Call Girl Images with Phone Number</h2>
+        <p>It is not easy to find a real and genuine escort service provider in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>. Many imposters post fake images and their phone numbers at low rates as we are a huge escort directory that operates internationally. We have a support team who can help you in case of any fraud and false data or images.</p>
 
-    <h2>Types of Escorts available in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></h2>
-    <p><?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> escorts can be classified into the following categories:</p>
+        <h3>Modern-Day Adult Services in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></h3>
+        <p>aipur has a history of courtesans in our society who have now converted to modern-day escorts. <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> call girls run their businesses in a well-defined legal and professional environment. They basically provide their services to a broad range of customers, including businessmen, tourists, and locals who are in need of erotic companionship in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>. This digital era allows online clients easier access to 200+ <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> call girl profiles with full discretion and privacy.</p>
+        <p>
+            The service is not limited to only adultery, fun, or intercourse. Sometimes, people need female companionship to attend events, private parties, movies, or deep conversations. </p>
 
-    <h3>Independent call girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> </h3>
-    <p>Independent call girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> refers to those who work independently, manage their own time, fix their meetings, rates, and sometimes advertise on our website or social media pages.</p>
-    
-    <h3>Agency Call Girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></h3>
-    <p><?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> escort agency call girls are the ones connected to an agency that takes care of the logistics, bookings, and interactions with the clients. These agencies may or may not be liable. So please agencies very wisely.</p>
+        <h2>Types of Escorts available in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></h2>
+        <p><?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> escorts can be classified into the following categories:</p>
 
-    <h3>VIP Call Girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>    </h3>
-    <p>VIP call girls specialize in high-class clients. Mostly, these girls are High-class models or TV actresses. Most of these high-class escorts serve VIP clients with their luxury experiences.</p>
+        <h3>Independent call girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> </h3>
+        <p>Independent call girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> refers to those who work independently, manage their own time, fix their meetings, rates, and sometimes advertise on our website or social media pages.</p>
 
-    <h4>Escort Service Booking process in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></h4>
-    <p>The clients or online website visitors have the option of 100+ escort profiles of different ages, ranging from <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> college call girls to mature housewife escorts in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>. Bookings are usually done either by calling or WhatsApp chat with agencies or independent girls with full confidentiality.</p><p>
-        We are a premier yet budget-friendly escort service in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>. With nearly a great experience providing intimate services, our website offers some of the most alluring escorts in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> at a reasonable price. An unforgettable evening filled with enticing escorts is just a call away. Our best <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> call girls can fulfil your deepest desires and unquenched passions. You can easily indulge in sensual delights through our call-girl service in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>.</p>
+        <h3>Agency Call Girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></h3>
+        <p><?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> escort agency call girls are the ones connected to an agency that takes care of the logistics, bookings, and interactions with the clients. These agencies may or may not be liable. So please agencies very wisely.</p>
+
+        <h3>VIP Call Girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> </h3>
+        <p>VIP call girls specialize in high-class clients. Mostly, these girls are High-class models or TV actresses. Most of these high-class escorts serve VIP clients with their luxury experiences.</p>
+
+        <h4>Escort Service Booking process in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></h4>
+        <p>The clients or online website visitors have the option of 100+ escort profiles of different ages, ranging from <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> college call girls to mature housewife escorts in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>. Bookings are usually done either by calling or WhatsApp chat with agencies or independent girls with full confidentiality.</p>
+        <p>
+            We are a premier yet budget-friendly escort service in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>. With nearly a great experience providing intimate services, our website offers some of the most alluring escorts in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> at a reasonable price. An unforgettable evening filled with enticing escorts is just a call away. Our best <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> call girls can fulfil your deepest desires and unquenched passions. You can easily indulge in sensual delights through our call-girl service in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>.</p>
 
         <h3>Legal and Ethical Considerations in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Escort Service</h3>
 
@@ -948,19 +970,19 @@ if (isset($_GET['cty'])) {
         <strong>Call Girls</strong>
 
         <div class="list-of-cities">
-            <a href="<?= get_url() ?>call-girls/uttar-pradesh/kanpur">Kanpur</a>
-            <a href="<?= get_url() ?>call-girls/delhi">Delhi</a>
-            <a href="<?= get_url() ?>call-girls/uttar-pradesh/agra">Agra</a>
-            <a href="<?= get_url() ?>call-girls/rajasthan/jaipur">Jaipur</a>
-            <a href="<?= get_url() ?>call-girls/goa">Goa</a>
-            <a href="<?= get_url() ?>call-girls/maharashtra/mumbai">Mumbai</a>
-            <a href="<?= get_url() ?>call-girls/maharashtra/pune">Pune</a>
-            <a href="<?= get_url() ?>call-girls/tamil-nadu/chennai">Chennai</a>
-            <a href="<?= get_url() ?>call-girls/uttar-pradesh/lucknow">Lucknow</a>
-            <a href="<?= get_url() ?>call-girls/uttar-pradesh/noida">Noida</a>
-            <a href="<?= get_url() ?>call-girls/haryana/gurugram">Gurugram</a>
-            <a href="<?= get_url() ?>call-girls/bihar/patna">Patna</a>
-            <a href="<?= get_url() ?>call-girls/uttar-pradesh/varanasi">Varanasi</a>
+            <a href="<?= get_url() ?>call-girls/uttar-pradesh/kanpur/">Kanpur</a>
+            <a href="<?= get_url() ?>call-girls/delhi/delhi/">Delhi</a>
+            <a href="<?= get_url() ?>call-girls/uttar-pradesh/agra/">Agra</a>
+            <a href="<?= get_url() ?>call-girls/rajasthan/jaipur/">Jaipur</a>
+            <a href="<?= get_url() ?>call-girls/goa/goa/">Goa</a>
+            <a href="<?= get_url() ?>call-girls/maharashtra/mumbai/">Mumbai</a>
+            <a href="<?= get_url() ?>call-girls/maharashtra/pune/">Pune</a>
+            <a href="<?= get_url() ?>call-girls/tamil-nadu/chennai/">Chennai</a>
+            <a href="<?= get_url() ?>call-girls/uttar-pradesh/lucknow/">Lucknow</a>
+            <a href="<?= get_url() ?>call-girls/uttar-pradesh/noida/">Noida</a>
+            <a href="<?= get_url() ?>call-girls/haryana/gurugram/">Gurugram</a>
+            <a href="<?= get_url() ?>call-girls/bihar/patna/">Patna</a>
+            <a href="<?= get_url() ?>call-girls/uttar-pradesh/varanasi/">Varanasi</a>
         </div>
 
     </div>
@@ -1002,11 +1024,11 @@ if (isset($_GET['cty'])) {
     </div>
 
     <div class="container" style="border:2px solid lightgrey; padding:10px 5px; border-radius:5px;margin:2% auto ">
-        <p><strong>Skokra.com doesn't intervene between pleasure seeker and Advertisers</strong></p>
+        <p><strong>Skokra.com doesn't intervene between pleasure seeker<sup>1</sup> and Advertisers<sup>2</sup></strong></p>
         <small>By accessing our website and using our adult escort classified ads, the online visitor accepts our terms and conditions.
-The adult classified ads are posted by a third person; we are not responsible for the content and images posted by them. Posting content and images consents to their having the right to use them on our website. Skokra is a free classified website that also follows the moral rules of society. We forbid any child pornography on our website. Skokra is also not responsible for any monetary transactions between the pleasure seeker and advertisers. 
-1 Please seeker is an online visitor who visits our website for real fun. They take a number of desired independent girls or escort agencies and contact them.
-2 Advertiser is defined as an ad publisher/ independent girl/ escort agency who posts their ad on our website to seek genuine clients.</small>
+            The adult classified ads are posted by a third person; we are not responsible for the content and images posted by them. Posting content and images consents to their having the right to use them on our website. Skokra is a free classified website that also follows the moral rules of society. We forbid any child pornography on our website. Skokra is also not responsible for any monetary transactions between the pleasure seeker and advertisers. <br><br>
+            <b>1</b> Please seeker is an online visitor who visits our website for real fun. They take a number of desired independent girls or escort agencies and contact them. <br>
+            <b>2</b> Advertiser is defined as an ad publisher/ independent girl/ escort agency who posts their ad on our website to seek genuine clients.</small>
     </div>
 
 

@@ -4,8 +4,6 @@ Options -Indexes
 #RewriteCond %{HTTPS} off
 #RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-
-
 ReWriteRule ^$ home.php [NC,L]
 RewriteRule ^secure-images/(.*)$ uploads/$1 [L]
 

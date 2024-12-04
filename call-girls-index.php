@@ -3,6 +3,17 @@
 
 
 session_start();
+$uri = $_SERVER['REQUEST_URI'];
+
+// Check if the URL contains any uppercase letters
+if (preg_match('/[A-Z]/', $uri)) {
+    // Convert the URL to lowercase
+    $lowercaseUri = strtolower($uri);
+
+    // Perform a 301 redirect to the lowercase URL
+    header("Location: $lowercaseUri", true, 301);
+    exit;
+}
 $login_page = 'yes';
 include './routes.php';
 include './backend/user_task.php';
@@ -92,6 +103,7 @@ if (isset($_GET['cty'])) {
     <link rel="shortcut icon" href="<?= get_url() ?>assets/images/favicon.ico" type="image/x-icon">
 
     <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="<?= strtolower(get_url() . $_GET['cat'] . '/' .$_GET['cty'].'/') ?>" />
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/common-header.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/footer.css" defer>
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/respontomobile.css" async>
@@ -125,7 +137,7 @@ if (isset($_GET['cty'])) {
             align-items: center;
         }
 
-        .container h1 {
+        .container h1, h2 ,h3, h4 {
             font-size: 1.2rem;
         }
 
@@ -883,19 +895,19 @@ if (isset($_GET['cty'])) {
         <strong>Call Girls</strong>
 
         <div class="list-of-cities">
-            <a href="<?= get_url() ?>call-girls/uttar-pradesh/kanpur">Kanpur</a>
-            <a href="<?= get_url() ?>call-girls/delhi">Delhi</a>
-            <a href="<?= get_url() ?>call-girls/uttar-pradesh/agra">Agra</a>
-            <a href="<?= get_url() ?>call-girls/rajasthan/jaipur">Jaipur</a>
-            <a href="<?= get_url() ?>call-girls/goa">Goa</a>
-            <a href="<?= get_url() ?>call-girls/maharashtra/mumbai">Mumbai</a>
-            <a href="<?= get_url() ?>call-girls/maharashtra/pune">Pune</a>
-            <a href="<?= get_url() ?>call-girls/tamil-nadu/chennai">Chennai</a>
-            <a href="<?= get_url() ?>call-girls/uttar-pradesh/lucknow">Lucknow</a>
-            <a href="<?= get_url() ?>call-girls/uttar-pradesh/noida">Noida</a>
-            <a href="<?= get_url() ?>call-girls/haryana/gurugram">Gurugram</a>
-            <a href="<?= get_url() ?>call-girls/bihar/patna">Patna</a>
-            <a href="<?= get_url() ?>call-girls/uttar-pradesh/varanasi">Varanasi</a>
+            <a href="<?= get_url() ?>call-girls/uttar-pradesh/kanpur/">Kanpur</a>
+            <a href="<?= get_url() ?>call-girls/delhi/delhi/">Delhi</a>
+            <a href="<?= get_url() ?>call-girls/uttar-pradesh/agra/">Agra</a>
+            <a href="<?= get_url() ?>call-girls/rajasthan/jaipur/">Jaipur</a>
+            <a href="<?= get_url() ?>call-girls/goa/goa/">Goa</a>
+            <a href="<?= get_url() ?>call-girls/maharashtra/mumbai/">Mumbai</a>
+            <a href="<?= get_url() ?>call-girls/maharashtra/pune/">Pune</a>
+            <a href="<?= get_url() ?>call-girls/tamil-nadu/chennai/">Chennai</a>
+            <a href="<?= get_url() ?>call-girls/uttar-pradesh/lucknow/">Lucknow</a>
+            <a href="<?= get_url() ?>call-girls/uttar-pradesh/noida/">Noida</a>
+            <a href="<?= get_url() ?>call-girls/haryana/gurugram/">Gurugram</a>
+            <a href="<?= get_url() ?>call-girls/bihar/patna/">Patna</a>
+            <a href="<?= get_url() ?>call-girls/uttar-pradesh/varanasi/">Varanasi</a>
         </div>
 
     </div>

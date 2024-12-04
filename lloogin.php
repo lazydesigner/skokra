@@ -2,6 +2,16 @@
 if (isset($_SESSION['captcha'])) {
     unset($_SESSION['captcha']);
 }
+$uri = $_SERVER['REQUEST_URI'];
+// Check if the URL contains any uppercase letters
+if (preg_match('/[A-Z]/', $uri)) {
+    // Convert the URL to lowercase
+    $lowercaseUri = strtolower($uri);
+
+    // Perform a 301 redirect to the lowercase URL
+    header("Location: $lowercaseUri", true, 301);
+    exit;
+}
 $login_page = 'yes';
 if (isset($_GET['next'])) {
     $_SESSION['url'] = $_GET['next'];
