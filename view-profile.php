@@ -89,6 +89,7 @@ if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empt
             width: 100%;
             height: auto;
             display: flex;
+            flex-wrap: wrap;
             color: var(--heading-color)
         }
 
@@ -205,6 +206,11 @@ if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empt
         .report-abuse ul li {
             margin: 1% 0;
             font-size: small;
+        }
+
+        @media (max-width:650px){
+            .profile-det, .profile-img{width: 100%;}
+            .page-detail-and-information .skokra-breadcrumb{font-size: x-small;}
         }
     </style>
 </head>

@@ -24,10 +24,10 @@
     select[name='cities'] {width: 40%;}
     select[name='area'] {width: 25%;}
     select, input{width: 100%;margin: 1% 0;}
-    form button {width: 32%;}
+    form button {width: 40%;}
     .user-account div{width: 40px;}
-    .nav .logo{width: 50%;display: grid;}
-    .post-your-ad{width: 50px;}
+    .nav .logo{width: 30%;display: grid;}
+    .post-your-ad{width: 30px;}
     
     .post-your-ad2{
         display: block;
@@ -47,7 +47,7 @@
     .ads-cities button {
     margin: 1% .5%;
     }
-    .nav .logo{width: 35%;display: grid;}
+    .nav .logo{width: 33%;display: grid;}
     .user-account div{width: 40px;}
     .service-card-img-name{width: 100%;}
     .container{width:90%}
