@@ -534,7 +534,7 @@ foreach($list_of_cities as $list_of_city){
                 </div>
             </div>
             <div class="container">
-                <button class="next-step" id="next-step"><i class="ri-lock-unlock-fill"></i> ACTIVATE A PROMO AND UNLOCK IMAGES</button>
+                <button class="next-step" name="update_promote_post_ad" id="next-step"><i class="ri-lock-unlock-fill"></i> ACTIVATE A PROMO AND UNLOCK IMAGES</button>
                 <button class="next-step" name='update_post_ad' id="next-step">GO ON</button>
             </div>
         </div>
