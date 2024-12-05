@@ -106,7 +106,7 @@ if (isset($_GET['cty'])) {
     <link rel="shortcut icon" href="<?= get_url() ?>assets/images/favicon.ico" type="image/x-icon">
 
     <meta name="robots" content="noindex, nofollow">
-    <link rel="canonical" href="<?= strtolower(get_url() . $_GET['cat'] . '/' . Get_User_Details::getStateByCity($_GET['cty']).'/'.$_GET['cty'].'/') ?>" />
+    <link rel="canonical" href="<?= strtolower(get_url() . $_GET['cat'] . '/' . Get_User_Details::getStateByCity($_GET['cty']) . '/' . $_GET['cty'] . '/') ?>" />
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/common-header.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/footer.css" defer>
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/respontomobile.css" async>
@@ -141,7 +141,10 @@ if (isset($_GET['cty'])) {
             align-items: center;
         }
 
-        .container h1, h2, h3, h4 {
+        .container h1,
+        h2,
+        h3,
+        h4 {
             font-size: 1.2rem;
         }
 
@@ -618,11 +621,45 @@ if (isset($_GET['cty'])) {
         .ad-image-count {
             display: none
         }
+
+        .area-bottom {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content:center
+        }
+
+        .area-bottom span {
+            margin: 0 5px;
+            padding: 2px 4px;
+            color: black;
+            display: block;
+            border-radius: 5px;
+        }
+
+        .area-bottom span a {
+            color: black;
+            font-weight: 600;
+            margin: 5px 0;
+        }
+
+        .area-bottom span:nth-child(even) {
+            background-color: dodgerblue;
+        }
+
+        .area-bottom span:nth-child(odd) {
+            background-color: #B81261;
+
+        }
+
+        .area-bottom span:nth-child(odd) a {
+            color: white;
+        }
     </style>
 </head>
 
 <body>
-    
+
     <?php include './common-header.php' ?>
     <div class="container">
         <div class="page-detail-and-information" aria-label="">
@@ -790,14 +827,14 @@ if (isset($_GET['cty'])) {
                             <?php if ($toprow['preview_image'] != null) {
                                                                                 $imageData2 =  @fopen($toprow['preview_image'], 'r');
                                                                                 if ($imageData2 !== false) { ?> <img src="<?= $toprow['preview_image'] ?>" loading="lazy" width="100%" height="100%" alt=""><?php }
-                                                                                                                                                                                                } ?>
+                                                                                                                                                                                                    } ?>
                             <div class="ad-image-count"><i class="ri-camera-3-line"></i><?= count(json_decode($toprow['images']), true) ?></div>
                         </div><?php }
                                                                     } ?>
                 <div class="ad-detail-block" style="<?php if ($toprow['preview_image'] == null) { ?>width:100%; <?php } else {
                                                                                                                 $imageData =  @fopen($toprow['preview_image'], 'r');
                                                                                                                 if ($imageData === false) { ?>width:100%; <?php }
-                                                                                                                                                } ?>">
+                                                                                                                                                    } ?>">
                     <div class="ad-detail-category">
                         <div class="ad-tags"><i class="ri-share-forward-fill"></i><?php if ($toprow['supertop_ad'] == 1) {
                                                                                         echo 'Ultra Premium';
@@ -955,13 +992,122 @@ if (isset($_GET['cty'])) {
         <h2>Women seeking men in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></h2>
         <p>Are you a gentleman looking for some erotic fun? Are you looking for a female companion in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>? It doesn't matter whether you are married or unmarried. But if you are looking for genuine independent females in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> seeking men, then you come to the right website. Our platform can also find you female companions for long-term relationships rather than a one-night stand in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>. <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> is a city where you can't easily find someone to spend a passionate night with. No brokers, no agents, only genuine independent <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> call girls or housewives just at your phone call. </p>
 
-        <p><strong>Is Skokra liable in terms of Discreet and confidentiality?</strong></p>
+        <h3>F&Q</h3>
+
+        <p style="background-color:lightblue; width:fit-content;padding:0 5px;margin:auto"><strong>Is Skokra liable in terms of Discreet and confidentiality?</strong></p>
         <p>Our website is a third-party platform to meet advertisers (Independent call girls) and online visitors (Clients). We never disclose any private information to anyone. We don't save browsing history, IP address, Personal Details, etc. We also request our clients to discreetly share their information with independent escorts. </p>
 
-        <p><strong>What payment method do you accept?</strong></p>
+        <p style="background-color:lightblue; width:fit-content;padding:0 5px;margin:auto"><strong>What payment method do you accept?</strong></p>
         <p>As a classified website, we don't charge any money from the client's end. If you need to pay to escort, make sure you spend face to face. Do not pay anything for the sake of advance.</p>
 
         <!-- Tags -->
+        <div class="" style="margin:5px 0 10px 0">
+                <h3 class="text-dark"><i class="fas fa-tags"></i> Tags</h3>
+                <div class="area-bottom">
+                    <span class="label label-default"> <a href="#">Call Girls girl in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-info"> <a href="#"> call girls Call Girl
+                            service in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-warning"> <a href="#"> <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Call Girls Locanto</a> </span>
+                    <span class="label label-danger"> <a href="#"> call girls
+                            Call Girl service in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-default"> <a href="#"> <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> sex Call Girls</a> </span>
+                    <span class="label label-success"> <a href="#"> Call Girls at <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-info"> <a href="#"> <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Call Girls girl</a> </span>
+                    <span class="label label-danger"> <a href="#"> Call Girl girl</a> </span>
+                    <span class="label label-default"> <a href="#"> call girl service
+                            <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-primary"> <a href="#"> female Call Girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-success"> <a href="#"> <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> sex girl</a> </span>
+                    <span class="label label-info"> <a href="#"> Call Girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-warning"> <a href="#"> Call Girls services <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-danger"> <a href="#"> <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> female Call Girls</a> </span>
+                    <span class="label label-default"> <a href="#"> housewife Call Girls
+                            in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-primary"> <a href="#"> call girls number</a> </span>
+                    <span class="label label-success"> <a href="#"> Call Girls girls in
+                            <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-info"> <a href="#"> <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Call Girls service</a> </span>
+                    <span class="label label-warning"> <a href="#"> model Call Girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-danger"> <a href="#"> <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Call Girls services</a> </span>
+                    <span class="label label-default"> <a href="#"> Call Girls service <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-primary"> <a href="#"> Russian Call Girls
+                            in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-success"> <a href="#"> call girls near me</a>
+                    </span>
+                    <span class="label label-danger"> <a href="#"> <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Call Girls</a> </span>
+                    <span class="label label-default"> <a href="#"> royal Call Girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-primary"> <a href="#"> <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> independent Call Girls</a> </span>
+                    <span class="label label-success"> <a href="#"> cheap <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Call Girls</a> </span>
+                    <span class="label label-info"> <a href="#"> Call Girls girls <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-warning"> <a href="#"> independent <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Call Girls</a> </span>
+                    <span class="label label-danger"> <a href="#"> foreign Call Girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-default"> <a href="#"> cheap female Call Girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a>
+                    </span>
+                    <span class="label label-primary"> <a href="#"> royal Call Girls <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-info"> <a href="#"> hotel Call Girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-warning"> <a href="#"> <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Call Girls girls</a> </span>
+                    <span class="label label-danger"> <a href="#"> female Call Girl <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-default"> <a href="#"> sex Call Girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-primary"> <a href="#"> Call Girl service near me</a> </span>
+                    <span class="label label-success"> <a href="#"> call girls</a> </span>
+                    <span class="label label-info"> <a href="#"> Russian Call Girls
+                            <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-warning"> <a href="#"> independent Call Girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-danger"> <a href="#"> cheap Call Girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-default"> <a href="#"> model Call Girls <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-primary"> <a href="#"> Call Girls service in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-success"> <a href="#"> Call Girls <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-info"> <a href="#"> female Call Girls <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-warning"> <a href="#"> Call Girls services in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-default"> <a href="#"> <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> VIP Call Girls</a> </span>
+                    <span class="label label-primary"> <a href="#"> call girl near me</a>
+                    </span>
+                    <span class="label label-success"> <a href="#"> <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> sex</a> </span>
+                    <span class="label label-info"> <a href="#"> <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> call girl
+                            number</a> </span>
+                    <span class="label label-default"> <a href="#"> independent Call Girls <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-primary"> <a href="#"> cheap Call Girls <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-success"> <a href="#"> girls Call Girl <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a>
+                    </span>
+                    <span class="label label-warning"> <a href="#"> call girls
+                            Call Girls service in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-danger"> <a href="#"> Call Girls service in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-primary"> <a href="#"> independent call
+                            girls</a> </span>
+                    <span class="label label-success"> <a href="#"> VIP Call Girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-warning"> <a href="#"> <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> model Call Girls</a> </span>
+                    <span class="label label-danger"> <a href="#"> female Call Girls of <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-default"> <a href="#"> <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Call Girl agency</a> </span>
+                    <span class="label label-primary"> <a href="#"> <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Call Girl service</a> </span>
+                    <span class="label label-warning"> <a href="#"> call girls Call Girl
+                            service in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-danger"> <a href="#"> <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Russian
+                            Call Girls</a> </span>
+                    <span class="label label-primary"> <a href="#"> <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>i sex video</a> </span>
+                    <span class="label label-success"> <a href="#"> call girl number</a>
+                    </span>
+                    <span class="label label-info"> <a href="#"> call girls <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a>
+                    </span>
+                    <span class="label label-warning"> <a href="#"> <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Call Girls agency</a> </span>
+                    <span class="label label-danger"> <a href="#"> call girls Call Girl
+                            service in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-primary"> <a href="#"> <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> sex</a> </span>
+                    <span class="label label-success"> <a href="#"> call girl contact number</a>
+                    </span>
+                    <span class="label label-info"> <a href="#"> sexy Call Girls call girls in
+                            <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-warning"> <a href="#"> <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Call Girls</a> </span>
+                    <span class="label label-danger"> <a href="#"> कॉल गर्ल लिस्ट <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a>
+                    </span>
+                    <span class="label label-success"> <a href="#"> call girls Call Girl
+                            service in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-info"> <a href="#"> call girl in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a>
+                    </span>
+                    <span class="label label-warning"> <a href="#"> best Call Girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a> </span>
+                    <span class="label label-danger"> <a href="#"> Call Girls <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?></a>
+                    </span>
+                </div>
+        </div>
         <!-- Tags -->
 
 
