@@ -163,10 +163,10 @@ foreach($list_of_cities as $list_of_city){
                         <label for="category">*Select category</label>
                         <select name="category" id="category">
                             <option value="call-girls" <?=Select_opt3('call-girls',$result['category']) ?>>Call Girls</option>
-                            <option value="massages" <?=Select_opt3('massages',$result['category']) ?>>Massages</option>
+                            <!-- <option value="massages" <?=Select_opt3('massages',$result['category']) ?>>Massages</option>
                             <option value="male-escorts" <?=Select_opt3('male-escorts',$result['category']) ?>>Male Escorts</option>
                             <option value="transsexual" <?=Select_opt3('transsexual',$result['category']) ?>>Transsexual</option>
-                            <option value="adult-meetings" <?=Select_opt3('adult-meetings',$result['category']) ?>>Adult Meetings</option>
+                            <option value="adult-meetings" <?=Select_opt3('adult-meetings',$result['category']) ?>>Adult Meetings</option> -->
                         </select>
                     </div>
                     <div class="form-group">

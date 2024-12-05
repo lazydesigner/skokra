@@ -335,10 +335,10 @@ $close_verification_btn = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" v
                         <label for="category">*Select category</label>
                         <select name="category" id="category">
                             <option value="call-girls">Call Girls</option>
-                            <option value="massage">Massages</option>
+                            <!-- <option value="massage">Massages</option>
                             <option value="male-escorts">Male Escorts</option>
                             <option value="transsexual">Transsexual</option>
-                            <option value="adult-meetings">Adult Meetings</option>
+                            <option value="adult-meetings">Adult Meetings</option> -->
                         </select>
                     </div>
                     <div class="form-group">

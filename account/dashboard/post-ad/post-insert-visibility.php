@@ -32,16 +32,7 @@ function isTimePassed($hour)
         return false;
         // Use the current date if the provided hour is in the future of the current hour
         // $providedTime = date("Y-m-d H:i", strtotime("today $hour:00"));
-    }
-
-    // Get the current time
-    // $currentDateTime = new DateTime();
-
-    // Get the provided time
-    // $providedDateTime = new DateTime($providedTime);
-
-    // Compare the current time with the provided time
-    // return $currentDateTime > $providedDateTime;
+    } 
 }
 if (isset($_POST['next-step'])) {
     $currentDateTime = time();

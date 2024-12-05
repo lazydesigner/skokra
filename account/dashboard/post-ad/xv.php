@@ -17,7 +17,7 @@ $fields = [];
 if (isset($_POST['update_post_ad'])) {
 
 
-    
+
     $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
     $city = filter_input(INPUT_POST, 'city', FILTER_SANITIZE_SPECIAL_CHARS);
     $state = Get_User_Details::getStateByCity($city);
@@ -76,8 +76,8 @@ if (isset($_POST['update_post_ad'])) {
 
     $price = filter_input(INPUT_POST, 'price', FILTER_SANITIZE_SPECIAL_CHARS);
     $contact = filter_input(INPUT_POST, 'contact', FILTER_SANITIZE_SPECIAL_CHARS);
-    
-    if (isset($_POST['whatsapp-enable']) ) {
+
+    if (isset($_POST['whatsapp-enable'])) {
         $whatsapp_enable = 1;
     } else {
         $whatsapp_enable = 0;
@@ -107,25 +107,24 @@ if (isset($_POST['update_post_ad'])) {
     $fields['contact'] = $contact;
     $fields['whatsapp_enable'] = $whatsapp_enable;
 
-    $post_id = $_SESSION['customer_code'] . '_in'.$_POST['post_id'];
-    
+    $post_id = $_SESSION['customer_code'] . '_in' . $_POST['post_id'];
+
     // Fields Ends
 
 
     if (!empty($category) && !empty($city) && !empty($age) && !empty($title) && !empty($description)) {
 
-        if (Get_User_Details::Update_Post_Ad_After_Editing($fields,'profiles_ad',$post_id)) {
+        if (Get_User_Details::Update_Post_Ad_After_Editing($fields, 'profiles_ad', $post_id)) {
 
-            header('Location: '.get_url().'u/post-finish/'.$_POST['post_id'].'');
-
+            header('Location: ' . get_url() . 'u/post-finish/' . $_POST['post_id'] . '');
         }
     } else {
 ?> <script>
-            alert('All Fields Are Rewuired')
+            alert('All Fields Are Required')
         </script> <?php
                 }
-            }else{
-                echo "You are not logged in";
+            } else {
+                header('Location: ' . get_url() . 'u/post-promote/' . $_POST['post_id'] . '');
             }
 
 
