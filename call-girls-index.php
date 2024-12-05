@@ -108,6 +108,48 @@ if (isset($_GET['cty'])) {
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/footer.css" defer>
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/respontomobile.css" async>
     <title>Document</title>
+    <script>
+        function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            let expires = "expires=" + d.toGMTString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+            let user = getCookie("confirm_terms");
+            if (user != "") {
+                document.body.classList.remove('body-no-scroll');
+                var remove_agree_terms = document.getElementById("confirm-18");
+                remove_agree_terms.style.display = "none";
+            }
+        }
+
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(";");
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == " ") {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        function checkCookie() {
+            let user = getCookie("confirm_terms");
+            if (user != "") {
+                //var remove_agree_terms = document.getElementById("confirm-18");
+                //remove_agree_terms.style.display = "none";
+                remove_agree_terms_hide()
+            } else {
+                var remove_agree_terms = document.getElementById("confirm-18");
+                remove_agree_terms.style.display = "block";
+            }
+        }
+        </script>
     <style>
         /* .page-detail-and-information ol li{ */
         /* border: 1px solid var(--header-color); */
@@ -610,7 +652,7 @@ if (isset($_GET['cty'])) {
     </style>
 </head>
 
-<body>
+<body   class="body-no-scroll" onload="checkCookie()">
     <?php include './common-header.php' ?>
     <div class="container">
         <div class="page-detail-and-information" aria-label="">

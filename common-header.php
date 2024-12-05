@@ -53,6 +53,18 @@ foreach($rows as $row){
 }
 
 ?>
+<div class="restrict" id="confirm-18" >
+    <div class="confirm-18">
+    <div class="logo" style="width:30%;margin:auto"><img src="<?= get_url() ?>assets/images/SKOKRA+LOGO+NEW+(2).webp.png" width="100%" height="100%" alt="" aria-label="skokra Ads network"></div>
+    <p><b>Before continuing, please read the following disclaimer.</b></p>
+    <p>I agree to see explicit material intended for an adult audience since I am older than eighteen.
+</p><p>
+I acknowledge that I have read and accepted the
+Terms and Conditions</p>
+<div class="confirm-btn"><button onclick="setCookie('confirm_terms', 'accepted_terms', 30)">Accept</button>
+<button onclick="()=>{window.location.href = '<?=get_url() ?>';}">Decline</button></div>
+    </div>
+</div>
 <header>
     <div class="container">
         <nav class="nav">

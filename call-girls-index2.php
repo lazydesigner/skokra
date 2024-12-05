@@ -112,6 +112,48 @@ if (isset($_GET['cty'])) {
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/respontomobile.css" async>
     <title>Independent Call Girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> | <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Escorts - Skokra</title>
     <meta name="description" content="Are you looking for genuine <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> escorts with real images and mobile number? Skokra has 500+ Independent call girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> with full satisfaction.">
+    <script>
+        function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            let expires = "expires=" + d.toGMTString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+            let user = getCookie("confirm_terms");
+            if (user != "") {
+                document.body.classList.remove('body-no-scroll');
+                var remove_agree_terms = document.getElementById("confirm-18");
+                remove_agree_terms.style.display = "none";
+            }
+        }
+
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(";");
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == " ") {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        function checkCookie() {
+            let user = getCookie("confirm_terms");
+            if (user != "") {
+                //var remove_agree_terms = document.getElementById("confirm-18");
+                //remove_agree_terms.style.display = "none";
+                remove_agree_terms_hide()
+            } else {
+                var remove_agree_terms = document.getElementById("confirm-18");
+                remove_agree_terms.style.display = "block";
+            }
+        }
+        </script>
     <style>
         /* .page-detail-and-information ol li{ */
         /* border: 1px solid var(--header-color); */
@@ -658,7 +700,7 @@ if (isset($_GET['cty'])) {
     </style>
 </head>
 
-<body>
+<body class="body-no-scroll" onload="checkCookie()">
 
     <?php include './common-header.php' ?>
     <div class="container">
@@ -955,7 +997,7 @@ if (isset($_GET['cty'])) {
         <p>Skokra is here to assist you in finding top-class call girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> for your pleasure. We are available around the clock to ensure your moments are infused with romance. We offer independent, open-minded call girls who can gratify your desires. Our passionate and energetic female escorts in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> are striving to deliver pleasure. You can book female partners in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> 24/7 without being scammed by local <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> escort agencies.</p>
 
         <h3>Are you looking for sexual pleasure in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>?</h3>
-        <p>Life offers many pleasures, but one of the best pleasures is having Call girls in your arms. If you are looking for the best call girls in Delhi, Skokra is the perfect place to find a unique and stunning <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> escort that suits your interests. Explore a new level of intimacy with hot girls that ensures some unforgettable moments and fulfils your satisfaction. No what the place is, whether it's your place or any hotel, they always make you comfortable and fulfil your wishes to have sex.</p>
+        <p>Life offers many pleasures, but one of the best pleasures is having Call girls in your arms. If you are looking for the best call girls in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>, Skokra is the perfect place to find a unique and stunning <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> escort that suits your interests. Explore a new level of intimacy with hot girls that ensures some unforgettable moments and fulfils your satisfaction. No what the place is, whether it's your place or any hotel, they always make you comfortable and fulfil your wishes to have sex.</p>
 
         <h3>Hire the best Independent <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Escorts in a few minutes.</h3>
         <p>Skokra escort directory offers an opportunity for you to connect with a reliable, genuine, and sophisticated escort in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?>. We enable you not only to get quality service but also to get rid of shady agencies that play tricks and keep you in the dark as we ensure complete transparency and safety. As opposed to most escort agencies in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> and brothels, our perspective is different, resulting in your convenience, safety, and satisfaction. Move to our platform, where luxury is paired with trust and decency. </p>

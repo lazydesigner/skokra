@@ -153,3 +153,54 @@ form button:hover{
     background-image: none;
     background-color: var(--primary-color)!important;
 }
+
+/* Confirm */
+
+.restrict{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    display: block;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.9);
+    z-index: 9999;
+}
+
+.confirm-18{
+    width: 500px;
+    height: auto;
+    background-color: white;
+    text-align: center;
+    padding: 2%;
+    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    color: var(--heading-color);
+}
+.confirm-18 p b{font-size: 1.5rem;}
+.confirm-btn{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap:10px
+}
+.confirm-btn button{
+    width: 30%;
+    height: 40px;
+    border: 0;
+    background-color: var(--header-color);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 100px;
+}
+
+.confirm-btn button:last-child{background-color: transparent;color: #36454F;}
+.body-no-scroll {
+    overflow: hidden;
+}

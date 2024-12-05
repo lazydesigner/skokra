@@ -1,3 +1,5 @@
+
+
 <footer>
     <ul>
         <li><a href="<?=get_url() ?>terms-and-conditions/">Terms and Conditions</a></li>
@@ -22,8 +24,22 @@
     </div>
 </footer>
 
+
 <script>
-      if (!window.location.href.endsWith('/')) {
+    function remove_agree_terms_hide(){
+        setTimeout(()=>{
+        hidepop()
+    },700)
+    }  
+    
+
+    function hidepop(){
+        document.body.classList.remove('body-no-scroll');
+        var remove_agree_terms = document.getElementById("confirm-18");
+        remove_agree_terms.style.display = "none";
+    }
+
+if (!window.location.href.endsWith('/')) {
         // Add a trailing slash to the URL
         window.history.replaceState(null, null, window.location.href + '/');
     }
