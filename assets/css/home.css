@@ -319,7 +319,7 @@ form button:hover{
 }
 
 .confirm-18{
-    width: 500px;
+    max-width: 500px;
     height: auto;
     background-color: white;
     text-align: center;

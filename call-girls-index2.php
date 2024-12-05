@@ -750,9 +750,7 @@ if (isset($_GET['cty'])) {
             | <?= ucwords(str_replace('-', ' ', $_GET['cat'])) ?>
             in <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> 24/7</h1>
 
-        <h2>
-            Latest Profiles Posted by <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Call Girls
-        </h2>
+        
 
         <p style="font-weight: 600;">SUPERTOP STORIES</p>
         <div class="stories-container">
@@ -779,6 +777,9 @@ if (isset($_GET['cty'])) {
         <div class="current-date" style="margin-top: 2%;"><small><?php echo strtoupper(date('d F')) ?></small></div>
     </div>
     <div class="container">
+    <h2 style="text-align: center;">
+            Latest Profiles Posted by <?= ucwords(str_replace('-', ' ', $_GET['cty'])) ?> Call Girls
+        </h2>
         <?php
         if (count($superrows) != 0) {
             foreach ($superrows as $rows) {
