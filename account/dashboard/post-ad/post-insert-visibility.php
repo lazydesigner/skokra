@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_identification']) || !isset($_SESSION['customer_code'
 
 if (isset($stopthefurtherprocess)) {
     if ($stopthefurtherprocess == true) {
-        Get_User_Details::Check_Ad_Owner($_GET['post_id']);
+        Get_User_Details::Check_Ad_Owner($_GET['post_id'],$_GET['a']);
     }
 }
 

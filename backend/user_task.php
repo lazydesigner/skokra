@@ -187,7 +187,7 @@ class Get_User_Details
         }
     }
 
-    public static function Check_Ad_Owner($post_id)
+    public static function Check_Ad_Owner($post_id,$edit = "")
     {
         $database = new DatabaseConnection();
         $con = $database->getConnection();
@@ -197,7 +197,13 @@ class Get_User_Details
         if ($query->rowCount() > 0) {
             $result = $query->fetch(PDO::FETCH_ASSOC);
             if ($result['ad_complete'] == 1) {
-                header('Location:' . get_url() . 'u/account/ads/');
+                
+                if($edit == 'e'){
+                    return true;
+                }else{
+                    header('Location:' . get_url() . 'u/account/ads/');
+                }
+                
             } else {
                 return true;
             }

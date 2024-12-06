@@ -14,7 +14,7 @@ if (file_exists($path)) {
 
 $fields = [];
 
-if (isset($_POST['update_post_ad'])) {
+if (isset($_POST['update_post_ad']) || isset($_POST['update_promote_post_ad']) ) {
 
 
 
@@ -116,9 +116,12 @@ if (isset($_POST['update_post_ad'])) {
 
         if (Get_User_Details::Update_Post_Ad_After_Editing($fields, 'profiles_ad', $post_id)) {
 
-            
+            if(isset($_POST['update_promote_post_ad'])){
+                header('Location: ' . get_url() . 'u/post-promote/' . $_POST['post_id'] . '?a=e/');
+            }else{
+                header('Location: ' . get_url() . 'u/post-finish/' . $_POST['post_id'] . '/');
+            }
 
-            header('Location: ' . get_url() . 'u/post-finish/' . $_POST['post_id'] . '/');
         }
     } else {
 ?> <script>
