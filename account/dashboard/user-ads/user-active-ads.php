@@ -268,7 +268,7 @@ function remove_emoji($url) {
                     <button onclick="Activity('dup','<?= str_replace($_SESSION['customer_code'] . '_in', '', $result['adid']); ?>','Are You Sure you want to duplicate this Ad')">duplicate</button>
                 </div>
                 <div class="add-col">
-                    <button id="unlockpromo" data-href='<?php $pst_id = explode('_in', $result['adid']); echo $pst_id[1] ?>' ><i class="ri-lock-unlock-fill"></i> <small>renew promo and unlock images</small></button>
+                    <button id="unlockpromo" onclick="UnlockPromo('<?php $pst_id = explode('_in', $result['adid']); echo $pst_id[1] ?>')" ><i class="ri-lock-unlock-fill"></i> <small>renew promo and unlock images</small></button>
                 </div>
             </div>
 
@@ -337,9 +337,11 @@ function remove_emoji($url) {
             window.location.href = "<?= get_url() . 'u/account/ads/' ?>";
         }
 
-        document.getElementById('unlockpromo').addEventListener('click', (e)=>{
-            window.location.href = '<?=get_url() ?>u/order-checkout/'+document.getElementById('unlockpromo').getAttribute('data-href')
-        })
+        let unlockpromo = document.querySelectorAll('#unlockpromo')
+
+        function UnlockPromo(url){
+            window.location.href = '<?=get_url() ?>u/order-checkout/'+url
+        }
     </script>
     <script>
     const ad_blockdd = document.querySelectorAll('.preview-of-active-ad');

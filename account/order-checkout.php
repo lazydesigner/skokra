@@ -145,7 +145,10 @@ $plan =  $plan->fetch(PDO::FETCH_ASSOC)
             margin: 0 1%;
             font-size: 1.5rem;
             cursor: pointer;
-            cursor: pointer;
+            color: #DC006C;
+        }
+
+        .delete-the-post a {
             color: #DC006C;
         }
 
@@ -158,11 +161,13 @@ $plan =  $plan->fetch(PDO::FETCH_ASSOC)
             white-space: pre-wrap;
             /* let the text wrap preserving spaces */
         }
-        #check i{
+
+        #check i {
             font-size: 2rem;
             display: block;
         }
-        .insufficient{
+
+        .insufficient {
             background-color: rgba(255, 0, 0, 0.35);
             font-weight: 600;
             padding: 1% 2%;
@@ -199,8 +204,8 @@ $plan =  $plan->fetch(PDO::FETCH_ASSOC)
                                                                                                                                                                                             echo $cat2;
                                                                                                                                                                                             ?></span></div>
                         </div>
-                        <div class="delete-the-post"><i class="ri-edit-box-line"></i></div>
-                        <div class="delete-the-post"><i class="ri-delete-bin-fill"></i></div>
+                        <div class="delete-the-post"><a href="<?= get_url() ?>u/post-update/<?= str_replace($_SESSION['customer_code'] . '_in', '', $_GET['post_id']); ?>"><i class="ri-edit-box-line"></i></a></div>
+                        <!-- <div class="delete-the-post"><i class="ri-delete-bin-fill"></i></div> -->
                     </div>
                     <div>
                         <div class="profile-det" style="justify-content: space-between;margin:2% 0">
@@ -214,18 +219,20 @@ $plan =  $plan->fetch(PDO::FETCH_ASSOC)
                     </div>
                 </div>
                 <h2>How do you prefer to pay?</h2>
-                <div class="profile-box select-top-pay" <?php if($customer['total_token_left'] < ($plan['number_of_credits'] + $plan['super_top_ad'])){ ?> style='user-select:none' <?php }else{ ?>style='border:1px solid dodgerblue'<?php } ?> data-value = 'token'>
+                <div class="profile-box select-top-pay" <?php if ($customer['total_token_left'] < ($plan['number_of_credits'] + $plan['super_top_ad'])) { ?> style='user-select:none' <?php } else { ?>style='border:1px solid dodgerblue' <?php } ?> data-value='token'>
                     <div class="profile-det" style="justify-content: space-between;margin:2% 0">
-                           <div class="profile-det" id="profile-det" style="align-items: center;"><span id="check"><?php if($customer['total_token_left'] < ($plan['number_of_credits'] + $plan['super_top_ad'])){ ?> <i class="ri-circle-line"></i> <?php }else{ ?><i class="ri-checkbox-circle-line"  style="color:dodgerblue"></i><?php } ?></span> <i class="ri-coin-fill"></i> Tokens</div>
-                           <div><p style="text-wrap: nowrap;">Available Tokens : <?=$customer['total_token_left'] ?></p></div>
+                        <div class="profile-det" id="profile-det" style="align-items: center;"><span id="check"><?php if ($customer['total_token_left'] < ($plan['number_of_credits'] + $plan['super_top_ad'])) { ?> <i class="ri-circle-line"></i> <?php } else { ?><i class="ri-checkbox-circle-line" style="color:dodgerblue"></i><?php } ?></span> <i class="ri-coin-fill"></i> Tokens</div>
+                        <div>
+                            <p style="text-wrap: nowrap;">Available Tokens : <?= $customer['total_token_left'] ?></p>
+                        </div>
                     </div>
-                    <?php if($customer['total_token_left'] < ($plan['number_of_credits'] + $plan['super_top_ad'])){ ?>
-                        <p class="insufficient">Insufficient Tokens <a href="<?=get_url() ?>u/account/tokens">Buy Tokens</a></p>    
+                    <?php if ($customer['total_token_left'] < ($plan['number_of_credits'] + $plan['super_top_ad'])) { ?>
+                        <p class="insufficient">Insufficient Tokens <a href="<?= get_url() ?>u/account/tokens">Buy Tokens</a></p>
                     <?php } ?>
                 </div>
-                <div class="profile-box select-top-pay" style="margin-top:20px" data-value = 'visa'>
+                <div class="profile-box select-top-pay" style="margin-top:20px" data-value='visa'>
                     <div class="profile-det" id="profile-det" style="justify-content: space-between;margin:2% 0">
-                           <div class="profile-det"  style="align-items: center;"><span id="check"><i class="ri-circle-line"></i></span> VISA</div>
+                        <div class="profile-det" style="align-items: center;"><span id="check"><i class="ri-circle-line"></i></span> VISA</div>
                     </div>
                 </div>
             </div>
@@ -238,7 +245,7 @@ $plan =  $plan->fetch(PDO::FETCH_ASSOC)
                                 <div style="font-size: small;color:#DC006C">Rs <?= ($plan['super_top_ad'] + $plan['number_of_credits']) * $plan['cost_of_token'] ?>.00 <br> (<?= $plan['number_of_credits'] + $plan['super_top_ad'] ?> Tokens) </div>
                             </b></span></div>
                     <div class="price-btn">
-                        <button id="paynow" value='<?php if($customer['total_token_left'] < ($plan['number_of_credits'] + $plan['super_top_ad'])){ ?>visa<?php }else{ ?>token<?php } ?> '>Pay Now</button>
+                        <button id="paynow" value='<?php if ($customer['total_token_left'] < ($plan['number_of_credits'] + $plan['super_top_ad'])) { ?>visa<?php } else { ?>token<?php } ?> '>Pay Now</button>
                     </div>
                 </div>
             </div>
@@ -246,25 +253,24 @@ $plan =  $plan->fetch(PDO::FETCH_ASSOC)
     </div>
 
     <?php include '../footer.php' ?>
-    <?php 
-    
+    <?php
+
     $path22 =  $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/account/dashboard/private-area.php';
 
-if (file_exists($path22)) {
-    include $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/account/dashboard/private-area.php';
-} else {
-    include $_SERVER['DOCUMENT_ROOT'] . '/account/dashboard/private-area.php';
-}
-    
-    
+    if (file_exists($path22)) {
+        include $_SERVER['DOCUMENT_ROOT'] . '/skokra.com/account/dashboard/private-area.php';
+    } else {
+        include $_SERVER['DOCUMENT_ROOT'] . '/account/dashboard/private-area.php';
+    }
+
+
     ?>
     <script src="../assets/js/common.js" defer></script>
 
     <script>
-
         const select_top_pay = document.querySelectorAll('.select-top-pay');
         const check = document.querySelectorAll('#check');
-        
+
         select_top_pay.forEach((items, i) => {
             items.addEventListener('click', (e) => {
                 select_top_pay.forEach((item, j) => {
@@ -272,13 +278,13 @@ if (file_exists($path22)) {
                     check[j].innerHTML = '<i class="ri-circle-line"></i>';
                 })
                 items.style.border = '1px solid dodgerblue';
-                    check[i].innerHTML = '<i class="ri-checkbox-circle-line" style="color:dodgerblue"></i>';
-                    document.getElementById('paynow').value = items.getAttribute('data-value');
-                    console.log()
+                check[i].innerHTML = '<i class="ri-checkbox-circle-line" style="color:dodgerblue"></i>';
+                document.getElementById('paynow').value = items.getAttribute('data-value');
+                console.log()
             })
         })
 
-        document.getElementById('paynow').addEventListener('click',(e)=>{
+        document.getElementById('paynow').addEventListener('click', (e) => {
             alert('Something Went Wrong! Logic Error')
         })
     </script>

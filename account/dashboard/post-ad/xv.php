@@ -122,6 +122,13 @@ if (isset($_POST['update_post_ad']) || isset($_POST['update_promote_post_ad']) )
                 header('Location: ' . get_url() . 'u/post-finish/' . $_POST['post_id'] . '/');
             }
 
+        }else{
+            if(isset($_POST['update_promote_post_ad'])){
+                header('Location: ' . get_url() . 'u/post-promote/' . $_POST['post_id'] . '?a=e/');
+            }else{
+                header('Location: ' . get_url() . 'u/account/ads/');
+            }
+            
         }
     } else {
 ?> <script>
