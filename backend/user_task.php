@@ -198,7 +198,7 @@ class Get_User_Details
             $result = $query->fetch(PDO::FETCH_ASSOC);
             if ($result['ad_complete'] == 1) {
                 
-                if($edit == 'e'){
+                if($edit == 'e/'){
                     return true;
                 }else{
                     header('Location:' . get_url() . 'u/account/ads/');

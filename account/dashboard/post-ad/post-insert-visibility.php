@@ -7,10 +7,18 @@ if (!isset($_SESSION['user_identification']) || !isset($_SESSION['customer_code'
     Get_User_Details::Get_Customer_Code();
 }
 
+$parsedUrl = parse_url($_SERVER['REQUEST_URI']);
+$queryString = $parsedUrl['query'] ?? '';
+
+// Parse the query string into an associative array
+parse_str($queryString, $queryParams);
+
+// Get the value of the 'a' parameter
+$aValue = $queryParams['a'] ?? null;
 
 if (isset($stopthefurtherprocess)) {
     if ($stopthefurtherprocess == true) {
-        Get_User_Details::Check_Ad_Owner($_GET['post_id'],$_GET['a']);
+        Get_User_Details::Check_Ad_Owner($_GET['post_id'], $aValue);
     }
 }
 
