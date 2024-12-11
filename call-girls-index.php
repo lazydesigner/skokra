@@ -149,7 +149,7 @@ if (isset($_GET['cty'])) {
                 remove_agree_terms.style.display = "block";
             }
         }
-        </script>
+        </script> 
     <style>
         /* .page-detail-and-information ol li{ */
         /* border: 1px solid var(--header-color); */
