@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!isset($_GET['x'])){
+    header("Location: https://in.skokra.com/");
+}
 $uri = $_SERVER['REQUEST_URI'];
 // Check if the URL contains any uppercase letters
 if (preg_match('/[A-Z]/', $uri)) {
@@ -39,16 +42,16 @@ if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empt
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.6.0/remixicon.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" async>
-    <meta name="description" content="">
+    <meta name="description" content="Skokra. <?= $profilerow['city'] ?>. <?= strtoupper($profilerow['title']) ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="noindex, follow">
     <link rel="shortcut icon" href="<?= get_url() ?>assets/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/common-header.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/footer.css" defer>
-    <link rel="stylesheet" href="<?= get_url() ?>assets/css/respontomobile.css" defer>  
-    <title>Document</title>
+    <link rel="stylesheet" href="<?= get_url() ?>assets/css/respontomobile.css" defer>   
+    <title><?= $profilerow['ad_phone_number'] .'-'. $profilerow['city'].': ' ?><?= strtoupper($profilerow['title']) ?></title>
     <script>
         function setCookie(cname, cvalue, exdays) {
             const d = new Date();
@@ -301,7 +304,7 @@ if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empt
         <div class="profile-flex">
             <div>
                 <div><small><?= $dateofad ?> - Ad ID: <?php if(isset($_SESSION['customer_code'])){echo substr(str_replace($_SESSION['customer_code'] . '_in', '', $profilerow['adid']), -7);}else{echo substr($profilerow['adid'], -7);} ?></small></div>
-                <div class="profile-age"><span><?= $profilerow['age'] . ' Years' ?></span><span> <i class="ri-map-pin-line"></i> <?= $profilerow['city'] ?></span></div>
+                <div class="profile-age"><span><?= $profilerow['age'] . ' Years' ?></span><?php if(!empty($profilerow['area'])){ ?><span> <?= $profilerow['area'] ?></span><?php } ?> <span> <i class="ri-map-pin-line"></i> <?= $profilerow['city'] ?></span></div>
                 <h1><?= strtoupper($profilerow['title']) ?></h1>
             </div>
             <div>
