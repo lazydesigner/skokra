@@ -19,6 +19,10 @@ include './backend/user_task.php';
 
 $profilerow = Get_User_Details::Get_Single_Ad_Detail(explode('0723', $_GET['x'])[1])[0];
 
+if(empty($profilerow)){
+    header("Location: https://in.skokra.com");
+}
+
 $date = new DateTime($profilerow['date_of_insert']);
 $dateofad = $date->format("d M");
 
@@ -42,7 +46,7 @@ if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empt
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.6.0/remixicon.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" async>
-    <meta name="description" content="Skokra. <?= $profilerow['city'] ?>. <?= strtoupper($profilerow['title']) ?>">
+    <meta name="description" content="Skokra. <?= ucwords($profilerow['city']) ?>. <?= strtoupper($profilerow['title']) ?>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
@@ -51,7 +55,7 @@ if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empt
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/common-header.css">
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/footer.css" defer>
     <link rel="stylesheet" href="<?= get_url() ?>assets/css/respontomobile.css" defer>   
-    <title><?= $profilerow['ad_phone_number'] .'-'. $profilerow['city'].': ' ?><?= strtoupper($profilerow['title']) ?></title>
+    <title><?= $profilerow['ad_phone_number'] .' - '. ucwords($profilerow['city']).': ' ?><?= strtoupper($profilerow['title']) ?></title>
     <script>
         function setCookie(cname, cvalue, exdays) {
             const d = new Date();
