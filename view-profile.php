@@ -308,7 +308,7 @@ if (empty($profilerow['services']) && empty($profilerow['attention_to']) && empt
         <div class="profile-flex">
             <div>
                 <div><small><?= $dateofad ?> - Ad ID: <?php if(isset($_SESSION['customer_code'])){echo substr(str_replace($_SESSION['customer_code'] . '_in', '', $profilerow['adid']), -7);}else{echo substr($profilerow['adid'], -7);} ?></small></div>
-                <div class="profile-age"><span><?= $profilerow['age'] . ' Years' ?></span><?php if(!empty($profilerow['area'])){ ?><span> <?= $profilerow['area'] ?></span><?php } ?> <span> <i class="ri-map-pin-line"></i> <?= $profilerow['city'] ?></span></div>
+                <div class="profile-age"><span><?= $profilerow['age'] . ' Years' ?></span> <span> <i class="ri-map-pin-line"></i> <?php if(!empty($profilerow['area'])){ ?><?= $profilerow['area'].' ' ?><?php } ?> <?= ucwords($profilerow['city']) ?></span></div>
                 <h1><?= strtoupper($profilerow['title']) ?></h1>
             </div>
             <div>
